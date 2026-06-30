@@ -1,0 +1,721 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>E-Invoicing Compliance Tracker — Stato globale per paese</title>
+<meta name="description" content="Stato della fatturazione elettronica B2G, B2B, B2C, e-reporting ed e-archiving in 31 paesi, aggiornato settimanalmente.">
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=IBM+Plex+Mono:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap');
+
+  :root{
+    --paper:#F5F5F5;
+    --ink:#161616;
+    --ink-soft:#5A5A5A;
+    --line:#D6D6D6;
+    --stamp-green:#1F1F1F;
+    --stamp-green-bg:#E4E4E4;
+    --stamp-amber:#B0151F;
+    --stamp-amber-bg:#F6DEE0;
+    --stamp-grey:#8A8A8A;
+    --stamp-grey-bg:#EAEAEA;
+    --accent:#C8102E;
+    --card:#FFFFFF;
+    --shadow: 0 1px 0 rgba(0,0,0,0.08);
+  }
+
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'Inter', sans-serif;
+    -webkit-font-smoothing:antialiased;
+  }
+
+  /* texture */
+  body::before{
+    content:"";
+    position:fixed; inset:0;
+    background-image:
+      repeating-linear-gradient(0deg, rgba(27,36,33,0.018) 0px, rgba(27,36,33,0.018) 1px, transparent 1px, transparent 3px);
+    pointer-events:none;
+    z-index:0;
+  }
+
+  a{color:inherit;}
+
+  /* ───────── Header / masthead ───────── */
+  header.masthead{
+    position:relative;
+    z-index:1;
+    border-bottom:3px double var(--ink);
+    padding:28px 5vw 18px;
+  }
+  .masthead-top{
+    display:flex;
+    justify-content:space-between;
+    align-items:baseline;
+    flex-wrap:wrap;
+    gap:8px;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11px;
+    letter-spacing:.06em;
+    text-transform:uppercase;
+    color:var(--ink-soft);
+    margin-bottom:18px;
+  }
+  .masthead-top .dot{ color:var(--accent); }
+
+  h1.title{
+    font-family:'Fraunces', serif;
+    font-optical-sizing:auto;
+    font-weight:600;
+    font-size:clamp(34px, 6vw, 64px);
+    line-height:0.98;
+    margin:0 0 10px;
+    letter-spacing:-0.01em;
+  }
+  h1.title em{
+    font-style:italic;
+    font-weight:400;
+    color:var(--accent);
+  }
+
+  .subhead{
+    display:flex;
+    justify-content:space-between;
+    align-items:flex-end;
+    flex-wrap:wrap;
+    gap:18px;
+    border-top:1px solid var(--line);
+    padding-top:14px;
+    margin-top:18px;
+  }
+  .subhead p{
+    max-width:560px;
+    font-size:15px;
+    line-height:1.55;
+    color:var(--ink-soft);
+    margin:0;
+  }
+  .meta-stamp{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11px;
+    text-align:right;
+    color:var(--ink-soft);
+    line-height:1.6;
+    white-space:nowrap;
+  }
+  .meta-stamp .label{
+    text-transform:uppercase;
+    letter-spacing:.08em;
+    font-size:10px;
+    color:var(--stamp-green);
+  }
+
+  /* ───────── Controls bar ───────── */
+  .controls{
+    position:sticky;
+    top:0;
+    z-index:50;
+    background:var(--paper);
+    border-bottom:1px solid var(--line);
+    padding:14px 5vw;
+    display:flex;
+    gap:14px;
+    align-items:center;
+    flex-wrap:wrap;
+    backdrop-filter:blur(2px);
+  }
+  .search-wrap{
+    position:relative;
+    flex:1 1 260px;
+    max-width:420px;
+  }
+  .search-wrap input{
+    width:100%;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:13px;
+    padding:10px 14px 10px 32px;
+    border:1px solid var(--ink);
+    background:var(--card);
+    color:var(--ink);
+    outline:none;
+    border-radius:2px;
+  }
+  .search-wrap input:focus{
+    box-shadow:0 0 0 3px rgba(181,71,43,0.15);
+    border-color:var(--accent);
+  }
+  .search-wrap::before{
+    content:"⌕";
+    position:absolute;
+    left:11px; top:50%; transform:translateY(-50%);
+    font-size:15px;
+    color:var(--ink-soft);
+  }
+  .filter-group{
+    display:flex;
+    gap:6px;
+    flex-wrap:wrap;
+  }
+  .filter-chip{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11px;
+    letter-spacing:.03em;
+    text-transform:uppercase;
+    padding:7px 12px;
+    border:1px solid var(--line);
+    background:var(--card);
+    color:var(--ink-soft);
+    cursor:pointer;
+    border-radius:2px;
+    transition:all .15s ease;
+    user-select:none;
+  }
+  .filter-chip:hover{ border-color:var(--ink); color:var(--ink); }
+  .filter-chip.active{
+    background:var(--ink);
+    color:var(--paper);
+    border-color:var(--ink);
+  }
+  .result-count{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11px;
+    color:var(--ink-soft);
+    margin-left:auto;
+    white-space:nowrap;
+  }
+
+  /* ───────── Legend ───────── */
+  .legend{
+    padding:14px 5vw;
+    display:flex;
+    gap:22px;
+    flex-wrap:wrap;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11px;
+    color:var(--ink-soft);
+    border-bottom:1px solid var(--line);
+  }
+  .legend-item{ display:flex; align-items:center; gap:7px; }
+  .swatch{ width:10px; height:10px; border-radius:50%; display:inline-block; }
+  .swatch.mandatory{ background:var(--stamp-green); }
+  .swatch.planned{ background:var(--stamp-amber); }
+  .swatch.voluntary{ background:var(--stamp-grey); }
+
+  /* ───────── Grid of countries ───────── */
+  main{
+    position:relative;
+    z-index:1;
+    padding:30px 5vw 80px;
+  }
+  .grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fill, minmax(300px, 1fr));
+    gap:1px;
+    background:var(--line);
+    border:1px solid var(--line);
+  }
+  .country-card{
+    background:var(--card);
+    padding:20px 22px;
+    cursor:pointer;
+    transition:background .15s ease;
+    display:flex;
+    flex-direction:column;
+    gap:12px;
+  }
+  .country-card:hover{ background:#fff; }
+  .country-card-top{
+    display:flex;
+    justify-content:space-between;
+    align-items:flex-start;
+    gap:10px;
+  }
+  .country-name{
+    font-family:'Fraunces', serif;
+    font-weight:600;
+    font-size:21px;
+    line-height:1.15;
+  }
+  .country-index{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:10px;
+    color:var(--ink-soft);
+    margin-top:2px;
+  }
+  .badge-row{
+    display:flex;
+    gap:6px;
+    flex-wrap:wrap;
+  }
+  .badge{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:10px;
+    letter-spacing:.03em;
+    padding:3px 8px;
+    border-radius:20px;
+    white-space:nowrap;
+    display:inline-flex;
+    align-items:center;
+    gap:5px;
+  }
+  .badge::before{
+    content:"";
+    width:6px; height:6px;
+    border-radius:50%;
+    display:inline-block;
+  }
+  .badge.mandatory{ background:var(--stamp-green-bg); color:var(--stamp-green); }
+  .badge.mandatory::before{ background:var(--stamp-green); }
+  .badge.planned{ background:var(--stamp-amber-bg); color:var(--stamp-amber); }
+  .badge.planned::before{ background:var(--stamp-amber); }
+  .badge.voluntary{ background:var(--stamp-grey-bg); color:var(--stamp-grey); }
+  .badge.voluntary::before{ background:var(--stamp-grey); }
+
+  .country-foot{
+    margin-top:auto;
+    font-size:12.5px;
+    color:var(--ink-soft);
+    line-height:1.5;
+    border-top:1px solid var(--line);
+    padding-top:10px;
+  }
+  .country-foot b{ color:var(--ink); font-weight:600; }
+
+  .no-results{
+    grid-column:1/-1;
+    background:var(--card);
+    padding:60px 20px;
+    text-align:center;
+    font-family:'IBM Plex Mono', monospace;
+    color:var(--ink-soft);
+    font-size:13px;
+  }
+
+  /* ───────── Detail panel (modal-ish, full takeover) ───────── */
+  .detail-overlay{
+    position:fixed;
+    inset:0;
+    background:var(--paper);
+    z-index:200;
+    display:none;
+    overflow-y:auto;
+  }
+  .detail-overlay.open{ display:block; }
+
+  .detail-header{
+    position:sticky;
+    top:0;
+    background:var(--paper);
+    border-bottom:3px double var(--ink);
+    padding:18px 5vw;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    z-index:5;
+  }
+  .back-btn{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px;
+    letter-spacing:.04em;
+    text-transform:uppercase;
+    background:none;
+    border:1px solid var(--ink);
+    padding:8px 16px;
+    cursor:pointer;
+    color:var(--ink);
+    border-radius:2px;
+    display:flex;
+    align-items:center;
+    gap:8px;
+  }
+  .back-btn:hover{ background:var(--ink); color:var(--paper); }
+
+  .detail-title{
+    font-family:'Fraunces', serif;
+    font-weight:600;
+    font-size:clamp(28px,4.5vw,46px);
+  }
+
+  .detail-body{
+    max-width:980px;
+    margin:0 auto;
+    padding:36px 5vw 100px;
+  }
+
+  .detail-meta{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11px;
+    color:var(--ink-soft);
+    margin-bottom:30px;
+    text-transform:uppercase;
+    letter-spacing:.05em;
+  }
+
+  .section{
+    margin-bottom:34px;
+  }
+  .section-head{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    margin-bottom:14px;
+  }
+  .section-num{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px;
+    color:var(--ink-soft);
+    border:1px solid var(--line);
+    width:26px; height:26px;
+    display:flex; align-items:center; justify-content:center;
+    border-radius:50%;
+    flex-shrink:0;
+  }
+  .section-title{
+    font-family:'Fraunces', serif;
+    font-weight:600;
+    font-size:22px;
+  }
+
+  .field-grid{
+    display:grid;
+    grid-template-columns:160px 1fr;
+    border:1px solid var(--line);
+    background:var(--line);
+    gap:1px;
+  }
+  .field-label{
+    background:var(--card);
+    padding:13px 16px;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:10.5px;
+    text-transform:uppercase;
+    letter-spacing:.05em;
+    color:var(--ink-soft);
+    display:flex;
+    align-items:center;
+  }
+  .field-value{
+    background:#fff;
+    padding:13px 16px;
+    font-size:14px;
+    line-height:1.55;
+    display:flex;
+    align-items:center;
+  }
+  .field-value.status-mandatory{ color:var(--stamp-green); font-weight:600; }
+  .field-value.status-planned{ color:var(--stamp-amber); font-weight:600; }
+  .field-value.status-voluntary{ color:var(--stamp-grey); font-weight:600; }
+
+  @media (max-width:640px){
+    .field-grid{ grid-template-columns:1fr; }
+    .field-label{ padding-bottom:4px; }
+  }
+
+  /* footer */
+  footer{
+    border-top:1px solid var(--line);
+    padding:24px 5vw 40px;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11px;
+    color:var(--ink-soft);
+    display:flex;
+    justify-content:space-between;
+    flex-wrap:wrap;
+    gap:10px;
+  }
+
+  ::selection{ background:var(--accent); color:#fff; }
+
+  /* focus visibility */
+  button:focus-visible, input:focus-visible, .country-card:focus-visible{
+    outline:2px solid var(--accent);
+    outline-offset:2px;
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    html{ scroll-behavior:auto; }
+    *{ transition:none !important; }
+  }
+</style>
+</head>
+<body>
+
+<header class="masthead">
+  <div class="masthead-top">
+    <span>Registro normativo <span class="dot">·</span> Compliance fiscale digitale</span>
+    <span id="live-clock"></span>
+  </div>
+  <h1 class="title">Fatturazione <em>Elettronica</em><br>nel Mondo</h1>
+  <div class="subhead">
+    <p>Stato di B2G, B2B, B2C, e-reporting ed e-archiving in 31 giurisdizioni. Aggiornato automaticamente ogni settimana a partire dalle fonti normative pubbliche.</p>
+    <div class="meta-stamp">
+      <div class="label">Ultimo aggiornamento</div>
+      <div id="last-updated">—</div>
+      <div class="label" style="margin-top:8px;">Paesi monitorati</div>
+      <div id="country-count">—</div>
+    </div>
+  </div>
+</header>
+
+<div class="controls">
+  <div class="search-wrap">
+    <input type="text" id="search" placeholder="Cerca paese…" autocomplete="off">
+  </div>
+  <div class="filter-group" id="filter-b2g" data-field="b2g_status">
+    <span class="filter-chip active" data-val="all">B2G: Tutti</span>
+    <span class="filter-chip" data-val="mandatory">Obbligatorio</span>
+    <span class="filter-chip" data-val="planned">Pianificato</span>
+    <span class="filter-chip" data-val="voluntary">Volontario</span>
+  </div>
+  <div class="filter-group" id="filter-b2b" data-field="b2b_status">
+    <span class="filter-chip active" data-val="all">B2B: Tutti</span>
+    <span class="filter-chip" data-val="mandatory">Obbligatorio</span>
+    <span class="filter-chip" data-val="planned">Pianificato</span>
+    <span class="filter-chip" data-val="voluntary">Volontario</span>
+  </div>
+  <div class="result-count" id="result-count"></div>
+</div>
+
+<div class="legend">
+  <div class="legend-item"><span class="swatch mandatory"></span> Obbligatorio &amp; attivo</div>
+  <div class="legend-item"><span class="swatch planned"></span> Pianificato / in corso</div>
+  <div class="legend-item"><span class="swatch voluntary"></span> Non richiesto / volontario</div>
+</div>
+
+<main>
+  <div class="grid" id="grid"></div>
+</main>
+
+<footer>
+  <span>Generato automaticamente — non costituisce consulenza legale o fiscale</span>
+</footer>
+
+<!-- ───────── Detail overlay ───────── -->
+<div class="detail-overlay" id="detail-overlay">
+  <div class="detail-header">
+    <button class="back-btn" id="back-btn">← Torna all'elenco</button>
+    <div class="detail-title" id="detail-title"></div>
+    <div style="width:140px;"></div>
+  </div>
+  <div class="detail-body" id="detail-body"></div>
+</div>
+
+<script>
+let COUNTRIES = [];
+let activeFilters = { b2g_status: 'all', b2b_status: 'all' };
+let searchTerm = '';
+
+function classifyStatus(text){
+  const t = (text || '').toLowerCase();
+  if(t.includes('not') || t.includes('voluntary') || t.includes('not required') || t.includes('not mandatory')) return 'voluntary';
+  if(t.includes('mandatory') && !t.includes('not')) {
+    if(t.includes('from 20') || t.includes('planned') || t.includes('will become') || t.includes('pilot') || t.includes('expected')) return 'planned';
+    return 'mandatory';
+  }
+  if(t.includes('planned') || t.includes('pilot') || t.includes('tbd') || t.includes('expected') || t.includes('under development')) return 'planned';
+  return 'voluntary';
+}
+
+function badgeHTML(label, statusText){
+  const cls = classifyStatus(statusText);
+  const labelMap = { mandatory: 'Obbligatorio', planned: 'In arrivo', voluntary: 'Non richiesto' };
+  return `<span class="badge ${cls}">${label}: ${labelMap[cls]}</span>`;
+}
+
+function renderGrid(){
+  const grid = document.getElementById('grid');
+  const term = searchTerm.trim().toLowerCase();
+
+  const filtered = COUNTRIES.filter(c => {
+    if(term && !c.name.toLowerCase().includes(term)) return false;
+    if(activeFilters.b2g_status !== 'all' && classifyStatus(c.b2g_status) !== activeFilters.b2g_status) return false;
+    if(activeFilters.b2b_status !== 'all' && classifyStatus(c.b2b_status) !== activeFilters.b2b_status) return false;
+    return true;
+  });
+
+  document.getElementById('result-count').textContent = `${filtered.length} / ${COUNTRIES.length} paesi`;
+
+  if(filtered.length === 0){
+    grid.innerHTML = `<div class="no-results">Nessun paese corrisponde ai filtri selezionati.</div>`;
+    return;
+  }
+
+  grid.innerHTML = filtered.map((c) => {
+    const idx = COUNTRIES.indexOf(c) + 1;
+    return `
+    <div class="country-card" tabindex="0" data-slug="${c.slug}" role="button" aria-label="Apri dettaglio ${c.name}">
+      <div class="country-card-top">
+        <div>
+          <div class="country-name">${c.name}</div>
+          <div class="country-index">${String(idx).padStart(2,'0')} / ${String(COUNTRIES.length).padStart(2,'0')}</div>
+        </div>
+      </div>
+      <div class="badge-row">
+        ${badgeHTML('B2G', c.b2g_status)}
+        ${badgeHTML('B2B', c.b2b_status)}
+        ${badgeHTML('B2C', c.b2c_status)}
+      </div>
+      <div class="country-foot">
+        <b>E-Reporting:</b> ${classifyStatus(c.ereporting_status) === 'mandatory' ? 'attivo' : (classifyStatus(c.ereporting_status) === 'planned' ? 'in arrivo' : 'non richiesto')}
+        &nbsp;·&nbsp;
+        <b>Conservazione:</b> ${c.archiving_retention || '—'}
+      </div>
+    </div>`;
+  }).join('');
+
+  grid.querySelectorAll('.country-card').forEach(card => {
+    card.addEventListener('click', () => openDetail(card.dataset.slug));
+    card.addEventListener('keypress', (e) => { if(e.key === 'Enter') openDetail(card.dataset.slug); });
+  });
+}
+
+function field(label, value, statusClass){
+  const cls = statusClass ? ` status-${statusClass}` : '';
+  return `<div class="field-label">${label}</div><div class="field-value${cls}">${value || '—'}</div>`;
+}
+
+function renderSection(num, title, rows){
+  return `
+    <div class="section">
+      <div class="section-head">
+        <div class="section-num">${num}</div>
+        <div class="section-title">${title}</div>
+      </div>
+      <div class="field-grid">${rows}</div>
+    </div>`;
+}
+
+function openDetail(slug){
+  const c = COUNTRIES.find(x => x.slug === slug);
+  if(!c) return;
+
+  document.getElementById('detail-title').textContent = c.name;
+
+  const body = document.getElementById('detail-body');
+  body.innerHTML = `
+    <div class="detail-meta">Ultimo aggiornamento fonte: ${c.last_update || '—'}</div>
+
+    ${renderSection('01', 'B2G — Business to Government', 
+      field('Stato', c.b2g_status, classifyStatus(c.b2g_status)) +
+      field('Obbligatorio da', c.b2g_since) +
+      field('Piattaforma', c.b2g_platform) +
+      field('Rete', c.b2g_network) +
+      field('Formato/i', c.b2g_format) +
+      field('Note', c.b2g_notes)
+    )}
+
+    ${renderSection('02', 'B2B — Business to Business', 
+      field('Stato', c.b2b_status, classifyStatus(c.b2b_status)) +
+      field('Obbligatorio da', c.b2b_since) +
+      field('Piattaforma', c.b2b_platform) +
+      field('Rete', c.b2b_network) +
+      field('Formato/i', c.b2b_format) +
+      field('Note', c.b2b_notes)
+    )}
+
+    ${renderSection('03', 'B2C — Business to Consumer', 
+      field('Stato', c.b2c_status, classifyStatus(c.b2c_status)) +
+      field('Obbligatorio da', c.b2c_since) +
+      field('Piattaforma', c.b2c_platform) +
+      field('Rete', c.b2c_network) +
+      field('Formato/i', c.b2c_format) +
+      field('Note', c.b2c_notes)
+    )}
+
+    ${renderSection('04', 'E-Reporting', 
+      field('Stato', c.ereporting_status, classifyStatus(c.ereporting_status)) +
+      field('Obbligatorio da', c.ereporting_since) +
+      field('Piattaforma', c.ereporting_platform) +
+      field('Frequenza', c.ereporting_frequency) +
+      field('Perimetro', c.ereporting_scope) +
+      field('Note', c.ereporting_notes)
+    )}
+
+    ${renderSection('05', 'E-Archiving — Conservazione a norma', 
+      field('Obbligatoria', c.archiving_mandatory) +
+      field('Periodo di conservazione', c.archiving_retention) +
+      field('Normativa di riferimento', c.archiving_rules) +
+      field('Piattaforma / Fornitore', c.archiving_platform) +
+      field('Note', c.archiving_notes)
+    )}
+  `;
+
+  document.getElementById('detail-overlay').classList.add('open');
+  document.body.style.overflow = 'hidden';
+  window.scrollTo(0,0);
+  history.pushState({slug}, '', `#${slug}`);
+}
+
+function closeDetail(){
+  document.getElementById('detail-overlay').classList.remove('open');
+  document.body.style.overflow = '';
+  history.pushState({}, '', window.location.pathname);
+}
+
+document.getElementById('back-btn').addEventListener('click', closeDetail);
+window.addEventListener('popstate', () => {
+  const hash = window.location.hash.replace('#','');
+  if(hash) openDetail(hash); else closeDetail();
+});
+
+document.getElementById('search').addEventListener('input', (e) => {
+  searchTerm = e.target.value;
+  renderGrid();
+});
+
+document.querySelectorAll('.filter-group').forEach(group => {
+  const field = group.dataset.field;
+  group.querySelectorAll('.filter-chip').forEach(chip => {
+    chip.addEventListener('click', () => {
+      group.querySelectorAll('.filter-chip').forEach(c => c.classList.remove('active'));
+      chip.classList.add('active');
+      activeFilters[field] = chip.dataset.val;
+      renderGrid();
+    });
+  });
+});
+
+function updateClock(){
+  const now = new Date();
+  const opts = { weekday:'short', year:'numeric', month:'short', day:'numeric', hour:'2-digit', minute:'2-digit' };
+  document.getElementById('live-clock').textContent = now.toLocaleDateString('it-IT', opts);
+}
+updateClock();
+setInterval(updateClock, 30000);
+
+async function init(){
+  try {
+    const res = await fetch('data/countries.json');
+    COUNTRIES = await res.json();
+  } catch(e) {
+    document.getElementById('grid').innerHTML = `<div class="no-results">Errore nel caricamento dei dati. Verifica che data/countries.json sia presente.</div>`;
+    return;
+  }
+
+  document.getElementById('country-count').textContent = COUNTRIES.length + ' giurisdizioni';
+
+  // try to load metadata (last update timestamp written by the update script)
+  try {
+    const metaRes = await fetch('data/meta.json');
+    const meta = await metaRes.json();
+    document.getElementById('last-updated').textContent = meta.last_run || '—';
+  } catch(e) {
+    document.getElementById('last-updated').textContent = 'Giugno 2026';
+  }
+
+  renderGrid();
+
+  const hash = window.location.hash.replace('#','');
+  if(hash) openDetail(hash);
+}
+
+init();
+</script>
+
+</body>
+</html>
