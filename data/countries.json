@@ -1,6 +1,7 @@
 [
   {
     "name": "Italy",
+    "name_it": "Italia",
     "b2g_status": "Mandatory",
     "b2g_since": "2015 (phased rollout 2014-2015)",
     "b2g_platform": "Sistema di Interscambio (SDI)",
@@ -35,6 +36,7 @@
   },
   {
     "name": "France",
+    "name_it": "Francia",
     "b2g_status": "Mandatory",
     "b2g_since": "Jan 1, 2020 (phased from 2017)",
     "b2g_platform": "Chorus Pro",
@@ -69,6 +71,7 @@
   },
   {
     "name": "Germany",
+    "name_it": "Germania",
     "b2g_status": "Mandatory (acceptance since Nov 2020; sending mandatory varies by level)",
     "b2g_since": "Nov 27, 2020 (federal acceptance); varies by Länder",
     "b2g_platform": "Multiple: OZG-RE (federal), Länder-specific portals; Peppol network",
@@ -103,6 +106,7 @@
   },
   {
     "name": "Spain",
+    "name_it": "Spagna",
     "b2g_status": "Mandatory",
     "b2g_since": "Jan 15, 2015 (large suppliers); Jan 15, 2016 (all)",
     "b2g_platform": "FACe (central registry); regional portals (FACeB2B for regions)",
@@ -137,6 +141,7 @@
   },
   {
     "name": "Belgium",
+    "name_it": "Belgio",
     "b2g_status": "Mandatory",
     "b2g_since": "2019 (federal); phased to regional/local by 2022",
     "b2g_platform": "Mercurius (federal platform); Peppol network",
@@ -171,6 +176,7 @@
   },
   {
     "name": "Netherlands",
+    "name_it": "Paesi Bassi",
     "b2g_status": "Mandatory",
     "b2g_since": "Nov 1, 2019 (central/decentralized); Apr 18, 2019 (sub-central voluntary)",
     "b2g_platform": "Peppol (via access points)",
@@ -205,6 +211,7 @@
   },
   {
     "name": "Poland",
+    "name_it": "Polonia",
     "b2g_status": "Mandatory",
     "b2g_since": "2019 (acceptance); Apr 18, 2019",
     "b2g_platform": "PEF (Platforma Elektronicznego Fakturowania) – national Peppol authority",
@@ -239,6 +246,7 @@
   },
   {
     "name": "Portugal",
+    "name_it": "Portogallo",
     "b2g_status": "Mandatory",
     "b2g_since": "Jan 1, 2021",
     "b2g_platform": "eSPAP (Entidade de Serviços Partilhados da AP) / ESPAP portal",
@@ -273,6 +281,7 @@
   },
   {
     "name": "Romania",
+    "name_it": "Romania",
     "b2g_status": "Mandatory",
     "b2g_since": "Nov 1, 2021",
     "b2g_platform": "SPV (Spațiul Privat Virtual) – RO e-Factura system",
@@ -307,6 +316,7 @@
   },
   {
     "name": "Greece",
+    "name_it": "Grecia",
     "b2g_status": "Mandatory (via myDATA)",
     "b2g_since": "2021",
     "b2g_platform": "myDATA (IAPR – Independent Authority for Public Revenue)",
@@ -341,6 +351,7 @@
   },
   {
     "name": "Australia",
+    "name_it": "Australia",
     "b2g_status": "Mandatory for federal government suppliers",
     "b2g_since": "Jul 1, 2022 (large suppliers); Jan 1, 2023 (all)",
     "b2g_platform": "Peppol (ATO as Peppol Authority)",
@@ -375,6 +386,7 @@
   },
   {
     "name": "Austria",
+    "name_it": "Austria",
     "b2g_status": "Mandatory",
     "b2g_since": "Jan 1, 2014 (federal); 2015 (sub-federal)",
     "b2g_platform": "USP (Unternehmensserviceportal) / Peppol",
@@ -409,6 +421,7 @@
   },
   {
     "name": "Denmark",
+    "name_it": "Danimarca",
     "b2g_status": "Mandatory",
     "b2g_since": "Feb 1, 2005 (central); Jul 2005 (all public sector)",
     "b2g_platform": "NemHandel (national network); Peppol",
@@ -443,6 +456,7 @@
   },
   {
     "name": "Finland",
+    "name_it": "Finlandia",
     "b2g_status": "Mandatory",
     "b2g_since": "Apr 1, 2010 (central); Jan 1, 2020 (all public entities)",
     "b2g_platform": "PEPPOL / Finvoice network / TEAPPSXML",
@@ -477,6 +491,7 @@
   },
   {
     "name": "Sweden",
+    "name_it": "Svezia",
     "b2g_status": "Mandatory",
     "b2g_since": "Apr 1, 2019 (central government); Nov 1, 2019 (regions/municipalities)",
     "b2g_platform": "Peppol",
@@ -511,6 +526,7 @@
   },
   {
     "name": "Norway",
+    "name_it": "Norvegia",
     "b2g_status": "Mandatory",
     "b2g_since": "Jul 1, 2012 (central government); Jan 1, 2017 (all public sector)",
     "b2g_platform": "ELMA (national Peppol registry) / Peppol",
@@ -545,6 +561,7 @@
   },
   {
     "name": "Ireland",
+    "name_it": "Irlanda",
     "b2g_status": "Mandatory acceptance (Peppol); sending encouraged",
     "b2g_since": "2019 (acceptance); 2020 (wider rollout)",
     "b2g_platform": "Peppol",
@@ -579,6 +596,7 @@
   },
   {
     "name": "Croatia",
+    "name_it": "Croazia",
     "b2g_status": "Mandatory",
     "b2g_since": "Dec 1, 2018",
     "b2g_platform": "Central FINA eRačun (via Peppol)",
@@ -613,6 +631,7 @@
   },
   {
     "name": "India",
+    "name_it": "India",
     "b2g_status": "Mandatory (via e-invoicing system for eligible taxpayers)",
     "b2g_since": "Oct 1, 2020 (large) – progressive threshold reduction",
     "b2g_platform": "IRP (Invoice Registration Portal) – GST Network (GSTN)",
@@ -647,6 +666,7 @@
   },
   {
     "name": "Malaysia",
+    "name_it": "Malesia",
     "b2g_status": "Mandatory (via MyInvois)",
     "b2g_since": "Aug 1, 2024 (large taxpayers); Jul 1, 2025 (all)",
     "b2g_platform": "MyInvois (LHDN – Inland Revenue Board)",
@@ -681,6 +701,7 @@
   },
   {
     "name": "Mexico",
+    "name_it": "Messico",
     "b2g_status": "Mandatory (same CFDI system)",
     "b2g_since": "2011 (progressive)",
     "b2g_platform": "SAT (Servicio de Administración Tributaria) via PAC (Authorized Certifiers)",
@@ -715,6 +736,7 @@
   },
   {
     "name": "Saudi Arabia",
+    "name_it": "Arabia Saudita",
     "b2g_status": "Mandatory (Phase 1 clearance since Dec 2021)",
     "b2g_since": "Dec 4, 2021 (Phase 1 – generation); 2022 onwards (Phase 2 – clearance for large)",
     "b2g_platform": "ZATCA (Zakat, Tax and Customs Authority) – Fatoora platform",
@@ -749,6 +771,7 @@
   },
   {
     "name": "Colombia",
+    "name_it": "Colombia",
     "b2g_status": "Mandatory (via DIAN system)",
     "b2g_since": "2019 (phased by company size)",
     "b2g_platform": "DIAN (Dirección de Impuestos y Aduanas Nacionales)",
@@ -783,6 +806,7 @@
   },
   {
     "name": "Israel",
+    "name_it": "Israele",
     "b2g_status": "Mandatory",
     "b2g_since": "2016",
     "b2g_platform": "ITA (Israel Tax Authority) – centralized system",
@@ -817,6 +841,7 @@
   },
   {
     "name": "Singapore",
+    "name_it": "Singapore",
     "b2g_status": "Mandatory acceptance; sending encouraged",
     "b2g_since": "2018 (InvoiceNow/Peppol for government)",
     "b2g_platform": "InvoiceNow (Singapore Peppol network) / IMDA",
@@ -851,6 +876,7 @@
   },
   {
     "name": "New Zealand",
+    "name_it": "Nuova Zelanda",
     "b2g_status": "Mandatory acceptance (central government from 2022)",
     "b2g_since": "Mar 31, 2022 (core government agencies); Oct 31, 2022 (all public sector)",
     "b2g_platform": "Peppol (MBIE as Peppol Authority, shared with Australia)",
@@ -885,6 +911,7 @@
   },
   {
     "name": "United Arab Emirates",
+    "name_it": "Emirati Arabi Uniti",
     "b2g_status": "Under development / pilot",
     "b2g_since": "Pilot phase 2023-2024",
     "b2g_platform": "UAE Ministry of Finance (FTA) – pilot platform",
@@ -919,6 +946,7 @@
   },
   {
     "name": "United Kingdom",
+    "name_it": "Regno Unito",
     "b2g_status": "Mandatory acceptance (HMRC/Crown Commercial Service)",
     "b2g_since": "2019",
     "b2g_platform": "Crown Commercial Service (Peppol)",
@@ -953,6 +981,7 @@
   },
   {
     "name": "USA",
+    "name_it": "Stati Uniti",
     "b2g_status": "Federal: mandatory (PIEE / IPP); state: varies",
     "b2g_since": "2018 (federal PIEE mandate for DoD suppliers)",
     "b2g_platform": "IPP (Invoice Processing Platform – Treasury); PIEE (DoD); GSA procurement systems",
@@ -987,6 +1016,7 @@
   },
   {
     "name": "Oman",
+    "name_it": "Oman",
     "b2g_status": "Pilot/planned",
     "b2g_since": "2025 (pilot)",
     "b2g_platform": "OTA (Oman Tax Authority) – e-invoicing platform",
@@ -1021,6 +1051,7 @@
   },
   {
     "name": "Philippines",
+    "name_it": "Filippine",
     "b2g_status": "Mandatory (eFPS/eBIRForms for tax; EIS for e-invoicing)",
     "b2g_since": "Phased from 2022",
     "b2g_platform": "BIR EIS (Electronic Invoicing System)",

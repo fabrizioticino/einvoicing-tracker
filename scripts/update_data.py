@@ -154,6 +154,9 @@ def main():
             # richiede revisione manuale o un parser più approfondito.
             country["last_update"] = remote_update
             country["needs_content_review"] = True
+            # Preserva il nome italiano se già presente
+            if "name_it" not in country:
+                country["name_it"] = country["name"]
         else:
             country["needs_content_review"] = country.get("needs_content_review", False)
 

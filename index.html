@@ -532,7 +532,7 @@ function renderGrid(){
   const term = searchTerm.trim().toLowerCase();
 
   const filtered = COUNTRIES.filter(c => {
-    if(term && !c.name.toLowerCase().includes(term)) return false;
+    if(term && !(c.name_it||c.name).toLowerCase().includes(term)) return false;
     if(activeFilters.b2g_status !== 'all' && classifyStatus(c.b2g_status) !== activeFilters.b2g_status) return false;
     if(activeFilters.b2b_status !== 'all' && classifyStatus(c.b2b_status) !== activeFilters.b2b_status) return false;
     return true;
@@ -548,10 +548,10 @@ function renderGrid(){
   grid.innerHTML = filtered.map((c) => {
     const idx = COUNTRIES.indexOf(c) + 1;
     return `
-    <div class="country-card" tabindex="0" data-slug="${c.slug}" role="button" aria-label="Apri dettaglio ${c.name}">
+    <div class="country-card" tabindex="0" data-slug="${c.slug}" role="button" aria-label="Apri dettaglio ${c.name_it||c.name}">
       <div class="country-card-top">
         <div>
-          <div class="country-name">${c.name}</div>
+          <div class="country-name">${c.name_it||c.name}</div>
           <div class="country-index">${String(idx).padStart(2,'0')} / ${String(COUNTRIES.length).padStart(2,'0')}</div>
         </div>
       </div>
@@ -594,7 +594,7 @@ function openDetail(slug){
   const c = COUNTRIES.find(x => x.slug === slug);
   if(!c) return;
 
-  document.getElementById('detail-title').textContent = c.name;
+  document.getElementById('detail-title').textContent = c.name_it||c.name;
 
   const body = document.getElementById('detail-body');
   body.innerHTML = `
