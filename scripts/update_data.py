@@ -73,6 +73,7 @@ COUNTRY_URL_SLUGS = {
     "USA": "usa",
     "Oman": "oman",
     "Philippines": "the-philippines",
+    "Luxembourg": "luxembourg",
 }
 
 LAST_UPDATE_RE = re.compile(
