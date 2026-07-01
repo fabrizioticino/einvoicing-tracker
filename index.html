@@ -452,7 +452,7 @@
   </div>
   <h1 class="title">Fatturazione <em>Elettronica</em><br>nel Mondo</h1>
   <div class="subhead">
-    <p>Stato di B2G, B2B, B2C, e-reporting ed e-archiving in 31 giurisdizioni. Aggiornato automaticamente ogni settimana a partire dalle fonti normative pubbliche.</p>
+    <p>Stato di B2G, B2B, B2C, e-reporting ed e-archiving in <span id="country-count-desc"></span> giurisdizioni. Aggiornato automaticamente ogni settimana a partire dalle fonti normative pubbliche.</p>
     <div class="meta-stamp">
       <div class="label">Ultimo aggiornamento</div>
       <div id="last-updated">—</div>
@@ -698,6 +698,7 @@ async function init(){
   }
 
   document.getElementById('country-count').textContent = COUNTRIES.length + ' giurisdizioni';
+  document.getElementById('country-count-desc').textContent = COUNTRIES.length;
 
   // try to load metadata (last update timestamp written by the update script)
   try {
