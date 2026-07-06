@@ -130,6 +130,18 @@ NAME_IT = {
     "Canada": "Canada",
 }
 
+# Mesi in italiano (per conversione date)
+MESI_IT = [
+    "gennaio", "febbraio", "marzo", "aprile", "maggio", "giugno",
+    "luglio", "agosto", "settembre", "ottobre", "novembre", "dicembre",
+]
+MESI_EN_TO_NUM = {
+    "january": 1, "february": 2, "march": 3, "april": 4, "may": 5, "june": 6,
+    "july": 7, "august": 8, "september": 9, "october": 10, "november": 11, "december": 12,
+    "jan": 1, "feb": 2, "mar": 3, "apr": 4, "jun": 6, "jul": 7,
+    "aug": 8, "sep": 9, "oct": 10, "nov": 11, "dec": 12,
+}
+
 # Regex per estrarre la data di aggiornamento dalla pagina
 LAST_UPDATE_RE = re.compile(
     r"Last update:\s*([0-9]{4}),?\s*([A-Za-z]+)\s*([0-9]{1,2})", re.IGNORECASE
@@ -148,11 +160,29 @@ def fetch(url: str, timeout: int = 20) -> str:
         return resp.read().decode("utf-8", errors="ignore")
 
 
+def date_to_italian(english_date: str) -> str:
+    """Converte una data inglese tipo 'May 18, 2026' in italiano '18 maggio 2026'."""
+    if not english_date:
+        return english_date
+    # Prova formato "Month DD, YYYY"
+    m = re.match(r"([A-Za-z]+)\s+(\d{1,2}),?\s+(\d{4})", english_date.strip())
+    if m:
+        month_en, day, year = m.groups()
+        month_num = MESI_EN_TO_NUM.get(month_en.lower())
+        if month_num:
+            return f"{int(day)} {MESI_IT[month_num - 1]} {year}"
+    return english_date
+
+
 def extract_last_update(html: str) -> str | None:
     m = LAST_UPDATE_RE.search(html)
     if not m:
         return None
     year, month, day = m.groups()
+    # Restituisce direttamente in italiano
+    month_num = MESI_EN_TO_NUM.get(month.lower())
+    if month_num:
+        return f"{int(day)} {MESI_IT[month_num - 1]} {year}"
     return f"{month} {day}, {year}"
 
 
@@ -219,35 +249,47 @@ def detect_new_countries(existing_slugs: set) -> list[dict]:
         entry = {
             "name": name,
             "name_it": name_it,
-            "b2g_status": "N/A",
-            "b2g_since": "N/A",
-            "b2g_platform": "N/A",
-            "b2g_format": "N/A",
-            "b2g_network": "N/A",
+            "b2g_status": "N/D",
+            "b2g_since": "N/D",
+            "b2g_platform": "N/D",
+            "b2g_format": "N/D",
+            "b2g_network": "N/D",
             "b2g_notes": "Dati da verificare — paese aggiunto automaticamente.",
-            "b2b_status": "N/A",
-            "b2b_since": "N/A",
-            "b2b_platform": "N/A",
-            "b2b_format": "N/A",
-            "b2b_network": "N/A",
+            "b2b_status": "N/D",
+            "b2b_since": "N/D",
+            "b2b_platform": "N/D",
+            "b2b_format": "N/D",
+            "b2b_network": "N/D",
             "b2b_notes": "Dati da verificare — paese aggiunto automaticamente.",
-            "b2c_status": "N/A",
-            "b2c_since": "N/A",
-            "b2c_platform": "N/A",
-            "b2c_format": "N/A",
-            "b2c_network": "N/A",
-            "b2c_notes": "N/A",
-            "ereporting_status": "N/A",
-            "ereporting_since": "N/A",
-            "ereporting_platform": "N/A",
-            "ereporting_scope": "N/A",
-            "ereporting_frequency": "N/A",
-            "ereporting_notes": "N/A",
-            "archiving_mandatory": "N/A",
-            "archiving_retention": "N/A",
-            "archiving_rules": "N/A",
-            "archiving_platform": "N/A",
-            "archiving_notes": "N/A",
+            "b2c_status": "N/D",
+            "b2c_since": "N/D",
+            "b2c_platform": "N/D",
+            "b2c_format": "N/D",
+            "b2c_network": "N/D",
+            "b2c_notes": "N/D",
+            "ereporting_status": "N/D",
+            "ereporting_since": "N/D",
+            "ereporting_platform": "N/D",
+            "ereporting_scope": "N/D",
+            "ereporting_frequency": "N/D",
+            "ereporting_notes": "N/D",
+            "archiving_mandatory": "N/D",
+            "archiving_retention": "N/D",
+            "archiving_rules": "N/D",
+            "archiving_platform": "N/D",
+            "archiving_notes": "N/D",
+            "ecmr_status": "N/D",
+            "ecmr_since": "N/D",
+            "ecmr_regulation": "N/D",
+            "ecmr_platform": "N/D",
+            "ecmr_format": "N/D",
+            "ecmr_notes": "Dati da verificare — paese aggiunto automaticamente.",
+            "efti_status": "N/D",
+            "efti_since": "N/D",
+            "efti_regulation": "N/D",
+            "efti_platform": "N/D",
+            "efti_scope": "N/D",
+            "efti_notes": "Dati da verificare — paese aggiunto automaticamente.",
             "last_update": last_update,
             "slug": display_slug,
             "needs_content_review": True,
@@ -299,6 +341,13 @@ def main():
         if "name_it" not in country:
             country["name_it"] = NAME_IT.get(name, name)
 
+        # Converte last_update in italiano se ancora in formato inglese
+        lu = country.get("last_update", "")
+        if lu:
+            lu_it = date_to_italian(lu)
+            if lu_it != lu:
+                country["last_update"] = lu_it
+
         url_slug = NAME_TO_SLUG.get(name)
         if not url_slug:
             print(f"  [SKIP] Nessun mapping URL per {name}")
@@ -345,8 +394,6 @@ def main():
         save_json(CHANGELOG_FILE, changelog)
 
     # Aggiorna meta.json
-    MESI_IT = ["gennaio","febbraio","marzo","aprile","maggio","giugno",
-               "luglio","agosto","settembre","ottobre","novembre","dicembre"]
     now = datetime.now(timezone.utc)
     data_it = f"{now.day} {MESI_IT[now.month - 1]} {now.year}"
     meta = {
