@@ -717,9 +717,15 @@ async function init(){
   try {
     const metaRes = await fetch('data/meta.json');
     const meta = await metaRes.json();
-    document.getElementById('last-updated').textContent = meta.last_run || '—';
+    let testo = meta.last_run || '—';
+    if(meta.last_run_iso){
+      const d = new Date(meta.last_run_iso);
+      const ora = d.toLocaleTimeString('it-IT', {hour:'2-digit', minute:'2-digit', timeZone:'Europe/Rome'});
+      testo += ' ore ' + ora;
+    }
+    document.getElementById('last-updated').textContent = testo;
   } catch(e) {
-    document.getElementById('last-updated').textContent = 'Giugno 2026';
+    document.getElementById('last-updated').textContent = '6 luglio 2026';
   }
 
   renderGrid();
