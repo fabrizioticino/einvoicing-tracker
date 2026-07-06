@@ -345,9 +345,12 @@ def main():
         save_json(CHANGELOG_FILE, changelog)
 
     # Aggiorna meta.json
+    MESI_IT = ["gennaio","febbraio","marzo","aprile","maggio","giugno",
+               "luglio","agosto","settembre","ottobre","novembre","dicembre"]
     now = datetime.now(timezone.utc)
+    data_it = f"{now.day} {MESI_IT[now.month - 1]} {now.year}"
     meta = {
-        "last_run": now.strftime("%d %B %Y").lstrip("0"),
+        "last_run": data_it,
         "last_run_iso": now.isoformat(),
         "countries_total": len(countries),
         "countries_checked": checked,
