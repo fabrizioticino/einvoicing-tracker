@@ -574,6 +574,19 @@ function renderGrid(){
   });
 }
 
+const MESI_EN_IT = {
+  january:'gennaio', february:'febbraio', march:'marzo', april:'aprile',
+  may:'maggio', june:'giugno', july:'luglio', august:'agosto',
+  september:'settembre', october:'ottobre', november:'novembre', december:'dicembre',
+  jan:'gen', feb:'feb', mar:'mar', apr:'apr', jun:'giu', jul:'lug',
+  aug:'ago', sep:'set', oct:'ott', nov:'nov', dec:'dic'
+};
+function dataIT(str){
+  if(!str) return '—';
+  return str.replace(/\b(january|february|march|april|may|june|july|august|september|october|november|december|jan|feb|mar|apr|jun|jul|aug|sep|oct|nov|dec)\b/gi,
+    m => MESI_EN_IT[m.toLowerCase()] || m);
+}
+
 function field(label, value, statusClass){
   const cls = statusClass ? ` status-${statusClass}` : '';
   return `<div class="field-label">${label}</div><div class="field-value${cls}">${value || '—'}</div>`;
@@ -598,7 +611,7 @@ function openDetail(slug){
 
   const body = document.getElementById('detail-body');
   body.innerHTML = `
-    <div class="detail-meta">Ultimo aggiornamento fonte: ${c.last_update || '—'}</div>
+    <div class="detail-meta">Ultimo aggiornamento fonte: ${dataIT(c.last_update)}</div>
 
     ${renderSection('01', 'B2G — Business to Government', 
       field('Stato', c.b2g_status, classifyStatus(c.b2g_status)) +
