@@ -649,12 +649,30 @@ function openDetail(slug){
       field('Note', c.ereporting_notes)
     )}
 
-    ${renderSection('05', 'E-Archiving — Conservazione a norma', 
+    ${renderSection('05', 'E-Archiving — Conservazione a norma',
       field('Obbligatoria', c.archiving_mandatory) +
       field('Periodo di conservazione', c.archiving_retention) +
       field('Normativa di riferimento', c.archiving_rules) +
       field('Piattaforma / Fornitore', c.archiving_platform) +
       field('Note', c.archiving_notes)
+    )}
+
+    ${renderSection('06', 'eCMR — Lettera di vettura elettronica',
+      field('Stato', c.ecmr_status, classifyStatus(c.ecmr_status)) +
+      field('Obbligatorio da', c.ecmr_since) +
+      field('Base normativa', c.ecmr_regulation) +
+      field('Piattaforma', c.ecmr_platform) +
+      field('Formato/i', c.ecmr_format) +
+      field('Note', c.ecmr_notes)
+    )}
+
+    ${renderSection('07', 'eFTI — Informazioni elettroniche sul trasporto merci',
+      field('Stato', c.efti_status, classifyStatus(c.efti_status)) +
+      field('Obbligatorio da', c.efti_since) +
+      field('Base normativa', c.efti_regulation) +
+      field('Piattaforma', c.efti_platform) +
+      field('Perimetro', c.efti_scope) +
+      field('Note', c.efti_notes)
     )}
   `;
 
