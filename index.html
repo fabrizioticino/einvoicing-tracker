@@ -512,12 +512,33 @@ let searchTerm = '';
 
 function classifyStatus(text){
   const t = (text || '').toLowerCase();
-  if(t.includes('not') || t.includes('voluntary') || t.includes('not required') || t.includes('not mandatory')) return 'voluntary';
-  if(t.includes('mandatory') && !t.includes('not')) {
-    if(t.includes('from 20') || t.includes('planned') || t.includes('will become') || t.includes('pilot') || t.includes('expected')) return 'planned';
-    return 'mandatory';
-  }
-  if(t.includes('planned') || t.includes('pilot') || t.includes('tbd') || t.includes('expected') || t.includes('under development')) return 'planned';
+
+  // --- Non richiesto / Volontario (IT + EN) ---
+  // "non obbligatori" cattura sia "non obbligatorio" che "non obbligatoria"
+  if(t.includes('non obbligatori') || t.includes('non richiesto') ||
+     t.includes('non in ambito') || t.includes('non specificamente') ||
+     t.includes('nessun piano') || t.includes('altamente volontario') ||
+     t.includes('mercato libero') || t.includes('not required') ||
+     t.includes('not mandatory') || t.includes('non applicable') ||
+     t.includes('non applicabile') ||
+     (t.includes('volontario') && !t.includes('obbligatori'))) return 'voluntary';
+
+  // --- Pianificato (IT + EN) ---
+  // anni futuri espliciti
+  if(/\b(202[7-9]|203\d)\b/.test(t)) return 'planned';
+  // mesi futuri del 2026 (agosto–dicembre, siamo a luglio 2026)
+  if(/(agosto|settembre|ottobre|novembre|dicembre)\s+2026/.test(t)) return 'planned';
+  // "dal 2026" generico senza mese già trascorso
+  if(/dal\s+2026\b/.test(t) && !/(gennaio|febbraio|marzo|aprile|maggio|giugno|luglio)\s+2026/.test(t)) return 'planned';
+  if(t.includes('pianificato') || t.includes('parzialmente obbligatori') ||
+     t.includes('invio non ancora') || t.includes('da definire') ||
+     t.includes('planned') || t.includes('pilot') || t.includes('expected') ||
+     t.includes('will become') || t.includes('tbd')) return 'planned';
+
+  // --- Obbligatorio/Obbligatoria (IT + EN) ---
+  // "obbligatori" cattura sia "obbligatorio" (maschile) che "obbligatoria" (femminile)
+  if(t.includes('obbligatori') || t.includes('mandatory')) return 'mandatory';
+
   return 'voluntary';
 }
 

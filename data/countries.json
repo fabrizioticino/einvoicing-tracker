@@ -1312,7 +1312,6 @@
         "efti_scope":  "N/A",
         "efti_notes":  "Il Reg. UE 2020/1056 (eFTI) si applica esclusivamente agli Stati membri dell\u0027UE e SEE.",
         "needs_content_review":  false,
-        "b2g_status":  "Ricezione obbligatoria; invio non obbligatorio per la maggior parte",
         "b2g_since":  "Maggio 2019 (centrale); aprile 2020 (tutti gli enti pubblici); giugno 2022 (NHS)",
         "b2g_platform":  "Peppol (obbligo NHS); PECOS P2P (Scozia); vari",
         "b2g_format":  "Conforme EN 16931; Peppol BIS 3.0 per NHS",
@@ -1341,7 +1340,8 @@
         "archiving_rules":  "Linee guida HMRC. MTD richiede registri digitali in software compatibile.",
         "archiving_platform":  "Software compatibile MTD",
         "archiving_notes":  "Le fatture cartacee possono essere digitalizzate. Formato elettronico accettato.",
-        "last_update":  "6 marzo 2026"
+        "last_update":  "6 marzo 2026",
+        "b2g_status":  "Ricezione obbligatoria; invio obbligatorio per fornitori NHS"
     },
     {
         "name":  "USA",
