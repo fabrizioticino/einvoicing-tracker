@@ -542,7 +542,7 @@ function classifyStatus(text){
 
   // --- Obbligatorio/Obbligatoria (IT + EN) ---
   // "obbligatori" cattura sia "obbligatorio" (maschile) che "obbligatoria" (femminile)
-  if(t.includes('obbligatori') || t.includes('mandatory') || t.includes('in vigore')) return 'mandatory';
+  if(t.includes('obbligatori') || t.includes('mandatory')) return 'mandatory';
 
   return 'voluntary';
 }
