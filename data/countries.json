@@ -31,8 +31,9 @@
     "archiving_rules": "Conservazione Sostitutiva (AgID guidelines). Annual packages digitally signed. Conservation Manager (Responsabile della Conservazione) must be appointed. Conservation Manual required.",
     "archiving_platform": "Internal or delegated to accredited 3rd party",
     "archiving_notes": "Both sender and recipient must archive. Packages must be digitally signed/sealed annually. AgID-compliant procedures required.",
-    "last_update": "May 2026",
-    "slug": "italy"
+    "last_update": "May 18, 2026",
+    "slug": "italy",
+    "needs_content_review": true
   },
   {
     "name": "France",
@@ -66,8 +67,9 @@
     "archiving_rules": "French Commercial Code & Tax Code. Electronic archiving must ensure authenticity, integrity and legibility throughout retention period.",
     "archiving_platform": "Internal or certified SAE (Système d'Archivage Électronique) providers",
     "archiving_notes": "NF Z 42-013 standard recommended. Time-stamping and digital signatures commonly used. PDP may offer archiving services.",
-    "last_update": "Jun 2026",
-    "slug": "france"
+    "last_update": "May 12, 2026",
+    "slug": "france",
+    "needs_content_review": true
   },
   {
     "name": "Germany",
@@ -101,8 +103,9 @@
     "archiving_rules": "HGB (Commercial Code) §257 + AO (Tax Code) §147. GoBD principles apply: traceability, unchangeability, completeness.",
     "archiving_platform": "Internal or certified DMS/archiving solutions",
     "archiving_notes": "GoBD compliance required. Electronic invoices must be stored in original electronic format. ZUGFeRD/XRechnung XML must be kept, not just PDF visual.",
-    "last_update": "Apr 2026",
-    "slug": "germany"
+    "last_update": "May 23, 2025",
+    "slug": "germany",
+    "needs_content_review": true
   },
   {
     "name": "Spain",
@@ -136,8 +139,9 @@
     "archiving_rules": "General Tax Law Art. 29. Electronic invoices must be kept in original electronic form with digital signature. Royal Decree 1619/2012 on invoicing.",
     "archiving_platform": "Internal or certified providers",
     "archiving_notes": "Electronic invoices with advanced e-signature or EDI + audit trail satisfy authenticity requirement. Storage in Spain not mandatory but must be accessible to AEAT.",
-    "last_update": "Jun 2026",
-    "slug": "spain"
+    "last_update": "April 28, 2026",
+    "slug": "spain",
+    "needs_content_review": true
   },
   {
     "name": "Belgium",
@@ -171,8 +175,9 @@
     "archiving_rules": "Belgian VAT Code Art. 60. Electronic invoices must be stored ensuring authenticity and integrity. Original electronic format must be preserved.",
     "archiving_platform": "Internal or certified providers",
     "archiving_notes": "Peppol access points may offer archiving. XML original must be kept alongside any PDF.",
-    "last_update": "Jun 2026",
-    "slug": "belgium"
+    "last_update": "January 5, 2026",
+    "slug": "belgium",
+    "needs_content_review": true
   },
   {
     "name": "Netherlands",
@@ -206,8 +211,9 @@
     "archiving_rules": "Dutch Tax Law (AWR Art. 52). Electronic invoices may be stored electronically. Integrity and authenticity must be guaranteed.",
     "archiving_platform": "Internal or certified providers",
     "archiving_notes": "Tax authority must be able to access records. Foreign storage allowed if accessible within reasonable time.",
-    "last_update": "2026",
-    "slug": "netherlands"
+    "last_update": "May 23, 2026",
+    "slug": "netherlands",
+    "needs_content_review": true
   },
   {
     "name": "Poland",
@@ -241,8 +247,9 @@
     "archiving_rules": "Tax Ordinance Art. 86. KSeF stores invoices for 10 years (government archiving). Companies may rely on KSeF for archiving or maintain own copies.",
     "archiving_platform": "KSeF (government) + internal",
     "archiving_notes": "KSeF retains all e-invoices for 10 years. Taxpayers may reference KSeF as their archive. FA_VAT format must be preserved.",
-    "last_update": "2026",
-    "slug": "poland"
+    "last_update": "April 30, 2026",
+    "slug": "poland",
+    "needs_content_review": true
   },
   {
     "name": "Portugal",
@@ -276,8 +283,9 @@
     "archiving_rules": "Portuguese Tax Code (CIVA Art. 52). Electronic invoices must be preserved in original format ensuring authenticity and integrity.",
     "archiving_platform": "Internal or certified providers",
     "archiving_notes": "SAF-T files must also be kept. AT must be able to access records within 10-day notice.",
-    "last_update": "2026",
-    "slug": "portugal"
+    "last_update": "March 23, 2025",
+    "slug": "portugal",
+    "needs_content_review": true
   },
   {
     "name": "Romania",
@@ -311,8 +319,9 @@
     "archiving_rules": "Romanian Fiscal Code. Electronic invoices must be stored ensuring authenticity, integrity, and readability. Electronic signature or audit trail required.",
     "archiving_platform": "Internal or certified providers; ANAF retains copies",
     "archiving_notes": "ANAF retains all e-invoices submitted. Companies should maintain own copies. PDF+XML format recommended.",
-    "last_update": "2026",
-    "slug": "romania"
+    "last_update": "June 10, 2026",
+    "slug": "romania",
+    "needs_content_review": true
   },
   {
     "name": "Greece",
@@ -346,8 +355,9 @@
     "archiving_rules": "Greek Tax Code (Law 4174/2013). Electronic documents must maintain authenticity and integrity. myDATA provides government-side retention.",
     "archiving_platform": "Internal; myDATA (IAPR) retains copies",
     "archiving_notes": "myDATA acts as a de facto government archive. Companies must also maintain own records for the statutory period.",
-    "last_update": "2026",
-    "slug": "greece"
+    "last_update": "May 21, 2026",
+    "slug": "greece",
+    "needs_content_review": true
   },
   {
     "name": "Australia",
@@ -381,8 +391,9 @@
     "archiving_rules": "Tax Administration Act 1953. Records must be kept in English or accessible form. Electronic format acceptable.",
     "archiving_platform": "Internal",
     "archiving_notes": "ATO accepts electronic records. No specific e-archiving standard mandated.",
-    "last_update": "2026",
-    "slug": "australia"
+    "last_update": "May 17, 2026",
+    "slug": "australia",
+    "needs_content_review": true
   },
   {
     "name": "Austria",
@@ -416,8 +427,9 @@
     "archiving_rules": "Federal Fiscal Code (BAO §132). Electronic invoices stored electronically must guarantee authenticity and integrity.",
     "archiving_platform": "Internal or certified providers",
     "archiving_notes": "ebInterface XML files must be preserved. Audit trail must be maintained.",
-    "last_update": "2026",
-    "slug": "austria"
+    "last_update": "March 6, 2026",
+    "slug": "austria",
+    "needs_content_review": true
   },
   {
     "name": "Denmark",
@@ -451,8 +463,9 @@
     "archiving_rules": "Danish Bookkeeping Act. Electronic records must be kept in original format ensuring readability and authenticity.",
     "archiving_platform": "Internal",
     "archiving_notes": "From 2024: new Danish Bookkeeping Act requires digital bookkeeping for most companies.",
-    "last_update": "2026",
-    "slug": "denmark"
+    "last_update": "March 10, 2026",
+    "slug": "denmark",
+    "needs_content_review": true
   },
   {
     "name": "Finland",
@@ -486,8 +499,9 @@
     "archiving_rules": "Finnish Accounting Act. Electronic invoices may be stored electronically. Integrity must be maintained.",
     "archiving_platform": "Internal or certified providers",
     "archiving_notes": "Electronic storage widely adopted. Banking network operators often provide archiving services.",
-    "last_update": "2026",
-    "slug": "finland"
+    "last_update": "February 13, 2026",
+    "slug": "finland",
+    "needs_content_review": true
   },
   {
     "name": "Sweden",
@@ -521,8 +535,9 @@
     "archiving_rules": "Swedish Bookkeeping Act (BFL). Electronic originals must be preserved. Conversion to another format may require keeping both.",
     "archiving_platform": "Internal or certified providers",
     "archiving_notes": "Electronic archiving accepted. Original electronic format must be retained if legally significant.",
-    "last_update": "2026",
-    "slug": "sweden"
+    "last_update": "February 12, 2026",
+    "slug": "sweden",
+    "needs_content_review": true
   },
   {
     "name": "Norway",
@@ -556,8 +571,9 @@
     "archiving_rules": "Norwegian Accounting Act. Electronic invoices must be stored ensuring authenticity and readability.",
     "archiving_platform": "Internal",
     "archiving_notes": "Electronic archiving accepted. Must be accessible to tax authority.",
-    "last_update": "Jun 2026",
-    "slug": "norway"
+    "last_update": "June 18, 2026",
+    "slug": "norway",
+    "needs_content_review": true
   },
   {
     "name": "Ireland",
@@ -591,8 +607,9 @@
     "archiving_rules": "Taxes Consolidation Act 1997. Electronic records must be kept in format that allows inspection by Revenue.",
     "archiving_platform": "Internal",
     "archiving_notes": "Electronic records widely accepted. No specific e-archiving standard mandated.",
-    "last_update": "May 2026",
-    "slug": "ireland"
+    "last_update": "May 26, 2026",
+    "slug": "ireland",
+    "needs_content_review": true
   },
   {
     "name": "Croatia",
@@ -626,8 +643,9 @@
     "archiving_rules": "Croatian VAT Act. Electronic invoices must be stored ensuring authenticity, integrity, readability.",
     "archiving_platform": "Internal or via FINA",
     "archiving_notes": "Digital signature or EDI/audit trail method must be used. Electronic storage accepted.",
-    "last_update": "2026",
-    "slug": "croatia"
+    "last_update": "January 6, 2026",
+    "slug": "croatia",
+    "needs_content_review": true
   },
   {
     "name": "India",
@@ -661,8 +679,9 @@
     "archiving_rules": "GST Act Section 36. Electronic records acceptable. IRN issued by IRP is official record.",
     "archiving_platform": "Internal; GSTN retains data",
     "archiving_notes": "GSTN retains e-invoice data. Taxpayers must maintain books of accounts for 8 years. Electronic format accepted.",
-    "last_update": "2026",
-    "slug": "india"
+    "last_update": "January 21, 2026",
+    "slug": "india",
+    "needs_content_review": true
   },
   {
     "name": "Malaysia",
@@ -696,8 +715,9 @@
     "archiving_rules": "Income Tax Act / GST Act. Electronic records must be stored securely ensuring accessibility and integrity.",
     "archiving_platform": "Internal; LHDN retains copies",
     "archiving_notes": "MyInvois platform retains e-invoices. Taxpayers should maintain own records. QR code-validated copy is official.",
-    "last_update": "2026",
-    "slug": "malaysia"
+    "last_update": "April 20, 2026",
+    "slug": "malaysia",
+    "needs_content_review": true
   },
   {
     "name": "Mexico",
@@ -731,8 +751,9 @@
     "archiving_rules": "SAT rules and Fiscal Code. CFDI XML must be kept. SAT retains copies.",
     "archiving_platform": "SAT retains; PAC may offer archiving; internal",
     "archiving_notes": "SAT has full archive of all CFDIs. Taxpayers should maintain their own copies. PDF+XML (Addenda) is common delivery format.",
-    "last_update": "2026",
-    "slug": "mexico"
+    "last_update": "April 26, 2026",
+    "slug": "mexico",
+    "needs_content_review": true
   },
   {
     "name": "Saudi Arabia",
@@ -766,8 +787,9 @@
     "archiving_rules": "ZATCA Regulations. E-invoices must be stored in original XML format. ZATCA may audit at any time.",
     "archiving_platform": "Internal; ZATCA retains copies",
     "archiving_notes": "ZATCA recommends ISO 27001-certified archiving. UUID from ZATCA is primary reference. Tamper-proof storage required.",
-    "last_update": "2026",
-    "slug": "saudi-arabia"
+    "last_update": "April 21, 2026",
+    "slug": "saudi-arabia",
+    "needs_content_review": true
   },
   {
     "name": "Colombia",
@@ -801,8 +823,9 @@
     "archiving_rules": "Colombian Tax Code. XML originals must be preserved. DIAN retains copies.",
     "archiving_platform": "DIAN + internal",
     "archiving_notes": "DIAN stores all validated invoices. Companies must maintain own records. CUFE is primary reference.",
-    "last_update": "2026",
-    "slug": "colombia"
+    "last_update": "January 16, 2026",
+    "slug": "colombia",
+    "needs_content_review": true
   },
   {
     "name": "Israel",
@@ -836,8 +859,9 @@
     "archiving_rules": "Israeli Tax Ordinance. Electronic records must be kept in accessible format. Clearance numbers must be preserved.",
     "archiving_platform": "Internal",
     "archiving_notes": "Clearance number (Mispar Haktzaa) is key reference for archiving. Electronic storage accepted.",
-    "last_update": "2026",
-    "slug": "israel"
+    "last_update": "January 6, 2026",
+    "slug": "israel",
+    "needs_content_review": true
   },
   {
     "name": "Singapore",
@@ -871,8 +895,9 @@
     "archiving_rules": "Income Tax Act / GST Act. Electronic records must be kept accessible and readable.",
     "archiving_platform": "Internal",
     "archiving_notes": "IRAS accepts electronic records. No specific e-archiving standard mandated.",
-    "last_update": "2026",
-    "slug": "singapore"
+    "last_update": "March 4, 2026",
+    "slug": "singapore",
+    "needs_content_review": true
   },
   {
     "name": "New Zealand",
@@ -906,8 +931,9 @@
     "archiving_rules": "Tax Administration Act 1994. Electronic records acceptable if readable and authentic.",
     "archiving_platform": "Internal",
     "archiving_notes": "IRD accepts electronic records. No specific standard mandated.",
-    "last_update": "2026",
-    "slug": "new-zealand"
+    "last_update": "March 7, 2026",
+    "slug": "new-zealand",
+    "needs_content_review": true
   },
   {
     "name": "United Arab Emirates",
@@ -941,8 +967,9 @@
     "archiving_rules": "UAE VAT Law Federal Decree No. 8/2017. Records must be maintained in Arabic or with Arabic translation.",
     "archiving_platform": "Internal",
     "archiving_notes": "Electronic records accepted. FTA may request records within 5 business days.",
-    "last_update": "2026",
-    "slug": "united-arab-emirates"
+    "last_update": "May 11, 2026",
+    "slug": "united-arab-emirates",
+    "needs_content_review": true
   },
   {
     "name": "United Kingdom",
@@ -976,8 +1003,9 @@
     "archiving_rules": "HMRC guidance. MTD requires digital records to be kept in functional compatible software. Electronic invoices accepted.",
     "archiving_platform": "MTD-compatible software",
     "archiving_notes": "MTD requires records kept digitally in compatible software. Physical paper invoices can be digitized and original discarded.",
-    "last_update": "2026",
-    "slug": "united-kingdom"
+    "last_update": "March 6, 2026",
+    "slug": "united-kingdom",
+    "needs_content_review": true
   },
   {
     "name": "USA",
@@ -1011,8 +1039,9 @@
     "archiving_rules": "IRS Publication 583, state laws. Electronic records must be accurate, complete, accessible. IRS Rev. Proc. 98-25 for electronic records.",
     "archiving_platform": "Internal",
     "archiving_notes": "IRS accepts electronic records. No specific e-archiving standard mandated federally. SOX compliance requires 7-year retention for public companies.",
-    "last_update": "2026",
-    "slug": "usa"
+    "last_update": "April 13, 2026",
+    "slug": "usa",
+    "needs_content_review": true
   },
   {
     "name": "Oman",
@@ -1046,8 +1075,9 @@
     "archiving_rules": "Oman VAT Law. Records must be kept in original or accessible form.",
     "archiving_platform": "Internal",
     "archiving_notes": "Electronic records accepted. OTA may request records on audit.",
-    "last_update": "2026",
-    "slug": "oman"
+    "last_update": "May 19, 2026",
+    "slug": "oman",
+    "needs_content_review": true
   },
   {
     "name": "Philippines",
@@ -1081,8 +1111,9 @@
     "archiving_rules": "NIRC (National Internal Revenue Code). Electronic records must be kept accessible. BIR must be able to access records.",
     "archiving_platform": "BIR EIS + internal",
     "archiving_notes": "BIR retains copies via EIS. Taxpayers must maintain own records for 10 years.",
-    "last_update": "2026",
-    "slug": "philippines"
+    "last_update": "March 6, 2026",
+    "slug": "philippines",
+    "needs_content_review": true
   },
   {
     "name": "Luxembourg",
@@ -1116,7 +1147,8 @@
     "archiving_rules": "Standard Luxembourg archiving obligations. Electronic invoices must be stored ensuring authenticity and integrity.",
     "archiving_platform": "Internal or certified providers",
     "archiving_notes": "Electronic storage accepted. Peppol access points may offer archiving services.",
-    "last_update": "Jun 25, 2026",
-    "slug": "luxembourg"
+    "last_update": "June 25, 2026",
+    "slug": "luxembourg",
+    "needs_content_review": true
   }
 ]

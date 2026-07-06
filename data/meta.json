@@ -1,7 +1,10 @@
 {
-  "last_run": "30 Giugno 2026",
-  "last_run_iso": "2026-06-30T00:00:00Z",
-  "countries_checked": 31,
-  "countries_updated": 31,
+  "last_run": "6 July 2026",
+  "last_run_iso": "2026-07-06T07:57:58.893764+00:00",
+  "countries_total": 32,
+  "countries_checked": 32,
+  "countries_changed": 32,
+  "countries_new": 0,
+  "errors": [],
   "status": "ok"
 }
