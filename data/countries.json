@@ -106,7 +106,7 @@
         "b2c_url":  "https://www.impots.gouv.fr/professionnel/la-facture-electronique-entre-assujettis",
         "ereporting_url":  "https://www.impots.gouv.fr/professionnel/la-facture-electronique-entre-assujettis",
         "archiving_url":  "https://bofip.impots.gouv.fr/bofip/2899-PGP.html",
-        "ecmr_url":  "",
+        "ecmr_url":  "https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000033787034",
         "efti_url":  "https://transport.ec.europa.eu/transport-themes/logistics-and-multimodal-transport/efti-regulation_en"
     },
     {
@@ -161,7 +161,7 @@
         "b2c_url":  "",
         "ereporting_url":  "",
         "archiving_url":  "https://www.bundesfinanzministerium.de/Content/DE/Downloads/BMF_Schreiben/Weitere_Steuerthemen/Abgabenordnung/AO-Anwendungserlass/2024-03-11-aenderung-gobd.html",
-        "ecmr_url":  "",
+        "ecmr_url":  "https://www.recht.bund.de/bgbl/2/2024/393/VO.html",
         "efti_url":  "https://transport.ec.europa.eu/transport-themes/logistics-and-multimodal-transport/efti-regulation_en"
     },
     {
@@ -326,15 +326,15 @@
         "b2c_url":  "",
         "ereporting_url":  "",
         "archiving_url":  "https://www.belastingdienst.nl/wps/wcm/connect/bldcontentnl/belastingdienst/zakelijk/btw/administratie_bijhouden/facturen_maken/uw_facturen_bewaren",
-        "ecmr_url":  "",
+        "ecmr_url":  "https://zoek.officielebekendmakingen.nl/trb-2011-92.html",
         "efti_url":  "https://transport.ec.europa.eu/transport-themes/logistics-and-multimodal-transport/efti-regulation_en"
     },
     {
         "name":  "Poland",
         "name_it":  "Polonia",
         "slug":  "poland",
-        "ecmr_status":  "Volontario (ratifica 2011)",
-        "ecmr_since":  "2011",
+        "ecmr_status":  "Volontario (ratifica 2019)",
+        "ecmr_since":  "8 agosto 2019",
         "ecmr_regulation":  "Protocollo addizionale alla Convenzione CMR sull\u0027eCMR, Ginevra 2008",
         "ecmr_platform":  "App IRU (Transfollow, etr.pro)",
         "ecmr_format":  "PDF/XML strutturato; standard IRU",
@@ -381,7 +381,7 @@
         "b2c_url":  "https://ksef.mf.gov.pl/",
         "ereporting_url":  "https://ksef.mf.gov.pl/",
         "archiving_url":  "https://www.gov.pl/web/kas/krajowy-system-e-faktur",
-        "ecmr_url":  "",
+        "ecmr_url":  "https://isap.sejm.gov.pl/isap.nsf/DocDetails.xsp?id=WDU20190001487",
         "efti_url":  "https://transport.ec.europa.eu/transport-themes/logistics-and-multimodal-transport/efti-regulation_en"
     },
     {
@@ -436,15 +436,15 @@
         "b2c_url":  "https://www.portaldasfinancas.gov.pt/at/html/index.html",
         "ereporting_url":  "https://www.portaldasfinancas.gov.pt/at/html/index.html",
         "archiving_url":  "https://info.portaldasfinancas.gov.pt/pt/informacao_fiscal/Pages/default.aspx",
-        "ecmr_url":  "",
+        "ecmr_url":  "https://diariodarepublica.pt/dr/detalhe/decreto/20-2019-123578708",
         "efti_url":  "https://transport.ec.europa.eu/transport-themes/logistics-and-multimodal-transport/efti-regulation_en"
     },
     {
         "name":  "Romania",
         "name_it":  "Romania",
         "slug":  "romania",
-        "ecmr_status":  "Volontario (ratifica 2012)",
-        "ecmr_since":  "2012",
+        "ecmr_status":  "Volontario (ratifica 2019)",
+        "ecmr_since":  "10 gennaio 2019",
         "ecmr_regulation":  "Protocollo addizionale alla Convenzione CMR sull\u0027eCMR, Ginevra 2008",
         "ecmr_platform":  "App IRU",
         "ecmr_format":  "PDF/XML strutturato; standard IRU",
@@ -491,7 +491,7 @@
         "b2c_url":  "https://mfinante.gov.ro/ro/web/efactura",
         "ereporting_url":  "https://etransport.anaf.ro/",
         "archiving_url":  "https://www.anaf.ro/anaf/internet/RO/conservare-documente-financiar-contabile",
-        "ecmr_url":  "",
+        "ecmr_url":  "https://legislatie.just.ro/Public/DetaliiDocument/210351",
         "efti_url":  "https://transport.ec.europa.eu/transport-themes/logistics-and-multimodal-transport/efti-regulation_en"
     },
     {
@@ -546,7 +546,7 @@
         "b2c_url":  "https://www.aade.gr/en/mydata",
         "ereporting_url":  "https://www.aade.gr/en/mydata",
         "archiving_url":  "https://www.aade.gr/en/mydata",
-        "ecmr_url":  "",
+        "ecmr_url":  "https://www.e-nomothesia.gr/law-news/demosieutheke-nomos-5054-2023.html",
         "efti_url":  "https://transport.ec.europa.eu/transport-themes/logistics-and-multimodal-transport/efti-regulation_en"
     },
     {
