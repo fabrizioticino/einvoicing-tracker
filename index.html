@@ -275,6 +275,8 @@
   .badge.planned::before{ background:var(--stamp-amber); }
   .badge.voluntary{ background:var(--stamp-grey-bg); color:var(--stamp-grey); }
   .badge.voluntary::before{ background:var(--stamp-grey); }
+  .badge.n_a{ background:#f0f0f0; color:#aaa; }
+  .badge.n_a::before{ background:#ccc; }
 
   .country-foot{
     margin-top:auto;
@@ -513,14 +515,17 @@ let searchTerm = '';
 function classifyStatus(text){
   const t = (text || '').toLowerCase();
 
+  // --- Non applicabile (paesi fuori ambito) ---
+  if(t.includes('non applicabile') || t.includes('non applicable') ||
+     t === 'n/d' || t === '') return 'n_a';
+
   // --- Non richiesto / Volontario (IT + EN) ---
   // "non obbligatori" cattura sia "non obbligatorio" che "non obbligatoria"
   if(t.includes('non obbligatori') || t.includes('non richiesto') ||
      t.includes('non in ambito') || t.includes('non specificamente') ||
      t.includes('nessun piano') || t.includes('altamente volontario') ||
      t.includes('mercato libero') || t.includes('not required') ||
-     t.includes('not mandatory') || t.includes('non applicable') ||
-     t.includes('non applicabile') ||
+     t.includes('not mandatory') ||
      (t.includes('volontario') && !t.includes('obbligatori'))) return 'voluntary';
 
   // --- Pianificato (IT + EN) ---
@@ -542,11 +547,12 @@ function classifyStatus(text){
   return 'voluntary';
 }
 
-function badgeHTML(label, statusText){
+function badgeHTML(label, statusText, labelMap){
   const cls = classifyStatus(statusText);
-  const labelMap = { mandatory: 'Obbligatorio', planned: 'In arrivo', voluntary: 'Non richiesto' };
-  return `<span class="badge ${cls}">${label}: ${labelMap[cls]}</span>`;
+  const map = labelMap || { mandatory: 'Obbligatorio', planned: 'In arrivo', voluntary: 'Non richiesto', n_a: 'N/A' };
+  return `<span class="badge ${cls}">${label}: ${map[cls]}</span>`;
 }
+const TRANSPORT_LABELS = { mandatory: 'Obbligatorio', planned: 'In arrivo', voluntary: 'Volontario', n_a: 'N/A' };
 
 function renderGrid(){
   const grid = document.getElementById('grid');
@@ -580,8 +586,8 @@ function renderGrid(){
         ${badgeHTML('B2G', c.b2g_status)}
         ${badgeHTML('B2B', c.b2b_status)}
         ${badgeHTML('B2C', c.b2c_status)}
-        ${badgeHTML('eCMR', c.ecmr_status)}
-        ${badgeHTML('eFTI', c.efti_status)}
+        ${badgeHTML('eCMR', c.ecmr_status, TRANSPORT_LABELS)}
+        ${badgeHTML('eFTI', c.efti_status, TRANSPORT_LABELS)}
       </div>
       <div class="country-foot">
         <b>E-Reporting:</b> ${classifyStatus(c.ereporting_status) === 'mandatory' ? 'attivo' : (classifyStatus(c.ereporting_status) === 'planned' ? 'in arrivo' : 'non richiesto')}
