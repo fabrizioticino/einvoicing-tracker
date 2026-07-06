@@ -8,15 +8,9 @@ on:
 
 permissions:
   contents: write
-  pages: write
-  id-token: write
-
-concurrency:
-  group: "pages"
-  cancel-in-progress: false
 
 jobs:
-  update-and-deploy:
+  update-data:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
@@ -27,25 +21,16 @@ jobs:
         with:
           python-version: '3.12'
 
+      - name: Install dependencies
+        run: pip install urllib3 --quiet || true
+
       - name: Run update script
         run: python scripts/update_data.py
 
-      - name: Commit changes if any
+      - name: Commit and push changes
         run: |
           git config user.name "einvoicing-bot"
           git config user.email "bot@users.noreply.github.com"
           git add data/countries.json data/meta.json data/changelog.json
-          git diff --cached --quiet || git commit -m "chore: weekly data check ($(date -u +'%Y-%m-%d'))"
+          git diff --cached --quiet || git commit -m "chore: aggiornamento automatico dati ($(date -u +'%Y-%m-%d'))"
           git push
-
-      - name: Setup Pages
-        uses: actions/configure-pages@v5
-
-      - name: Upload artifact
-        uses: actions/upload-pages-artifact@v3
-        with:
-          path: '.'
-
-      - name: Deploy to GitHub Pages
-        id: deployment
-        uses: actions/deploy-pages@v4
