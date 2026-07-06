@@ -412,6 +412,8 @@
   .field-value.status-mandatory{ color:var(--stamp-green); font-weight:600; }
   .field-value.status-planned{ color:var(--stamp-amber); font-weight:600; }
   .field-value.status-voluntary{ color:var(--stamp-grey); font-weight:600; }
+  .ref-link{ color:var(--accent); font-size:12px; font-weight:600; text-decoration:none; letter-spacing:.02em; }
+  .ref-link:hover{ text-decoration:underline; }
 
   @media (max-width:640px){
     .field-grid{ grid-template-columns:1fr; }
@@ -620,6 +622,10 @@ function field(label, value, statusClass){
   const cls = statusClass ? ` status-${statusClass}` : '';
   return `<div class="field-label">${label}</div><div class="field-value${cls}">${value || '—'}</div>`;
 }
+function fieldLink(label, url){
+  if(!url) return '';
+  return `<div class="field-label">${label}</div><div class="field-value"><a href="${url}" target="_blank" rel="noopener" class="ref-link">Fonte ufficiale →</a></div>`;
+}
 
 function renderSection(num, title, rows){
   return `
@@ -642,40 +648,44 @@ function openDetail(slug){
   body.innerHTML = `
     <div class="detail-meta">Ultimo aggiornamento fonte: ${dataIT(c.last_update)}</div>
 
-    ${renderSection('01', 'B2G — Business to Government', 
+    ${renderSection('01', 'B2G — Business to Government',
       field('Stato', c.b2g_status, classifyStatus(c.b2g_status)) +
       field('Obbligatorio da', c.b2g_since) +
       field('Piattaforma', c.b2g_platform) +
       field('Rete', c.b2g_network) +
       field('Formato/i', c.b2g_format) +
-      field('Note', c.b2g_notes)
+      field('Note', c.b2g_notes) +
+      fieldLink('Riferimento normativo', c.b2g_url)
     )}
 
-    ${renderSection('02', 'B2B — Business to Business', 
+    ${renderSection('02', 'B2B — Business to Business',
       field('Stato', c.b2b_status, classifyStatus(c.b2b_status)) +
       field('Obbligatorio da', c.b2b_since) +
       field('Piattaforma', c.b2b_platform) +
       field('Rete', c.b2b_network) +
       field('Formato/i', c.b2b_format) +
-      field('Note', c.b2b_notes)
+      field('Note', c.b2b_notes) +
+      fieldLink('Riferimento normativo', c.b2b_url)
     )}
 
-    ${renderSection('03', 'B2C — Business to Consumer', 
+    ${renderSection('03', 'B2C — Business to Consumer',
       field('Stato', c.b2c_status, classifyStatus(c.b2c_status)) +
       field('Obbligatorio da', c.b2c_since) +
       field('Piattaforma', c.b2c_platform) +
       field('Rete', c.b2c_network) +
       field('Formato/i', c.b2c_format) +
-      field('Note', c.b2c_notes)
+      field('Note', c.b2c_notes) +
+      fieldLink('Riferimento normativo', c.b2c_url)
     )}
 
-    ${renderSection('04', 'E-Reporting', 
+    ${renderSection('04', 'E-Reporting',
       field('Stato', c.ereporting_status, classifyStatus(c.ereporting_status)) +
       field('Obbligatorio da', c.ereporting_since) +
       field('Piattaforma', c.ereporting_platform) +
       field('Frequenza', c.ereporting_frequency) +
       field('Perimetro', c.ereporting_scope) +
-      field('Note', c.ereporting_notes)
+      field('Note', c.ereporting_notes) +
+      fieldLink('Riferimento normativo', c.ereporting_url)
     )}
 
     ${renderSection('05', 'E-Archiving — Conservazione a norma',
@@ -683,7 +693,8 @@ function openDetail(slug){
       field('Periodo di conservazione', c.archiving_retention) +
       field('Normativa di riferimento', c.archiving_rules) +
       field('Piattaforma / Fornitore', c.archiving_platform) +
-      field('Note', c.archiving_notes)
+      field('Note', c.archiving_notes) +
+      fieldLink('Riferimento normativo', c.archiving_url)
     )}
 
     ${renderSection('06', 'eCMR — Lettera di vettura elettronica',
@@ -692,7 +703,8 @@ function openDetail(slug){
       field('Base normativa', c.ecmr_regulation) +
       field('Piattaforma', c.ecmr_platform) +
       field('Formato/i', c.ecmr_format) +
-      field('Note', c.ecmr_notes)
+      field('Note', c.ecmr_notes) +
+      fieldLink('Riferimento normativo', c.ecmr_url)
     )}
 
     ${renderSection('07', 'eFTI — Informazioni elettroniche sul trasporto merci',
@@ -701,7 +713,8 @@ function openDetail(slug){
       field('Base normativa', c.efti_regulation) +
       field('Piattaforma', c.efti_platform) +
       field('Perimetro', c.efti_scope) +
-      field('Note', c.efti_notes)
+      field('Note', c.efti_notes) +
+      fieldLink('Riferimento normativo', c.efti_url)
     )}
   `;
 

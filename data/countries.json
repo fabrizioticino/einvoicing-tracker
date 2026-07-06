@@ -45,7 +45,14 @@
         "archiving_rules":  "Conservazione Sostitutiva (linee guida AgID). Pacchetti annuali firmati digitalmente. Responsabile della Conservazione obbligatorio.",
         "archiving_platform":  "Gestione aziendale o terza parte accreditata AgID",
         "archiving_notes":  "Sia il mittente che il destinatario devono conservare le fatture. I pacchetti vanno firmati digitalmente ogni anno. Procedure conformi AgID obbligatorie.",
-        "last_update":  "18 maggio 2026"
+        "last_update":  "18 maggio 2026",
+        "b2g_url":  "https://www.agenziaentrate.gov.it/portale/web/guest/schede/comunicazioni/fatture-e-corrispettivi",
+        "b2b_url":  "https://www.agenziaentrate.gov.it/portale/web/guest/schede/comunicazioni/fatture-e-corrispettivi",
+        "b2c_url":  "https://www.agenziaentrate.gov.it/portale/web/guest/schede/comunicazioni/fatture-e-corrispettivi",
+        "ereporting_url":  "https://www.agenziaentrate.gov.it/portale/web/guest/schede/comunicazioni/fatture-e-corrispettivi",
+        "archiving_url":  "https://www.agenziaentrate.gov.it/portale/web/guest/schede/comunicazioni/fatture-e-corrispettivi",
+        "ecmr_url":  "https://ecmritaly.unioncamere.it/en/index.html",
+        "efti_url":  "https://transport.ec.europa.eu/transport-themes/logistics-and-multimodal-transport/efti-regulation_en"
     },
     {
         "name":  "France",
@@ -93,7 +100,14 @@
         "archiving_rules":  "Codice Commerciale francese e Codice Tributario. Richieste autenticita\u0027, integrita\u0027 e leggibilita\u0027.",
         "archiving_platform":  "Interno o provider SAE certificati",
         "archiving_notes":  "Standard NF Z 42-013 raccomandato. Marcatura temporale e firme digitali comunemente utilizzate.",
-        "last_update":  "12 maggio 2026"
+        "last_update":  "12 maggio 2026",
+        "b2g_url":  "https://portail.chorus-pro.gouv.fr/",
+        "b2b_url":  "https://www.impots.gouv.fr/professionnel/la-facture-electronique-entre-assujettis",
+        "b2c_url":  "https://www.impots.gouv.fr/professionnel/la-facture-electronique-entre-assujettis",
+        "ereporting_url":  "https://www.impots.gouv.fr/professionnel/la-facture-electronique-entre-assujettis",
+        "archiving_url":  "https://www.impots.gouv.fr/professionnel/la-facture-electronique-entre-assujettis",
+        "ecmr_url":  "https://unece.org/transport/road-transport/ecmr",
+        "efti_url":  "https://transport.ec.europa.eu/transport-themes/logistics-and-multimodal-transport/efti-regulation_en"
     },
     {
         "name":  "Germany",
@@ -141,7 +155,14 @@
         "archiving_rules":  "HGB paragrafo 257 + AO paragrafo 147. Principi GoBD: tracciabilita\u0027, immutabilita\u0027, completezza.",
         "archiving_platform":  "Interno o soluzioni DMS/archivio certificate",
         "archiving_notes":  "Conformita\u0027 GoBD obbligatoria. Il file XML XRechnung/ZUGFeRD deve essere conservato nel formato originale.",
-        "last_update":  "23 maggio 2025"
+        "last_update":  "23 maggio 2025",
+        "b2g_url":  "https://www.e-rechnung-bund.de/",
+        "b2b_url":  "https://www.bundesfinanzministerium.de/Content/DE/Standardartikel/Themen/Steuern/2024-11-22-e-rechnung.html",
+        "b2c_url":  "",
+        "ereporting_url":  "",
+        "archiving_url":  "https://www.bundesfinanzministerium.de/Content/DE/Standardartikel/Themen/Steuern/2024-11-22-e-rechnung.html",
+        "ecmr_url":  "https://unece.org/transport/road-transport/ecmr",
+        "efti_url":  "https://transport.ec.europa.eu/transport-themes/logistics-and-multimodal-transport/efti-regulation_en"
     },
     {
         "name":  "Spain",
@@ -189,7 +210,14 @@
         "archiving_rules":  "Legge Tributaria Spagnola. Le fatture elettroniche con firma digitale o EDI+registro di audit soddisfano il requisito di autenticita\u0027.",
         "archiving_platform":  "Interno o provider certificati",
         "archiving_notes":  "La conservazione in Spagna non e\u0027 obbligatoria, ma i documenti devono essere accessibili all\u0027AEAT.",
-        "last_update":  "28 aprile 2026"
+        "last_update":  "28 aprile 2026",
+        "b2g_url":  "https://face.gob.es/",
+        "b2b_url":  "https://www.agenciatributaria.gob.es/AEAT.sede/tramitacion/ZI45.shtml",
+        "b2c_url":  "https://www.agenciatributaria.gob.es/AEAT.sede/tramitacion/ZI45.shtml",
+        "ereporting_url":  "https://www.agenciatributaria.gob.es/AEAT.sede/tramitacion/ZI45.shtml",
+        "archiving_url":  "https://www.agenciatributaria.gob.es/AEAT.sede/tramitacion/ZI45.shtml",
+        "ecmr_url":  "https://unece.org/transport/road-transport/ecmr",
+        "efti_url":  "https://transport.ec.europa.eu/transport-themes/logistics-and-multimodal-transport/efti-regulation_en"
     },
     {
         "name":  "Belgium",
@@ -237,7 +265,14 @@
         "archiving_rules":  "Codice IVA belga. La conservazione deve garantire autenticita\u0027 e integrita\u0027.",
         "archiving_platform":  "Interno o Access Point Peppol",
         "archiving_notes":  "Il file XML originale deve essere conservato insieme a qualsiasi versione PDF.",
-        "last_update":  "5 gennaio 2026"
+        "last_update":  "5 gennaio 2026",
+        "b2g_url":  "https://einvoice.belgium.be/en",
+        "b2b_url":  "https://einvoice.belgium.be/en",
+        "b2c_url":  "https://einvoice.belgium.be/en",
+        "ereporting_url":  "https://einvoice.belgium.be/en",
+        "archiving_url":  "https://einvoice.belgium.be/en",
+        "ecmr_url":  "https://unece.org/transport/road-transport/ecmr",
+        "efti_url":  "https://transport.ec.europa.eu/transport-themes/logistics-and-multimodal-transport/efti-regulation_en"
     },
     {
         "name":  "Netherlands",
@@ -285,7 +320,14 @@
         "archiving_rules":  "Legge tributaria olandese (AWR Art. 52). Integrita\u0027 e autenticita\u0027 garantite.",
         "archiving_platform":  "Interno o provider certificati",
         "archiving_notes":  "La conservazione all\u0027estero e\u0027 consentita se i documenti sono accessibili all\u0027autorita\u0027 fiscale.",
-        "last_update":  "23 maggio 2026"
+        "last_update":  "23 maggio 2026",
+        "b2g_url":  "https://www.logius.nl/onze-dienstverlening/gegevensuitwisseling/e-factureren",
+        "b2b_url":  "https://www.logius.nl/onze-dienstverlening/gegevensuitwisseling/e-factureren",
+        "b2c_url":  "",
+        "ereporting_url":  "",
+        "archiving_url":  "",
+        "ecmr_url":  "https://unece.org/transport/road-transport/ecmr",
+        "efti_url":  "https://transport.ec.europa.eu/transport-themes/logistics-and-multimodal-transport/efti-regulation_en"
     },
     {
         "name":  "Poland",
@@ -333,7 +375,14 @@
         "archiving_rules":  "Ordinanza tributaria, art. 86. KSeF conserva le fatture per 10 anni (servizio opzionale).",
         "archiving_platform":  "KSeF (opzionale) + archivio interno",
         "archiving_notes":  "Le imprese possono fare affidamento su KSeF come archivio ufficiale. Il formato FA(3) deve essere preservato.",
-        "last_update":  "30 aprile 2026"
+        "last_update":  "30 aprile 2026",
+        "b2g_url":  "https://ksef.mf.gov.pl/",
+        "b2b_url":  "https://ksef.mf.gov.pl/",
+        "b2c_url":  "https://ksef.mf.gov.pl/",
+        "ereporting_url":  "https://ksef.mf.gov.pl/",
+        "archiving_url":  "https://ksef.mf.gov.pl/",
+        "ecmr_url":  "https://unece.org/transport/road-transport/ecmr",
+        "efti_url":  "https://transport.ec.europa.eu/transport-themes/logistics-and-multimodal-transport/efti-regulation_en"
     },
     {
         "name":  "Portugal",
@@ -381,7 +430,14 @@
         "archiving_rules":  "Codice Tributario portoghese. Fatture nel formato originale. Archivio software certificato obbligatorio.",
         "archiving_platform":  "Interno (software certificato)",
         "archiving_notes":  "Il portale AT conserva i dati SAF-T. I contribuenti mantengono archivi nel software certificato.",
-        "last_update":  "23 marzo 2025"
+        "last_update":  "23 marzo 2025",
+        "b2g_url":  "https://www.espap.gov.pt/servicos/eInvoicing",
+        "b2b_url":  "https://www.portaldasfinancas.gov.pt/at/html/index.html",
+        "b2c_url":  "https://www.portaldasfinancas.gov.pt/at/html/index.html",
+        "ereporting_url":  "https://www.portaldasfinancas.gov.pt/at/html/index.html",
+        "archiving_url":  "https://www.portaldasfinancas.gov.pt/at/html/index.html",
+        "ecmr_url":  "https://unece.org/transport/road-transport/ecmr",
+        "efti_url":  "https://transport.ec.europa.eu/transport-themes/logistics-and-multimodal-transport/efti-regulation_en"
     },
     {
         "name":  "Romania",
@@ -429,7 +485,14 @@
         "archiving_rules":  "Codice Fiscale romeno. Richieste autenticita\u0027, integrita\u0027 e leggibilita\u0027.",
         "archiving_platform":  "SPV (60 giorni) + archivio interno; ANAF conserva le copie",
         "archiving_notes":  "I destinatari devono recuperare le fatture dallo SPV e archiviarle localmente.",
-        "last_update":  "10 giugno 2026"
+        "last_update":  "10 giugno 2026",
+        "b2g_url":  "https://mfinante.gov.ro/ro/web/efactura",
+        "b2b_url":  "https://mfinante.gov.ro/ro/web/efactura",
+        "b2c_url":  "https://mfinante.gov.ro/ro/web/efactura",
+        "ereporting_url":  "https://etransport.anaf.ro/",
+        "archiving_url":  "https://mfinante.gov.ro/ro/web/efactura",
+        "ecmr_url":  "https://unece.org/transport/road-transport/ecmr",
+        "efti_url":  "https://transport.ec.europa.eu/transport-themes/logistics-and-multimodal-transport/efti-regulation_en"
     },
     {
         "name":  "Greece",
@@ -477,7 +540,14 @@
         "archiving_rules":  "Codice Tributario greco (Legge 4174/2013). myDATA garantisce la conservazione lato governo.",
         "archiving_platform":  "Interno + myDATA (IAPR)",
         "archiving_notes":  "myDATA funge da archivio governativo. Le imprese devono mantenere anche i propri registri.",
-        "last_update":  "21 maggio 2026"
+        "last_update":  "21 maggio 2026",
+        "b2g_url":  "https://www.aade.gr/en/mydata",
+        "b2b_url":  "https://www.aade.gr/en/mydata",
+        "b2c_url":  "https://www.aade.gr/en/mydata",
+        "ereporting_url":  "https://www.aade.gr/en/mydata",
+        "archiving_url":  "https://www.aade.gr/en/mydata",
+        "ecmr_url":  "https://unece.org/transport/road-transport/ecmr",
+        "efti_url":  "https://transport.ec.europa.eu/transport-themes/logistics-and-multimodal-transport/efti-regulation_en"
     },
     {
         "name":  "Australia",
