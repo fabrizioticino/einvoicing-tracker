@@ -537,7 +537,7 @@ function classifyStatus(text){
 
   // --- Obbligatorio/Obbligatoria (IT + EN) ---
   // "obbligatori" cattura sia "obbligatorio" (maschile) che "obbligatoria" (femminile)
-  if(t.includes('obbligatori') || t.includes('mandatory')) return 'mandatory';
+  if(t.includes('obbligatori') || t.includes('mandatory') || t.includes('in vigore')) return 'mandatory';
 
   return 'voluntary';
 }
@@ -580,6 +580,8 @@ function renderGrid(){
         ${badgeHTML('B2G', c.b2g_status)}
         ${badgeHTML('B2B', c.b2b_status)}
         ${badgeHTML('B2C', c.b2c_status)}
+        ${badgeHTML('eCMR', c.ecmr_status)}
+        ${badgeHTML('eFTI', c.efti_status)}
       </div>
       <div class="country-foot">
         <b>E-Reporting:</b> ${classifyStatus(c.ereporting_status) === 'mandatory' ? 'attivo' : (classifyStatus(c.ereporting_status) === 'planned' ? 'in arrivo' : 'non richiesto')}
