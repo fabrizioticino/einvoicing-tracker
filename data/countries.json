@@ -595,7 +595,14 @@
         "archiving_rules":  "Tax Administration Act 1953. Documenti in inglese. Formato elettronico accettato.",
         "archiving_platform":  "Interno",
         "archiving_notes":  "L\u0027ATO accetta documenti elettronici. Nessuno standard specifico obbligatorio.",
-        "last_update":  "17 maggio 2026"
+        "last_update":  "17 maggio 2026",
+        "b2g_url":  "https://www.ato.gov.au/businesses-and-organisations/einvoicing/einvoicing-for-government",
+        "b2b_url":  "https://www.ato.gov.au/businesses-and-organisations/einvoicing",
+        "b2c_url":  "",
+        "ereporting_url":  "https://www.ato.gov.au/businesses-and-organisations/einvoicing/peppol",
+        "archiving_url":  "https://www.ato.gov.au/businesses-and-organisations/record-keeping-for-business",
+        "ecmr_url":  "",
+        "efti_url":  ""
     },
     {
         "name":  "Austria",
@@ -643,7 +650,14 @@
         "archiving_rules":  "Codice Fiscale federale (BAO paragrafo 132). Richieste autenticita\u0027 e integrita\u0027.",
         "archiving_platform":  "Interno o provider certificati",
         "archiving_notes":  "I file XML ebInterface devono essere conservati con registro di audit.",
-        "last_update":  "6 marzo 2026"
+        "last_update":  "6 marzo 2026",
+        "b2g_url":  "https://www.e-rechnung.gv.at/",
+        "b2b_url":  "https://www.bmf.gv.at/en/topics/taxation/vat-assessment-refund-n/supplying-in-austria/invoicing.html",
+        "b2c_url":  "",
+        "ereporting_url":  "https://english.bmf.gv.at/e-government/portals/business-service-portal.html",
+        "archiving_url":  "https://www.ris.bka.gv.at/defaultEn.aspx",
+        "ecmr_url":  "https://www.bmimi.gv.at/themen/mobilitaet/transport/gueterverkehrslogistik/efti/ecmr.html",
+        "efti_url":  "https://transport.ec.europa.eu/transport-themes/logistics-and-multimodal-transport/efti-regulation_en"
     },
     {
         "name":  "Denmark",
@@ -691,7 +705,14 @@
         "archiving_rules":  "Legge danese sulla contabilita\u0027. Documenti elettronici nel formato originale.",
         "archiving_platform":  "Interno (software certificato obbligatorio)",
         "archiving_notes":  "Dal 2024 la Legge sulla contabilita\u0027 richiede la contabilita\u0027 digitale per la maggior parte delle imprese.",
-        "last_update":  "10 marzo 2026"
+        "last_update":  "10 marzo 2026",
+        "b2g_url":  "https://nemhandel.dk/",
+        "b2b_url":  "https://nemhandel.dk/",
+        "b2c_url":  "",
+        "ereporting_url":  "https://nemhandel.dk/",
+        "archiving_url":  "https://erhvervsstyrelsen.dk/bogfoeringslov",
+        "ecmr_url":  "",
+        "efti_url":  "https://transport.ec.europa.eu/transport-themes/logistics-and-multimodal-transport/efti-regulation_en"
     },
     {
         "name":  "Finland",
@@ -739,7 +760,14 @@
         "archiving_rules":  "Legge contabile finlandese. Le fatture elettroniche possono essere conservate in formato elettronico.",
         "archiving_platform":  "Interno o provider certificati",
         "archiving_notes":  "Gli operatori della rete bancaria offrono spesso servizi di archiviazione.",
-        "last_update":  "13 febbraio 2026"
+        "last_update":  "13 febbraio 2026",
+        "b2g_url":  "https://www.valtiokonttori.fi/en/service/handi-supplier-portal/",
+        "b2b_url":  "https://www.vero.fi/en/businesses-and-corporations/taxes-and-charges/vat/e-invoicing/",
+        "b2c_url":  "",
+        "ereporting_url":  "https://www.vero.fi/en/businesses-and-corporations/taxes-and-charges/vat/",
+        "archiving_url":  "https://www.vero.fi/en/businesses-and-corporations/taxes-and-charges/vat/receipts-and-records/",
+        "ecmr_url":  "https://finlex.fi/fi/sopimukset/sopsteksti/2019/20190087",
+        "efti_url":  "https://transport.ec.europa.eu/transport-themes/logistics-and-multimodal-transport/efti-regulation_en"
     },
     {
         "name":  "Sweden",
@@ -787,7 +815,14 @@
         "archiving_rules":  "Legge svedese sulla contabilita\u0027 (BFL). I documenti originali elettronici devono essere preservati.",
         "archiving_platform":  "Interno o provider certificati",
         "archiving_notes":  "Il formato elettronico originale deve essere conservato se giuridicamente rilevante.",
-        "last_update":  "12 febbraio 2026"
+        "last_update":  "12 febbraio 2026",
+        "b2g_url":  "https://www.digg.se/en/knowledge-and-support/e-commerce/mandatory-e-invoicing-in-the-public-sector",
+        "b2b_url":  "https://www.digg.se/en/knowledge-and-support/e-commerce/mandatory-e-invoicing-in-the-public-sector",
+        "b2c_url":  "",
+        "ereporting_url":  "https://www.skatteverket.se/en/",
+        "archiving_url":  "https://www.skatteverket.se/en/businessesandemployers/businessinformation/archiving.4.html",
+        "ecmr_url":  "https://www.riksdagen.se/sv/dokument-och-lagar/dokument/svensk-forfattningssamling/lag-om-elektroniska-fraktsedlar-vid-vagtransport_sfs-2019-1194/",
+        "efti_url":  "https://transport.ec.europa.eu/transport-themes/logistics-and-multimodal-transport/efti-regulation_en"
     },
     {
         "name":  "Norway",
@@ -835,7 +870,14 @@
         "archiving_rules":  "Legge contabile norvegese. Richieste autenticita\u0027 e leggibilita\u0027.",
         "archiving_platform":  "Interno",
         "archiving_notes":  "L\u0027archiviazione elettronica e\u0027 accettata. I documenti devono essere accessibili all\u0027autorita\u0027 fiscale.",
-        "last_update":  "18 giugno 2026"
+        "last_update":  "18 giugno 2026",
+        "b2g_url":  "https://www.anskaffelser.no/digitalisering/e-faktura",
+        "b2b_url":  "https://www.skatteetaten.no/en/business-and-organisation/vat-and-duties/vat/",
+        "b2c_url":  "",
+        "ereporting_url":  "https://www.skatteetaten.no/en/",
+        "archiving_url":  "https://www.skatteetaten.no/en/business-and-organisation/vat-and-duties/vat/receipts-and-records/",
+        "ecmr_url":  "",
+        "efti_url":  ""
     },
     {
         "name":  "Ireland",
@@ -883,7 +925,14 @@
         "archiving_rules":  "Taxes Consolidation Act 1997. Documenti elettronici in formato ispezionabile da Revenue.",
         "archiving_platform":  "Interno",
         "archiving_notes":  "Nessuno standard specifico di archiviazione elettronica obbligatorio.",
-        "last_update":  "26 maggio 2026"
+        "last_update":  "26 maggio 2026",
+        "b2g_url":  "https://www.gov.ie/en/organisation/office-of-government-procurement/",
+        "b2b_url":  "https://www.revenue.ie/en/vat/invoices/",
+        "b2c_url":  "",
+        "ereporting_url":  "https://www.revenue.ie/en/vat/",
+        "archiving_url":  "https://www.revenue.ie/en/vat/receipts-and-records/",
+        "ecmr_url":  "",
+        "efti_url":  "https://transport.ec.europa.eu/transport-themes/logistics-and-multimodal-transport/efti-regulation_en"
     },
     {
         "name":  "Croatia",
@@ -931,7 +980,14 @@
         "archiving_rules":  "Legge IVA croata. Richieste autenticita\u0027, integrita\u0027 e leggibilita\u0027.",
         "archiving_platform":  "Interno o tramite FINA",
         "archiving_notes":  "Firma digitale o EDI con registro di audit obbligatori.",
-        "last_update":  "6 gennaio 2026"
+        "last_update":  "6 gennaio 2026",
+        "b2g_url":  "https://www.fina.hr/eng/business-digitalization/e-invoice",
+        "b2b_url":  "https://www.fina.hr/eng/business-digitalization/e-invoice",
+        "b2c_url":  "",
+        "ereporting_url":  "https://www.porezna-uprava.hr/en/Pages/einvoicing.aspx",
+        "archiving_url":  "",
+        "ecmr_url":  "",
+        "efti_url":  "https://transport.ec.europa.eu/transport-themes/logistics-and-multimodal-transport/efti-regulation_en"
     },
     {
         "name":  "India",
@@ -979,7 +1035,14 @@
         "archiving_rules":  "Legge GST, art. 36. Sono accettati i documenti elettronici. L\u0027IRN emesso dall\u0027IRP e\u0027 il documento ufficiale.",
         "archiving_platform":  "Interno; GSTN conserva i dati",
         "archiving_notes":  "Il GSTN conserva i dati delle e-fatture. I contribuenti mantengono i libri contabili per 8 anni.",
-        "last_update":  "21 gennaio 2026"
+        "last_update":  "21 gennaio 2026",
+        "b2g_url":  "https://einvoice1.gst.gov.in/",
+        "b2b_url":  "https://einvoice.gst.gov.in/einvoice/dashboard",
+        "b2c_url":  "",
+        "ereporting_url":  "https://einvoice1.gst.gov.in/",
+        "archiving_url":  "https://www.gst.gov.in/",
+        "ecmr_url":  "",
+        "efti_url":  ""
     },
     {
         "name":  "Malaysia",
@@ -1027,7 +1090,14 @@
         "archiving_rules":  "L\u0027IRBM archivia automaticamente tutte le fatture validate.",
         "archiving_platform":  "IRBM/MyInvois (automatico); copia interna raccomandata",
         "archiving_notes":  "Recupero tramite portale MyInvois o API in formato XML, JSON, PDF.",
-        "last_update":  "20 aprile 2026"
+        "last_update":  "20 aprile 2026",
+        "b2g_url":  "https://myinvois.hasil.gov.my/",
+        "b2b_url":  "https://www.hasil.gov.my/en/e-invoice/",
+        "b2c_url":  "https://www.hasil.gov.my/en/e-invoice/",
+        "ereporting_url":  "https://www.hasil.gov.my/en/e-invoice/implementation-of-e-invoicing-in-malaysia/",
+        "archiving_url":  "https://www.hasil.gov.my/en/e-invoice/reference-for-the-implementation-of-e-invoice/guidelines/",
+        "ecmr_url":  "",
+        "efti_url":  ""
     },
     {
         "name":  "Mexico",
@@ -1075,7 +1145,14 @@
         "archiving_rules":  "Normativa SAT e Codice Fiscale. Il file XML CFDI deve essere conservato. SAT conserva le copie.",
         "archiving_platform":  "SAT (conserva); PAC (puo\u0027 offrire archivio); interno",
         "archiving_notes":  "Il SAT dispone dell\u0027archivio completo di tutti i CFDI. Il formato PDF+XML e\u0027 il metodo di consegna piu\u0027 comune.",
-        "last_update":  "26 aprile 2026"
+        "last_update":  "26 aprile 2026",
+        "b2g_url":  "https://portalcfdi.facturaelectronica.sat.gob.mx/",
+        "b2b_url":  "https://portalcfdi.facturaelectronica.sat.gob.mx/",
+        "b2c_url":  "https://www.sat.gob.mx/home",
+        "ereporting_url":  "https://www.sat.gob.mx/home",
+        "archiving_url":  "https://www.sat.gob.mx/home",
+        "ecmr_url":  "",
+        "efti_url":  ""
     },
     {
         "name":  "Saudi Arabia",
@@ -1123,7 +1200,14 @@
         "archiving_rules":  "Normativa ZATCA. Fatture in formato XML originale. Certificazione ISO 27001 raccomandata.",
         "archiving_platform":  "Interno; ZATCA conserva le copie",
         "archiving_notes":  "L\u0027UUID assegnato da ZATCA e\u0027 il riferimento principale. Conservazione antimanomissione obbligatoria.",
-        "last_update":  "21 aprile 2026"
+        "last_update":  "21 aprile 2026",
+        "b2g_url":  "https://zatca.gov.sa/en/E-Invoicing/Pages/default.aspx",
+        "b2b_url":  "https://zatca.gov.sa/en/E-Invoicing/Pages/default.aspx",
+        "b2c_url":  "",
+        "ereporting_url":  "https://zatca.gov.sa/en/E-Invoicing/Introduction/Pages/Roll-out-phases.aspx",
+        "archiving_url":  "https://zatca.gov.sa/en/E-Invoicing/Introduction/Guidelines/Pages/default.aspx",
+        "ecmr_url":  "",
+        "efti_url":  ""
     },
     {
         "name":  "Colombia",
@@ -1171,7 +1255,14 @@
         "archiving_rules":  "Codice Tributario colombiano. File XML originali preservati. DIAN conserva le copie.",
         "archiving_platform":  "DIAN + interno",
         "archiving_notes":  "Il CUFE e\u0027 il riferimento principale di archiviazione.",
-        "last_update":  "16 gennaio 2026"
+        "last_update":  "16 gennaio 2026",
+        "b2g_url":  "https://micrositios.dian.gov.co/sistema-de-facturacion-electronica/",
+        "b2b_url":  "https://www.dian.gov.co/impuestos/factura-electronica/Paginas/inicio.aspx",
+        "b2c_url":  "https://micrositios.dian.gov.co/sistema-de-facturacion-electronica/",
+        "ereporting_url":  "https://www.dian.gov.co/impuestos/factura-electronica/Paginas/inicio.aspx",
+        "archiving_url":  "https://www.dian.gov.co/impuestos/factura-electronica/Paginas/inicio.aspx",
+        "ecmr_url":  "",
+        "efti_url":  ""
     },
     {
         "name":  "Israel",
@@ -1219,7 +1310,14 @@
         "archiving_rules":  "Ordinanza Fiscale israeliana. I numeri di compensazione (Mispar Haktzaa) devono essere preservati.",
         "archiving_platform":  "Interno",
         "archiving_notes":  "Il numero di compensazione e\u0027 il riferimento chiave di archiviazione.",
-        "last_update":  "6 gennaio 2026"
+        "last_update":  "6 gennaio 2026",
+        "b2g_url":  "https://taxes.gov.il/English",
+        "b2b_url":  "https://shaam.taxes.gov.il/emhanmainmenu/",
+        "b2c_url":  "",
+        "ereporting_url":  "https://shaam.taxes.gov.il/emhanmainmenu/",
+        "archiving_url":  "https://taxes.gov.il/English",
+        "ecmr_url":  "",
+        "efti_url":  ""
     },
     {
         "name":  "Singapore",
@@ -1267,7 +1365,14 @@
         "archiving_rules":  "Income Tax Act / GST Act. Documenti elettronici accessibili e leggibili.",
         "archiving_platform":  "Interno",
         "archiving_notes":  "IRAS accetta documenti elettronici. Nessuno standard specifico obbligatorio.",
-        "last_update":  "4 marzo 2026"
+        "last_update":  "4 marzo 2026",
+        "b2g_url":  "https://www.iras.gov.sg/taxes/goods-services-tax-(gst)/gst-invoicenow-requirement",
+        "b2b_url":  "https://www.iras.gov.sg/taxes/goods-services-tax-(gst)/gst-invoicenow-requirement",
+        "b2c_url":  "",
+        "ereporting_url":  "https://www.imda.gov.sg/how-we-can-help/nationwide-e-invoicing-framework/invoicenow",
+        "archiving_url":  "https://www.iras.gov.sg/",
+        "ecmr_url":  "",
+        "efti_url":  ""
     },
     {
         "name":  "New Zealand",
@@ -1315,7 +1420,14 @@
         "archiving_rules":  "Tax Administration Act 1994. Documenti elettronici accettati.",
         "archiving_platform":  "Interno",
         "archiving_notes":  "L\u0027IRD accetta documenti elettronici.",
-        "last_update":  "7 marzo 2026"
+        "last_update":  "7 marzo 2026",
+        "b2g_url":  "https://www.ird.govt.nz/managing-my-tax/record-keeping/einvoicing",
+        "b2b_url":  "https://www.ird.govt.nz/managing-my-tax/record-keeping/einvoicing",
+        "b2c_url":  "",
+        "ereporting_url":  "https://www.ird.govt.nz/",
+        "archiving_url":  "https://www.ird.govt.nz/managing-my-tax/record-keeping/",
+        "ecmr_url":  "",
+        "efti_url":  ""
     },
     {
         "name":  "United Arab Emirates",
@@ -1363,7 +1475,14 @@
         "archiving_rules":  "Legge IVA UAE Decreto Federale n. 8/2017. ISO 27001 e 22301 richiesti per gli ASP.",
         "archiving_platform":  "Interno; servizi di archiviazione ASP",
         "archiving_notes":  "L\u0027FTA puo\u0027 richiedere i documenti entro 5 giorni lavorativi.",
-        "last_update":  "11 maggio 2026"
+        "last_update":  "11 maggio 2026",
+        "b2g_url":  "https://tax.gov.ae/en/media.centre/Events/einvoicing.aspx",
+        "b2b_url":  "https://tax.gov.ae/en/media.centre/Events/einvoicing.aspx",
+        "b2c_url":  "",
+        "ereporting_url":  "https://eservices.tax.gov.ae/",
+        "archiving_url":  "https://tax.gov.ae/en/content/tax.invoices.aspx",
+        "ecmr_url":  "",
+        "efti_url":  ""
     },
     {
         "name":  "United Kingdom",
@@ -1411,7 +1530,14 @@
         "archiving_platform":  "Software compatibile MTD",
         "archiving_notes":  "Le fatture cartacee possono essere digitalizzate. Formato elettronico accettato.",
         "last_update":  "6 marzo 2026",
-        "b2g_status":  "Ricezione obbligatoria; invio obbligatorio per fornitori NHS"
+        "b2g_status":  "Ricezione obbligatoria; invio obbligatorio per fornitori NHS",
+        "b2g_url":  "https://www.gov.uk/government/consultations/promoting-electronic-invoicing-across-uk-businesses-and-the-public-sector",
+        "b2b_url":  "https://www.gov.uk/government/news/government-sets-out-plans-for-e-invoicing-overhaul-to-cut-paperwork",
+        "b2c_url":  "",
+        "ereporting_url":  "https://www.gov.uk/government/organisations/hm-revenue-customs",
+        "archiving_url":  "https://www.legislation.gov.uk/",
+        "ecmr_url":  "https://www.legislation.gov.uk/uksi/2020/501",
+        "efti_url":  ""
     },
     {
         "name":  "USA",
@@ -1459,7 +1585,14 @@
         "archiving_rules":  "IRS Publication 583, leggi statali. Documenti elettronici accurati e accessibili. IRS Rev. Proc. 98-25.",
         "archiving_platform":  "Interno",
         "archiving_notes":  "SOX richiede 7 anni di conservazione per le societa\u0027 quotate in borsa.",
-        "last_update":  "13 aprile 2026"
+        "last_update":  "13 aprile 2026",
+        "b2g_url":  "https://fiscal.treasury.gov/fit/e-invoicing.html",
+        "b2b_url":  "",
+        "b2c_url":  "",
+        "ereporting_url":  "https://www.irs.gov/",
+        "archiving_url":  "",
+        "ecmr_url":  "",
+        "efti_url":  ""
     },
     {
         "name":  "Oman",
@@ -1507,7 +1640,14 @@
         "archiving_rules":  "Legge IVA dell\u0027Oman. Documenti nel formato originale o accessibile.",
         "archiving_platform":  "Interno",
         "archiving_notes":  "Documenti elettronici accettati. L\u0027OTA puo\u0027 richiedere i documenti in sede di audit.",
-        "last_update":  "19 maggio 2026"
+        "last_update":  "19 maggio 2026",
+        "b2g_url":  "https://tms.taxoman.gov.om/portal/e-invoicing",
+        "b2b_url":  "https://tms.taxoman.gov.om/portal/e-invoicing",
+        "b2c_url":  "",
+        "ereporting_url":  "https://tms.taxoman.gov.om/portal/e-invoicing",
+        "archiving_url":  "https://tms.taxoman.gov.om/portal/",
+        "ecmr_url":  "",
+        "efti_url":  ""
     },
     {
         "name":  "Philippines",
@@ -1555,7 +1695,14 @@
         "archiving_rules":  "NIRC (Codice Tributario Nazionale). Documenti accessibili al BIR.",
         "archiving_platform":  "BIR EIS + interno",
         "archiving_notes":  "Il BIR conserva le copie tramite EIS. I contribuenti mantengono i propri archivi per 10 anni.",
-        "last_update":  "6 marzo 2026"
+        "last_update":  "6 marzo 2026",
+        "b2g_url":  "https://eis.bir.gov.ph/",
+        "b2b_url":  "https://eis.bir.gov.ph/",
+        "b2c_url":  "",
+        "ereporting_url":  "https://www.bir.gov.ph/",
+        "archiving_url":  "https://www.bir.gov.ph/",
+        "ecmr_url":  "",
+        "efti_url":  ""
     },
     {
         "name":  "Luxembourg",
@@ -1603,6 +1750,13 @@
         "archiving_rules":  "Obblighi di archiviazione standard del Lussemburgo. Richieste autenticita\u0027 e integrita\u0027.",
         "archiving_platform":  "Interno o provider certificati",
         "archiving_notes":  "Gli Access Point Peppol possono offrire servizi di archiviazione. L\u0027archiviazione elettronica e\u0027 accettata.",
-        "last_update":  "25 giugno 2026"
+        "last_update":  "25 giugno 2026",
+        "b2g_url":  "https://ctie.gouvernement.lu/en/l-administration/informations-facturation-electronique.html",
+        "b2b_url":  "https://mindigital.gouvernement.lu/en/dossiers/2021/facturation-electronique.html",
+        "b2c_url":  "",
+        "ereporting_url":  "https://mindigital.gouvernement.lu/en/dossiers/2021/facturation-electronique.html",
+        "archiving_url":  "https://legilux.public.lu/",
+        "ecmr_url":  "",
+        "efti_url":  "https://transport.ec.europa.eu/transport-themes/logistics-and-multimodal-transport/efti-regulation_en"
     }
 ]
