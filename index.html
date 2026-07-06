@@ -552,7 +552,7 @@ function badgeHTML(label, statusText, labelMap){
   const map = labelMap || { mandatory: 'Obbligatorio', planned: 'In arrivo', voluntary: 'Non richiesto', n_a: 'N/A' };
   return `<span class="badge ${cls}">${label}: ${map[cls]}</span>`;
 }
-const TRANSPORT_LABELS = { mandatory: 'Obbligatorio', planned: 'In arrivo', voluntary: 'Volontario', n_a: 'N/A' };
+const TRANSPORT_LABELS = { mandatory: 'Obbligatorio', planned: 'In arrivo', voluntary: 'Volontario', n_a: 'N/D' };
 
 function renderGrid(){
   const grid = document.getElementById('grid');
