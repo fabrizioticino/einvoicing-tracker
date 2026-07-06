@@ -193,7 +193,7 @@ def slug_to_display_slug(url_slug: str) -> str:
 
 def load_json(path: Path, default):
     if path.exists():
-        with open(path, "r", encoding="utf-8") as f:
+        with open(path, "r", encoding="utf-8-sig") as f:
             return json.load(f)
     return default
 
