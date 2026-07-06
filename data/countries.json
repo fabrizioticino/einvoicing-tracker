@@ -105,7 +105,7 @@
         "b2b_url":  "https://www.impots.gouv.fr/professionnel/la-facture-electronique-entre-assujettis",
         "b2c_url":  "https://www.impots.gouv.fr/professionnel/la-facture-electronique-entre-assujettis",
         "ereporting_url":  "https://www.impots.gouv.fr/professionnel/la-facture-electronique-entre-assujettis",
-        "archiving_url":  "https://www.impots.gouv.fr/professionnel/la-facture-electronique-entre-assujettis",
+        "archiving_url":  "https://bofip.impots.gouv.fr/bofip/2899-PGP.html",
         "ecmr_url":  "https://unece.org/transport/road-transport/ecmr",
         "efti_url":  "https://transport.ec.europa.eu/transport-themes/logistics-and-multimodal-transport/efti-regulation_en"
     },
@@ -160,7 +160,7 @@
         "b2b_url":  "https://www.bundesfinanzministerium.de/Content/DE/Standardartikel/Themen/Steuern/2024-11-22-e-rechnung.html",
         "b2c_url":  "",
         "ereporting_url":  "",
-        "archiving_url":  "https://www.bundesfinanzministerium.de/Content/DE/Standardartikel/Themen/Steuern/2024-11-22-e-rechnung.html",
+        "archiving_url":  "https://www.bundesfinanzministerium.de/Content/DE/Downloads/BMF_Schreiben/Weitere_Steuerthemen/Abgabenordnung/AO-Anwendungserlass/2024-03-11-aenderung-gobd.html",
         "ecmr_url":  "https://unece.org/transport/road-transport/ecmr",
         "efti_url":  "https://transport.ec.europa.eu/transport-themes/logistics-and-multimodal-transport/efti-regulation_en"
     },
@@ -215,7 +215,7 @@
         "b2b_url":  "https://www.agenciatributaria.gob.es/AEAT.sede/tramitacion/ZI45.shtml",
         "b2c_url":  "https://www.agenciatributaria.gob.es/AEAT.sede/tramitacion/ZI45.shtml",
         "ereporting_url":  "https://www.agenciatributaria.gob.es/AEAT.sede/tramitacion/ZI45.shtml",
-        "archiving_url":  "https://www.agenciatributaria.gob.es/AEAT.sede/tramitacion/ZI45.shtml",
+        "archiving_url":  "https://sede.agenciatributaria.gob.es/Sede/iva/facturacion-registro/facturacion-iva/obligacion-conservar-facturas.html",
         "ecmr_url":  "https://unece.org/transport/road-transport/ecmr",
         "efti_url":  "https://transport.ec.europa.eu/transport-themes/logistics-and-multimodal-transport/efti-regulation_en"
     },
@@ -270,7 +270,7 @@
         "b2b_url":  "https://einvoice.belgium.be/en",
         "b2c_url":  "https://einvoice.belgium.be/en",
         "ereporting_url":  "https://einvoice.belgium.be/en",
-        "archiving_url":  "https://einvoice.belgium.be/en",
+        "archiving_url":  "https://finances.belgium.be/fr/entreprises/tva/e-facturation/client/conserver",
         "ecmr_url":  "https://unece.org/transport/road-transport/ecmr",
         "efti_url":  "https://transport.ec.europa.eu/transport-themes/logistics-and-multimodal-transport/efti-regulation_en"
     },
@@ -325,7 +325,7 @@
         "b2b_url":  "https://www.logius.nl/onze-dienstverlening/gegevensuitwisseling/e-factureren",
         "b2c_url":  "",
         "ereporting_url":  "",
-        "archiving_url":  "",
+        "archiving_url":  "https://www.belastingdienst.nl/wps/wcm/connect/bldcontentnl/belastingdienst/zakelijk/btw/administratie_bijhouden/facturen_maken/uw_facturen_bewaren",
         "ecmr_url":  "https://unece.org/transport/road-transport/ecmr",
         "efti_url":  "https://transport.ec.europa.eu/transport-themes/logistics-and-multimodal-transport/efti-regulation_en"
     },
@@ -380,7 +380,7 @@
         "b2b_url":  "https://ksef.mf.gov.pl/",
         "b2c_url":  "https://ksef.mf.gov.pl/",
         "ereporting_url":  "https://ksef.mf.gov.pl/",
-        "archiving_url":  "https://ksef.mf.gov.pl/",
+        "archiving_url":  "https://www.gov.pl/web/kas/krajowy-system-e-faktur",
         "ecmr_url":  "https://unece.org/transport/road-transport/ecmr",
         "efti_url":  "https://transport.ec.europa.eu/transport-themes/logistics-and-multimodal-transport/efti-regulation_en"
     },
@@ -435,7 +435,7 @@
         "b2b_url":  "https://www.portaldasfinancas.gov.pt/at/html/index.html",
         "b2c_url":  "https://www.portaldasfinancas.gov.pt/at/html/index.html",
         "ereporting_url":  "https://www.portaldasfinancas.gov.pt/at/html/index.html",
-        "archiving_url":  "https://www.portaldasfinancas.gov.pt/at/html/index.html",
+        "archiving_url":  "https://info.portaldasfinancas.gov.pt/pt/informacao_fiscal/Pages/default.aspx",
         "ecmr_url":  "https://unece.org/transport/road-transport/ecmr",
         "efti_url":  "https://transport.ec.europa.eu/transport-themes/logistics-and-multimodal-transport/efti-regulation_en"
     },
@@ -490,7 +490,7 @@
         "b2b_url":  "https://mfinante.gov.ro/ro/web/efactura",
         "b2c_url":  "https://mfinante.gov.ro/ro/web/efactura",
         "ereporting_url":  "https://etransport.anaf.ro/",
-        "archiving_url":  "https://mfinante.gov.ro/ro/web/efactura",
+        "archiving_url":  "https://www.anaf.ro/anaf/internet/RO/conservare-documente-financiar-contabile",
         "ecmr_url":  "https://unece.org/transport/road-transport/ecmr",
         "efti_url":  "https://transport.ec.europa.eu/transport-themes/logistics-and-multimodal-transport/efti-regulation_en"
     },
