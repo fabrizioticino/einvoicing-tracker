@@ -351,7 +351,7 @@
         "efti_platform":  "Piattaforme eFTI nazionali certificate (ENISA)",
         "efti_scope":  "Trasporto merci su strada, ferrovia, vie navigabili interne e marittimo a corto raggio nell\u0027UE",
         "efti_notes":  "Le autorità competenti sono obbligate ad accettare le informazioni in formato eFTI dal 21/08/2024. Gli operatori economici potranno usare eFTI su base volontaria fino al 21/08/2029, data in cui diventerà obbligatorio.",
-        "needs_content_review":  false,
+        "needs_content_review":  true,
         "b2g_status":  "Obbligatorio",
         "b2g_since":  "1 gennaio 2023 (grandi); 1 gennaio 2025 (esteso alle PMI)",
         "b2g_platform":  "Portal das Financas (AT); nodo Peppol Espap",
@@ -381,7 +381,7 @@
         "archiving_rules":  "Codice Tributario portoghese. Fatture nel formato originale. Archivio software certificato obbligatorio.",
         "archiving_platform":  "Interno (software certificato)",
         "archiving_notes":  "Il portale AT conserva i dati SAF-T. I contribuenti mantengono archivi nel software certificato.",
-        "last_update":  "18 maggio 2025"
+        "last_update":  "23 marzo 2025"
     },
     {
         "name":  "Romania",

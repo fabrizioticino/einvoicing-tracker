@@ -254,5 +254,13 @@
     "new_last_update": "June 25, 2026",
     "url": "https://www.theinvoicinghub.com/einvoicing-compliance-luxembourg/",
     "detected_at": "2026-07-06T07:57:58.091631+00:00"
+  },
+  {
+    "country": "Portugal",
+    "name_it": "Portogallo",
+    "previous_last_update": "18 maggio 2025",
+    "new_last_update": "23 marzo 2025",
+    "url": "https://www.theinvoicinghub.com/einvoicing-compliance-portugal/",
+    "detected_at": "2026-07-06T10:15:22.503992+00:00"
   }
 ]
