@@ -57,6 +57,36 @@ jobs:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     steps:
-      - name: Deploy to GitHub Pages
-        id: deployment
+      - name: Deploy to GitHub Pages (attempt 1)
+        id: deploy1
         uses: actions/deploy-pages@v4
+        continue-on-error: true
+
+      - name: Wait before retry
+        if: steps.deploy1.outcome == 'failure'
+        run: sleep 30
+
+      - name: Deploy to GitHub Pages (attempt 2)
+        id: deploy2
+        if: steps.deploy1.outcome == 'failure'
+        uses: actions/deploy-pages@v4
+        continue-on-error: true
+
+      - name: Wait before retry
+        if: steps.deploy2.outcome == 'failure'
+        run: sleep 60
+
+      - name: Deploy to GitHub Pages (attempt 3)
+        id: deploy3
+        if: steps.deploy2.outcome == 'failure'
+        uses: actions/deploy-pages@v4
+
+      - name: Report success
+        run: |
+          if [ "${{ steps.deploy1.outcome }}" == "success" ]; then
+            echo "Deploy riuscito al primo tentativo."
+          elif [ "${{ steps.deploy2.outcome }}" == "success" ]; then
+            echo "Deploy riuscito al secondo tentativo."
+          else
+            echo "Deploy riuscito al terzo tentativo."
+          fi
