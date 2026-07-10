@@ -262,5 +262,20 @@
     "new_last_update": "23 marzo 2025",
     "url": "https://www.theinvoicinghub.com/einvoicing-compliance-portugal/",
     "detected_at": "2026-07-06T10:15:22.503992+00:00"
+  },
+  {
+    "country": "Slovakia",
+    "event": "new_country_added",
+    "name_it": "Slovacchia",
+    "url": "https://www.theinvoicinghub.com/einvoicing-compliance-slovakia/",
+    "detected_at": "2026-07-10T06:36:00.615210+00:00"
+  },
+  {
+    "country": "Romania",
+    "name_it": "Romania",
+    "previous_last_update": "10 giugno 2026",
+    "new_last_update": "7 luglio 2026",
+    "url": "https://www.theinvoicinghub.com/einvoicing-compliance-romania/",
+    "detected_at": "2026-07-10T06:36:12.295471+00:00"
   }
 ]
