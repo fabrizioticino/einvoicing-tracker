@@ -214,7 +214,7 @@
         "b2g_url":  "https://face.gob.es/",
         "b2b_url":  "https://sede.agenciatributaria.gob.es/Sede/iva/facturacion-registro/facturacion-iva.html",
         "b2c_url":  "https://sede.agenciatributaria.gob.es/Sede/iva/facturacion-registro/facturacion-iva.html",
-        "ereporting_url":  "https://sede.agenciatributaria.gob.es/Sede/iva/facturacion-registro/facturacion-iva.html",
+        "ereporting_url":  "https://sede.agenciatributaria.gob.es/Sede/iva/suministro-inmediato-informacion.html",
         "archiving_url":  "https://sede.agenciatributaria.gob.es/Sede/iva/facturacion-registro/facturacion-iva/obligacion-conservar-facturas.html",
         "ecmr_url":  "https://www.boe.es/diario_boe/txt.php?id=BOE-A-2011-10283",
         "efti_url":  "https://transport.ec.europa.eu/transport-themes/logistics-and-multimodal-transport/efti-regulation_en"
