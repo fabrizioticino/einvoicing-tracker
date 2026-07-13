@@ -308,13 +308,17 @@ def main():
 
     changelog = load_json(CHANGELOG_FILE, [])
 
-    # Calcola gli slug URL già presenti (invertendo NAME_TO_SLUG)
+    # Calcola gli slug URL già presenti (da NAME_TO_SLUG e dallo slug nel JSON)
     existing_slugs = set()
     for c in countries:
         name = c["name"]
         url_slug = NAME_TO_SLUG.get(name)
         if url_slug:
             existing_slugs.add(url_slug)
+        # Fallback: usa lo slug già presente nel JSON per paesi non ancora in SLUG_TO_NAME
+        if c.get("slug"):
+            existing_slugs.add(c["slug"])
+            existing_slugs.add("the-" + c["slug"])
 
     # 1. Rileva e aggiunge nuovi paesi
     new_entries = detect_new_countries(existing_slugs)
