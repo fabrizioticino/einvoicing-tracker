@@ -63,6 +63,7 @@ SLUG_TO_NAME = {
     "oman": "Oman",
     "the-philippines": "Philippines",
     "luxembourg": "Luxembourg",
+    "slovakia": "Slovakia",
 }
 
 # Mappa nome inglese -> slug URL (inverso di SLUG_TO_NAME)
