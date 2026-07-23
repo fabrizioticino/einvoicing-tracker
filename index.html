@@ -514,6 +514,25 @@ let COUNTRIES = [];
 let activeFilters = { b2g_status: 'all', b2b_status: 'all' };
 let searchTerm = '';
 
+// L'ordine delle schede non è fisso: i paesi sono ordinati per data di
+// aggiornamento delle informazioni (last_update), dal più recente al meno recente.
+const MESI_IT_NUM = {
+  gennaio:1, febbraio:2, marzo:3, aprile:4, maggio:5, giugno:6,
+  luglio:7, agosto:8, settembre:9, ottobre:10, novembre:11, dicembre:12
+};
+function dataUpdateKey(c){
+  const s = (c && c.last_update || '').trim().toLowerCase();
+  const m = s.match(/^(\d{1,2})\s+([a-zàèéìòù]+)\s+(\d{4})$/);
+  if(!m) return 0; // date non riconosciute finiscono in fondo
+  const giorno = parseInt(m[1], 10);
+  const mese = MESI_IT_NUM[m[2]] || 0;
+  const anno = parseInt(m[3], 10);
+  return anno * 10000 + mese * 100 + giorno;
+}
+function sortByLastUpdate(){
+  COUNTRIES.sort((a, b) => dataUpdateKey(b) - dataUpdateKey(a));
+}
+
 function classifyStatus(text){
   const t = (text || '').toLowerCase();
 
@@ -765,6 +784,7 @@ async function init(){
   try {
     const res = await fetch('data/countries.json');
     COUNTRIES = await res.json();
+    sortByLastUpdate();
   } catch(e) {
     document.getElementById('grid').innerHTML = `<div class="no-results">Errore nel caricamento dei dati. Verifica che data/countries.json sia presente.</div>`;
     return;
