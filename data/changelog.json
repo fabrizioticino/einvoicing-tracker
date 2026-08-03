@@ -292,5 +292,29 @@
     "new_last_update": "13 luglio 2026",
     "url": "https://www.theinvoicinghub.com/einvoicing-compliance-france/",
     "detected_at": "2026-07-13T07:31:00.979996+00:00"
+  },
+  {
+    "country": "Portugal",
+    "name_it": "Portogallo",
+    "previous_last_update": "29 luglio 2026",
+    "new_last_update": "23 marzo 2025",
+    "url": "https://www.theinvoicinghub.com/einvoicing-compliance-portugal/",
+    "detected_at": "2026-08-03T08:57:46.438612+00:00"
+  },
+  {
+    "country": "Saudi Arabia",
+    "name_it": "Arabia Saudita",
+    "previous_last_update": "21 aprile 2026",
+    "new_last_update": "28 luglio 2026",
+    "url": "https://www.theinvoicinghub.com/einvoicing-compliance-saudi-arabia/",
+    "detected_at": "2026-08-03T08:58:07.561915+00:00"
+  },
+  {
+    "country": "Luxembourg",
+    "name_it": "Lussemburgo",
+    "previous_last_update": "30 luglio 2026",
+    "new_last_update": "27 luglio 2026",
+    "url": "https://www.theinvoicinghub.com/einvoicing-compliance-luxembourg/",
+    "detected_at": "2026-08-03T08:58:24.992996+00:00"
   }
 ]
