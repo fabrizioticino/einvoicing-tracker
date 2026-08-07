@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- FAC-SIMILE - ESEMPIO DIDATTICO - DATI FITTIZI - NON E' UNA FATTURA REALE -->
+<fe:Facturae xmlns:fe="http://www.facturae.es/Facturae/2014/v3.2.2/Facturae">
+  <FileHeader><SchemaVersion>3.2.2</SchemaVersion><Modality>I</Modality><InvoiceIssuerType>EM</InvoiceIssuerType></FileHeader>
+  <Parties>
+    <SellerParty><TaxIdentification><PersonTypeCode>J</PersonTypeCode><ResidenceTypeCode>R</ResidenceTypeCode><TaxIdentificationNumber>ESB00000000</TaxIdentificationNumber></TaxIdentification><LegalEntity><CorporateName>Alfa S.L. (fittizio)</CorporateName></LegalEntity></SellerParty>
+    <BuyerParty><TaxIdentification><PersonTypeCode>J</PersonTypeCode><ResidenceTypeCode>R</ResidenceTypeCode><TaxIdentificationNumber>ESB11111111</TaxIdentificationNumber></TaxIdentification><LegalEntity><CorporateName>Beta S.A. (fittizio)</CorporateName></LegalEntity></BuyerParty>
+  </Parties>
+  <Invoices><Invoice>
+    <InvoiceHeader><InvoiceNumber>2026-000123</InvoiceNumber><InvoiceDocumentType>FC</InvoiceDocumentType><InvoiceClass>OO</InvoiceClass></InvoiceHeader>
+    <InvoiceIssueData><IssueDate>2026-01-20</IssueDate><InvoiceCurrencyCode>EUR</InvoiceCurrencyCode><TaxCurrencyCode>EUR</TaxCurrencyCode><LanguageName>es</LanguageName></InvoiceIssueData>
+    <TaxesOutputs><Tax><TaxTypeCode>01</TaxTypeCode><TaxRate>21.00</TaxRate><TaxableBase><TotalAmount>1000.00</TotalAmount></TaxableBase><TaxAmount><TotalAmount>210.00</TotalAmount></TaxAmount></Tax></TaxesOutputs>
+    <InvoiceTotals><TotalGrossAmount>1000.00</TotalGrossAmount><TotalTaxOutputs>210.00</TotalTaxOutputs><InvoiceTotal>1210.00</InvoiceTotal><TotalExecutableAmount>1210.00</TotalExecutableAmount></InvoiceTotals>
+    <Items><InvoiceLine><ItemDescription>Producto de ejemplo</ItemDescription><Quantity>10</Quantity><UnitPriceWithoutTax>100.00</UnitPriceWithoutTax><TotalCost>1000.00</TotalCost><GrossAmount>1000.00</GrossAmount></InvoiceLine></Items>
+  </Invoice></Invoices>
+</fe:Facturae>

@@ -1,0 +1,11 @@
+{
+  "_faksimile": "FAC-SIMILE - ESEMPIO DIDATTICO - DATI FITTIZI - NON E' UNA FATTURA REALE",
+  "Version": "1.1",
+  "Irn": "FACSIMILE-IRN-0000000000000000000000000000000000000000000000000000000000000000",
+  "TranDtls": { "TaxSch": "GST", "SupTyp": "B2B" },
+  "DocDtls": { "Typ": "INV", "No": "INV-2026-123", "Dt": "20/01/2026" },
+  "SellerDtls": { "Gstin": "00AAAAA0000A0Z0", "LglNm": "Alfa Pvt Ltd (fittizio)", "Loc": "City", "Pin": 000000, "Stcd": "00" },
+  "BuyerDtls": { "Gstin": "11BBBBB1111B1Z1", "LglNm": "Beta Pvt Ltd (fittizio)", "Pos": "00", "Loc": "City", "Pin": 000000, "Stcd": "00" },
+  "ItemList": [ { "SlNo": "1", "PrdDesc": "Sample product", "HsnCd": "1234", "Qty": 10, "Unit": "NOS", "UnitPrice": 100.00, "TotAmt": 1000.00, "GstRt": 18.0, "IgstAmt": 180.00, "TotItemVal": 1180.00 } ],
+  "ValDtls": { "AssVal": 1000.00, "IgstVal": 180.00, "TotInvVal": 1180.00 }
+}

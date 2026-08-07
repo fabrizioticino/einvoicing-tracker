@@ -1,0 +1,11 @@
+{
+  "_faksimile": "FAC-SIMILE - ESEMPIO DIDATTICO - DATI FITTIZI - NON E' UNA FATTURA REALE",
+  "invoiceNumber": "INV-2026-000123",
+  "issueDate": "2026-01-20",
+  "currency": "PHP",
+  "country": "PH",
+  "seller": { "name": "Alfa Seller Ltd (fittizio)", "taxId": "PH000000000" },
+  "buyer": { "name": "Beta Buyer Ltd (fittizio)", "taxId": "PH111111111" },
+  "lines": [ { "description": "Sample product", "quantity": 10, "unitPrice": 100.00, "netAmount": 1000.00, "vatRate": 12 } ],
+  "totals": { "netAmount": 1000.00, "vatAmount": 120.00, "grossAmount": 1120.00 }
+}

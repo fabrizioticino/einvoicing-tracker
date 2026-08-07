@@ -1,0 +1,12 @@
+{
+  "_faksimile": "FAC-SIMILE - ESEMPIO DIDATTICO - DATI FITTIZI - NON E' UNA FATTURA REALE - Grecia myDATA (AADE)",
+  "invoicesDoc": {
+    "invoice": {
+      "issuer": { "vatNumber": "000000000", "country": "GR", "branch": 0, "name": "Alfa AE (fittizio)" },
+      "counterpart": { "vatNumber": "111111111", "country": "GR", "branch": 0, "name": "Beta AE (fittizio)" },
+      "invoiceHeader": { "series": "A", "aa": "123", "issueDate": "2026-01-20", "invoiceType": "1.1", "currency": "EUR" },
+      "invoiceDetails": [ { "lineNumber": 1, "netValue": 1000.00, "vatCategory": 1, "vatAmount": 240.00 } ],
+      "invoiceSummary": { "totalNetValue": 1000.00, "totalVatAmount": 240.00, "totalGrossValue": 1240.00 }
+    }
+  }
+}

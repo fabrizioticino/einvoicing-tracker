@@ -645,6 +645,11 @@ function fieldLink(label, url){
   if(!url) return '';
   return `<div class="field-label">${label}</div><div class="field-value"><a href="${url}" target="_blank" rel="noopener" class="ref-link">Fonte ufficiale →</a></div>`;
 }
+function fieldExample(c){
+  if(!c.einvoice_example) return '';
+  const lbl = c.einvoice_example_label || 'formato nazionale';
+  return `<div class="field-label">Esempio di fattura elettronica</div><div class="field-value"><a href="${c.einvoice_example}" target="_blank" rel="noopener" class="ref-link">Apri esempio — ${lbl} ↗</a></div>`;
+}
 
 function renderSection(num, title, rows){
   return `
@@ -684,7 +689,8 @@ function openDetail(slug){
       field('Rete', c.b2b_network) +
       field('Formato/i', c.b2b_format) +
       field('Note', c.b2b_notes) +
-      fieldLink('Riferimento normativo', c.b2b_url)
+      fieldLink('Riferimento normativo', c.b2b_url) +
+      fieldExample(c)
     )}
 
     ${renderSection('03', 'B2C — Business to Consumer',
