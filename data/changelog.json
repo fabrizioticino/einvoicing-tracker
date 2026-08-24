@@ -324,5 +324,21 @@
     "new_last_update": "11 agosto 2026",
     "url": "https://www.theinvoicinghub.com/einvoicing-compliance-germany/",
     "detected_at": "2026-08-17T06:29:07.847803+00:00"
+  },
+  {
+    "country": "Malaysia",
+    "name_it": "Malesia",
+    "previous_last_update": "20 aprile 2026",
+    "new_last_update": "17 agosto 2026",
+    "url": "https://www.theinvoicinghub.com/einvoicing-compliance-malaysia/",
+    "detected_at": "2026-08-24T06:33:20.310251+00:00"
+  },
+  {
+    "country": "United Arab Emirates",
+    "name_it": "Emirati Arabi Uniti",
+    "previous_last_update": "11 maggio 2026",
+    "new_last_update": "22 agosto 2026",
+    "url": "https://www.theinvoicinghub.com/einvoicing-compliance-uae/",
+    "detected_at": "2026-08-24T06:33:31.114855+00:00"
   }
 ]
