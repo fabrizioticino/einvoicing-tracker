@@ -340,5 +340,13 @@
     "new_last_update": "22 agosto 2026",
     "url": "https://www.theinvoicinghub.com/einvoicing-compliance-uae/",
     "detected_at": "2026-08-24T06:33:31.114855+00:00"
+  },
+  {
+    "country": "Israel",
+    "name_it": "Israele",
+    "previous_last_update": "6 gennaio 2026",
+    "new_last_update": "25 agosto 2026",
+    "url": "https://www.theinvoicinghub.com/einvoicing-compliance-israel/",
+    "detected_at": "2026-08-28T10:24:07.234128+00:00"
   }
 ]
