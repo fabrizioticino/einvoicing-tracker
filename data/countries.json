@@ -2459,7 +2459,7 @@
         "b2g_format":  "e-SLOG 2.0, Peppol BIS",
         "b2g_network":  "Peppol",
         "b2g_notes":  "La fatturazione elettronica B2G è obbligatoria in Slovenia dal 2015. Le fatture verso la PA devono essere trasmesse in formato e-SLOG tramite il portale FURS (UJPnet) o la rete Peppol. La Slovenia ha recepito la Direttiva 2014/55/UE.",
-        "b2g_url":  "https://www.ujp.gov.si/dokumenti/dokument.aspx?id=188",
+        "b2g_url":  "https://www.gov.si/teme/izmenjava-e-racunov-s-proracunskimi-uporabniki/",
         "b2b_status":  "Obbligatorio dal 1° gennaio 2028",
         "b2b_since":  "1° gennaio 2028",
         "b2b_platform":  "Provider e-route registrati, Peppol, connessione diretta sistema-sistema",
