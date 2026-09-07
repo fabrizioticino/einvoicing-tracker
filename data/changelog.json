@@ -348,5 +348,29 @@
     "new_last_update": "25 agosto 2026",
     "url": "https://www.theinvoicinghub.com/einvoicing-compliance-israel/",
     "detected_at": "2026-08-28T10:24:07.234128+00:00"
+  },
+  {
+    "country": "Luxembourg",
+    "name_it": "Lussemburgo",
+    "previous_last_update": "27 luglio 2026",
+    "new_last_update": "1 settembre 2026",
+    "url": "https://www.theinvoicinghub.com/einvoicing-compliance-luxembourg/",
+    "detected_at": "2026-09-07T10:54:27.928459+00:00"
+  },
+  {
+    "country": "France",
+    "name_it": "Francia",
+    "previous_last_update": "13 luglio 2026",
+    "new_last_update": "31 agosto 2026",
+    "url": "https://www.theinvoicinghub.com/einvoicing-compliance-france/",
+    "detected_at": "2026-09-07T10:54:29.489977+00:00"
+  },
+  {
+    "country": "Belgium",
+    "name_it": "Belgio",
+    "previous_last_update": "5 gennaio 2026",
+    "new_last_update": "1 settembre 2026",
+    "url": "https://www.theinvoicinghub.com/einvoicing-compliance-belgium/",
+    "detected_at": "2026-09-07T10:55:09.714187+00:00"
   }
 ]
