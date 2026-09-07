@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Esempio di fattura elettronica B2G Slovenia
+  Formato: e-SLOG 2.0 (profilo EN 16931 / CIUS-SI)
+  Standard: UBL 2.1 con estensioni e-SLOG
+  Canale: portale PPA (UJP) o Peppol
+  Riferimento normativo: Zakon o opravljanju plačilnih storitev za proračunske uporabnike (ZOPSPU-1)
+  Obbligatorio dal 1° gennaio 2015
+-->
+<Invoice xmlns="urn:oasis:names:specification:ubl:schema:xsd:Invoice-2"
+         xmlns:cac="urn:oasis:names:specification:ubl:schema:xsd:CommonAggregateComponents-2"
+         xmlns:cbc="urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2">
+
+  <!-- Identificatori di profilo e-SLOG 2.0 -->
+  <cbc:CustomizationID>urn:cen.eu:en16931:2017#compliant#urn:fdc:peppol.eu:2017:poacc:billing:3.0</cbc:CustomizationID>
+  <cbc:ProfileID>urn:fdc:peppol.eu:2017:poacc:billing:01:1.0</cbc:ProfileID>
+
+  <!-- Identificativo fattura e data -->
+  <cbc:ID>SI-B2G-2026-001</cbc:ID>
+  <cbc:IssueDate>2026-09-07</cbc:IssueDate>
+  <cbc:DueDate>2026-10-07</cbc:DueDate>
+  <cbc:InvoiceTypeCode>380</cbc:InvoiceTypeCode>
+  <cbc:Note>Fattura per servizi di consulenza informatica — fornitura a ente pubblico</cbc:Note>
+  <cbc:DocumentCurrencyCode>EUR</cbc:DocumentCurrencyCode>
+
+  <!-- Riferimento contratto/appalto pubblico -->
+  <cac:OrderReference>
+    <cbc:ID>NAR-2026-SI-042</cbc:ID>
+  </cac:OrderReference>
+
+  <!-- Fornitore (Business) -->
+  <cac:AccountingSupplierParty>
+    <cac:Party>
+      <cbc:EndpointID schemeID="0060">SI12345678</cbc:EndpointID>
+      <cac:PartyName>
+        <cbc:Name>TechSoft d.o.o.</cbc:Name>
+      </cac:PartyName>
+      <cac:PostalAddress>
+        <cbc:StreetName>Dunajska cesta 156</cbc:StreetName>
+        <cbc:CityName>Ljubljana</cbc:CityName>
+        <cbc:PostalZone>1000</cbc:PostalZone>
+        <cac:Country>
+          <cbc:IdentificationCode>SI</cbc:IdentificationCode>
+        </cac:Country>
+      </cac:PostalAddress>
+      <cac:PartyTaxScheme>
+        <cbc:CompanyID>SI12345678</cbc:CompanyID>
+        <cac:TaxScheme>
+          <cbc:ID>VAT</cbc:ID>
+        </cac:TaxScheme>
+      </cac:PartyTaxScheme>
+      <cac:PartyLegalEntity>
+        <cbc:RegistrationName>TechSoft d.o.o.</cbc:RegistrationName>
+        <cbc:CompanyID>1234567000</cbc:CompanyID>
+      </cac:PartyLegalEntity>
+    </cac:Party>
+  </cac:AccountingSupplierParty>
+
+  <!-- Destinatario (Ente Pubblico / Proračunski uporabnik) -->
+  <cac:AccountingCustomerParty>
+    <cac:Party>
+      <cbc:EndpointID schemeID="0060">SI11111111</cbc:EndpointID>
+      <cac:PartyName>
+        <cbc:Name>Ministrstvo za digitalno preobrazbo</cbc:Name>
+      </cac:PartyName>
+      <cac:PostalAddress>
+        <cbc:StreetName>Tržaška cesta 21</cbc:StreetName>
+        <cbc:CityName>Ljubljana</cbc:CityName>
+        <cbc:PostalZone>1000</cbc:PostalZone>
+        <cac:Country>
+          <cbc:IdentificationCode>SI</cbc:IdentificationCode>
+        </cac:Country>
+      </cac:PostalAddress>
+      <cac:PartyTaxScheme>
+        <cbc:CompanyID>SI11111111</cbc:CompanyID>
+        <cac:TaxScheme>
+          <cbc:ID>VAT</cbc:ID>
+        </cac:TaxScheme>
+      </cac:PartyTaxScheme>
+      <cac:PartyLegalEntity>
+        <cbc:RegistrationName>Ministrstvo za digitalno preobrazbo</cbc:RegistrationName>
+        <cbc:CompanyID>5678901000</cbc:CompanyID>
+      </cac:PartyLegalEntity>
+    </cac:Party>
+  </cac:AccountingCustomerParty>
+
+  <!-- Dati di pagamento -->
+  <cac:PaymentMeans>
+    <cbc:PaymentMeansCode>30</cbc:PaymentMeansCode>
+    <cac:PayeeFinancialAccount>
+      <cbc:ID>SI56 0201 0025 1234 567</cbc:ID>
+      <cac:FinancialInstitutionBranch>
+        <cbc:ID>BSLJSI2X</cbc:ID>
+      </cac:FinancialInstitutionBranch>
+    </cac:PayeeFinancialAccount>
+  </cac:PaymentMeans>
+
+  <!-- Riepilogo IVA -->
+  <cac:TaxTotal>
+    <cbc:TaxAmount currencyID="EUR">220.00</cbc:TaxAmount>
+    <cac:TaxSubtotal>
+      <cbc:TaxableAmount currencyID="EUR">1000.00</cbc:TaxableAmount>
+      <cbc:TaxAmount currencyID="EUR">220.00</cbc:TaxAmount>
+      <cac:TaxCategory>
+        <cbc:ID>S</cbc:ID>
+        <cbc:Percent>22</cbc:Percent>
+        <cac:TaxScheme>
+          <cbc:ID>VAT</cbc:ID>
+        </cac:TaxScheme>
+      </cac:TaxCategory>
+    </cac:TaxSubtotal>
+  </cac:TaxTotal>
+
+  <!-- Totali fattura -->
+  <cac:LegalMonetaryTotal>
+    <cbc:LineExtensionAmount currencyID="EUR">1000.00</cbc:LineExtensionAmount>
+    <cbc:TaxExclusiveAmount currencyID="EUR">1000.00</cbc:TaxExclusiveAmount>
+    <cbc:TaxInclusiveAmount currencyID="EUR">1220.00</cbc:TaxInclusiveAmount>
+    <cbc:PayableAmount currencyID="EUR">1220.00</cbc:PayableAmount>
+  </cac:LegalMonetaryTotal>
+
+  <!-- Riga di dettaglio -->
+  <cac:InvoiceLine>
+    <cbc:ID>1</cbc:ID>
+    <cbc:InvoicedQuantity unitCode="HUR">40</cbc:InvoicedQuantity>
+    <cbc:LineExtensionAmount currencyID="EUR">1000.00</cbc:LineExtensionAmount>
+    <cac:Item>
+      <cbc:Description>Sviluppo e integrazione sistema informativo — contratto NAR-2026-SI-042</cbc:Description>
+      <cbc:Name>Servizi di sviluppo software</cbc:Name>
+      <cac:ClassifiedTaxCategory>
+        <cbc:ID>S</cbc:ID>
+        <cbc:Percent>22</cbc:Percent>
+        <cac:TaxScheme>
+          <cbc:ID>VAT</cbc:ID>
+        </cac:TaxScheme>
+      </cac:ClassifiedTaxCategory>
+    </cac:Item>
+    <cac:Price>
+      <cbc:PriceAmount currencyID="EUR">25.00</cbc:PriceAmount>
+    </cac:Price>
+  </cac:InvoiceLine>
+
+</Invoice>

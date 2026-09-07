@@ -649,9 +649,21 @@ function fieldLink(label, url){
   return `<div class="field-label">${label}</div><div class="field-value"><a href="${url}" target="_blank" rel="noopener" class="ref-link">Fonte ufficiale →</a></div>`;
 }
 function fieldExample(c){
-  if(!c.einvoice_example) return '';
-  const lbl = c.einvoice_example_label || 'formato nazionale';
-  return `<div class="field-label">Esempio di fattura elettronica</div><div class="field-value"><a href="${c.einvoice_example}" target="_blank" rel="noopener" class="ref-link">Apri esempio — ${lbl} ↗</a></div>`;
+  if(!c.einvoice_example && !c.einvoice_example_b2g && !c.einvoice_example_b2b) return '';
+  let html = '';
+  if(c.einvoice_example_b2g){
+    const lbl = c.einvoice_example_b2g_label || 'B2G';
+    html += `<div class="field-label">Esempio fattura elettronica B2G</div><div class="field-value"><a href="${c.einvoice_example_b2g}" target="_blank" rel="noopener" class="ref-link">Apri esempio — ${lbl} ↗</a></div>`;
+  }
+  if(c.einvoice_example_b2b){
+    const lbl = c.einvoice_example_b2b_label || 'B2B';
+    html += `<div class="field-label">Esempio fattura elettronica B2B</div><div class="field-value"><a href="${c.einvoice_example_b2b}" target="_blank" rel="noopener" class="ref-link">Apri esempio — ${lbl} ↗</a></div>`;
+  }
+  if(!html && c.einvoice_example){
+    const lbl = c.einvoice_example_label || 'formato nazionale';
+    html = `<div class="field-label">Esempio di fattura elettronica</div><div class="field-value"><a href="${c.einvoice_example}" target="_blank" rel="noopener" class="ref-link">Apri esempio — ${lbl} ↗</a></div>`;
+  }
+  return html;
 }
 
 function renderSection(num, title, rows){

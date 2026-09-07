@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Esempio di fattura elettronica B2B Slovenia
+  Formato: e-SLOG 2.0 (profilo EN 16931 / CIUS-SI) — obbligatorio dal 1° gennaio 2028
+  Standard: UBL 2.1 con profilo e-SLOG 2.0
+  Legge: ZIERDED (Zakon o izmenjavi elektronskih računov in drugih elektronskih dokumentov)
+  Adottata: 23 ottobre 2025 — In vigore: 6 dicembre 2025 — Obbligo B2B: 1° gennaio 2028
+  Canale: provider e-route registrati, rete Peppol, o connessione diretta sistema-sistema
+  Aliquota IVA standard Slovenia: 22%
+-->
+<Invoice xmlns="urn:oasis:names:specification:ubl:schema:xsd:Invoice-2"
+         xmlns:cac="urn:oasis:names:specification:ubl:schema:xsd:CommonAggregateComponents-2"
+         xmlns:cbc="urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2">
+
+  <!-- Identificatori di profilo e-SLOG 2.0 / EN 16931 -->
+  <cbc:CustomizationID>urn:cen.eu:en16931:2017#compliant#urn:fdc:peppol.eu:2017:poacc:billing:3.0</cbc:CustomizationID>
+  <cbc:ProfileID>urn:fdc:peppol.eu:2017:poacc:billing:01:1.0</cbc:ProfileID>
+
+  <!-- Identificativo fattura e date -->
+  <cbc:ID>SI-B2B-2028-0042</cbc:ID>
+  <cbc:IssueDate>2028-02-15</cbc:IssueDate>
+  <cbc:DueDate>2028-03-16</cbc:DueDate>
+  <cbc:InvoiceTypeCode>380</cbc:InvoiceTypeCode>
+  <cbc:Note>Fattura per fornitura di attrezzature informatiche — pagamento a 30 giorni</cbc:Note>
+  <cbc:DocumentCurrencyCode>EUR</cbc:DocumentCurrencyCode>
+  <cbc:BuyerReference>ACQ-2028-0015</cbc:BuyerReference>
+
+  <!-- Fornitore (Seller) -->
+  <cac:AccountingSupplierParty>
+    <cac:Party>
+      <cbc:EndpointID schemeID="0060">SI98765432</cbc:EndpointID>
+      <cac:PartyName>
+        <cbc:Name>Oprema Plus d.o.o.</cbc:Name>
+      </cac:PartyName>
+      <cac:PostalAddress>
+        <cbc:StreetName>Celovška cesta 111</cbc:StreetName>
+        <cbc:CityName>Ljubljana</cbc:CityName>
+        <cbc:PostalZone>1000</cbc:PostalZone>
+        <cac:Country>
+          <cbc:IdentificationCode>SI</cbc:IdentificationCode>
+        </cac:Country>
+      </cac:PostalAddress>
+      <cac:PartyTaxScheme>
+        <cbc:CompanyID>SI98765432</cbc:CompanyID>
+        <cac:TaxScheme>
+          <cbc:ID>VAT</cbc:ID>
+        </cac:TaxScheme>
+      </cac:PartyTaxScheme>
+      <cac:PartyLegalEntity>
+        <cbc:RegistrationName>Oprema Plus d.o.o.</cbc:RegistrationName>
+        <cbc:CompanyID>9876543000</cbc:CompanyID>
+      </cac:PartyLegalEntity>
+      <cac:Contact>
+        <cbc:Name>Marko Novak</cbc:Name>
+        <cbc:ElectronicMail>marko.novak@opremaplus.si</cbc:ElectronicMail>
+      </cac:Contact>
+    </cac:Party>
+  </cac:AccountingSupplierParty>
+
+  <!-- Acquirente (Buyer) -->
+  <cac:AccountingCustomerParty>
+    <cac:Party>
+      <cbc:EndpointID schemeID="0060">SI55443322</cbc:EndpointID>
+      <cac:PartyName>
+        <cbc:Name>Gradnja Maribor d.d.</cbc:Name>
+      </cac:PartyName>
+      <cac:PostalAddress>
+        <cbc:StreetName>Ulica Vita Kraigherja 5</cbc:StreetName>
+        <cbc:CityName>Maribor</cbc:CityName>
+        <cbc:PostalZone>2000</cbc:PostalZone>
+        <cac:Country>
+          <cbc:IdentificationCode>SI</cbc:IdentificationCode>
+        </cac:Country>
+      </cac:PostalAddress>
+      <cac:PartyTaxScheme>
+        <cbc:CompanyID>SI55443322</cbc:CompanyID>
+        <cac:TaxScheme>
+          <cbc:ID>VAT</cbc:ID>
+        </cac:TaxScheme>
+      </cac:PartyTaxScheme>
+      <cac:PartyLegalEntity>
+        <cbc:RegistrationName>Gradnja Maribor d.d.</cbc:RegistrationName>
+        <cbc:CompanyID>5544332000</cbc:CompanyID>
+      </cac:PartyLegalEntity>
+    </cac:Party>
+  </cac:AccountingCustomerParty>
+
+  <!-- Termini di pagamento -->
+  <cac:PaymentTerms>
+    <cbc:Note>Pagamento entro 30 giorni dalla data di emissione</cbc:Note>
+  </cac:PaymentTerms>
+
+  <!-- Modalità di pagamento — bonifico bancario -->
+  <cac:PaymentMeans>
+    <cbc:PaymentMeansCode>30</cbc:PaymentMeansCode>
+    <cac:PayeeFinancialAccount>
+      <cbc:ID>SI56 0201 0025 9876 543</cbc:ID>
+      <cac:FinancialInstitutionBranch>
+        <cbc:ID>BSLJSI2X</cbc:ID>
+      </cac:FinancialInstitutionBranch>
+    </cac:PayeeFinancialAccount>
+  </cac:PaymentMeans>
+
+  <!-- Riepilogo IVA — aliquota standard 22% -->
+  <cac:TaxTotal>
+    <cbc:TaxAmount currencyID="EUR">660.00</cbc:TaxAmount>
+    <cac:TaxSubtotal>
+      <cbc:TaxableAmount currencyID="EUR">3000.00</cbc:TaxableAmount>
+      <cbc:TaxAmount currencyID="EUR">660.00</cbc:TaxAmount>
+      <cac:TaxCategory>
+        <cbc:ID>S</cbc:ID>
+        <cbc:Percent>22</cbc:Percent>
+        <cac:TaxScheme>
+          <cbc:ID>VAT</cbc:ID>
+        </cac:TaxScheme>
+      </cac:TaxCategory>
+    </cac:TaxSubtotal>
+  </cac:TaxTotal>
+
+  <!-- Totali fattura -->
+  <cac:LegalMonetaryTotal>
+    <cbc:LineExtensionAmount currencyID="EUR">3000.00</cbc:LineExtensionAmount>
+    <cbc:TaxExclusiveAmount currencyID="EUR">3000.00</cbc:TaxExclusiveAmount>
+    <cbc:TaxInclusiveAmount currencyID="EUR">3660.00</cbc:TaxInclusiveAmount>
+    <cbc:PayableAmount currencyID="EUR">3660.00</cbc:PayableAmount>
+  </cac:LegalMonetaryTotal>
+
+  <!-- Righe di dettaglio -->
+  <cac:InvoiceLine>
+    <cbc:ID>1</cbc:ID>
+    <cbc:InvoicedQuantity unitCode="C62">5</cbc:InvoicedQuantity>
+    <cbc:LineExtensionAmount currencyID="EUR">2500.00</cbc:LineExtensionAmount>
+    <cac:Item>
+      <cbc:Description>Laptop professionale 15" — processore Intel Core i7, 16 GB RAM, 512 GB SSD</cbc:Description>
+      <cbc:Name>Laptop HP EliteBook 850</cbc:Name>
+      <cac:SellersItemIdentification>
+        <cbc:ID>HP-EB850-SI</cbc:ID>
+      </cac:SellersItemIdentification>
+      <cac:ClassifiedTaxCategory>
+        <cbc:ID>S</cbc:ID>
+        <cbc:Percent>22</cbc:Percent>
+        <cac:TaxScheme>
+          <cbc:ID>VAT</cbc:ID>
+        </cac:TaxScheme>
+      </cac:ClassifiedTaxCategory>
+    </cac:Item>
+    <cac:Price>
+      <cbc:PriceAmount currencyID="EUR">500.00</cbc:PriceAmount>
+    </cac:Price>
+  </cac:InvoiceLine>
+
+  <cac:InvoiceLine>
+    <cbc:ID>2</cbc:ID>
+    <cbc:InvoicedQuantity unitCode="C62">5</cbc:InvoicedQuantity>
+    <cbc:LineExtensionAmount currencyID="EUR">500.00</cbc:LineExtensionAmount>
+    <cac:Item>
+      <cbc:Description>Mouse ottico wireless e tastiera — set completo</cbc:Description>
+      <cbc:Name>Set periferico Logitech MK540</cbc:Name>
+      <cac:SellersItemIdentification>
+        <cbc:ID>LOG-MK540-SET</cbc:ID>
+      </cac:SellersItemIdentification>
+      <cac:ClassifiedTaxCategory>
+        <cbc:ID>S</cbc:ID>
+        <cbc:Percent>22</cbc:Percent>
+        <cac:TaxScheme>
+          <cbc:ID>VAT</cbc:ID>
+        </cac:TaxScheme>
+      </cac:ClassifiedTaxCategory>
+    </cac:Item>
+    <cac:Price>
+      <cbc:PriceAmount currencyID="EUR">100.00</cbc:PriceAmount>
+    </cac:Price>
+  </cac:InvoiceLine>
+
+</Invoice>

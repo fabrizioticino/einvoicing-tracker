@@ -2509,6 +2509,10 @@
         "slug":  "slovenia",
         "einvoice_example":  "",
         "einvoice_example_label":  "",
-        "needs_content_review":  false
+        "needs_content_review":  false,
+        "einvoice_example_b2g":  "esempi/eslog-si-b2g.xml",
+        "einvoice_example_b2g_label":  "e-SLOG 2.0 (UBL) — B2G PPA/UJP",
+        "einvoice_example_b2b":  "esempi/eslog-si-b2b.xml",
+        "einvoice_example_b2b_label":  "e-SLOG 2.0 (UBL) — B2B ZIERDED 2028"
     }
 ]
