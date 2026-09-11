@@ -1422,7 +1422,9 @@
         "ereporting_url":  "https://www.agenziaentrate.gov.it/portale/web/guest/schede/comunicazioni/fatture-e-corrispettivi",
         "archiving_url":  "https://www.agid.gov.it/it/piattaforme/conservazione",
         "ecmr_url":  "https://ecmritaly.unioncamere.it/en/index.html",
-        "efti_url":  "https://transport.ec.europa.eu/transport-themes/logistics-and-multimodal-transport/efti-regulation_en"
+        "efti_url":  "https://transport.ec.europa.eu/transport-themes/logistics-and-multimodal-transport/efti-regulation_en",
+        "ecmr_example_xml":  "esempi/ecmr-it.xml",
+        "ecmr_example_pdf":  "esempi/ecmr-it.html"
     },
     {
         "name":  "Australia",
@@ -1593,7 +1595,9 @@
         "ereporting_url":  "https://sede.agenciatributaria.gob.es/Sede/iva/suministro-inmediato-informacion.html",
         "archiving_url":  "https://sede.agenciatributaria.gob.es/Sede/iva/facturacion-registro/facturacion-iva/obligacion-conservar-facturas.html",
         "ecmr_url":  "https://www.boe.es/diario_boe/txt.php?id=BOE-A-2011-10283",
-        "efti_url":  "https://transport.ec.europa.eu/transport-themes/logistics-and-multimodal-transport/efti-regulation_en"
+        "efti_url":  "https://transport.ec.europa.eu/transport-themes/logistics-and-multimodal-transport/efti-regulation_en",
+        "ecmr_example_xml":  "esempi/ecmr-es.xml",
+        "ecmr_example_pdf":  "esempi/ecmr-es.html"
     },
     {
         "name":  "Mexico",

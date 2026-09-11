@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>eCMR — Carta de Porte Electrónica (España) ES-eCMR-2026-00891</title>
+<style>
+  @page { size: A4; margin: 12mm; }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: Arial, Helvetica, sans-serif; font-size: 9pt; color: #111; background: #fff; }
+  h1 { font-size: 13pt; text-align: center; margin-bottom: 2mm; letter-spacing: 1px; }
+  .subtitle { text-align: center; font-size: 8pt; color: #555; margin-bottom: 4mm; }
+  .badge { display: inline-block; background: #c0392b; color: #fff; border-radius: 3px; padding: 1px 6px; font-size: 7.5pt; margin-left: 6px; vertical-align: middle; }
+  .badge-deca { display: inline-block; background: #e67e22; color: #fff; border-radius: 3px; padding: 1px 6px; font-size: 7.5pt; margin-left: 4px; vertical-align: middle; }
+  table.main { width: 100%; border-collapse: collapse; }
+  table.main td, table.main th { border: 1px solid #333; padding: 2mm 2.5mm; vertical-align: top; }
+  table.main .label { font-size: 7pt; color: #555; display: block; margin-bottom: 1mm; font-weight: bold; text-transform: uppercase; letter-spacing: 0.3px; }
+  table.main .value { font-size: 9pt; }
+  .box-num { font-size: 7pt; color: #888; float: right; }
+  .section-head { background: #c0392b; color: #fff; font-weight: bold; font-size: 8pt; padding: 1.5mm 2.5mm; }
+  .goods-table { width: 100%; border-collapse: collapse; margin-top: 1mm; }
+  .goods-table th { background: #fbeaea; font-size: 7.5pt; padding: 1mm 2mm; border: 1px solid #999; text-align: left; }
+  .goods-table td { font-size: 8.5pt; padding: 1.5mm 2mm; border: 1px solid #aaa; }
+  .sig-box { border: 1px solid #333; height: 18mm; padding: 2mm; }
+  .sig-label { font-size: 7pt; color: #555; margin-bottom: 1mm; }
+  .footer { margin-top: 3mm; font-size: 7pt; color: #666; text-align: center; border-top: 1px solid #ccc; padding-top: 2mm; }
+  .deca-box { background: #fff8f0; border: 1px dashed #e67e22; padding: 2mm 3mm; margin-bottom: 3mm; font-size: 8pt; }
+  .highlight { background: #fffbea; }
+</style>
+</head>
+<body>
+
+<h1>eCMR — CARTA DE PORTE ELECTRÓNICA <span class="badge">ORIGINAL</span> <span class="badge-deca">DeCA / Ley 9/2025</span></h1>
+<div class="subtitle">
+  Protocolo adicional al Convenio CMR · Ginebra 2008 · Ratificación España: 9 agosto 2011<br>
+  Ley 9/2025 (DeCA — Documento de Control Administrativo) · Obligatorio formato digital desde 5/10/2026<br>
+  Documento n. <strong>ES-eCMR-2026-00891</strong> · Fecha: <strong>11/09/2026 09:00</strong> · Ref. DeCA-QR: <strong>ES-DECA-2026-09-00891-ABC123</strong>
+</div>
+
+<div class="deca-box">
+  <strong>⚠ Nota DeCA (Ley 9/2025):</strong> Dal 5 ottobre 2026, per i trasporti stradali domestici spagnoli e il cabotaggio, il DeCA è obbligatorio in formato digitale. Questo eCMR vale anche come DeCA se contiene tutti i campi previsti dalla normativa spagnola. Codice QR DeCA incorporato nel documento elettronico.
+</div>
+
+<table class="main">
+  <colgroup>
+    <col style="width:50%">
+    <col style="width:50%">
+  </colgroup>
+
+  <!-- Fila 1: Remitente / Destinatario -->
+  <tr>
+    <td>
+      <span class="box-num">Casilla 1</span>
+      <span class="label">Remitente (Sender)</span>
+      <span class="value">
+        <strong>Industrias Fernández S.A.</strong><br>
+        Calle Mayor de la Industria 32<br>
+        08040 Barcelona — ES<br>
+        NIF: ESA12345678<br>
+        logistica@fernandez-sa.es · +34 93 123 4567
+      </span>
+    </td>
+    <td>
+      <span class="box-num">Casilla 2</span>
+      <span class="label">Destinatario (Consignee)</span>
+      <span class="value">
+        <strong>Société Dupont S.A.S.</strong><br>
+        12 Avenue de la République<br>
+        69002 Lyon — FR<br>
+        reception@dupont-sas.fr · +33 4 78 12 34 56
+      </span>
+    </td>
+  </tr>
+
+  <!-- Fila 2: Lugar entrega / Lugar recogida -->
+  <tr>
+    <td>
+      <span class="box-num">Casilla 3</span>
+      <span class="label">Lugar de entrega previsto</span>
+      <span class="value">
+        Zone Industrielle de Mions, Bât. B<br>
+        69780 Mions — FR<br>
+        <em>Entrega prevista: <strong>12/09/2026 ore 16:00</strong></em>
+      </span>
+    </td>
+    <td>
+      <span class="box-num">Casilla 4</span>
+      <span class="label">Lugar y fecha de recogida</span>
+      <span class="value">
+        C/ Mayor de la Industria 32, Almacén C<br>
+        08040 Barcelona — ES<br>
+        <strong>11/09/2026 ore 08:30</strong>
+      </span>
+    </td>
+  </tr>
+
+  <!-- Fila 3: Transportista -->
+  <tr>
+    <td colspan="2">
+      <span class="box-num">Casilla 6</span>
+      <span class="label">Transportista (Carrier)</span>
+      <span class="value">
+        <strong>Transportes García S.L.</strong> · Pol. Ind. Can Caldero, Nave 7, 08100 Mollet del Vallès — ES<br>
+        NIF: ESB87654321 · Aut. transporte: ESP-TQ-2022-01456<br>
+        Conductor: <strong>Javier Morales López</strong> · Permiso: ES-DL-JML-1979-0118<br>
+        Vehículo: <strong>4523 GKL</strong> · Remolque: <strong>R-1892-BCD</strong>
+      </span>
+    </td>
+  </tr>
+
+  <!-- Fila 4: Mercancía -->
+  <tr>
+    <td colspan="2" class="section-head">Casillas 8–10 — Descripción de la mercancía</td>
+  </tr>
+  <tr>
+    <td colspan="2" style="padding: 2mm;">
+      <table class="goods-table">
+        <tr>
+          <th>Marcas / N. bultos</th>
+          <th>N. bultos</th>
+          <th>Embalaje</th>
+          <th>Descripción de la mercancía</th>
+          <th>Peso bruto (kg)</th>
+          <th>Volumen (m³)</th>
+          <th>Valor estad. (EUR)</th>
+        </tr>
+        <tr>
+          <td>FER-2026-PAL-007</td>
+          <td>24</td>
+          <td>Pallets</td>
+          <td>Maquinaria agrícola — piezas de repuesto para tractores</td>
+          <td>3.200,00</td>
+          <td>8,50</td>
+          <td>42.000,00</td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+
+  <!-- Fila 5: Aduana / Flete -->
+  <tr>
+    <td>
+      <span class="box-num">Casilla 13</span>
+      <span class="label">Instrucciones aduaneras</span>
+      <span class="value">T1 — Tránsito comunitario exterior<br>MRN: ES00000000000000BB02</span>
+    </td>
+    <td class="highlight">
+      <span class="box-num">Casilla 15</span>
+      <span class="label">Flete y gastos (EUR)</span>
+      <span class="value">
+        Importe: <strong>€ 1.100,00</strong><br>
+        Condiciones: CPT Lyon<br>
+        Pagado por: Remitente
+      </span>
+    </td>
+  </tr>
+
+  <!-- Fila 6: Reservas -->
+  <tr>
+    <td colspan="2">
+      <span class="box-num">Casilla 18</span>
+      <span class="label">Reservas y observaciones del transportista en el momento de la recogida</span>
+      <span class="value">Sin reservas en el momento de la recogida. Pallets retractilados y precintados.</span>
+    </td>
+  </tr>
+
+  <!-- Fila 7: Firmas -->
+  <tr>
+    <td>
+      <span class="label">Firma del remitente <span class="box-num">Casilla 22</span></span>
+      <div class="sig-box">
+        <div class="sig-label">Industrias Fernández S.A.<br>Firma electrónica avanzada (XAdES-BES)<br>11/09/2026 09:05</div>
+        <div style="font-size:7pt; color:#c0392b; margin-top:3mm;">✔ Firmado digitalmente</div>
+      </div>
+    </td>
+    <td>
+      <span class="label">Firma del transportista <span class="box-num">Casilla 23</span></span>
+      <div class="sig-box">
+        <div class="sig-label">Transportes García S.L. — Javier Morales López<br>Firma electrónica avanzada (XAdES-BES)<br>11/09/2026 09:05</div>
+        <div style="font-size:7pt; color:#c0392b; margin-top:3mm;">✔ Firmado digitalmente</div>
+      </div>
+    </td>
+  </tr>
+
+  <!-- Fila 8: Recibo destino -->
+  <tr>
+    <td colspan="2" class="section-head">Casilla 24 — Recibo de la mercancía en destino (a cumplimentar en la entrega)</td>
+  </tr>
+  <tr>
+    <td>
+      <span class="label">Fecha y hora de entrega efectiva</span>
+      <div class="sig-box" style="height:12mm;"><div class="sig-label">A cumplimentar en la entrega</div></div>
+    </td>
+    <td>
+      <span class="label">Firma del destinatario — Société Dupont S.A.S.</span>
+      <div class="sig-box" style="height:12mm;"><div class="sig-label">Firma electrónica del destinatario en la entrega</div></div>
+    </td>
+  </tr>
+</table>
+
+<div class="footer">
+  Documento eCMR emitido conforme al Protocolo adicional al Convenio CMR (Ginebra 2008) · Ratificación española: 9 agosto 2011 · Ley 9/2025 (DeCA)<br>
+  ID: ES-eCMR-2026-00891 · Ref. DeCA-QR: ES-DECA-2026-09-00891-ABC123<br>
+  Este documento electrónico tiene el mismo valor legal que la carta de porte en papel CMR (art. 1.3 Protocolo eCMR).
+  <br><em>Ejemplo con fines ilustrativos — los datos son ficticios</em>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Ejemplo de carta de porte electrónica (eCMR) — ESPAÑA
+  Formato: XML estructurado conforme al Protocolo adicional al Convenio CMR (Ginebra 2008)
+  Ratificación española: 9 agosto 2011
+  Normativa complementaria: Ley 9/2025 (DeCA — Documento de Control Administrativo)
+  DeCA obbligatorio in formato digitale dal 5 ottobre 2026 per trasporti domestici e cabotaggio
+  Standard di riferimento: IRU eCMR Technical Standards v1.0
+  Uso eCMR: volontario per il trasporto internazionale su strada
+  Nota: l'eCMR può sostituire il DeCA se contiene tutti i campi obbligatori della normativa spagnola
+-->
+<eCMR xmlns="urn:iru:ecmr:xsd:1.0"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="urn:iru:ecmr:xsd:1.0 ecmr-schema-1.0.xsd">
+
+  <!-- Metadatos del documento / Metadati documento -->
+  <DocumentMetadata>
+    <DocumentID>ES-eCMR-2026-00891</DocumentID>
+    <IssueDateTime>2026-09-11T09:00:00+02:00</IssueDateTime>
+    <VersionID>1</VersionID>
+    <DocumentStatus>Original</DocumentStatus>
+    <!-- DeCA QR Code reference (Ley 9/2025) -->
+    <NationalReference>
+      <ReferenceType>DeCA-QR</ReferenceType>
+      <ReferenceValue>ES-DECA-2026-09-00891-ABC123</ReferenceValue>
+    </NationalReference>
+    <SignatureInfo>
+      <SignedBy>Transportes García S.L.</SignedBy>
+      <SignatureDateTime>2026-09-11T09:05:00+02:00</SignatureDateTime>
+      <SignatureMethod>XAdES-BES</SignatureMethod>
+    </SignatureInfo>
+  </DocumentMetadata>
+
+  <!-- Casilla 1 — Remitente (Sender) -->
+  <Sender>
+    <Name>Industrias Fernández S.A.</Name>
+    <Address>
+      <Street>Calle Mayor de la Industria 32</Street>
+      <City>Barcelona</City>
+      <PostalCode>08040</PostalCode>
+      <CountryCode>ES</CountryCode>
+    </Address>
+    <VATNumber>ESA12345678</VATNumber>
+    <ContactEmail>logistica@fernandez-sa.es</ContactEmail>
+    <ContactPhone>+34 93 123 4567</ContactPhone>
+  </Sender>
+
+  <!-- Casilla 2 — Destinatario (Consignee) -->
+  <Consignee>
+    <Name>Société Dupont S.A.S.</Name>
+    <Address>
+      <Street>12 Avenue de la République</Street>
+      <City>Lyon</City>
+      <PostalCode>69002</PostalCode>
+      <CountryCode>FR</CountryCode>
+    </Address>
+    <ContactEmail>reception@dupont-sas.fr</ContactEmail>
+    <ContactPhone>+33 4 78 12 34 56</ContactPhone>
+  </Consignee>
+
+  <!-- Casilla 3 — Lugar de entrega -->
+  <PlaceOfDelivery>
+    <Address>
+      <Street>Zone Industrielle de Mions, Bâtiment B</Street>
+      <City>Mions</City>
+      <PostalCode>69780</PostalCode>
+      <CountryCode>FR</CountryCode>
+    </Address>
+    <DeliveryDateTime>2026-09-12T16:00:00+02:00</DeliveryDateTime>
+  </PlaceOfDelivery>
+
+  <!-- Casilla 4 — Lugar y fecha de recogida -->
+  <PlaceOfTakingOver>
+    <Address>
+      <Street>Calle Mayor de la Industria 32, Almacén C</Street>
+      <City>Barcelona</City>
+      <PostalCode>08040</PostalCode>
+      <CountryCode>ES</CountryCode>
+    </Address>
+    <TakingOverDateTime>2026-09-11T08:30:00+02:00</TakingOverDateTime>
+  </PlaceOfTakingOver>
+
+  <!-- Casilla 6 — Transportista (Carrier) -->
+  <Carrier>
+    <Name>Transportes García S.L.</Name>
+    <Address>
+      <Street>Polígono Industrial Can Caldero, Nave 7</Street>
+      <City>Mollet del Vallès</City>
+      <PostalCode>08100</PostalCode>
+      <CountryCode>ES</CountryCode>
+    </Address>
+    <VATNumber>ESB87654321</VATNumber>
+    <LicenseNumber>ESP-TQ-2022-01456</LicenseNumber>
+  </Carrier>
+
+  <!-- Casillas 8–10 — Descripción de la mercancía -->
+  <Goods>
+    <GoodsItem>
+      <MarksAndNumbers>FER-2026-PAL-007</MarksAndNumbers>
+      <NumberOfPackages>24</NumberOfPackages>
+      <PackagingType>PL</PackagingType><!-- PL = pallets -->
+      <Description>Maquinaria agrícola — piezas de repuesto para tractores</Description>
+      <GrossWeightKg>3200.00</GrossWeightKg>
+      <VolumeM3>8.50</VolumeM3>
+      <StatisticalValue currencyCode="EUR">42000.00</StatisticalValue>
+      <DangerousGoods>false</DangerousGoods>
+    </GoodsItem>
+  </Goods>
+
+  <!-- Casilla 13 — Instrucciones aduaneras -->
+  <CustomsInstructions>T1 — tránsito comunitario exterior; MRN ES00000000000000BB02</CustomsInstructions>
+
+  <!-- Casilla 15 — Flete -->
+  <FreightCharges currencyCode="EUR">
+    <Amount>1100.00</Amount>
+    <PaymentTerms>Carriage Paid (CPT Lyon)</PaymentTerms>
+    <PaidBy>Sender</PaidBy>
+  </FreightCharges>
+
+  <!-- Casilla 18 — Reservas y observaciones del transportista -->
+  <CarrierRemarks>Sin reservas en el momento de la recogida. Pallets retractilados y precintados.</CarrierRemarks>
+
+  <!-- Vehículo -->
+  <Vehicle>
+    <TruckLicensePlate countryCode="ES">4523 GKL</TruckLicensePlate>
+    <TrailerLicensePlate countryCode="ES">R-1892-BCD</TrailerLicensePlate>
+    <DriverName>Javier Morales López</DriverName>
+    <DriverLicenseNumber>ES-DL-JML-1979-0118</DriverLicenseNumber>
+  </Vehicle>
+
+  <!-- Casilla 24 — Recibo en destino -->
+  <DeliveryReceipt>
+    <ReceivedBy/>
+    <DeliveryDateTime/>
+    <DeliveryRemarks/>
+    <ConsigneeSignature/>
+  </DeliveryReceipt>
+
+</eCMR>

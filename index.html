@@ -746,7 +746,9 @@ function openDetail(slug){
       field('Piattaforma', c.ecmr_platform) +
       field('Formato/i', c.ecmr_format) +
       field('Note', c.ecmr_notes) +
-      fieldLink('Riferimento normativo', c.ecmr_url)
+      fieldLink('Riferimento normativo', c.ecmr_url) +
+      (c.ecmr_example_xml ? `<div class="field-label">Esempio eCMR (XML)</div><div class="field-value"><a href="${c.ecmr_example_xml}" target="_blank" rel="noopener" class="ref-link">Apri esempio XML ↗</a></div>` : '') +
+      (c.ecmr_example_pdf ? `<div class="field-label">Esempio eCMR (PDF/HTML visuale)</div><div class="field-value"><a href="${c.ecmr_example_pdf}" target="_blank" rel="noopener" class="ref-link">Apri esempio visuale ↗</a></div>` : '')
     )}
 
     ${renderSection('07', 'eFTI — Informazioni elettroniche sul trasporto merci',

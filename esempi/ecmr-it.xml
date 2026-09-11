@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Esempio di lettera di vettura elettronica (eCMR) — ITALIA
+  Formato: XML strutturato conforme al Protocollo addizionale alla Convenzione CMR (Ginevra 2008)
+  Ratifica italiana: 3 luglio 2024 — Operativo dal 26 settembre 2024
+  Standard di riferimento: IRU eCMR Technical Standards v1.0 / UN/CEFACT WAYBILL
+  Uso: volontario per il trasporto internazionale su strada
+  Valore legale: equivalente alla lettera di vettura cartacea (art. 1 Protocollo eCMR)
+-->
+<eCMR xmlns="urn:iru:ecmr:xsd:1.0"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="urn:iru:ecmr:xsd:1.0 ecmr-schema-1.0.xsd">
+
+  <!-- Metadati documento -->
+  <DocumentMetadata>
+    <DocumentID>IT-eCMR-2026-00342</DocumentID>
+    <IssueDateTime>2026-09-11T08:30:00+02:00</IssueDateTime>
+    <VersionID>1</VersionID>
+    <DocumentStatus>Original</DocumentStatus>
+    <!-- Firma elettronica avanzata del mittente (art. 5 Protocollo eCMR) -->
+    <SignatureInfo>
+      <SignedBy>Trasporti Rossi S.r.l.</SignedBy>
+      <SignatureDateTime>2026-09-11T08:32:00+02:00</SignatureDateTime>
+      <SignatureMethod>XAdES-BES</SignatureMethod>
+    </SignatureInfo>
+  </DocumentMetadata>
+
+  <!-- Casella 1 — Mittente (Sender) -->
+  <Sender>
+    <Name>Manifattura Bianchi S.p.A.</Name>
+    <Address>
+      <Street>Via dell'Industria 45</Street>
+      <City>Milano</City>
+      <PostalCode>20147</PostalCode>
+      <CountryCode>IT</CountryCode>
+    </Address>
+    <VATNumber>IT02345678901</VATNumber>
+    <ContactEmail>spedizioni@bianchi.it</ContactEmail>
+    <ContactPhone>+39 02 3456789</ContactPhone>
+  </Sender>
+
+  <!-- Casella 2 — Destinatario (Consignee) -->
+  <Consignee>
+    <Name>Müller GmbH</Name>
+    <Address>
+      <Street>Industriestraße 88</Street>
+      <City>München</City>
+      <PostalCode>80807</PostalCode>
+      <CountryCode>DE</CountryCode>
+    </Address>
+    <ContactEmail>empfang@mueller-gmbh.de</ContactEmail>
+    <ContactPhone>+49 89 12345678</ContactPhone>
+  </Consignee>
+
+  <!-- Casella 3 — Luogo di consegna -->
+  <PlaceOfDelivery>
+    <Address>
+      <Street>Industriestraße 88</Street>
+      <City>München</City>
+      <PostalCode>80807</PostalCode>
+      <CountryCode>DE</CountryCode>
+    </Address>
+    <DeliveryDateTime>2026-09-13T14:00:00+02:00</DeliveryDateTime>
+  </PlaceOfDelivery>
+
+  <!-- Casella 4 — Luogo e data di presa in carico -->
+  <PlaceOfTakingOver>
+    <Address>
+      <Street>Via dell'Industria 45</Street>
+      <City>Milano</City>
+      <PostalCode>20147</PostalCode>
+      <CountryCode>IT</CountryCode>
+    </Address>
+    <TakingOverDateTime>2026-09-11T07:00:00+02:00</TakingOverDateTime>
+  </PlaceOfTakingOver>
+
+  <!-- Casella 6 — Vettore (Carrier) -->
+  <Carrier>
+    <Name>Trasporti Rossi S.r.l.</Name>
+    <Address>
+      <Street>Viale Lombardia 12</Street>
+      <City>Brescia</City>
+      <PostalCode>25100</PostalCode>
+      <CountryCode>IT</CountryCode>
+    </Address>
+    <VATNumber>IT09876543210</VATNumber>
+    <LicenseNumber>ITA-TQ-2024-00789</LicenseNumber>
+  </Carrier>
+
+  <!-- Casella 7 — Vettori successivi -->
+  <SuccessiveCarriers/>
+
+  <!-- Caselle 8–10 — Descrizione merce -->
+  <Goods>
+    <GoodsItem>
+      <MarksAndNumbers>BIA-2026-BOX-001</MarksAndNumbers>
+      <NumberOfPackages>120</NumberOfPackages>
+      <PackagingType>CT</PackagingType><!-- CT = scatoloni -->
+      <Description>Componenti elettronici — schede PCB assemblate</Description>
+      <GrossWeightKg>480.00</GrossWeightKg>
+      <VolumeM3>2.40</VolumeM3>
+      <StatisticalValue currencyCode="EUR">18500.00</StatisticalValue>
+      <DangerousGoods>false</DangerousGoods>
+    </GoodsItem>
+  </Goods>
+
+  <!-- Casella 13 — Istruzioni doganali -->
+  <CustomsInstructions>T1 — procedura di transito comunitario esterno; MRN IT00000000000000AA01</CustomsInstructions>
+
+  <!-- Casella 15 — Trasporto soggetto a tariffa -->
+  <FreightCharges currencyCode="EUR">
+    <Amount>850.00</Amount>
+    <PaymentTerms>Carriage Paid (CPT München)</PaymentTerms>
+    <PaidBy>Sender</PaidBy>
+  </FreightCharges>
+
+  <!-- Casella 18 — Riserve e osservazioni del vettore -->
+  <CarrierRemarks>Nessuna riserva al momento della presa in carico. Merce sigillata — controllo esterno.</CarrierRemarks>
+
+  <!-- Veicolo -->
+  <Vehicle>
+    <TruckLicensePlate countryCode="IT">BS 345 GH</TruckLicensePlate>
+    <TrailerLicensePlate countryCode="IT">BS TR 2210</TrailerLicensePlate>
+    <DriverName>Marco Ferretti</DriverName>
+    <DriverLicenseNumber>IT-DL-MF-1985-0042</DriverLicenseNumber>
+  </Vehicle>
+
+  <!-- Casella 24 — Ricevuta a destino (compilata alla consegna) -->
+  <DeliveryReceipt>
+    <ReceivedBy/>
+    <DeliveryDateTime/>
+    <DeliveryRemarks/>
+    <ConsigneeSignature/>
+  </DeliveryReceipt>
+
+</eCMR>
