@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Francia — Gestione flussi fatturazione elettronica B2B</title>
+<meta name="description" content="Flussi, stati del ciclo di vita e scenari della fatturazione elettronica B2B in Francia. Mandato in vigore dal 1° settembre 2026.">
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=IBM+Plex+Mono:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap');
+
+  :root{
+    --paper:#F5F5F5;
+    --ink:#161616;
+    --ink-soft:#5A5A5A;
+    --line:#D6D6D6;
+    --accent:#C8102E;
+    --card:#FFFFFF;
+    --blue:#1a56db;
+    --blue-light:#dbeafe;
+    --green:#065f46;
+    --green-light:#d1fae5;
+    --orange:#92400e;
+    --orange-light:#fef3c7;
+    --red:#991b1b;
+    --red-light:#fee2e2;
+  }
+
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'Inter', sans-serif;
+    -webkit-font-smoothing:antialiased;
+  }
+  body::before{
+    content:"";
+    position:fixed; inset:0;
+    background-image:repeating-linear-gradient(0deg, rgba(27,36,33,0.018) 0px, rgba(27,36,33,0.018) 1px, transparent 1px, transparent 3px);
+    pointer-events:none;
+    z-index:0;
+  }
+  a{color:var(--blue);}
+
+  header.masthead{
+    position:relative; z-index:1;
+    border-bottom:3px double var(--ink);
+    padding:28px 5vw 18px;
+  }
+  .masthead-top{
+    display:flex; justify-content:space-between; align-items:baseline; flex-wrap:wrap; gap:8px;
+    font-family:'IBM Plex Mono', monospace; font-size:11px; letter-spacing:.06em; text-transform:uppercase;
+    color:var(--ink-soft); margin-bottom:18px;
+  }
+  .masthead-top .dot{color:var(--accent);}
+  .masthead-top a{color:var(--ink-soft); text-decoration:none;}
+  .masthead-top a:hover{color:var(--ink);}
+  h1.title{
+    font-family:'Fraunces', serif; font-weight:600;
+    font-size:clamp(28px,5vw,52px); line-height:1; margin:0 0 10px; letter-spacing:-0.01em;
+  }
+  h1.title em{font-style:italic; font-weight:400; color:var(--accent);}
+  .subhead{
+    display:flex; justify-content:space-between; align-items:flex-end; flex-wrap:wrap; gap:18px;
+    border-top:1px solid var(--line); padding-top:14px; margin-top:18px;
+  }
+  .subhead p{max-width:640px; font-size:15px; line-height:1.55; color:var(--ink-soft); margin:0;}
+  .meta-stamp{
+    font-family:'IBM Plex Mono', monospace; font-size:11px; text-align:right;
+    color:var(--ink-soft); line-height:1.6; white-space:nowrap;
+  }
+  .meta-stamp .label{text-transform:uppercase; letter-spacing:.08em; font-size:10px; color:var(--ink);}
+
+  main{position:relative; z-index:1; padding:38px 5vw 60px; max-width:900px; margin:0 auto; width:100%;}
+
+  h2{font-family:'Fraunces', serif; font-weight:600; font-size:22px; margin:2em 0 .5em; letter-spacing:-0.01em; border-bottom:2px solid var(--line); padding-bottom:6px;}
+  h3{font-family:'Fraunces', serif; font-weight:600; font-size:17px; margin:1.5em 0 .4em; color:var(--ink);}
+  p{font-size:14.5px; line-height:1.65; color:var(--ink-soft); margin:.5em 0 .8em;}
+  ul,ol{padding-left:1.4em; margin:.5em 0 .8em;}
+  li{font-size:14.5px; line-height:1.65; color:var(--ink-soft); margin-bottom:.25em;}
+  strong{color:var(--ink); font-weight:600;}
+
+  .section-num{
+    font-family:'IBM Plex Mono', monospace; font-size:11px; letter-spacing:.06em; text-transform:uppercase;
+    color:var(--accent); margin-bottom:4px;
+  }
+
+  /* callout boxes */
+  .callout{
+    border-left:4px solid; padding:12px 16px; margin:1.2em 0; border-radius:0 4px 4px 0;
+    font-size:14px; line-height:1.6;
+  }
+  .callout.blue{border-color:var(--blue); background:var(--blue-light);}
+  .callout.green{border-color:var(--green); background:var(--green-light);}
+  .callout.orange{border-color:var(--orange); background:var(--orange-light);}
+  .callout.red{border-color:var(--red); background:var(--red-light);}
+  .callout strong{display:block; margin-bottom:4px;}
+
+  /* tables */
+  .tbl-wrap{overflow-x:auto; margin:1em 0 1.5em;}
+  table{width:100%; border-collapse:collapse; font-size:13.5px;}
+  th{background:var(--ink); color:#fff; font-weight:600; padding:8px 12px; text-align:left; font-family:'IBM Plex Mono', monospace; font-size:12px; letter-spacing:.04em; text-transform:uppercase;}
+  td{padding:8px 12px; border-bottom:1px solid var(--line); vertical-align:top; line-height:1.5;}
+  tr:last-child td{border-bottom:none;}
+  tr:nth-child(even) td{background:#fafafa;}
+  td.state-name{font-family:'IBM Plex Mono', monospace; font-size:12px; font-weight:600; letter-spacing:.04em;}
+  td.mand{background:var(--green-light)!important; font-weight:600;}
+  td.opt{background:var(--blue-light)!important;}
+
+  /* flow diagram (CSS only) */
+  .flow{
+    display:flex; flex-wrap:wrap; align-items:center; gap:0; margin:1.2em 0;
+  }
+  .flow-node{
+    background:var(--card); border:1.5px solid var(--ink); padding:10px 14px;
+    font-size:13px; font-weight:600; text-align:center; min-width:120px; flex-shrink:0;
+  }
+  .flow-arrow{
+    font-size:20px; color:var(--accent); padding:0 6px; flex-shrink:0;
+    display:flex; align-items:center;
+  }
+  .flow-sub{font-size:10px; font-weight:400; color:var(--ink-soft); display:block; margin-top:2px;}
+
+  /* scenario flow */
+  .scenario-flow{
+    display:flex; flex-wrap:wrap; align-items:center; gap:4px; margin:.8em 0 1em;
+    font-family:'IBM Plex Mono', monospace; font-size:12px;
+  }
+  .sf-node{
+    background:var(--ink); color:#fff; padding:4px 10px; border-radius:2px; white-space:nowrap;
+  }
+  .sf-node.mand{background:var(--green);}
+  .sf-node.neg{background:var(--red);}
+  .sf-node.opt{background:var(--blue); opacity:.8;}
+  .sf-arrow{color:var(--ink-soft); font-size:14px; padding:0 2px;}
+
+  footer{
+    position:relative; z-index:1;
+    border-top:3px double var(--ink); padding:20px 5vw;
+    font-family:'IBM Plex Mono', monospace; font-size:11px; letter-spacing:.05em; text-transform:uppercase;
+    color:var(--ink-soft); display:flex; justify-content:space-between; flex-wrap:wrap; gap:8px;
+  }
+  footer .dot{color:var(--accent);}
+</style>
+</head>
+<body>
+
+<header class="masthead">
+  <div class="masthead-top">
+    <span><a href="../index.html">← E-Invoicing Tracker</a> <span class="dot">●</span> Documenti di approfondimento</span>
+    <span>Fabrizio Ticino</span>
+  </div>
+  <h1 class="title">Francia — <em>Gestione flussi</em><br>fatturazione elettronica B2B</h1>
+  <div class="subhead">
+    <p>Flussi di trasmissione, stati del ciclo di vita (14 stati, 4 obbligatori) e scenari operativi del mandato B2B francese. Fonti: Specifiche Esterne DGFiP v3.1 (31 ottobre 2025), AFNOR XP Z12-012.</p>
+    <div class="meta-stamp">
+      <div class="label">Versione</div>
+      <div>Settembre 2026</div>
+    </div>
+  </div>
+</header>
+
+<main>
+
+  <!-- 1. QUADRO NORMATIVO -->
+  <div class="section-num">01</div>
+  <h2>Quadro normativo e calendario</h2>
+
+  <p>Il mandato di fatturazione elettronica B2B in Francia è stato introdotto dall'<strong>Ordonnance n° 2021-1190</strong> del 15 settembre 2021 e disciplinato dall'<strong>art. 26 della Loi de Finances 2022</strong>. Il quadro tecnico è definito dalle <strong>Specifiche Esterne DGFiP v3.1</strong> (31 ottobre 2025) e dallo standard <strong>AFNOR XP Z12-012</strong>.</p>
+
+  <div class="tbl-wrap">
+  <table>
+    <thead><tr><th>Scadenza</th><th>Soggetti</th><th>Obbligo</th></tr></thead>
+    <tbody>
+      <tr><td><strong>1° settembre 2026</strong></td><td>Tutte le imprese</td><td>Obbligo di <strong>ricezione</strong> e-fattura</td></tr>
+      <tr><td><strong>1° settembre 2026</strong></td><td>Grandi imprese (&gt;5.000 dip. o &gt;1,5 Mrd € CA) ed ETI</td><td>Obbligo di <strong>emissione</strong> e-fattura</td></tr>
+      <tr><td><strong>1° settembre 2027</strong></td><td>PMI e microimprese</td><td>Obbligo di <strong>emissione</strong> e-fattura</td></tr>
+    </tbody>
+  </table>
+  </div>
+
+  <div class="callout green"><strong>Nota operativa</strong>Dal 1° settembre 2026 nessuna impresa può rifiutare di ricevere una fattura elettronica B2B. Le PDP devono accettare tutti e tre i formati supportati.</div>
+
+  <!-- 2. ARCHITETTURA -->
+  <div class="section-num">02</div>
+  <h2>Architettura — Modello a 5 angoli</h2>
+
+  <p>La Francia adotta una variante del modello Peppol con la DGFiP come quinto attore, che riceve i dati fiscali in tempo reale senza gestire direttamente le fatture.</p>
+
+  <div class="flow">
+    <div class="flow-node">Emittente<span class="flow-sub">(Fornitore / ERP)</span></div>
+    <div class="flow-arrow">→</div>
+    <div class="flow-node" style="border-color:var(--blue);background:var(--blue-light)">PDP Emittente<span class="flow-sub">(2° angolo)</span></div>
+    <div class="flow-arrow">→</div>
+    <div class="flow-node" style="border-color:var(--orange);background:var(--orange-light)">PPF / DGFiP<span class="flow-sub">(3° angolo — e-reporting)</span></div>
+    <div class="flow-arrow">→</div>
+    <div class="flow-node" style="border-color:var(--blue);background:var(--blue-light)">PDP Destinatario<span class="flow-sub">(4° angolo)</span></div>
+    <div class="flow-arrow">→</div>
+    <div class="flow-node">Destinatario<span class="flow-sub">(Cliente / ERP)</span></div>
+  </div>
+
+  <p>Tutte le PDP devono essere <strong>Access Point Peppol accreditati</strong> (obbligo normativo). Al settembre 2026: circa <strong>20 PDP operative</strong> su ~114 registrate. Le imprese senza PDP privata possono usare il <strong>PPF</strong> (portale pubblico gratuito, ex Chorus Pro).</p>
+
+  <div class="callout orange"><strong>PDP vs PPF</strong>Le PDP private offrono funzionalità avanzate (gestione ciclo attivo/passivo, workflow, integrazione ERP). Il PPF è gratuito e adatto a PMI con volumi ridotti. La scelta è libera; il PPF non offre tuttavia API avanzate di gestione.</div>
+
+  <!-- 3. FORMATI -->
+  <div class="section-num">03</div>
+  <h2>Formati di fattura accettati</h2>
+
+  <div class="tbl-wrap">
+  <table>
+    <thead><tr><th>Formato</th><th>Struttura</th><th>Uso tipico</th></tr></thead>
+    <tbody>
+      <tr><td><strong>Factur-X</strong></td><td>PDF/A-3 + XML CII incorporato</td><td>Standard nazionale francese; leggibile da umani e macchine. Profili: Minimum → Extended.</td></tr>
+      <tr><td><strong>UBL 2.1</strong></td><td>XML puro (OASIS)</td><td>Scambio su Peppol (BIS Billing 3.0); ERP internazionali.</td></tr>
+      <tr><td><strong>CII (UN/CEFACT D16B)</strong></td><td>XML puro</td><td>Sistemi EDI; scambi internazionali. Stesso semantic core di Factur-X.</td></tr>
+    </tbody>
+  </table>
+  </div>
+
+  <p>Tutti i formati devono essere conformi alla norma europea <strong>EN 16931</strong> (CIUS FR). Sono ammessi formati proprietari se la PDP garantisce l'estraibilità dei dati fiscali obbligatori.</p>
+
+  <!-- 4. FLUSSO EMISSIONE -->
+  <div class="section-num">04</div>
+  <h2>Flusso di emissione</h2>
+
+  <h3>4.1 Flusso standard (con PDP privata)</h3>
+  <div class="tbl-wrap">
+  <table>
+    <thead><tr><th>#</th><th>Azione</th><th>Attore</th></tr></thead>
+    <tbody>
+      <tr><td>1</td><td>L'ERP genera la fattura in formato strutturato (Factur-X / UBL / CII) o trasmette i dati alla PDP per la generazione</td><td>Fornitore / ERP</td></tr>
+      <tr><td>2</td><td>La PDP Emittente riceve la fattura, verifica conformità formale (schema XSD, CIUS FR, campi obbligatori) e assegna l'ID di trasmissione</td><td>PDP Emittente</td></tr>
+      <tr><td>3</td><td>La PDP Emittente identifica la PDP destinatario tramite il <strong>registro del PPF</strong> (lookup per SIREN/SIRET)</td><td>PDP Emittente → PPF</td></tr>
+      <tr><td>4</td><td>La fattura viene trasmessa alla PDP Destinatario via <strong>Peppol (UBL) o API diretta</strong>. Contestualmente la PDP Emittente invia i dati di e-reporting al PPF</td><td>PDP Emittente → PDP Dest. + PPF</td></tr>
+      <tr><td>5</td><td>La PDP Destinatario riceve la fattura, la converte nel formato richiesto dal cliente e la mette a disposizione</td><td>PDP Destinatario</td></tr>
+      <tr><td>6</td><td>Il destinatario processa la fattura (validazione contabile, abbinamento OdA) e invia lo stato operativo alla propria PDP</td><td>Destinatario / ERP</td></tr>
+      <tr><td>7</td><td>La PDP Destinatario trasmette gli stati del ciclo di vita al PPF (e-reporting) e notifica il fornitore tramite PDP Emittente</td><td>PDP Dest. → PPF + PDP Emit.</td></tr>
+    </tbody>
+  </table>
+  </div>
+
+  <h3>4.2 Flusso tramite PPF (senza PDP privata)</h3>
+  <p>Le PMI che usano il PPF direttamente depositano la fattura via portale web o API pubblica. Il PPF svolge la funzione di PDP pubblica: effettua i controlli, identifica la PDP del destinatario, trasmette e raccoglie gli stati.</p>
+
+  <div class="callout blue"><strong>Doppio flusso e-reporting</strong>La PDP Emittente invia i dati al PPF indipendentemente dalla trasmissione al destinatario. Se la PDP Emittente coincide con la PDP Destinatario, la trasmissione al PPF avviene comunque separatamente.</div>
+
+  <!-- 5. CICLO DI VITA -->
+  <div class="section-num">05</div>
+  <h2>Ciclo di vita — 14 stati</h2>
+
+  <p>Ogni fattura B2B ha un ciclo di vita formale definito dall'<strong>AFNOR XP Z12-012</strong> e dalle specifiche DGFiP v3.1. Esistono <strong>4 stati obbligatori</strong> (da comunicare al PPF) e <strong>10 stati facoltativi</strong>.</p>
+
+  <h3>5.1 Stati obbligatori</h3>
+  <div class="tbl-wrap">
+  <table>
+    <thead><tr><th>Stato (FR)</th><th>Stato (IT)</th><th>Significato</th><th>Chi lo imposta</th></tr></thead>
+    <tbody>
+      <tr>
+        <td class="state-name mand">DEPOSEE</td>
+        <td class="mand">Depositata</td>
+        <td>La fattura è stata trasmessa alla PDP o al PPF. Prima conferma di ricezione nel sistema.</td>
+        <td>PDP Emittente</td>
+      </tr>
+      <tr>
+        <td class="state-name mand">REFUSEE</td>
+        <td class="mand">Rifiutata</td>
+        <td>La fattura è stata esplicitamente rifiutata dal destinatario. <strong>Stato terminale</strong> — richiede nota di storno o nuova fattura corretta.</td>
+        <td>Destinatario via PDP</td>
+      </tr>
+      <tr>
+        <td class="state-name mand">EN COURS DE TRAITEMENT</td>
+        <td class="mand">In elaborazione</td>
+        <td>La fattura è entrata nel processo di trattamento interno del destinatario (contabilità, validazione).</td>
+        <td>Destinatario via PDP</td>
+      </tr>
+      <tr>
+        <td class="state-name mand">PAYE</td>
+        <td class="mand">Pagata</td>
+        <td>Il pagamento è stato effettuato. Stato finale positivo del ciclo di vita.</td>
+        <td>Destinatario via PDP</td>
+      </tr>
+    </tbody>
+  </table>
+  </div>
+
+  <h3>5.2 Stati facoltativi (10 stati)</h3>
+  <div class="tbl-wrap">
+  <table>
+    <thead><tr><th>Stato (FR)</th><th>Stato (IT)</th><th>Significato</th></tr></thead>
+    <tbody>
+      <tr><td class="state-name opt">MISE A DISPOSITION</td><td class="opt">Messa a disposizione</td><td>La PDP ha reso disponibile la fattura nella area riservata del destinatario</td></tr>
+      <tr><td class="state-name opt">RECUE</td><td class="opt">Ricevuta</td><td>Il sistema del destinatario ha scaricato / riconosciuto la fattura</td></tr>
+      <tr><td class="state-name opt">ACCEPTEE</td><td class="opt">Accettata</td><td>Validazione formale da parte del destinatario ("bon à payer")</td></tr>
+      <tr><td class="state-name opt">APPROUVEE</td><td class="opt">Approvata</td><td>Approvazione interna completata (workflow di validazione)</td></tr>
+      <tr><td class="state-name opt">VALIDEE COMPTABLEMENT</td><td class="opt">Validata contabilmente</td><td>La fattura è stata registrata nel sistema contabile</td></tr>
+      <tr><td class="state-name opt">MISE EN PAIEMENT</td><td class="opt">In corso di pagamento</td><td>Ordine di pagamento generato / bonifico disposto</td></tr>
+      <tr><td class="state-name opt">ABANDONNEE</td><td class="opt">Abbandonata</td><td>Il processo è interrotto per accordo commerciale, senza rifiuto formale</td></tr>
+      <tr><td class="state-name opt">SUSPENDUE</td><td class="opt">Sospesa</td><td>Blocco temporaneo in attesa di informazioni o chiarimenti</td></tr>
+      <tr><td class="state-name opt">LITIGIEUSE</td><td class="opt">In contestazione</td><td>Disputa formale aperta sul contenuto o sull'importo</td></tr>
+      <tr><td class="state-name opt">ENCAISSEE</td><td class="opt">Incassata</td><td>Conferma dell'effettivo accredito bancario (rilevante per IVA di cassa)</td></tr>
+    </tbody>
+  </table>
+  </div>
+
+  <div class="callout green"><strong>IVA di cassa</strong>Per i soggetti in regime IVA di cassa, lo stato <code>ENCAISSEE</code> è particolarmente rilevante: l'IVA diventa esigibile solo all'effettivo incasso. L'e-reporting deve includere la data di incasso effettivo.</div>
+
+  <!-- 6. SCENARI -->
+  <div class="section-num">06</div>
+  <h2>Scenari del ciclo di vita</h2>
+
+  <h3>Scenario 1 — Flusso positivo standard</h3>
+  <div class="scenario-flow">
+    <div class="sf-node mand">DEPOSEE</div><div class="sf-arrow">→</div>
+    <div class="sf-node mand">EN COURS</div><div class="sf-arrow">→</div>
+    <div class="sf-node opt">ACCEPTEE*</div><div class="sf-arrow">→</div>
+    <div class="sf-node opt">VALIDEE*</div><div class="sf-arrow">→</div>
+    <div class="sf-node opt">MISE EN PAIEMENT*</div><div class="sf-arrow">→</div>
+    <div class="sf-node mand">PAYE</div>
+  </div>
+  <p style="font-size:12px;color:var(--ink-soft);">* stati facoltativi ma raccomandati per tracciabilità interna</p>
+
+  <h3>Scenario 2 — Rifiuto immediato</h3>
+  <div class="scenario-flow">
+    <div class="sf-node mand">DEPOSEE</div><div class="sf-arrow">→</div>
+    <div class="sf-node neg">REFUSEE</div>
+  </div>
+  <p>REFUSEE è uno <strong>stato terminale</strong>. Non è possibile riattivare la fattura. Il fornitore deve emettere una nota di storno (se già contabilizzata) e una nuova fattura corretta con nuovo numero.</p>
+
+  <div class="callout red"><strong>Attenzione</strong>Da REFUSEE non è possibile passare ad alcun altro stato. Il ciclo di vita è definitivamente chiuso.</div>
+
+  <h3>Scenario 3 — Contestazione (LITIGIEUSE)</h3>
+  <div class="scenario-flow">
+    <div class="sf-node mand">DEPOSEE</div><div class="sf-arrow">→</div>
+    <div class="sf-node mand">EN COURS</div><div class="sf-arrow">→</div>
+    <div class="sf-node opt">LITIGIEUSE</div>
+  </div>
+  <p>Da LITIGIEUSE il ciclo può evolvere in:</p>
+  <ul>
+    <li><strong>Risoluzione positiva:</strong> LITIGIEUSE → ACCEPTEE → PAYE</li>
+    <li><strong>Risoluzione negativa:</strong> LITIGIEUSE → REFUSEE (con nota di storno)</li>
+    <li><strong>Abbandono concordato:</strong> LITIGIEUSE → ABANDONNEE</li>
+  </ul>
+
+  <h3>Scenario 4 — Sospensione temporanea</h3>
+  <div class="scenario-flow">
+    <div class="sf-node mand">DEPOSEE</div><div class="sf-arrow">→</div>
+    <div class="sf-node mand">EN COURS</div><div class="sf-arrow">→</div>
+    <div class="sf-node opt">SUSPENDUE</div><div class="sf-arrow">→</div>
+    <div class="sf-node mand">EN COURS</div><div class="sf-arrow">→</div>
+    <div class="sf-node mand">PAYE</div>
+  </div>
+  <p>SUSPENDUE non è terminale. Il ciclo riprende quando il blocco viene rimosso (es. ricezione OdA mancante, verifica consegna).</p>
+
+  <h3>Scenario 5 — Abbandono concordato</h3>
+  <div class="scenario-flow">
+    <div class="sf-node mand">DEPOSEE</div><div class="sf-arrow">→</div>
+    <div class="sf-node mand">EN COURS</div><div class="sf-arrow">→</div>
+    <div class="sf-node opt">ABANDONNEE</div>
+  </div>
+  <div class="callout orange"><strong>Nota legale</strong>ABANDONNEE non sostituisce la nota di storno contabile. Se la fattura era già registrata fiscalmente, occorre comunque emettere un avoir (nota di credito). ABANDONNEE chiude solo il ciclo di vita nella piattaforma.</div>
+
+  <h3>Scenario 6 — Pagamento parziale</h3>
+  <p>Il sistema non prevede uno stato specifico per il pagamento parziale. Prassi adottate:</p>
+  <ul>
+    <li>Emissione di nota di credito parziale + nuova fattura per il residuo</li>
+    <li>Impostare PAYE solo all'incasso totale; gestire il parziale a livello ERP</li>
+    <li>Alcune PDP offrono PAYE con importo parziale come estensione facoltativa</li>
+  </ul>
+
+  <!-- 7. E-REPORTING -->
+  <div class="section-num">07</div>
+  <h2>E-reporting — Obblighi di trasmissione dati</h2>
+
+  <div class="tbl-wrap">
+  <table>
+    <thead><tr><th>Tipo</th><th>Transazioni coperte</th><th>Frequenza</th></tr></thead>
+    <tbody>
+      <tr><td><strong>B2B internazionale</strong></td><td>Vendite/acquisti B2B con controparti non stabilite in Francia</td><td>Mensile o trimestrale</td></tr>
+      <tr><td><strong>B2C</strong></td><td>Tutte le transazioni con consumatori finali</td><td>Giornaliero (aggregato)</td></tr>
+      <tr><td><strong>Stati ciclo di vita</strong></td><td>Stati obbligatori di ogni fattura B2B domestica</td><td>Tempo reale / eventi</td></tr>
+      <tr><td><strong>IVA di cassa</strong></td><td>Data di incasso effettivo per soggetti in regime di cassa</td><td>All'evento (incasso)</td></tr>
+    </tbody>
+  </table>
+  </div>
+
+  <h3>Termini di trasmissione</h3>
+  <ul>
+    <li>Regime mensile IVA: entro <strong>10 giorni</strong> dalla fine del mese</li>
+    <li>Regime trimestrale IVA: entro <strong>10 giorni</strong> dalla fine del trimestre</li>
+    <li>Franchigia en base: entro <strong>2 mesi</strong> dalla fine del trimestre</li>
+    <li>B2C giornaliero: entro fine giornata lavorativa successiva</li>
+  </ul>
+
+  <!-- 8. CASI SPECIALI -->
+  <div class="section-num">08</div>
+  <h2>Casi speciali</h2>
+
+  <h3>Soggetti esteri</h3>
+  <p>Le fatture con controparti non stabilite in Francia non rientrano nell'e-invoicing B2B (solo e-reporting internazionale). I dati devono essere trasmessi alla DGFiP tramite PDP/PPF secondo le scadenze periodiche.</p>
+
+  <h3>Autofattura (reverse charge)</h3>
+  <p>In caso di inversione contabile il destinatario diventa emittente ai fini IVA. L'autofattura entra nel ciclo di vita standard; la PDP del destinatario trasmette i dati di e-reporting al PPF.</p>
+
+  <h3>Note di credito (avoir)</h3>
+  <p>Seguono lo stesso ciclo di vita delle fatture ordinarie e gli stessi obblighi di e-invoicing. Devono riferirsi esplicitamente alla fattura originale (numero e data).</p>
+
+  <h3>Microimprese in franchigia IVA</h3>
+  <p>Soggette all'obbligo di e-invoicing dal 1° settembre 2027. E-reporting B2C entro 2 mesi dalla fine del trimestre. Il profilo Factur-X Minimum è sufficiente.</p>
+
+  <!-- 9. RIFERIMENTI -->
+  <div class="section-num">09</div>
+  <h2>Riferimenti normativi e tecnici</h2>
+
+  <div class="tbl-wrap">
+  <table>
+    <thead><tr><th>Documento</th><th>Descrizione</th></tr></thead>
+    <tbody>
+      <tr><td>Ordonnance n° 2021-1190</td><td>Introduzione obbligo e-invoicing B2B — 15 settembre 2021</td></tr>
+      <tr><td>Loi de Finances 2022 (art. 26)</td><td>Disciplina legislativa del mandato B2B — L. n° 2021-1900</td></tr>
+      <tr><td>Décret n° 2022-1299</td><td>Decreto attuativo — 26 ottobre 2022</td></tr>
+      <tr><td><a href="https://www.impots.gouv.fr/specifications-externes-b2b" target="_blank" rel="noopener">Spécifications externes DGFiP v3.1</a></td><td>Requisiti tecnici ufficiali — 31 ottobre 2025</td></tr>
+      <tr><td>AFNOR XP Z12-012</td><td>Standard per formati e stati del ciclo di vita</td></tr>
+      <tr><td>EN 16931</td><td>Norma europea sulla fattura elettronica (semantic data model)</td></tr>
+      <tr><td><a href="https://www.impots.gouv.fr/professionnel/je-passe-la-facturation-electronique" target="_blank" rel="noopener">impots.gouv.fr</a></td><td>Portale ufficiale DGFiP per la transizione alla e-fattura</td></tr>
+      <tr><td><a href="https://portail.chorus-pro.gouv.fr/" target="_blank" rel="noopener">PPF — Portail Public de Facturation</a></td><td>Chorus Pro evoluto, portale pubblico gratuito</td></tr>
+      <tr><td>SAP Note 3413565</td><td>France DGFiP — B2B e-Invoicing Implementation Overview</td></tr>
+    </tbody>
+  </table>
+  </div>
+
+</main>
+
+<footer>
+  <span>E-Invoicing Compliance Tracker <span class="dot">●</span> Documento di approfondimento</span>
+  <span>Settembre 2026</span>
+</footer>
+
+</body>
+</html>

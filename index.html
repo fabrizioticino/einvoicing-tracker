@@ -648,6 +648,10 @@ function fieldLink(label, url){
   if(!url) return '';
   return `<div class="field-label">${label}</div><div class="field-value"><a href="${url}" target="_blank" rel="noopener" class="ref-link">Fonte ufficiale →</a></div>`;
 }
+function fieldLinkDoc(label, url){
+  if(!url) return '';
+  return `<div class="field-label">${label}</div><div class="field-value"><a href="${url}" target="_blank" rel="noopener" class="ref-link">Apri documento ↗</a></div>`;
+}
 function fieldExampleB2G(c){
   if(c.einvoice_example_b2g){
     const lbl = c.einvoice_example_b2g_label || 'B2G';
@@ -707,6 +711,7 @@ function openDetail(slug){
       field('Formato/i', c.b2b_format) +
       field('Note', c.b2b_notes) +
       fieldLink('Riferimento normativo', c.b2b_url) +
+      fieldLinkDoc('Gestione flussi fatturazione elettronica', c.b2b_flows_url) +
       fieldExample(c)
     )}
 

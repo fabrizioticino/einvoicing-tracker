@@ -1,4 +1,4 @@
-[
+﻿[
     {
         "name":  "South Korea",
         "name_it":  "Corea del Sud",
@@ -962,6 +962,7 @@
         "last_update":  "14 settembre 2026",
         "b2g_url":  "https://portail.chorus-pro.gouv.fr/",
         "b2b_url":  "https://www.impots.gouv.fr/professionnel/je-passe-la-facturation-electronique",
+    "b2b_flows_url":  "esempi/france-b2b-flows.html",
         "b2c_url":  "https://www.impots.gouv.fr/professionnel/je-decouvre-la-facturation-electronique",
         "ereporting_url":  "https://www.impots.gouv.fr/specifications-externes-b2b",
         "archiving_url":  "https://bofip.impots.gouv.fr/bofip/2899-PGP.html",
