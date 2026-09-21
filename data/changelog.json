@@ -404,5 +404,69 @@
     "new_last_update": "28 aprile 2026",
     "url": "https://www.theinvoicinghub.com/einvoicing-compliance-spain/",
     "detected_at": "2026-09-14T11:07:15.840665+00:00"
+  },
+  {
+    "country": "Malaysia",
+    "name_it": "Malesia",
+    "previous_last_update": "17 agosto 2026",
+    "new_last_update": "9 settembre 2026",
+    "url": "https://www.theinvoicinghub.com/einvoicing-compliance-malaysia/",
+    "detected_at": "2026-09-21T11:16:58.239120+00:00"
+  },
+  {
+    "country": "France",
+    "name_it": "Francia",
+    "previous_last_update": "14 settembre 2026",
+    "new_last_update": "31 agosto 2026",
+    "url": "https://www.theinvoicinghub.com/einvoicing-compliance-france/",
+    "detected_at": "2026-09-21T11:17:04.426879+00:00"
+  },
+  {
+    "country": "Netherlands",
+    "name_it": "Paesi Bassi",
+    "previous_last_update": "14 settembre 2026",
+    "new_last_update": "23 maggio 2026",
+    "url": "https://www.theinvoicinghub.com/einvoicing-compliance-the-netherlands/",
+    "detected_at": "2026-09-21T11:17:10.713291+00:00"
+  },
+  {
+    "country": "Australia",
+    "name_it": "Australia",
+    "previous_last_update": "17 maggio 2026",
+    "new_last_update": "14 settembre 2026",
+    "url": "https://www.theinvoicinghub.com/einvoicing-compliance-australia/",
+    "detected_at": "2026-09-21T11:17:16.791696+00:00"
+  },
+  {
+    "country": "Spain",
+    "name_it": "Spagna",
+    "previous_last_update": "14 settembre 2026",
+    "new_last_update": "28 aprile 2026",
+    "url": "https://www.theinvoicinghub.com/einvoicing-compliance-spain/",
+    "detected_at": "2026-09-21T11:17:19.921444+00:00"
+  },
+  {
+    "country": "Austria",
+    "name_it": "Austria",
+    "previous_last_update": "6 marzo 2026",
+    "new_last_update": "15 settembre 2026",
+    "url": "https://www.theinvoicinghub.com/einvoicing-compliance-austria/",
+    "detected_at": "2026-09-21T11:17:29.052321+00:00"
+  },
+  {
+    "country": "Colombia",
+    "name_it": "Colombia",
+    "previous_last_update": "16 gennaio 2026",
+    "new_last_update": "18 settembre 2026",
+    "url": "https://www.theinvoicinghub.com/einvoicing-compliance-colombia/",
+    "detected_at": "2026-09-21T11:17:38.196063+00:00"
+  },
+  {
+    "country": "Belgium",
+    "name_it": "Belgio",
+    "previous_last_update": "1 settembre 2026",
+    "new_last_update": "17 settembre 2026",
+    "url": "https://www.theinvoicinghub.com/einvoicing-compliance-belgium/",
+    "detected_at": "2026-09-21T11:17:41.259081+00:00"
   }
 ]
