@@ -141,8 +141,11 @@
       <div class="badge-row">
         <span class="fmt-badge fmt-it">FatturaPA — Italia</span>
         <span class="fmt-badge fmt-ubl">UBL 2.1/2.5 — Peppol (BE, NO, SK, HR…)</span>
-        <span class="fmt-badge fmt-pl">KSeF FA(3) — Polonia</span>
+        <span class="fmt-badge fmt-pl">KSeF FA — Polonia</span>
         <span class="fmt-badge fmt-ro">RO_CIUS UBL — Romania</span>
+        <span class="fmt-badge fmt-it">FacturaE 3.2 — Spagna</span>
+        <span class="fmt-badge fmt-ubl">Factur-X / CII — Francia/DE</span>
+        <span class="fmt-badge fmt-pl">CFDI 4.0 — Messico</span>
       </div>
     </div>
     <div class="privacy-note">
@@ -204,6 +207,21 @@
       <div class="fc-countries">🇵🇱 Polonia — KSeF</div>
     </div>
     <div class="fmt-card">
+      <div class="fc-name">FacturaE 3.2</div>
+      <div class="fc-ns">xmlns: facturae.es/Facturae/...</div>
+      <div class="fc-countries">🇪🇸 Spagna — AEAT</div>
+    </div>
+    <div class="fmt-card">
+      <div class="fc-name">Factur-X / ZUGFeRD (CII)</div>
+      <div class="fc-ns">xmlns: uncefact CrossIndustryInvoice</div>
+      <div class="fc-countries">🇫🇷 Francia · 🇩🇪 Germania</div>
+    </div>
+    <div class="fmt-card">
+      <div class="fc-name">CFDI 4.0</div>
+      <div class="fc-ns">xmlns: sat.gob.mx/cfd/4</div>
+      <div class="fc-countries">🇲🇽 Messico — SAT</div>
+    </div>
+    <div class="fmt-card">
       <div class="fc-name">Formati futuri</div>
       <div class="fc-ns">myDATA (GR), KIBO XML (HU)…</div>
       <div class="fc-countries">In arrivo — contribuzioni benvenute</div>
@@ -252,18 +270,24 @@ function detectFormat(xmlDoc) {
   const root = xmlDoc.documentElement;
   const ns = (root.namespaceURI || '').toLowerCase();
   const name = (root.localName || root.nodeName || '').toLowerCase();
+  const snippet = root.outerHTML.substring(0, 600);
 
-  if (ns.includes('ivaservizi.agenziaentrate') || name === 'fatturaelettronica')
-    return 'fatturaPA';
-  if (ns.includes('crd.gov.pl') || name === 'faktura')
-    return 'ksef';
-  if (ns.includes('oasis:names:specification:ubl') || ns.includes('ubl:schema:xsd:invoice') || name === 'invoice')
-    return 'ubl';
-  // Fallback: try child namespaces
-  const allNs = root.outerHTML.substring(0, 500);
-  if (allNs.includes('ivaservizi.agenziaentrate')) return 'fatturaPA';
-  if (allNs.includes('crd.gov.pl')) return 'ksef';
-  if (allNs.includes('ubl')) return 'ubl';
+  if (ns.includes('ivaservizi.agenziaentrate') || name === 'fatturaelettronica') return 'fatturaPA';
+  if (ns.includes('crd.gov.pl') || name === 'faktura') return 'ksef';
+  if (ns.includes('facturae.es') || name === 'facturae') return 'facturae';
+  if (ns.includes('crossindustryinvoice') || ns.includes('uncefact') || name.includes('crossindustry')) return 'cii';
+  if (ns.includes('sat.gob.mx') || name === 'comprobante') return 'cfdi';
+  if (ns.includes('iru:ecmr') || name === 'ecmr') return 'ecmr';
+  if (ns.includes('eslog') || name === 'eslog') return 'ubl'; // eSLOG is UBL-based
+  if (ns.includes('oasis:names:specification:ubl') || ns.includes('ubl:schema:xsd:invoice') || name === 'invoice') return 'ubl';
+  // Fallback
+  if (snippet.includes('ivaservizi.agenziaentrate')) return 'fatturaPA';
+  if (snippet.includes('crd.gov.pl')) return 'ksef';
+  if (snippet.includes('facturae.es')) return 'facturae';
+  if (snippet.includes('CrossIndustryInvoice') || snippet.includes('uncefact')) return 'cii';
+  if (snippet.includes('sat.gob.mx')) return 'cfdi';
+  if (snippet.includes('iru:ecmr') || snippet.includes('eCMR')) return 'ecmr';
+  if (snippet.includes('ubl') || name === 'invoice') return 'ubl';
   return 'unknown';
 }
 
@@ -446,13 +470,14 @@ function extractUBL(doc) {
 }
 
 // ─────────────────────────────────────────────
-// KSeF FA(3) extractor
+// KSeF FA(2)/FA(3) extractor
 // ─────────────────────────────────────────────
 function extractKSeF(doc) {
   const get = (...sels) => getText(doc, ...sels);
 
   const getParty = (prefix) => ({
-    name: get(`${prefix} NazwaPelna`, `${prefix} Imie`) || '',
+    // FA(3): NazwaPelna; FA(2): Nazwa; fallback Imie
+    name: get(`${prefix} NazwaPelna`, `${prefix} Nazwa`, `${prefix} Imie`) || '',
     vat: get(`${prefix} NIP`) || '',
     addr: [
       get(`${prefix} AdresKorespondencyjny Ulica`),
@@ -464,29 +489,49 @@ function extractKSeF(doc) {
 
   const lines = getAll(doc, 'FaWiersz').map(l => ({
     num: getText(l, 'NrWierszaFa'),
-    desc: getText(l, 'NazwaTowaru', 'NazwaUslugi'),
-    qty: getText(l, 'Ilosc'),
-    unit: getText(l, 'JednostkaOpisu'),
-    price: getText(l, 'CenaJedNetto'),
-    total: getText(l, 'WartoscNetto'),
-    vat: getText(l, 'StawkaPodatku'),
+    // FA(3): NazwaTowaru/NazwaUslugi; FA(2): P_7
+    desc: getText(l, 'NazwaTowaru', 'NazwaUslugi', 'P_7'),
+    // FA(3): Ilosc; FA(2): P_8A/P_8B
+    qty: getText(l, 'Ilosc', 'P_8A', 'P_8B'),
+    unit: getText(l, 'JednostkaOpisu', 'P_8C'),
+    // FA(3): CenaJedNetto; FA(2): P_9A
+    price: getText(l, 'CenaJedNetto', 'P_9A'),
+    // FA(3): WartoscNetto; FA(2): P_11
+    total: getText(l, 'WartoscNetto', 'P_11'),
+    // FA(3): StawkaPodatku; FA(2): P_12
+    vat: getText(l, 'StawkaPodatku', 'P_12'),
     nature: ''
   }));
 
-  const vatRows = getAll(doc, 'StawkaPodatku').length === 0
-    ? []
-    : getAll(doc, 'PodatekNalezny').map(r => ({
+  // Build VAT summary from Fa-level aggregates (FA(2): P_13_x + P_14_x)
+  const vatRows = [];
+  const fa = doc.querySelector('Fa');
+  if (fa) {
+    // Try FA(3) PodatekNalezny entries
+    const pn = getAll(doc, 'PodatekNalezny');
+    if (pn.length) {
+      pn.forEach(r => vatRows.push({
         rate: getText(r, 'StawkaPodatku'),
         nature: '',
         taxable: getText(r, 'PodstawaOpodatkowania'),
         tax: getText(r, 'KwotaPodatku'),
         exemption: ''
       }));
+    } else {
+      // FA(2): extract P_13_x / P_14_x pairs (rates: 1=23%, 2=8%, 3=5%, 4=0%, 5=ZW)
+      const rates = [{s:'1',r:'23'},{s:'2',r:'8'},{s:'3',r:'5'},{s:'4',r:'0'},{s:'5',r:'zw'}];
+      rates.forEach(({s, r}) => {
+        const taxable = getText(fa, `P_13_${s}`);
+        const tax = getText(fa, `P_14_${s}`);
+        if (taxable) vatRows.push({ rate: r + (r !== 'zw' ? '%' : ''), nature: '', taxable, tax: tax || '0', exemption: '' });
+      });
+    }
+  }
 
   return {
     format: 'KSeF',
     formatBadge: 'fmt-pl',
-    formatLabel: 'KSeF FA(3)',
+    formatLabel: 'KSeF FA',
     country: 'Polonia',
     number: get('P_2', 'NrFA'),
     date: fmtDate(get('P_1', 'DataWystawienia')),
@@ -504,6 +549,211 @@ function extractKSeF(doc) {
 }
 
 // ─────────────────────────────────────────────
+// FacturaE (Spain) extractor
+// ─────────────────────────────────────────────
+function extractFacturaE(doc) {
+  const get = (...sels) => getText(doc, ...sels);
+
+  const getParty = (root) => {
+    const el = doc.querySelector(root);
+    if (!el) return { name: '', vat: '', addr: '' };
+    return {
+      name: getText(el, 'CorporateName', 'Name') ||
+            ((getText(el, 'FirstSurname') + ' ' + getText(el, 'SecondSurname') + ' ' + getText(el, 'FirstName')).trim()),
+      vat: getText(el, 'TaxIdentificationNumber'),
+      addr: [
+        getText(el, 'Address'),
+        getText(el, 'PostCode'),
+        getText(el, 'Town'),
+        getText(el, 'Province'),
+        getText(el, 'CountryCode')
+      ].filter(Boolean).join(', ')
+    };
+  };
+
+  const invoiceEl = doc.querySelector('Invoice');
+  const lines = getAll(doc, 'InvoiceLine').map((l, i) => ({
+    num: String(i + 1),
+    desc: getText(l, 'ItemDescription'),
+    qty: getText(l, 'Quantity'),
+    unit: getText(l, 'UnitOfMeasure'),
+    price: getText(l, 'UnitPriceWithoutTax'),
+    total: getText(l, 'GrossAmount', 'TotalCost'),
+    vat: getText(l, 'TaxRate') || '',
+    nature: ''
+  }));
+
+  const vatRows = getAll(doc, 'TaxesOutputs Tax').map(t => ({
+    rate: getText(t, 'TaxRate'),
+    nature: getText(t, 'TaxTypeCode'),
+    taxable: getText(t, 'TaxableBase TotalAmount'),
+    tax: getText(t, 'TaxAmount TotalAmount'),
+    exemption: ''
+  }));
+
+  const typeMap = { FC: 'Fattura', FA: 'Fattura semplificata', AF: 'Nota di credito' };
+  const typeCode = invoiceEl ? getText(invoiceEl, 'InvoiceDocumentType') : '';
+
+  return {
+    format: 'FacturaE',
+    formatBadge: 'fmt-it', // Spanish red similar
+    formatLabel: 'FacturaE 3.2',
+    country: 'Spagna',
+    number: get('InvoiceNumber'),
+    date: fmtDate(get('IssueDate')),
+    type: typeMap[typeCode] || 'Fattura',
+    currency: get('InvoiceCurrencyCode') || 'EUR',
+    supplier: getParty('SellerParty'),
+    customer: getParty('BuyerParty'),
+    lines,
+    vatRows,
+    payments: [],
+    total: get('InvoiceTotal', 'TotalExecutableAmount'),
+    notes: get('AdditionalLineItemInformation')
+  };
+}
+
+// ─────────────────────────────────────────────
+// CII / Factur-X / ZUGFeRD extractor
+// ─────────────────────────────────────────────
+function extractCII(doc) {
+  // CII uses namespace prefixes; querySelector matches by local name in most browsers
+  const get = (...sels) => getText(doc, ...sels);
+
+  // Date in CII format: YYYYMMDD → YYYY-MM-DD → fmtDate
+  const rawDate = get('DateTimeString');
+  let parsedDate = '';
+  if (rawDate && rawDate.length === 8) {
+    parsedDate = fmtDate(rawDate.substring(0,4) + '-' + rawDate.substring(4,6) + '-' + rawDate.substring(6,8));
+  }
+
+  const typeMap = { '380': 'Fattura', '381': 'Nota di credito', '384': 'Fattura rettificativa', '389': 'Autofattura' };
+  // TypeCode appears both on ExchangedDocument (invoice type) and ApplicableTradeTax — take the first
+  const typeCode = doc.querySelector('ExchangedDocument TypeCode')?.textContent?.trim() || '380';
+
+  // Invoice ID is on ExchangedDocument/ID, not on GuidelineSpecifiedDocumentContextParameter/ID
+  const invoiceId = doc.querySelector('ExchangedDocument ID')?.textContent?.trim() || '';
+
+  const getParty = (sel) => {
+    const el = doc.querySelector(sel);
+    if (!el) return { name: '', vat: '', addr: '' };
+    return {
+      name: getText(el, 'Name'),
+      vat: getText(el, 'ID', 'GlobalID'),
+      addr: [
+        getText(el, 'LineOne'),
+        getText(el, 'PostcodeCode'),
+        getText(el, 'CityName'),
+        getText(el, 'CountryID')
+      ].filter(Boolean).join(', ')
+    };
+  };
+
+  const lines = getAll(doc, 'IncludedSupplyChainTradeLineItem').map((l, i) => ({
+    num: getText(l, 'LineID') || String(i + 1),
+    desc: getText(l, 'Name', 'Description'),
+    qty: getText(l, 'BilledQuantity', 'ChargeableQuantity'),
+    unit: l.querySelector('BilledQuantity')?.getAttribute('unitCode') || '',
+    price: getText(l, 'ChargeAmount'),
+    total: getText(l, 'LineTotalAmount'),
+    vat: getText(l, 'RateApplicablePercent'),
+    nature: ''
+  }));
+
+  const vatRows = getAll(doc, 'ApplicableTradeTax').map(t => ({
+    rate: getText(t, 'RateApplicablePercent'),
+    nature: getText(t, 'CategoryCode') || '',
+    taxable: getText(t, 'BasisAmount'),
+    tax: getText(t, 'CalculatedAmount'),
+    exemption: getText(t, 'ExemptionReason')
+  })).filter(r => r.taxable); // skip empty rows from TypeCode elements
+
+  return {
+    format: 'CII',
+    formatBadge: 'fmt-ubl',
+    formatLabel: 'Factur-X / CII',
+    country: get('CountryID') ? '' : 'Francia / Germania',
+    number: invoiceId,
+    date: parsedDate,
+    type: typeMap[typeCode] || 'Fattura',
+    currency: get('InvoiceCurrencyCode') || 'EUR',
+    supplier: getParty('SellerTradeParty'),
+    customer: getParty('BuyerTradeParty'),
+    lines,
+    vatRows,
+    payments: [],
+    total: get('GrandTotalAmount', 'DuePayableAmount'),
+    notes: get('IncludedNote Content', 'SubjectCode')
+  };
+}
+
+// ─────────────────────────────────────────────
+// CFDI 4.0 (Mexico) extractor — basic
+// ─────────────────────────────────────────────
+function extractCFDI(doc) {
+  const root = doc.documentElement;
+  const get = (attr) => root.getAttribute(attr) || root.getAttribute('cfdi:' + attr) || '';
+  const getEl = (...sels) => getText(doc, ...sels);
+
+  const emisor = doc.querySelector('Emisor, cfdi\\:Emisor');
+  const receptor = doc.querySelector('Receptor, cfdi\\:Receptor');
+  const conceptos = [...doc.querySelectorAll('Concepto, cfdi\\:Concepto')];
+  const impuestos = doc.querySelector('Impuestos, cfdi\\:Impuestos');
+
+  const lines = conceptos.map((c, i) => ({
+    num: String(i + 1),
+    desc: c.getAttribute('Descripcion') || '',
+    qty: c.getAttribute('Cantidad') || '',
+    unit: c.getAttribute('ClaveUnidad') || '',
+    price: c.getAttribute('ValorUnitario') || '',
+    total: c.getAttribute('Importe') || '',
+    vat: '',
+    nature: ''
+  }));
+
+  const totalImpuesto = impuestos?.getAttribute('TotalImpuestosTrasladados') || '';
+  const subtotal = get('SubTotal');
+  const total = get('Total');
+
+  const vatRows = subtotal && totalImpuesto ? [{
+    rate: '',
+    nature: 'IVA',
+    taxable: subtotal,
+    tax: totalImpuesto,
+    exemption: ''
+  }] : [];
+
+  const tipoMap = { 'I': 'Factura (Ingreso)', 'E': 'Nota de crédito (Egreso)', 'T': 'Traslado', 'N': 'Nómina', 'P': 'Pago' };
+  const tipo = get('TipoDeComprobante');
+
+  return {
+    format: 'CFDI',
+    formatBadge: 'fmt-it',
+    formatLabel: 'CFDI 4.0',
+    country: 'Messico',
+    number: get('Folio') || get('Serie'),
+    date: fmtDate((get('Fecha') || '').substring(0, 10)),
+    type: tipoMap[tipo] || 'Comprobante Fiscal',
+    currency: get('Moneda') || 'MXN',
+    supplier: {
+      name: emisor?.getAttribute('Nombre') || '',
+      vat: emisor?.getAttribute('Rfc') || '',
+      addr: ''
+    },
+    customer: {
+      name: receptor?.getAttribute('Nombre') || '',
+      vat: receptor?.getAttribute('Rfc') || '',
+      addr: ''
+    },
+    lines,
+    vatRows,
+    payments: [],
+    total,
+    notes: get('Observaciones')
+  };
+}
+
+// ─────────────────────────────────────────────
 // Parse & dispatch
 // ─────────────────────────────────────────────
 function parseXML(xmlString) {
@@ -514,8 +764,12 @@ function parseXML(xmlString) {
 
   const fmt = detectFormat(doc);
   if (fmt === 'fatturaPA') return extractFatturaPA(doc);
-  if (fmt === 'ubl') return extractUBL(doc);
-  if (fmt === 'ksef') return extractKSeF(doc);
+  if (fmt === 'ubl')       return extractUBL(doc);
+  if (fmt === 'ksef')      return extractKSeF(doc);
+  if (fmt === 'facturae')  return extractFacturaE(doc);
+  if (fmt === 'cii')       return extractCII(doc);
+  if (fmt === 'cfdi')      return extractCFDI(doc);
+  if (fmt === 'ecmr')      throw new Error('Documento eCMR (trasporto merci su strada): non è una fattura elettronica. Il convertitore supporta solo fatture fiscali.');
   throw new Error('Formato XML non riconosciuto. Namespace root: ' + (doc.documentElement.namespaceURI || 'nessuno'));
 }
 
