@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Germania — Gestione flussi fatturazione elettronica B2B</title>
+<meta name="description" content="Flussi, formati e scadenze della fatturazione elettronica B2B in Germania. Ricezione obbligatoria dal 1° gennaio 2025; invio dal 1° gennaio 2027.">
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=IBM+Plex+Mono:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap');
+
+  :root{
+    --paper:#F5F5F5;
+    --ink:#161616;
+    --ink-soft:#5A5A5A;
+    --line:#D6D6D6;
+    --accent:#000000;
+    --accent2:#DD0000;
+    --card:#FFFFFF;
+    --blue:#1a56db;
+    --blue-light:#dbeafe;
+    --green:#065f46;
+    --green-light:#d1fae5;
+    --orange:#92400e;
+    --orange-light:#fef3c7;
+    --red:#991b1b;
+    --red-light:#fee2e2;
+    --gold:#78350f;
+    --gold-light:#fef9c3;
+  }
+
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'Inter', sans-serif;
+    -webkit-font-smoothing:antialiased;
+  }
+  body::before{
+    content:"";
+    position:fixed; inset:0;
+    background-image:repeating-linear-gradient(0deg, rgba(27,36,33,0.018) 0px, rgba(27,36,33,0.018) 1px, transparent 1px, transparent 3px);
+    pointer-events:none;
+    z-index:0;
+  }
+  a{color:var(--blue);}
+
+  header.masthead{
+    position:relative; z-index:1;
+    border-bottom:3px double var(--ink);
+    padding:28px 5vw 18px;
+  }
+  .masthead-top{
+    display:flex; justify-content:space-between; align-items:baseline; flex-wrap:wrap; gap:8px;
+    font-family:'IBM Plex Mono', monospace; font-size:11px; letter-spacing:.06em; text-transform:uppercase;
+    color:var(--ink-soft); margin-bottom:18px;
+  }
+  .masthead-top .dot{color:var(--accent2);}
+  .masthead-top a{color:var(--ink-soft); text-decoration:none;}
+  .masthead-top a:hover{color:var(--ink);}
+  h1.title{
+    font-family:'Fraunces', serif; font-weight:600;
+    font-size:clamp(28px,5vw,52px); line-height:1; margin:0 0 10px; letter-spacing:-0.01em;
+  }
+  h1.title em{font-style:italic; font-weight:400; color:var(--accent2);}
+  .subhead{
+    display:flex; justify-content:space-between; align-items:flex-end; flex-wrap:wrap; gap:18px;
+    border-top:1px solid var(--line); padding-top:14px; margin-top:18px;
+  }
+  .subhead p{max-width:640px; font-size:15px; line-height:1.55; color:var(--ink-soft); margin:0;}
+  .meta-stamp{
+    font-family:'IBM Plex Mono', monospace; font-size:11px; text-align:right;
+    color:var(--ink-soft); line-height:1.6; white-space:nowrap;
+  }
+  .meta-stamp .label{text-transform:uppercase; letter-spacing:.08em; font-size:10px; color:var(--ink);}
+
+  main{position:relative; z-index:1; padding:38px 5vw 60px; max-width:900px; margin:0 auto; width:100%;}
+
+  h2{font-family:'Fraunces', serif; font-weight:600; font-size:22px; margin:2em 0 .5em; letter-spacing:-0.01em; border-bottom:2px solid var(--line); padding-bottom:6px;}
+  h3{font-family:'Fraunces', serif; font-weight:600; font-size:17px; margin:1.5em 0 .4em; color:var(--ink);}
+  p{font-size:14.5px; line-height:1.65; color:var(--ink-soft); margin:.5em 0 .8em;}
+  ul,ol{padding-left:1.4em; margin:.5em 0 .8em;}
+  li{font-size:14.5px; line-height:1.6; color:var(--ink-soft); margin-bottom:.25em;}
+  strong{color:var(--ink);}
+  code{font-family:'IBM Plex Mono', monospace; font-size:12.5px; background:#e8e8e8; padding:1px 5px; border-radius:3px;}
+
+  .timeline{
+    display:flex; flex-direction:column; gap:0;
+    border-left:3px solid var(--accent2); margin:1.5em 0 1.5em 12px;
+  }
+  .tl-item{
+    position:relative; padding:12px 16px 12px 24px;
+  }
+  .tl-item::before{
+    content:""; position:absolute; left:-8px; top:18px;
+    width:13px; height:13px; border-radius:50%;
+    background:var(--accent2); border:2px solid var(--paper);
+  }
+  .tl-date{
+    font-family:'IBM Plex Mono', monospace; font-size:11px; font-weight:700;
+    text-transform:uppercase; letter-spacing:.07em; color:var(--accent2); margin-bottom:4px;
+  }
+  .tl-title{font-size:14.5px; font-weight:600; color:var(--ink); margin-bottom:3px;}
+  .tl-desc{font-size:13.5px; color:var(--ink-soft); line-height:1.55;}
+
+  .format-grid{display:grid; grid-template-columns:repeat(auto-fit, minmax(260px, 1fr)); gap:14px; margin:1em 0;}
+  .format-card{
+    background:var(--card); border:1px solid var(--line); border-radius:6px; padding:16px 18px;
+  }
+  .format-card .fc-name{
+    font-family:'IBM Plex Mono', monospace; font-size:13px; font-weight:700; color:var(--ink); margin-bottom:6px;
+  }
+  .format-card .fc-badge{
+    display:inline-block; font-size:10px; font-weight:600; padding:2px 7px; border-radius:3px;
+    text-transform:uppercase; letter-spacing:.05em; margin-bottom:8px;
+  }
+  .badge-xml{background:#dbeafe; color:#1e3a8a;}
+  .badge-hybrid{background:#fef3c7; color:#78350f;}
+  .badge-peppol{background:#d1fae5; color:#065f46;}
+  .format-card p{font-size:13px; margin:0; color:var(--ink-soft);}
+
+  .flow-steps{
+    counter-reset:step; display:flex; flex-direction:column; gap:0;
+    border-left:2px solid var(--line); margin:1em 0 1em 10px;
+  }
+  .flow-step{
+    position:relative; padding:10px 14px 10px 28px;
+  }
+  .flow-step::before{
+    counter-increment:step;
+    content:counter(step);
+    position:absolute; left:-13px; top:10px;
+    width:24px; height:24px; border-radius:50%;
+    background:var(--ink); color:#fff;
+    font-family:'IBM Plex Mono', monospace; font-size:11px; font-weight:700;
+    display:flex; align-items:center; justify-content:center;
+    border:2px solid var(--paper);
+  }
+  .flow-step .fs-title{font-size:14px; font-weight:600; color:var(--ink); margin-bottom:2px;}
+  .flow-step .fs-desc{font-size:13.5px; color:var(--ink-soft); line-height:1.55;}
+
+  .states-table{width:100%; border-collapse:collapse; margin:1em 0; font-size:13.5px;}
+  .states-table th{
+    background:var(--ink); color:#fff;
+    font-family:'IBM Plex Mono', monospace; font-size:11px; font-weight:600;
+    text-transform:uppercase; letter-spacing:.06em;
+    padding:8px 12px; text-align:left;
+  }
+  .states-table td{padding:8px 12px; border-bottom:1px solid var(--line); vertical-align:top; color:var(--ink-soft);}
+  .states-table tr:last-child td{border-bottom:none;}
+  .states-table tr:nth-child(even) td{background:#fafafa;}
+  .s-code{font-family:'IBM Plex Mono', monospace; font-size:12px; color:var(--ink); white-space:nowrap;}
+  .s-obl{display:inline-block; width:8px; height:8px; border-radius:50%; background:var(--accent2); margin-right:4px; vertical-align:middle;}
+
+  .scenario-box{
+    background:var(--card); border:1px solid var(--line); border-radius:6px;
+    padding:16px 18px; margin-bottom:14px;
+  }
+  .scenario-box h3{margin:0 0 8px; font-size:15px;}
+  .scenario-box ol{margin:0; padding-left:1.3em;}
+  .scenario-box li{font-size:13.5px; color:var(--ink-soft); margin-bottom:.2em;}
+
+  .callout{
+    border-left:4px solid var(--accent2); background:var(--card);
+    padding:12px 16px; margin:1.2em 0; border-radius:0 5px 5px 0;
+    font-size:13.5px; color:var(--ink-soft); line-height:1.6;
+  }
+  .callout strong{color:var(--ink);}
+
+  .ref-list{list-style:none; padding:0; margin:.5em 0;}
+  .ref-list li{font-size:13.5px; border-bottom:1px solid var(--line); padding:8px 0; color:var(--ink-soft);}
+  .ref-list li:last-child{border-bottom:none;}
+  .ref-list a{color:var(--blue);}
+</style>
+</head>
+<body>
+
+<header class="masthead">
+  <div class="masthead-top">
+    <span><a href="../index.html">← E-Invoicing Tracker</a> <span class="dot">◆</span> Germania</span>
+    <span>Aggiornato: settembre 2026</span>
+  </div>
+  <h1 class="title">Germania — <em>Flussi</em><br>fatturazione elettronica B2B</h1>
+  <div class="subhead">
+    <p>Guida ai flussi, ai formati e alle scadenze dell'obbligo di fatturazione elettronica B2B in Germania, introdotto dal <strong>Wachstumschancengesetz</strong> (Legge sulle opportunità di crescita, marzo 2024). Modello decentralizzato: nessun hub centrale, le imprese scelgono liberamente il canale di trasmissione.</p>
+    <div class="meta-stamp">
+      <div class="label">Normativa</div>
+      <div>§ 14 UStG (Umsatzsteuergesetz)</div>
+      <div>Wachstumschancengesetz 2024</div>
+      <div class="label" style="margin-top:6px">Mandato B2B</div>
+      <div>Ricezione: 1 gen 2025</div>
+      <div>Invio: 1 gen 2027 / 1 gen 2028</div>
+    </div>
+  </div>
+</header>
+
+<main>
+
+  <!-- QUADRO NORMATIVO -->
+  <h2>Quadro normativo</h2>
+  <p>La Germania ha riformato la disciplina della fattura elettronica B2B con il <strong>Wachstumschancengesetz</strong> (Legge 27 marzo 2024, BGBl. 2024 I Nr. 108), che ha modificato il § 14 dell'<em>Umsatzsteuergesetz</em> (UStG — Legge sull'imposta sul valore aggiunto). La riforma elimina il primato della fattura cartacea e introduce un obbligo progressivo di emissione di fatture strutturate conformi alla norma EN 16931.</p>
+
+  <div class="callout">
+    <strong>Modello decentralizzato:</strong> a differenza di Francia (modello a 5 angoli con PDP) o Italia (SdI centralizzato), la Germania non prevede una piattaforma di interscambio obbligatoria. Emittente e ricevente si accordano liberamente sul canale di consegna (Peppol, EDI, email, portale web), purché il formato sia conforme EN 16931.
+  </div>
+
+  <h3>Definizione di fattura elettronica (E-Rechnung)</h3>
+  <p>Dal 1° gennaio 2025 il § 14 UStG ridefinisce la <strong>E-Rechnung</strong> come una fattura emessa, trasmessa e ricevuta in un formato strutturato che:</p>
+  <ul>
+    <li>Consente l'elaborazione automatica (machine-readable);</li>
+    <li>È conforme alla norma europea EN 16931 (o a un formato interoperabile concordato con il destinatario, che garantisca l'estrazione dei dati EN 16931);</li>
+    <li>Non è una fattura in PDF o immagine (che è ora classificata come <em>sonstige Rechnung</em> — altra fattura).</li>
+  </ul>
+  <p>Le fatture in PDF, carta o altri formati non strutturati sono classificate come <em>sonstige Rechnung</em> e possono essere usate solo nei casi ancora ammessi (es. B2C, operazioni esenti, soggetti con fatturato ≤ 800.000 € fino al 2027).</p>
+
+  <!-- SCADENZE -->
+  <h2>Scadenze progressive</h2>
+  <div class="timeline">
+    <div class="tl-item">
+      <div class="tl-date">1° gennaio 2025</div>
+      <div class="tl-title">Obbligo di ricezione — tutte le imprese</div>
+      <div class="tl-desc">Ogni soggetto passivo IVA residente in Germania deve essere in grado di <strong>ricevere</strong> fatture elettroniche strutturate (E-Rechnung). Non è richiesto il consenso del destinatario. L'emittente può inviare la fattura nel formato che preferisce purché compatibile EN 16931.</div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-date">1° gennaio 2025 – 31 dicembre 2026</div>
+      <div class="tl-title">Fase transitoria — invio ancora ammesso in formati tradizionali</div>
+      <div class="tl-desc">Le imprese con fatturato 2024 &gt; 800.000 € possono ancora emettere fatture cartacee o PDF con il consenso del destinatario. Le imprese con fatturato ≤ 800.000 € mantengono questa facoltà fino al 31 dicembre 2027.</div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-date">1° gennaio 2027</div>
+      <div class="tl-title">Obbligo di emissione — imprese con fatturato &gt; 800.000 €</div>
+      <div class="tl-desc">I soggetti passivi con fatturato 2025 superiore a 800.000 € devono emettere <strong>obbligatoriamente</strong> fatture elettroniche strutturate per tutte le operazioni B2B domestiche soggette a IVA tedesca.</div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-date">1° gennaio 2028</div>
+      <div class="tl-title">Obbligo di emissione — tutte le imprese</div>
+      <div class="tl-desc">L'obbligo si estende a <strong>tutti i soggetti passivi</strong> residenti in Germania, indipendentemente dal fatturato. Termine finale per la piena entrata in vigore del mandato B2B.</div>
+    </div>
+  </div>
+
+  <!-- FORMATI AMMESSI -->
+  <h2>Formati ammessi</h2>
+  <p>Il § 14 UStG riconosce come E-Rechnung qualsiasi formato conforme alla norma EN 16931 o a essa interoperabile. In pratica sono tre i formati principali utilizzati in Germania:</p>
+
+  <div class="format-grid">
+    <div class="format-card">
+      <div class="fc-name">XRechnung</div>
+      <span class="fc-badge badge-xml">XML puro</span>
+      <p>Standard XML nazionale basato su EN 16931, sviluppato dalla KoSIT (Koordinierungsstelle für IT-Standards) per conto dell'IT-Planungsrat. Già obbligatorio B2G a livello federale dal 2020. Versione corrente: <strong>XRechnung 3.0</strong> (in vigore fino al 31 luglio 2027). La versione 4.0 è prevista nel primo trimestre 2027. Profili UBL e CII entrambi supportati.</p>
+    </div>
+    <div class="format-card">
+      <div class="fc-name">ZUGFeRD 2.x</div>
+      <span class="fc-badge badge-hybrid">Ibrido PDF/A-3 + XML</span>
+      <p>Formato ibrido che incorpora un file XML EN 16931 (<em>Factur-X</em> in Francia, <em>ZUGFeRD</em> in Germania — stesso standard) all'interno di un PDF/A-3. La parte XML è quella giuridicamente vincolante; il PDF è la rappresentazione visiva. Il profilo <strong>EN 16931</strong> (o superiore: EXTENDED) è richiesto per l'obbligo B2B. I profili MINIMUM e BASIC WL non sono sufficienti.</p>
+    </div>
+    <div class="format-card">
+      <div class="fc-name">Peppol BIS 3.0</div>
+      <span class="fc-badge badge-peppol">Peppol</span>
+      <p>Formato Peppol (UBL 2.1) basato su EN 16931, ammesso come E-Rechnung. Utilizzato in Germania principalmente per il B2G (portali ZRE, OZG-RE) e per gli scambi transfrontalieri. Per la ricezione tramite Peppol è necessario registrarsi nella rete Peppol con un Service Provider accreditato.</p>
+    </div>
+  </div>
+
+  <div class="callout">
+    <strong>Nota sul Leitweg-ID:</strong> Nel contesto B2G il <em>Leitweg-ID</em> è un identificativo di instradamento obbligatorio per indirizzare la fattura all'ente pubblico corretto (es. <code>991-1234567890-06</code>). Nel B2B privato non è richiesto un identificativo equivalente: le parti si accordano liberamente sull'indirizzo di consegna (endpoint Peppol, email, URL portale).
+  </div>
+
+  <!-- FLUSSO DI EMISSIONE B2B -->
+  <h2>Flusso di emissione B2B</h2>
+  <p>Il processo standard di emissione di una fattura elettronica B2B in Germania si articola nei seguenti passaggi:</p>
+
+  <div class="flow-steps">
+    <div class="flow-step">
+      <div class="fs-title">Accordo preliminare sul canale</div>
+      <div class="fs-desc">Emittente e destinatario si accordano sul canale di consegna preferito: Peppol, EDI (AS2/AS4), portale web, email con allegato XML. In mancanza di accordo, l'emittente può scegliere qualsiasi canale purché il destinatario sia in grado di ricevere.</div>
+    </div>
+    <div class="flow-step">
+      <div class="fs-title">Generazione della fattura strutturata</div>
+      <div class="fs-desc">Il sistema ERP/fatturazione genera il file XML (XRechnung CII o UBL) o il PDF/A-3 (ZUGFeRD 2.x profilo EN 16931+). Il file deve contenere tutti gli elementi obbligatori EN 16931: dati identificativi, importi, aliquote IVA, data, riferimenti contrattuali.</div>
+    </div>
+    <div class="flow-step">
+      <div class="fs-title">Validazione tecnica</div>
+      <div class="fs-desc">Prima della trasmissione è consigliata la validazione formale tramite strumenti come il <strong>Prüftool KoSIT</strong> (open source, scaricabile da xeinkauf.de) o servizi online equivalenti, per verificare la conformità allo schema XSD e alle regole di business EN 16931.</div>
+    </div>
+    <div class="flow-step">
+      <div class="fs-title">Trasmissione al destinatario</div>
+      <div class="fs-desc">La fattura viene inviata tramite il canale concordato. Se via <strong>Peppol</strong>: l'access point del mittente instrada al SMP del destinatario. Se via <strong>email</strong>: il file XML o il PDF/A-3 viene allegato. Se via <strong>portale</strong>: caricamento diretto sull'interfaccia web del cliente.</div>
+    </div>
+    <div class="flow-step">
+      <div class="fs-title">Ricezione e validazione da parte del destinatario</div>
+      <div class="fs-desc">Il sistema del destinatario riceve la fattura, esegue la validazione tecnica (conformità EN 16931) e l'inserisce nel workflow di approvazione interno. La ricezione deve avvenire su un sistema in grado di elaborare automaticamente il formato strutturato.</div>
+    </div>
+    <div class="flow-step">
+      <div class="fs-title">Verifica commerciale (tre-way match)</div>
+      <div class="fs-desc">Il sistema del destinatario verifica la corrispondenza tra fattura, ordine d'acquisto (se presente) e documento di consegna (<em>Lieferschein</em>). In caso di discrepanza viene avviata la procedura di contestazione o richiesta di nota di credito.</div>
+    </div>
+    <div class="flow-step">
+      <div class="fs-title">Approvazione e pagamento</div>
+      <div class="fs-desc">Una volta approvata, la fattura viene contabilizzata e il pagamento viene disposto secondo i termini concordati. Il Germania non prevede un obbligo di notifica di accettazione/rifiuto verso il mittente (a differenza del modello francese), salvo diverso accordo contrattuale tra le parti.</div>
+    </div>
+    <div class="flow-step">
+      <div class="fs-title">Conservazione</div>
+      <div class="fs-desc">Sia emittente che destinatario devono conservare la fattura per <strong>10 anni</strong> (§ 14b UStG), garantendo la leggibilità, l'integrità e l'autenticità per tutta la durata del periodo di conservazione. La conservazione può avvenire in formato digitale purché conformi ai GoBD (<em>Grundsätze zur ordnungsmäßigen Führung und Aufbewahrung von Büchern</em>).</div>
+    </div>
+  </div>
+
+  <!-- CONFRONTO CON MODELLO CENTRALIZZATO -->
+  <h2>Modello decentralizzato vs. centralizzato</h2>
+  <p>La Germania adotta un approccio opposto a quello italiano o francese, senza intermediazione obbligatoria dello Stato nel flusso della fattura:</p>
+
+  <table class="states-table" style="font-size:13px;">
+    <thead>
+      <tr>
+        <th>Aspetto</th>
+        <th>Germania (decentralizzato)</th>
+        <th>Italia (SdI)</th>
+        <th>Francia (PDP)</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>Hub centrale</strong></td>
+        <td>Nessuno</td>
+        <td>SdI (Agenzia Entrate)</td>
+        <td>PPF / PDP accreditate</td>
+      </tr>
+      <tr>
+        <td><strong>Canale obbligatorio</strong></td>
+        <td>Libero (Peppol, EDI, email…)</td>
+        <td>Solo via SdI</td>
+        <td>Solo via PDP accreditata</td>
+      </tr>
+      <tr>
+        <td><strong>Notifiche di stato</strong></td>
+        <td>Non standardizzate (accordo tra parti)</td>
+        <td>Standardizzate (SdI emette notifiche)</td>
+        <td>14 stati obbligatori (standard)</td>
+      </tr>
+      <tr>
+        <td><strong>Controllo IVA</strong></td>
+        <td>Ex-post (reporting futuro previsto da ViDA)</td>
+        <td>Real-time (ogni fattura passa dal SdI)</td>
+        <td>Real-time + e-reporting</td>
+      </tr>
+      <tr>
+        <td><strong>Formati</strong></td>
+        <td>XRechnung, ZUGFeRD 2.x, Peppol BIS 3.0</td>
+        <td>FatturaPA (XML proprietario)</td>
+        <td>UBL, CII, Factur-X</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- SCENARI OPERATIVI -->
+  <h2>Scenari operativi</h2>
+
+  <div class="scenario-box">
+    <h3>Scenario 1 — Invio via Peppol (preferito per grandi imprese)</h3>
+    <ol>
+      <li>L'emittente si registra sulla rete Peppol tramite un <em>Access Point</em> (AP) accreditato.</li>
+      <li>Genera la fattura in XRechnung UBL o Peppol BIS 3.0.</li>
+      <li>L'AP del mittente interroga l'SMP del destinatario per reperire l'endpoint di ricezione.</li>
+      <li>La fattura viene consegnata all'AP del destinatario, che la inserisce nel sistema ERP.</li>
+      <li>Non esiste notifica di stato standardizzata; eventuali conferme avvengono per accordo contrattuale.</li>
+    </ol>
+  </div>
+
+  <div class="scenario-box">
+    <h3>Scenario 2 — Invio via email con ZUGFeRD 2.x</h3>
+    <ol>
+      <li>L'emittente genera un PDF/A-3 con XML ZUGFeRD embedded (profilo EN 16931 o EXTENDED).</li>
+      <li>Il file viene allegato a una normale email verso il destinatario.</li>
+      <li>Il destinatario estrae il file XML dall'envelope PDF/A-3 con il suo software di fatturazione.</li>
+      <li>Il PDF/A-3 è leggibile anche da chi non ha software specifico (compatibilità visiva).</li>
+      <li>Legalmente vincolante è la parte XML, non la visualizzazione PDF.</li>
+    </ol>
+  </div>
+
+  <div class="scenario-box">
+    <h3>Scenario 3 — Contestazione e nota di credito</h3>
+    <ol>
+      <li>Il destinatario rileva un errore nella fattura ricevuta (importo errato, dati IVA sbagliati).</li>
+      <li>Notifica il mittente tramite il canale concordato (email, portale, telefono): la Germania non prevede un flusso di rifiuto standardizzato nella fattura stessa.</li>
+      <li>Il mittente emette una <strong>nota di credito</strong> (<em>Gutschrift</em>) in formato strutturato (stesso formato della fattura originale) che storna integralmente o parzialmente la fattura.</li>
+      <li>Il mittente emette eventualmente una nuova fattura corretta.</li>
+      <li>Entrambi i documenti (fattura originale e nota di credito) devono essere conservati per 10 anni.</li>
+    </ol>
+  </div>
+
+  <div class="scenario-box">
+    <h3>Scenario 4 — Fornitore estero (non residente) verso impresa tedesca</h3>
+    <ol>
+      <li>Un fornitore italiano, francese o di altro paese UE emette una fattura per una cessione soggetta a IVA tedesca verso un'impresa tedesca.</li>
+      <li>Dal 1° gennaio 2025 il destinatario tedesco deve poter <strong>ricevere</strong> fatture strutturate; tuttavia il fornitore estero non è soggetto all'obbligo di emissione tedesco (§ 14 UStG si applica ai soggetti passivi stabiliti in Germania).</li>
+      <li>Il fornitore estero può continuare a emettere in PDF/carta: il destinatario tedesco non può rifiutarla per motivi legati al mandato tedesco.</li>
+      <li>Con l'introduzione di ViDA (2030+) anche i fornitori esteri potrebbero essere coinvolti nel reporting digitale.</li>
+    </ol>
+  </div>
+
+  <!-- REPORTING E VIDA -->
+  <h2>E-reporting e prospettive ViDA</h2>
+  <p>La Germania <strong>non ha ancora introdotto un obbligo di e-reporting IVA</strong> in tempo reale per le operazioni B2B (a differenza di Francia, Spagna, Polonia). Il controllo IVA avviene attualmente in modalità ex-post tramite le dichiarazioni periodiche Umsatzsteuervoranmeldung (UStVA).</p>
+  <p>Con l'entrata in vigore di <strong>ViDA</strong> (<em>VAT in the Digital Age</em>, previsto in recepimento entro 2030–2032), tutti gli Stati membri UE, compresa la Germania, dovranno introdurre:</p>
+  <ul>
+    <li>Fatturazione elettronica obbligatoria per le operazioni intracomunitarie;</li>
+    <li>Reporting digitale in tempo reale (Digital Reporting Requirements — DRR) per le transazioni B2B.</li>
+  </ul>
+  <p>Il sistema tedesco decentralizzato dovrà essere adeguato per garantire la tracciabilità richiesta da ViDA, con possibile evoluzione verso un modello di reporting centralizzato o semi-centralizzato.</p>
+
+  <!-- CASI SPECIALI -->
+  <h2>Casi speciali e esclusioni</h2>
+  <ul>
+    <li><strong>Operazioni B2C:</strong> escluse dall'obbligo. Le fatture ai consumatori finali possono continuare ad essere emesse in carta o PDF.</li>
+    <li><strong>Operazioni esenti IVA (§ 4 UStG):</strong> escluse dall'obbligo di E-Rechnung (es. prestazioni sanitarie, operazioni finanziarie).</li>
+    <li><strong>Fatture di importo ≤ 250 € (Kleinbetragsrechnung):</strong> esonerate dall'obbligo anche dopo il 2027, in quanto già esenti da molti requisiti formali del § 33 UStDV.</li>
+    <li><strong>Fatture di viaggio per dipendenti (§ 34 UStDV):</strong> particolari semplificazioni continuano ad applicarsi.</li>
+    <li><strong>Soggetti passivi con regime forfettario (§ 19 UStG — Kleinunternehmer):</strong> esonerati dall'obbligo di emissione fino al 2027; devono comunque essere in grado di ricevere E-Rechnung dal 2025.</li>
+    <li><strong>Operazioni transfrontaliere intraUE e con paesi terzi:</strong> non soggette all'obbligo di E-Rechnung tedesco, ma soggette alle regole ViDA una volta in vigore.</li>
+  </ul>
+
+  <!-- RIFERIMENTI NORMATIVI -->
+  <h2>Riferimenti normativi e tecnici</h2>
+  <ul class="ref-list">
+    <li>
+      <strong>§ 14 UStG (Umsatzsteuergesetz)</strong> — norma primaria sulla fatturazione elettronica B2B in Germania, modificata dal Wachstumschancengesetz 2024.<br>
+      <a href="https://www.gesetze-im-internet.de/ustg_1980/__14.html" target="_blank" rel="noopener">gesetze-im-internet.de — § 14 UStG ↗</a>
+    </li>
+    <li>
+      <strong>Wachstumschancengesetz</strong> — BGBl. 2024 I Nr. 108, 27 marzo 2024. Legge che ha introdotto l'obbligo di E-Rechnung B2B.<br>
+      <a href="https://www.bgbl.de/xaver/bgbl/start.xav?startbk=Bundesanzeiger_BGBl&start=//*[@attr_id=%27bgbl124s0108.pdf%27]" target="_blank" rel="noopener">BGBl. 2024 I Nr. 108 ↗</a>
+    </li>
+    <li>
+      <strong>BMF-Schreiben 15 ottobre 2024</strong> — Circolare del Bundesministerium der Finanzen con le istruzioni applicative sull'E-Rechnung B2B dal 2025.<br>
+      <a href="https://www.bundesfinanzministerium.de/Content/DE/Downloads/BMF_Schreiben/Steuerarten/Umsatzsteuer/2024-10-15-einfuehrung-der-pflicht-zur-e-rechnung.html" target="_blank" rel="noopener">BMF — Circolare E-Rechnung ↗</a>
+    </li>
+    <li>
+      <strong>XRechnung — KoSIT / xeinkauf.de</strong> — Specifiche tecniche XRechnung 3.0, schemi XSD, Prüftool di validazione, documentazione ufficiale.<br>
+      <a href="https://xeinkauf.de/xrechnung/" target="_blank" rel="noopener">xeinkauf.de — XRechnung ↗</a>
+    </li>
+    <li>
+      <strong>ZUGFeRD 2.x — Forum Elektronische Rechnung Deutschland (FeRD)</strong> — Standard ibrido PDF/A-3 + XML, compatibile con Factur-X (Francia).<br>
+      <a href="https://www.ferd-net.de/standards/zugferd-2.3/index.html" target="_blank" rel="noopener">ferd-net.de — ZUGFeRD ↗</a>
+    </li>
+    <li>
+      <strong>EN 16931 — CEN</strong> — Norma europea per la fattura elettronica semantica, recepita in Germania come DIN EN 16931.<br>
+      <a href="https://ec.europa.eu/digital-building-blocks/wikis/display/DIGITAL/eInvoicing+in+Germany" target="_blank" rel="noopener">Commissione europea — eInvoicing in Germany ↗</a>
+    </li>
+    <li>
+      <strong>GoBD</strong> — Grundsätze zur ordnungsmäßigen Führung und Aufbewahrung von Büchern (BMF 2019) — Principi per la tenuta e la conservazione dei libri contabili in formato digitale (obbligo 10 anni).<br>
+      <a href="https://www.bundesfinanzministerium.de/Content/DE/Downloads/BMF_Schreiben/Weitere_Steuerthemen/Abgabenordnung/2019-11-28-GoBD.html" target="_blank" rel="noopener">BMF — GoBD ↗</a>
+    </li>
+  </ul>
+
+</main>
+
+</body>
+</html>

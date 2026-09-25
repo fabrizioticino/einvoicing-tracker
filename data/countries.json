@@ -791,6 +791,7 @@
         "last_update":  "11 agosto 2026",
         "b2g_url":  "https://www.e-rechnung-bund.de/",
         "b2b_url":  "https://www.bundesfinanzministerium.de/Content/DE/FAQ/e-rechnung.html",
+        "b2b_flows_url":  "esempi/germany-b2b-flows.html",
         "b2c_url":  "",
         "ereporting_url":  "",
         "archiving_url":  "",
