@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Italia — Gestione flussi fatturazione elettronica B2B (SdI)</title>
+<meta name="description" content="Flussi, stati del ciclo di vita e scenari della fatturazione elettronica B2B in Italia tramite il Sistema di Interscambio (SdI). Obbligo in vigore dal 1° gennaio 2019.">
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=IBM+Plex+Mono:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap');
+  :root{
+    --paper:#F5F5F5; --ink:#161616; --ink-soft:#5A5A5A; --line:#D6D6D6;
+    --accent:#009246; --accent2:#CE2B37; --card:#FFFFFF; --blue:#1a56db; --blue-light:#dbeafe;
+    --green:#065f46; --green-light:#d1fae5; --orange:#92400e; --orange-light:#fef3c7;
+    --red:#991b1b; --red-light:#fee2e2;
+  }
+  *{box-sizing:border-box;} html{scroll-behavior:smooth;}
+  body{margin:0;background:var(--paper);color:var(--ink);font-family:'Inter',sans-serif;-webkit-font-smoothing:antialiased;}
+  body::before{content:"";position:fixed;inset:0;background-image:repeating-linear-gradient(0deg,rgba(27,36,33,0.018) 0px,rgba(27,36,33,0.018) 1px,transparent 1px,transparent 3px);pointer-events:none;z-index:0;}
+  a{color:var(--blue);}
+  header.masthead{position:relative;z-index:1;border-bottom:3px double var(--ink);padding:28px 5vw 18px;}
+  .masthead-top{display:flex;justify-content:space-between;align-items:baseline;flex-wrap:wrap;gap:8px;font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-soft);margin-bottom:18px;}
+  .masthead-top .dot{color:var(--accent2);}
+  .masthead-top a{color:var(--ink-soft);text-decoration:none;}
+  .masthead-top a:hover{color:var(--ink);}
+  h1.title{font-family:'Fraunces',serif;font-weight:600;font-size:clamp(28px,5vw,52px);line-height:1;margin:0 0 10px;letter-spacing:-0.01em;}
+  h1.title em{font-style:italic;font-weight:400;color:var(--accent2);}
+  .subhead{display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:18px;border-top:1px solid var(--line);padding-top:14px;margin-top:18px;}
+  .subhead p{max-width:640px;font-size:15px;line-height:1.55;color:var(--ink-soft);margin:0;}
+  .meta-stamp{font-family:'IBM Plex Mono',monospace;font-size:11px;text-align:right;color:var(--ink-soft);line-height:1.6;white-space:nowrap;}
+  .meta-stamp .label{text-transform:uppercase;letter-spacing:.08em;font-size:10px;color:var(--ink);}
+  main{position:relative;z-index:1;padding:38px 5vw 60px;max-width:900px;margin:0 auto;width:100%;}
+  h2{font-family:'Fraunces',serif;font-weight:600;font-size:22px;margin:2em 0 .5em;letter-spacing:-0.01em;border-bottom:2px solid var(--line);padding-bottom:6px;}
+  h3{font-family:'Fraunces',serif;font-weight:600;font-size:17px;margin:1.5em 0 .4em;color:var(--ink);}
+  p{font-size:14.5px;line-height:1.65;color:var(--ink-soft);margin:.5em 0 .8em;}
+  ul,ol{padding-left:1.4em;margin:.5em 0 .8em;}
+  li{font-size:14.5px;line-height:1.6;color:var(--ink-soft);margin-bottom:.25em;}
+  strong{color:var(--ink);}
+  code{font-family:'IBM Plex Mono',monospace;font-size:12.5px;background:#e8e8e8;padding:1px 5px;border-radius:3px;}
+  .timeline{display:flex;flex-direction:column;gap:0;border-left:3px solid var(--accent);margin:1.5em 0 1.5em 12px;}
+  .tl-item{position:relative;padding:12px 16px 12px 24px;}
+  .tl-item::before{content:"";position:absolute;left:-8px;top:18px;width:13px;height:13px;border-radius:50%;background:var(--accent);border:2px solid var(--paper);}
+  .tl-date{font-family:'IBM Plex Mono',monospace;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.07em;color:var(--accent);margin-bottom:4px;}
+  .tl-title{font-size:14.5px;font-weight:600;color:var(--ink);margin-bottom:3px;}
+  .tl-desc{font-size:13.5px;color:var(--ink-soft);line-height:1.55;}
+  .flow-steps{counter-reset:step;display:flex;flex-direction:column;gap:0;border-left:2px solid var(--line);margin:1em 0 1em 10px;}
+  .flow-step{position:relative;padding:10px 14px 10px 28px;}
+  .flow-step::before{counter-increment:step;content:counter(step);position:absolute;left:-13px;top:10px;width:24px;height:24px;border-radius:50%;background:var(--ink);color:#fff;font-family:'IBM Plex Mono',monospace;font-size:11px;font-weight:700;display:flex;align-items:center;justify-content:center;border:2px solid var(--paper);}
+  .flow-step .fs-title{font-size:14px;font-weight:600;color:var(--ink);margin-bottom:2px;}
+  .flow-step .fs-desc{font-size:13.5px;color:var(--ink-soft);line-height:1.55;}
+  .states-table{width:100%;border-collapse:collapse;margin:1em 0;font-size:13px;}
+  .states-table th{background:var(--ink);color:#fff;font-family:'IBM Plex Mono',monospace;font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.06em;padding:8px 12px;text-align:left;}
+  .states-table td{padding:8px 12px;border-bottom:1px solid var(--line);vertical-align:top;color:var(--ink-soft);}
+  .states-table tr:last-child td{border-bottom:none;}
+  .states-table tr:nth-child(even) td{background:#fafafa;}
+  .s-code{font-family:'IBM Plex Mono',monospace;font-size:11.5px;color:var(--ink);}
+  .scenario-box{background:var(--card);border:1px solid var(--line);border-radius:6px;padding:16px 18px;margin-bottom:14px;}
+  .scenario-box h3{margin:0 0 8px;font-size:15px;}
+  .scenario-box ol{margin:0;padding-left:1.3em;}
+  .scenario-box li{font-size:13.5px;color:var(--ink-soft);margin-bottom:.2em;}
+  .callout{border-left:4px solid var(--accent);background:var(--card);padding:12px 16px;margin:1.2em 0;border-radius:0 5px 5px 0;font-size:13.5px;color:var(--ink-soft);line-height:1.6;}
+  .callout strong{color:var(--ink);}
+  .ref-list{list-style:none;padding:0;margin:.5em 0;}
+  .ref-list li{font-size:13.5px;border-bottom:1px solid var(--line);padding:8px 0;color:var(--ink-soft);}
+  .ref-list li:last-child{border-bottom:none;}
+  .ref-list a{color:var(--blue);}
+  .notif-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:10px;margin:1em 0;}
+  .notif-card{background:var(--card);border:1px solid var(--line);border-radius:5px;padding:12px 14px;}
+  .notif-card .nc-type{font-family:'IBM Plex Mono',monospace;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.05em;color:var(--ink);margin-bottom:4px;}
+  .notif-card .nc-tag{font-size:11px;font-weight:600;padding:2px 6px;border-radius:3px;margin-bottom:6px;display:inline-block;}
+  .tag-sdi{background:#dbeafe;color:#1e3a8a;}
+  .tag-dest{background:var(--green-light);color:var(--green);}
+  .tag-emit{background:var(--orange-light);color:var(--orange);}
+  .notif-card p{font-size:12.5px;margin:0;color:var(--ink-soft);}
+</style>
+</head>
+<body>
+<header class="masthead">
+  <div class="masthead-top">
+    <span><a href="../index.html">← E-Invoicing Tracker</a> <span class="dot">◆</span> Italia</span>
+    <span>Aggiornato: settembre 2026</span>
+  </div>
+  <h1 class="title">Italia — <em>Sistema di Interscambio</em><br>fatturazione elettronica B2B</h1>
+  <div class="subhead">
+    <p>Guida completa al <strong>Sistema di Interscambio (SdI)</strong> dell'Agenzia delle Entrate per la fatturazione elettronica B2B in Italia. L'obbligo è in vigore dal <strong>1° gennaio 2019</strong>, rendendolo il primo grande mandato B2B generalizzato in Europa.</p>
+    <div class="meta-stamp">
+      <div class="label">Normativa</div>
+      <div>D.Lgs. 127/2015 (art. 1)</div>
+      <div>D.Lgs. 148/2018</div>
+      <div class="label" style="margin-top:6px">Mandato B2B</div>
+      <div>Dal 1° gennaio 2019 (tutte le imprese)</div>
+      <div>Formato: FatturaPA XML</div>
+    </div>
+  </div>
+</header>
+
+<main>
+
+  <h2>Quadro normativo</h2>
+  <p>L'obbligo di fatturazione elettronica B2B in Italia è stato introdotto dal <strong>D.Lgs. 5 agosto 2015, n. 127</strong> (art. 1, commi 3-5), in vigore dal 1° gennaio 2019 per tutte le operazioni tra soggetti passivi IVA residenti (B2B e B2C). Il D.Lgs. 127/2015 è stato attuato con il <strong>Provvedimento dell'Agenzia delle Entrate del 30 aprile 2018</strong> che definisce le regole tecniche del Sistema di Interscambio.</p>
+  <p>L'Italia è il primo paese al mondo ad aver introdotto un mandato generalizzato di fatturazione elettronica B2B con transito obbligatorio attraverso un hub governativo (SdI). Il sistema opera dal 2014 per il B2G e dal 2019 per il B2B.</p>
+
+  <div class="callout">
+    <strong>Modello centralizzato SdI:</strong> ogni fattura — B2B, B2G, e alcune B2C — deve obbligatoriamente transitare per il Sistema di Interscambio. Il SdI valida la fattura, la recapita al destinatario identificato da <em>Codice Destinatario</em> o <em>PEC</em>, e genera notifiche di esito per entrambe le parti. Solo le fatture recapitate dal SdI hanno valore fiscale.
+  </div>
+
+  <h2>Storia e milestones</h2>
+  <div class="timeline">
+    <div class="tl-item">
+      <div class="tl-date">6 giugno 2014</div>
+      <div class="tl-title">FatturaPA obbligatoria verso Amministrazioni Centrali</div>
+      <div class="tl-desc">Prima scadenza B2G: obbligatoria verso ministeri, agenzie fiscali, enti di previdenza sociale. Successivamente estesa a tutte le PA entro il 31 marzo 2015.</div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-date">1° luglio 2018</div>
+      <div class="tl-title">Anticipo sperimentale per settori specifici</div>
+      <div class="tl-desc">Obbligo anticipato per cessioni di benzina/gasolio per autotrazione e prestazioni di subappalto verso PA. Prima sperimentazione del mandato B2B.</div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-date">1° gennaio 2019</div>
+      <div class="tl-title">Obbligo generalizzato B2B — tutte le imprese</div>
+      <div class="tl-desc">Obbligo esteso a tutti i soggetti passivi IVA residenti per le operazioni B2B e B2C. L'Italia diventa il primo paese europeo con mandato B2B generalizzato.</div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-date">1° luglio 2022</div>
+      <div class="tl-title">Estensione a forfettari e minimi</div>
+      <div class="tl-desc">L'obbligo viene esteso ai contribuenti in regime forfettario con ricavi superiori a 25.000 €/anno. Dal 1° gennaio 2024 l'obbligo si applica a tutti i forfettari senza soglia.</div>
+    </div>
+  </div>
+
+  <h2>Identificazione del destinatario</h2>
+  <p>Il corretto instradamento della fattura tramite SdI richiede uno dei seguenti identificativi:</p>
+  <ul>
+    <li><strong>Codice Destinatario (7 caratteri alfanumerici):</strong> identificativo assegnato dal SdI a ciascun canale di ricezione registrato. Le imprese dotate di software di fatturazione o intermediario registrano il proprio codice e lo comunicano ai fornitori.</li>
+    <li><strong>PEC (Posta Elettronica Certificata):</strong> in assenza di codice destinatario, la fattura può essere indirizzata alla PEC del destinatario. Meno usato nella pratica B2B strutturata.</li>
+    <li><strong>Codice <code>0000000</code> (sette zeri):</strong> codice convenzionale per i destinatari che non hanno registrato un canale. La fattura viene depositata nell'area riservata del destinatario sul portale dell'Agenzia delle Entrate (Fatture e Corrispettivi). Il destinatario deve periodicamente controllare il portale.</li>
+    <li><strong>Codice <code>XXXXXXX</code> (sette X):</strong> riservato alle PA. Usato quando non si dispone del Codice Univoco d'Ufficio (CUU/IPA).</li>
+  </ul>
+
+  <h2>Flusso di emissione tramite SdI</h2>
+  <div class="flow-steps">
+    <div class="flow-step">
+      <div class="fs-title">Generazione della FatturaPA XML</div>
+      <div class="fs-desc">Il sistema ERP/gestionale genera il file XML secondo il formato <strong>FatturaPA</strong> (versione 1.2.2 o superiore, schema XSD pubblicato dall'AdE). Il file può contenere una o più fatture (<em>lotto</em>). Per le operazioni con soggetti non residenti è prevista la <em>FatturaEU</em> (CIUS-IT, conforme EN 16931).</div>
+    </div>
+    <div class="flow-step">
+      <div class="fs-title">Firma digitale (facoltativa ma consigliata)</div>
+      <div class="fs-desc">Il file XML può essere firmato digitalmente con firma CAdES (<code>.p7m</code>) o XAdES prima dell'invio al SdI. La firma non è obbligatoria ma garantisce l'autenticità del mittente e la non ripudiabilità. Il SdI aggiunge comunque il proprio sigillo elettronico alle notifiche.</div>
+    </div>
+    <div class="flow-step">
+      <div class="fs-title">Invio al SdI</div>
+      <div class="fs-desc">La fattura viene trasmessa al SdI tramite uno dei canali ammessi: <strong>portale web</strong> (Fatture e Corrispettivi), <strong>servizio FTP dedicato</strong>, <strong>web service SOAP</strong> (SdICoop), o tramite <strong>intermediario/SDICoop accreditato</strong> (provider di fatturazione elettronica). Il canale SdICoop è quello usato dagli intermediari e dai software gestionali.</div>
+    </div>
+    <div class="flow-step">
+      <div class="fs-title">Controlli SdI e notifica di ricevuta</div>
+      <div class="fs-desc">Il SdI esegue i controlli formali (schema XSD, coerenza dati, validità P.IVA mittente/destinatario) entro pochi secondi. Invia all'emittente una <strong>Ricevuta di Consegna</strong> o, in caso di errore, una <strong>Notifica di Scarto</strong> con i dettagli degli errori.</div>
+    </div>
+    <div class="flow-step">
+      <div class="fs-title">Recapito al destinatario</div>
+      <div class="fs-desc">Se i controlli sono superati, il SdI recapita la fattura al canale del destinatario (Codice Destinatario o PEC) o la deposita nell'area web. Invia all'emittente la <strong>Ricevuta di Consegna</strong>. Se il canale del destinatario non è raggiungibile entro il tempo limite, il SdI invia una <strong>Notifica di Mancata Consegna</strong>.</div>
+    </div>
+    <div class="flow-step">
+      <div class="fs-title">Accettazione o rifiuto da parte del destinatario (facoltativo)</div>
+      <div class="fs-desc">Entro <strong>15 giorni</strong> dalla consegna, il destinatario può inviare al SdI una <strong>Notifica di Esito Committente</strong> (accettazione o rifiuto). Il rifiuto non ha effetti fiscali automatici: la fattura rimane valida fiscalmente. Se entro 15 giorni non arriva notifica, la fattura si considera accettata tacitamente.</div>
+    </div>
+    <div class="flow-step">
+      <div class="fs-title">Conservazione sostitutiva</div>
+      <div class="fs-desc">Le fatture elettroniche devono essere conservate per <strong>10 anni</strong> secondo le regole del <em>Codice Civile</em> (art. 2220) e del <em>CAD</em> (D.Lgs. 82/2005). L'Agenzia delle Entrate mette a disposizione il servizio di conservazione gratuito per i file transitati via SdI. Gli operatori possono anche usare conservatori accreditati AgID.</div>
+    </div>
+  </div>
+
+  <h2>Notifiche SdI — ciclo di vita completo</h2>
+  <p>Il SdI genera notifiche strutturate XML per ogni evento del ciclo di vita della fattura. Di seguito le notifiche principali:</p>
+  <div class="notif-grid">
+    <div class="notif-card">
+      <div class="nc-type">RC — Ricevuta di Consegna</div>
+      <span class="nc-tag tag-sdi">SdI → Emittente</span>
+      <p>La fattura è stata consegnata con successo al destinatario. Contiene data/ora di consegna e identificativo SdI.</p>
+    </div>
+    <div class="notif-card">
+      <div class="nc-type">NS — Notifica di Scarto</div>
+      <span class="nc-tag tag-sdi">SdI → Emittente</span>
+      <p>La fattura non supera i controlli formali. Codici errore dettagliati. L'emittente deve correggere e reinviare; la fattura scartata è come non emessa.</p>
+    </div>
+    <div class="notif-card">
+      <div class="nc-type">MC — Mancata Consegna</div>
+      <span class="nc-tag tag-sdi">SdI → Emittente</span>
+      <p>Il canale del destinatario non è raggiungibile. La fattura è disponibile nell'area web AdE. L'emittente deve informare il destinatario per posta ordinaria.</p>
+    </div>
+    <div class="notif-card">
+      <div class="nc-type">NE — Notifica Esito Committente</div>
+      <span class="nc-tag tag-dest">Destinatario → SdI → Emittente</span>
+      <p>Il destinatario comunica accettazione (EC01) o rifiuto (EC02) della fattura entro 15 giorni. Facoltativa; se non inviata = accettazione tacita.</p>
+    </div>
+    <div class="notif-card">
+      <div class="nc-type">AT — Attestazione Impossibilità</div>
+      <span class="nc-tag tag-sdi">SdI → Emittente</span>
+      <p>Il SdI non è riuscito a recapitare la fattura entro i termini. La fattura è comunque valida; l'emittente ha la prova dell'invio.</p>
+    </div>
+    <div class="notif-card">
+      <div class="nc-type">DT — Decorrenza Termini</div>
+      <span class="nc-tag tag-sdi">SdI → Emittente</span>
+      <p>Sono trascorsi i 15 giorni senza notifica di esito dal destinatario: la fattura si considera accettata. Generata automaticamente dal SdI.</p>
+    </div>
+  </div>
+
+  <h2>Scenari operativi</h2>
+
+  <div class="scenario-box">
+    <h3>Scenario 1 — Flusso positivo completo</h3>
+    <ol>
+      <li>L'ERP genera la FatturaPA XML e la invia al SdI tramite intermediario accreditato (canale SdICoop).</li>
+      <li>Il SdI esegue i controlli in tempo reale e invia la <em>Ricevuta di Consegna</em> all'intermediario dell'emittente.</li>
+      <li>Il SdI recapita la fattura al canale del destinatario (Codice Destinatario) entro pochi secondi.</li>
+      <li>Il destinatario scarica la fattura dal proprio software, verifica i dati e la contabilizza.</li>
+      <li>Entro 15 giorni il destinatario può inviare la <em>Notifica di Esito</em> di accettazione (EC01) — o non fa nulla (accettazione tacita).</li>
+      <li>Il SdI invia la <em>Decorrenza Termini</em> (DT) all'emittente dopo i 15 giorni senza risposta.</li>
+    </ol>
+  </div>
+
+  <div class="scenario-box">
+    <h3>Scenario 2 — Fattura scartata dal SdI</h3>
+    <ol>
+      <li>Il SdI rileva errori formali (es. P.IVA destinatario inesistente, campi obbligatori mancanti, schema XSD non valido).</li>
+      <li>Il SdI invia la <em>Notifica di Scarto</em> (NS) all'emittente con i codici di errore specifici.</li>
+      <li>La fattura scartata non ha valore fiscale ed è come non emessa: non occorre emettere nota di credito.</li>
+      <li>L'emittente corregge gli errori e reinvia la fattura con lo <strong>stesso numero</strong> (il SdI non ha ancora memorizzato il numero come "usato").</li>
+    </ol>
+  </div>
+
+  <div class="scenario-box">
+    <h3>Scenario 3 — Rifiuto da parte del destinatario</h3>
+    <ol>
+      <li>Il destinatario rileva un errore commerciale (importo sbagliato, merce non ricevuta, prestazione non conforme) e invia al SdI la <em>Notifica di Esito</em> di rifiuto (EC02) entro 15 giorni.</li>
+      <li>L'emittente riceve la notifica di rifiuto tramite il proprio canale SdI.</li>
+      <li><strong>Attenzione:</strong> il rifiuto EC02 non ha effetti fiscali automatici. La fattura rimane valida ai fini IVA. Per stornare fiscalmente l'operazione è necessario emettere una <strong>nota di credito</strong> (fattura con <em>TipoDocumento</em> TD04) via SdI.</li>
+      <li>Le parti si accordano sulla risoluzione commerciale (nuovo ordine, fattura corretta, rimborso).</li>
+    </ol>
+  </div>
+
+  <div class="scenario-box">
+    <h3>Scenario 4 — Nota di credito (storno)</h3>
+    <ol>
+      <li>L'emittente genera una fattura XML con <em>TipoDocumento</em> <code>TD04</code> (nota di credito) che richiama il numero della fattura originale nel campo <em>DatiGeneraliDocumento / RiferimentoNumeroLinea</em> o nei dati generali.</li>
+      <li>La nota di credito transita obbligatoriamente via SdI come qualsiasi altra fattura.</li>
+      <li>Il SdI la recapita al destinatario e genera le stesse notifiche di una fattura ordinaria.</li>
+      <li>L'importo IVA stornato viene recuperato nella liquidazione IVA dell'emittente (variazione in diminuzione art. 26 DPR 633/72).</li>
+    </ol>
+  </div>
+
+  <div class="scenario-box">
+    <h3>Scenario 5 — Fattura verso soggetto estero (esterometro / SdI)</h3>
+    <ol>
+      <li>Per le cessioni a soggetti non stabiliti in Italia (clienti esteri), l'emittente può scegliere tra:</li>
+      <li><strong>Invio tramite SdI</strong> con <em>TipoDocumento</em> <code>TD01</code> e destinatario <code>XXXXXXX</code> (sette X): la fattura è considerata emessa correttamente verso l'estero.</li>
+      <li>Dal 1° luglio 2022 l'esterometro (comunicazione separata delle operazioni con l'estero) è soppresso per le fatture già inviate tramite SdI. Per le fatture ricevute da soggetti esteri, l'acquirente italiano deve trasmettere i dati tramite SdI entro il 15° giorno del mese successivo.</li>
+    </ol>
+  </div>
+
+  <h2>Tipi documento FatturaPA principali</h2>
+  <table class="states-table">
+    <thead>
+      <tr><th>Codice</th><th>Tipo documento</th><th>Utilizzo</th></tr>
+    </thead>
+    <tbody>
+      <tr><td><span class="s-code">TD01</span></td><td>Fattura</td><td>Fattura ordinaria B2B, B2G, operazioni estere via SdI.</td></tr>
+      <tr><td><span class="s-code">TD02</span></td><td>Acconto/anticipo su fattura</td><td>Fattura di acconto con liquidazione IVA immediata.</td></tr>
+      <tr><td><span class="s-code">TD03</span></td><td>Acconto/anticipo su parcella</td><td>Per professionisti: acconto su prestazione non ancora completata.</td></tr>
+      <tr><td><span class="s-code">TD04</span></td><td>Nota di credito</td><td>Storno totale o parziale di fattura precedente (variazione in diminuzione).</td></tr>
+      <tr><td><span class="s-code">TD05</span></td><td>Nota di debito</td><td>Integrazione di fattura precedente (variazione in aumento).</td></tr>
+      <tr><td><span class="s-code">TD06</span></td><td>Parcella</td><td>Fattura di professionisti con cassa previdenziale e ritenuta d'acconto.</td></tr>
+      <tr><td><span class="s-code">TD16</span></td><td>Integrazione fattura reverse charge interno</td><td>Autofattura per integrazione IVA in reverse charge settoriale (edilizia, rottami, ecc.).</td></tr>
+      <tr><td><span class="s-code">TD17</span></td><td>Integrazione/autofattura acquisto servizi dall'estero</td><td>Per servizi ricevuti da soggetti non stabiliti (art. 17 co. 2 DPR 633/72).</td></tr>
+      <tr><td><span class="s-code">TD18</span></td><td>Integrazione acquisto beni intracomunitari</td><td>Per acquisiti intracomunitari di beni (art. 38 D.L. 331/93).</td></tr>
+      <tr><td><span class="s-code">TD19</span></td><td>Integrazione acquisto beni art. 17 co. 2 DPR 633/72</td><td>Per acquisti da soggetti non stabiliti di beni già in Italia.</td></tr>
+      <tr><td><span class="s-code">TD24</span></td><td>Fattura differita art. 21 co. 4 lett. a DPR 633/72</td><td>Fattura differita per cessioni documentate da DDT nel mese. Emessa entro il 15° del mese successivo.</td></tr>
+    </tbody>
+  </table>
+
+  <h2>Casi speciali ed esclusioni</h2>
+  <ul>
+    <li><strong>Forfettari fino al 31 dicembre 2023:</strong> esonerati se con ricavi ≤ 25.000 €/anno. Dal 1° gennaio 2024 obbligo per tutti i forfettari senza eccezioni.</li>
+    <li><strong>Soggetti in regime di vantaggio (minimi):</strong> obbligati dal 1° gennaio 2024.</li>
+    <li><strong>Operatori sanitari (D.Lgs. 196/2003 — privacy):</strong> esonero per fatture verso consumatori finali che coinvolgono dati sanitari. Obbligo per operazioni B2B tra operatori sanitari.</li>
+    <li><strong>Soggetti non stabiliti in Italia:</strong> esonerati dall'obbligo di emissione FatturaPA, ma gli acquirenti italiani devono integrare/autofatturare via SdI per le operazioni rilevanti in Italia.</li>
+    <li><strong>Corrispettivi telematici (scontrini):</strong> per vendite B2C al dettaglio il regime corrispettivi telematici (RT) è distinto dalla fatturazione elettronica; i corrispettivi transitano dai Registratori Telematici (RT) al SdI ma non come FatturaPA.</li>
+    <li><strong>Associazioni sportive dilettantistiche (ASD) e ONLUS:</strong> regime specifico; verifica caso per caso in base al volume d'affari.</li>
+  </ul>
+
+  <h2>Riferimenti normativi e tecnici</h2>
+  <ul class="ref-list">
+    <li>
+      <strong>D.Lgs. 5 agosto 2015, n. 127</strong> — Norma primaria che istituisce l'obbligo di fatturazione elettronica B2B dal 1° gennaio 2019.<br>
+      <a href="https://www.normattiva.it/uri-res/N2Ls?urn:nir:stato:decreto.legislativo:2015-08-05;127" target="_blank" rel="noopener">normattiva.it — D.Lgs. 127/2015 ↗</a>
+    </li>
+    <li>
+      <strong>Agenzia delle Entrate — FatturaPA</strong> — Portale ufficiale con schemi XSD, specifiche tecniche, validatore online, guide operative.<br>
+      <a href="https://www.fatturapa.gov.it/" target="_blank" rel="noopener">fatturapa.gov.it ↗</a>
+    </li>
+    <li>
+      <strong>Specifiche tecniche FatturaPA v1.2.2</strong> — Schema XML, regole di controllo, tabelle dei codici (natura, regime fiscale, tipo documento).<br>
+      <a href="https://www.fatturapa.gov.it/it/norme-e-regole/specifiche-tecniche/" target="_blank" rel="noopener">Specifiche tecniche AdE ↗</a>
+    </li>
+    <li>
+      <strong>Portale Fatture e Corrispettivi — AdE</strong> — Portale per la gestione delle fatture elettroniche, consultazione, conservazione gratuita, API di integrazione.<br>
+      <a href="https://ivaservizi.agenziaentrate.gov.it/" target="_blank" rel="noopener">ivaservizi.agenziaentrate.gov.it ↗</a>
+    </li>
+    <li>
+      <strong>Commissione europea — eInvoicing in Italy</strong> — Panoramica della Commissione europea sulla fatturazione elettronica italiana.<br>
+      <a href="https://ec.europa.eu/digital-building-blocks/sites/display/DIGITAL/eInvoicing+in+Italy" target="_blank" rel="noopener">Commissione europea — eInvoicing Italy ↗</a>
+    </li>
+  </ul>
+
+</main>
+</body>
+</html>

@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Polonia — Gestione flussi fatturazione elettronica B2B (KSeF)</title>
+<meta name="description" content="Flussi, stati e scadenze del sistema KSeF per la fatturazione elettronica B2B in Polonia. Obbligo dal 1° febbraio 2026.">
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=IBM+Plex+Mono:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap');
+  :root{
+    --paper:#F5F5F5; --ink:#161616; --ink-soft:#5A5A5A; --line:#D6D6D6;
+    --accent:#DC143C; --card:#FFFFFF; --blue:#1a56db; --blue-light:#dbeafe;
+    --green:#065f46; --green-light:#d1fae5; --orange:#92400e; --orange-light:#fef3c7;
+    --red:#991b1b; --red-light:#fee2e2;
+  }
+  *{box-sizing:border-box;} html{scroll-behavior:smooth;}
+  body{margin:0;background:var(--paper);color:var(--ink);font-family:'Inter',sans-serif;-webkit-font-smoothing:antialiased;}
+  body::before{content:"";position:fixed;inset:0;background-image:repeating-linear-gradient(0deg,rgba(27,36,33,0.018) 0px,rgba(27,36,33,0.018) 1px,transparent 1px,transparent 3px);pointer-events:none;z-index:0;}
+  a{color:var(--blue);}
+  header.masthead{position:relative;z-index:1;border-bottom:3px double var(--ink);padding:28px 5vw 18px;}
+  .masthead-top{display:flex;justify-content:space-between;align-items:baseline;flex-wrap:wrap;gap:8px;font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-soft);margin-bottom:18px;}
+  .masthead-top .dot{color:var(--accent);}
+  .masthead-top a{color:var(--ink-soft);text-decoration:none;}
+  .masthead-top a:hover{color:var(--ink);}
+  h1.title{font-family:'Fraunces',serif;font-weight:600;font-size:clamp(28px,5vw,52px);line-height:1;margin:0 0 10px;letter-spacing:-0.01em;}
+  h1.title em{font-style:italic;font-weight:400;color:var(--accent);}
+  .subhead{display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:18px;border-top:1px solid var(--line);padding-top:14px;margin-top:18px;}
+  .subhead p{max-width:640px;font-size:15px;line-height:1.55;color:var(--ink-soft);margin:0;}
+  .meta-stamp{font-family:'IBM Plex Mono',monospace;font-size:11px;text-align:right;color:var(--ink-soft);line-height:1.6;white-space:nowrap;}
+  .meta-stamp .label{text-transform:uppercase;letter-spacing:.08em;font-size:10px;color:var(--ink);}
+  main{position:relative;z-index:1;padding:38px 5vw 60px;max-width:900px;margin:0 auto;width:100%;}
+  h2{font-family:'Fraunces',serif;font-weight:600;font-size:22px;margin:2em 0 .5em;letter-spacing:-0.01em;border-bottom:2px solid var(--line);padding-bottom:6px;}
+  h3{font-family:'Fraunces',serif;font-weight:600;font-size:17px;margin:1.5em 0 .4em;color:var(--ink);}
+  p{font-size:14.5px;line-height:1.65;color:var(--ink-soft);margin:.5em 0 .8em;}
+  ul,ol{padding-left:1.4em;margin:.5em 0 .8em;}
+  li{font-size:14.5px;line-height:1.6;color:var(--ink-soft);margin-bottom:.25em;}
+  strong{color:var(--ink);}
+  code{font-family:'IBM Plex Mono',monospace;font-size:12.5px;background:#e8e8e8;padding:1px 5px;border-radius:3px;}
+  .timeline{display:flex;flex-direction:column;gap:0;border-left:3px solid var(--accent);margin:1.5em 0 1.5em 12px;}
+  .tl-item{position:relative;padding:12px 16px 12px 24px;}
+  .tl-item::before{content:"";position:absolute;left:-8px;top:18px;width:13px;height:13px;border-radius:50%;background:var(--accent);border:2px solid var(--paper);}
+  .tl-date{font-family:'IBM Plex Mono',monospace;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.07em;color:var(--accent);margin-bottom:4px;}
+  .tl-title{font-size:14.5px;font-weight:600;color:var(--ink);margin-bottom:3px;}
+  .tl-desc{font-size:13.5px;color:var(--ink-soft);line-height:1.55;}
+  .flow-steps{counter-reset:step;display:flex;flex-direction:column;gap:0;border-left:2px solid var(--line);margin:1em 0 1em 10px;}
+  .flow-step{position:relative;padding:10px 14px 10px 28px;}
+  .flow-step::before{counter-increment:step;content:counter(step);position:absolute;left:-13px;top:10px;width:24px;height:24px;border-radius:50%;background:var(--ink);color:#fff;font-family:'IBM Plex Mono',monospace;font-size:11px;font-weight:700;display:flex;align-items:center;justify-content:center;border:2px solid var(--paper);}
+  .flow-step .fs-title{font-size:14px;font-weight:600;color:var(--ink);margin-bottom:2px;}
+  .flow-step .fs-desc{font-size:13.5px;color:var(--ink-soft);line-height:1.55;}
+  .states-table{width:100%;border-collapse:collapse;margin:1em 0;font-size:13.5px;}
+  .states-table th{background:var(--ink);color:#fff;font-family:'IBM Plex Mono',monospace;font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.06em;padding:8px 12px;text-align:left;}
+  .states-table td{padding:8px 12px;border-bottom:1px solid var(--line);vertical-align:top;color:var(--ink-soft);}
+  .states-table tr:last-child td{border-bottom:none;}
+  .states-table tr:nth-child(even) td{background:#fafafa;}
+  .s-code{font-family:'IBM Plex Mono',monospace;font-size:12px;color:var(--ink);}
+  .scenario-box{background:var(--card);border:1px solid var(--line);border-radius:6px;padding:16px 18px;margin-bottom:14px;}
+  .scenario-box h3{margin:0 0 8px;font-size:15px;}
+  .scenario-box ol{margin:0;padding-left:1.3em;}
+  .scenario-box li{font-size:13.5px;color:var(--ink-soft);margin-bottom:.2em;}
+  .callout{border-left:4px solid var(--accent);background:var(--card);padding:12px 16px;margin:1.2em 0;border-radius:0 5px 5px 0;font-size:13.5px;color:var(--ink-soft);line-height:1.6;}
+  .callout strong{color:var(--ink);}
+  .ref-list{list-style:none;padding:0;margin:.5em 0;}
+  .ref-list li{font-size:13.5px;border-bottom:1px solid var(--line);padding:8px 0;color:var(--ink-soft);}
+  .ref-list li:last-child{border-bottom:none;}
+  .ref-list a{color:var(--blue);}
+  .badge{display:inline-block;font-size:10px;font-weight:600;padding:2px 7px;border-radius:3px;text-transform:uppercase;letter-spacing:.05em;margin-left:6px;vertical-align:middle;}
+  .badge-green{background:var(--green-light);color:var(--green);}
+  .badge-orange{background:var(--orange-light);color:var(--orange);}
+  .badge-red{background:var(--red-light);color:var(--red);}
+</style>
+</head>
+<body>
+<header class="masthead">
+  <div class="masthead-top">
+    <span><a href="../index.html">← E-Invoicing Tracker</a> <span class="dot">◆</span> Polonia</span>
+    <span>Aggiornato: settembre 2026</span>
+  </div>
+  <h1 class="title">Polonia — <em>KSeF</em><br>fatturazione elettronica B2B</h1>
+  <div class="subhead">
+    <p>Guida al sistema <strong>KSeF</strong> (Krajowy System e-Faktur — Sistema Nazionale di Fatturazione Elettronica), la piattaforma centralizzata obbligatoria per la fatturazione B2B in Polonia. Modello a compensazione centrale: ogni fattura transita obbligatoriamente attraverso il sistema ministeriale.</p>
+    <div class="meta-stamp">
+      <div class="label">Normativa</div>
+      <div>Ustawa z dnia 29 października 2021 r.</div>
+      <div>o zmianie ustawy o VAT (KSeF)</div>
+      <div class="label" style="margin-top:6px">Mandato B2B</div>
+      <div>Grandi (&gt;200M PLN): 1 feb 2026</div>
+      <div>Medie/piccole: 1 apr 2026</div>
+      <div>Micro: 1 gen 2027</div>
+    </div>
+  </div>
+</header>
+
+<main>
+
+  <h2>Quadro normativo</h2>
+  <p>La Polonia ha introdotto il KSeF in via facoltativa nel 2022 con la Legge del 29 ottobre 2021 (modifica della legge IVA). L'obbligo è stato poi stabilito con la Legge del 9 maggio 2024, che ha fissato le scadenze progressive per categoria di impresa. Il KSeF è gestito dal <strong>Ministerstwo Finansów</strong> (Ministero delle Finanze) attraverso l'infrastruttura dell'Amministrazione Fiscale Nazionale (Krajowa Administracja Skarbowa — KAS).</p>
+  <p>Il formato obbligatorio è <strong>FA(3)</strong> — schema XML definito dal Ministero delle Finanze, versione 3 del modello di struttura logica della fattura elettronica (FA_VAT). La versione FA(3) sostituisce FA(2) (utilizzato nella fase facoltativa 2022–2025).</p>
+
+  <div class="callout">
+    <strong>Modello centralizzato esclusivo:</strong> a differenza della Germania (canale libero) o della Francia (scelta tra PDP accreditate), in Polonia <strong>l'unico canale ammesso per le fatture B2B è KSeF</strong>. Non è possibile inviare fatture via email, EDI o Peppol per le transazioni soggette all'obbligo. KSeF assegna a ogni fattura un numero univoco ufficiale (<em>numer KSeF</em>) che ha valore legale.
+  </div>
+
+  <h2>Scadenze progressive</h2>
+  <div class="timeline">
+    <div class="tl-item">
+      <div class="tl-date">2022 – 31 gennaio 2026</div>
+      <div class="tl-title">KSeF facoltativo (fase volontaria)</div>
+      <div class="tl-desc">Il sistema è operativo su base volontaria. Le imprese che aderiscono ottengono vantaggi fiscali (rimborso IVA in 40 giorni invece di 60).</div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-date">1° febbraio 2026</div>
+      <div class="tl-title">Obbligo — grandi imprese (&gt; 200 milioni PLN di fatturato)</div>
+      <div class="tl-desc">I soggetti passivi con fatturato 2025 superiore a 200 milioni PLN devono emettere tutte le fatture B2B tramite KSeF. Periodo di tolleranza (senza sanzioni) fino al 31 dicembre 2026.</div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-date">1° aprile 2026</div>
+      <div class="tl-title">Obbligo — medie e piccole imprese</div>
+      <div class="tl-desc">Estensione dell'obbligo alle imprese con fatturato 2025 fino a 200 milioni PLN. Periodo di tolleranza fino al 31 dicembre 2026.</div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-date">1° gennaio 2027</div>
+      <div class="tl-title">Obbligo — microimprese</div>
+      <div class="tl-desc">Estensione a tutte le microimprese e ai soggetti passivi con partita IVA polacca, indipendentemente dal fatturato. Obbligo pieno senza periodi di tolleranza.</div>
+    </div>
+  </div>
+
+  <h2>Flusso di emissione tramite KSeF</h2>
+  <div class="flow-steps">
+    <div class="flow-step">
+      <div class="fs-title">Autenticazione al KSeF</div>
+      <div class="fs-desc">L'emittente (o il suo intermediario autorizzato) si autentica all'API KSeF tramite token di sessione. L'autenticazione avviene con firma qualificata, sigillo qualificato, o credenziali fiscali (NIP + token generato dal sistema). Ogni sessione API ha durata limitata.</div>
+    </div>
+    <div class="flow-step">
+      <div class="fs-title">Generazione della fattura FA(3)</div>
+      <div class="fs-desc">Il sistema ERP/fatturazione genera il file XML secondo lo schema FA(3) pubblicato dal Ministero delle Finanze. I campi obbligatori includono: NIP emittente, NIP destinatario, data emissione, posizioni fattura, imponibile e IVA per aliquota, modalità di pagamento.</div>
+    </div>
+    <div class="flow-step">
+      <div class="fs-title">Invio a KSeF tramite API</div>
+      <div class="fs-desc">La fattura viene inviata all'API REST di KSeF in modalità sincrona (singola fattura) o asincrona (batch). Il sistema KSeF esegue la validazione formale dello schema XSD e delle regole di business in tempo reale.</div>
+    </div>
+    <div class="flow-step">
+      <div class="fs-title">Validazione e assegnazione numero KSeF</div>
+      <div class="fs-desc">Se la validazione ha esito positivo, KSeF assegna il <strong>numer KSeF</strong> — un identificativo univoco di 35 caratteri strutturato come <code>[NIP]–[data]–[progressivo]–[checksum]</code>. Questo numero è giuridicamente vincolante e deve comparire sul documento di pagamento.</div>
+    </div>
+    <div class="flow-step">
+      <div class="fs-title">Messa a disposizione al destinatario</div>
+      <div class="fs-desc">La fattura validata è immediatamente disponibile nel KSeF del destinatario (accesso tramite NIP). Il destinatario viene notificato (push o polling API). Non è necessario alcun invio diretto emittente → destinatario: KSeF fa da intermediario.</div>
+    </div>
+    <div class="flow-step">
+      <div class="fs-title">Download e integrazione nel gestionale</div>
+      <div class="fs-desc">Il destinatario scarica la fattura FA(3) tramite API KSeF o portale web e la integra nel proprio sistema contabile. La fattura scaricata dal KSeF è il documento legale; eventuali PDF sono solo rappresentazioni visive non vincolanti.</div>
+    </div>
+    <div class="flow-step">
+      <div class="fs-title">Conservazione</div>
+      <div class="fs-desc">KSeF conserva le fatture per <strong>10 anni</strong> per conto delle imprese. I soggetti passivi sono dispensati dall'obbligo di archiviazione autonoma per le fatture KSeF, ma possono scaricare e conservare copie locali a scopo gestionale.</div>
+    </div>
+  </div>
+
+  <h2>Stati della fattura in KSeF</h2>
+  <table class="states-table">
+    <thead>
+      <tr><th>Stato</th><th>Descrizione</th></tr>
+    </thead>
+    <tbody>
+      <tr><td><span class="s-code">Wysłana</span></td><td>Fattura inviata all'API KSeF, in attesa di elaborazione.</td></tr>
+      <tr><td><span class="s-code">Przetwarzana</span></td><td>In elaborazione: KSeF sta eseguendo la validazione dello schema e delle regole di business.</td></tr>
+      <tr><td><span class="s-code">Zatwierdzona / OCR</span></td><td>Validata e acquisita da KSeF; numero KSeF assegnato. Fattura disponibile per il destinatario.</td></tr>
+      <tr><td><span class="s-code">Odrzucona</span></td><td>Rifiutata: errore di validazione (schema non conforme, dati mancanti). L'emittente deve correggere e reinviare.</td></tr>
+      <tr><td><span class="s-code">Anulowana</span></td><td>Annullata: la fattura è stata stornata tramite fattura correttiva (<em>faktura korygująca</em>). Lo stato originale rimane tracciato in KSeF.</td></tr>
+    </tbody>
+  </table>
+  <p>KSeF non prevede un ciclo di stati lato destinatario comparabile al modello francese (accettazione/rifiuto). La gestione delle contestazioni avviene tramite la <strong>faktura korygująca</strong> (nota di variazione/credito), anch'essa obbligatoriamente trasmessa via KSeF.</p>
+
+  <h2>Scenari operativi</h2>
+
+  <div class="scenario-box">
+    <h3>Scenario 1 — Emissione standard (flusso sincrono)</h3>
+    <ol>
+      <li>L'ERP genera il file XML FA(3) e lo invia all'API KSeF in modalità sincrona (<code>POST /api/online/Invoice/Send</code>).</li>
+      <li>KSeF risponde entro pochi secondi con il numero KSeF o con un codice di errore.</li>
+      <li>Il numero KSeF viene memorizzato nell'ERP e incluso nelle comunicazioni di pagamento al cliente.</li>
+      <li>Il cliente accede a KSeF tramite il proprio NIP e scarica la fattura.</li>
+    </ol>
+  </div>
+
+  <div class="scenario-box">
+    <h3>Scenario 2 — Emissione batch (grandi volumi)</h3>
+    <ol>
+      <li>L'ERP impacchetta un batch di fatture in un file ZIP cifrato e lo invia all'API KSeF in modalità asincrona (<code>POST /api/batch/Invoice/Send</code>).</li>
+      <li>KSeF risponde con un <em>ReferenceNumber</em> per il tracking del batch.</li>
+      <li>L'ERP interroga periodicamente lo stato del batch (<code>GET /api/batch/Status/{referenceNumber}</code>) fino a ottenere conferma o errori per singola fattura.</li>
+      <li>Le fatture validate ottengono ciascuna il proprio numero KSeF; quelle con errori devono essere corrette e reinviate.</li>
+    </ol>
+  </div>
+
+  <div class="scenario-box">
+    <h3>Scenario 3 — Fattura correttiva (nota di variazione)</h3>
+    <ol>
+      <li>Il destinatario rileva un errore nella fattura ricevuta (importo errato, aliquota IVA sbagliata).</li>
+      <li>L'emittente genera una <em>faktura korygująca</em> FA(3), che richiama il numero KSeF della fattura originale nel campo <code>NrKSeF</code>.</li>
+      <li>La fattura correttiva viene inviata a KSeF e ottiene un proprio numero KSeF.</li>
+      <li>KSeF collega automaticamente la nota alla fattura originale. Non è richiesta la firma del destinatario per la nota di credito (a differenza del regime pre-KSeF).</li>
+    </ol>
+  </div>
+
+  <div class="scenario-box">
+    <h3>Scenario 4 — Fornitore estero con registrazione IVA polacca</h3>
+    <ol>
+      <li>Un fornitore straniero registrato ai fini IVA in Polonia deve usare KSeF per le operazioni soggette all'obbligo.</li>
+      <li>L'autenticazione all'API KSeF richiede firma qualificata conforme eIDAS o token NIP.</li>
+      <li>I fornitori non residenti e non registrati IVA in Polonia sono esclusi dall'obbligo KSeF.</li>
+      <li>Le operazioni in reverse charge (acquisti intracomunitari, importazioni) non sono fatturate tramite KSeF dall'acquirente polacco.</li>
+    </ol>
+  </div>
+
+  <h2>Integrazione con il B2G (PEF)</h2>
+  <p>Per la fatturazione verso la Pubblica Amministrazione polacca, i fornitori possono scegliere tra due canali:</p>
+  <ul>
+    <li><strong>PEF</strong> (Platforma Elektronicznego Fakturowania) — piattaforma Peppol per B2G, operativa dal 2019. Formato Peppol BIS 3.0.</li>
+    <li><strong>KSeF</strong> — dal 1° febbraio 2026 anche il B2G può transitare via KSeF con il formato FA(3).</li>
+  </ul>
+  <p>I soggetti obbligati al mandato B2B tramite KSeF possono usare KSeF anche per il B2G, eliminando la necessità di gestire due canali separati.</p>
+
+  <h2>Casi speciali ed esclusioni</h2>
+  <ul>
+    <li><strong>Fatture B2C:</strong> escluse dall'obbligo KSeF. Le vendite ai consumatori finali possono continuare con ricevute fiscali (<em>paragon</em>) o fatture PDF/cartacee.</li>
+    <li><strong>Fatture semplificate (paragon con NIP):</strong> con il KSeF obbligatorio i paragoni con NIP del cliente non possono più essere usati come fatture semplificate; occorre emettere fattura FA(3) tramite KSeF.</li>
+    <li><strong>Operazioni intracomunitarie e con paesi terzi:</strong> le fatture di esportazione e le cessioni intracomunitarie (ICS) non transitano via KSeF; vengono emesse con le regole ordinarie.</li>
+    <li><strong>Fatture emesse da casse fiscali:</strong> regime speciale; prevista integrazione futura con KSeF.</li>
+    <li><strong>Fatture RR (acquisti da produttori agricoli in regime forfettario):</strong> escluse da KSeF.</li>
+    <li><strong>Modalità offline (guasto KSeF):</strong> in caso di interruzione del sistema, il Ministero delle Finanze può dichiarare la <em>tryb awaryjny</em> (modalità d'emergenza) che consente l'emissione temporanea fuori da KSeF con successivo caricamento retroattivo.</li>
+  </ul>
+
+  <h2>Riferimenti normativi e tecnici</h2>
+  <ul class="ref-list">
+    <li>
+      <strong>Legge KSeF — Ustawa z dnia 9 maja 2024 r.</strong> — Legge che rende obbligatorio il KSeF con scadenze progressive.<br>
+      <a href="https://www.podatki.gov.pl/ksef/" target="_blank" rel="noopener">podatki.gov.pl — KSeF ↗</a>
+    </li>
+    <li>
+      <strong>Schema FA(3) — Ministerstwo Finansów</strong> — Schema XSD e documentacja del formato FA(3) per la fattura KSeF.<br>
+      <a href="https://www.podatki.gov.pl/ksef/dokumentacja-techniczna-ksef/" target="_blank" rel="noopener">Documentazione tecnica KSeF ↗</a>
+    </li>
+    <li>
+      <strong>API KSeF — Dokumentacja techniczna</strong> — Specifica OpenAPI delle interfacce REST per l'integrazione ERP.<br>
+      <a href="https://ksef.mf.gov.pl/swagger-ui/" target="_blank" rel="noopener">KSeF Swagger UI ↗</a>
+    </li>
+    <li>
+      <strong>Komisja Europejska — eInvoicing in Poland</strong> — Panoramica della Commissione europea sulla fatturazione elettronica polacca.<br>
+      <a href="https://ec.europa.eu/digital-building-blocks/sites/display/DIGITAL/eInvoicing+in+Poland" target="_blank" rel="noopener">Commissione europea — eInvoicing Poland ↗</a>
+    </li>
+  </ul>
+
+</main>
+</body>
+</html>
