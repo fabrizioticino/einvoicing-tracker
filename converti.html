@@ -758,53 +758,47 @@ function extractCFDI(doc) {
 // PDF → ZUGFeRD/Factur-X XML extraction
 // ─────────────────────────────────────────────
 function extractXMLFromPDF(arrayBuffer) {
-  // PDF/A-3 embeds the CII XML as a file attachment in the PDF binary stream.
-  // We scan the raw bytes for the XML content by locating the CrossIndustryInvoice tag.
+  // PDF/A-3 embeds the CII XML as a named file attachment in the binary stream.
+  // A PDF may contain multiple <?xml declarations (e.g. XMP metadata) — we must
+  // find the CII root element first, then walk back to include its <?xml declaration.
   const bytes = new Uint8Array(arrayBuffer);
-  const decoder = new TextDecoder('latin1'); // latin1 preserves byte values
+  const decoder = new TextDecoder('latin1'); // latin1 is byte-preserving
   const raw = decoder.decode(bytes);
 
-  // Look for the XML declaration or root element that signals a CII document
-  const markers = ['<?xml', '<rsm:CrossIndustryInvoice', '<CrossIndustryInvoice'];
-  let startIdx = -1;
-  let foundMarker = '';
-  for (const marker of markers) {
-    const idx = raw.indexOf(marker);
-    if (idx !== -1 && (startIdx === -1 || idx < startIdx)) {
-      startIdx = idx;
-      foundMarker = marker;
-    }
+  // Step 1: find the CII root element (namespaced or bare)
+  const rootMarkers = ['<rsm:CrossIndustryInvoice', '<CrossIndustryInvoice'];
+  let rootIdx = -1;
+  for (const m of rootMarkers) {
+    const idx = raw.indexOf(m);
+    if (idx !== -1 && (rootIdx === -1 || idx < rootIdx)) rootIdx = idx;
   }
 
-  if (startIdx === -1) {
-    throw new Error('Nessun XML CII (ZUGFeRD/Factur-X) trovato nel PDF. Il file deve essere un PDF/A-3 con XML allegato.');
+  if (rootIdx === -1) {
+    throw new Error('Nessun XML CII (ZUGFeRD/Factur-X) trovato nel PDF. Il file deve essere un PDF/A-3 con XML allegato (factur-x.xml / ZUGFeRD-invoice.xml).');
   }
 
-  // Find the end of the XML: look for the closing tag after the start
+  // Step 2: look backward up to 300 chars for an <?xml declaration that belongs to this element
+  const lookBackLen = Math.min(300, rootIdx);
+  const lookBack = raw.substring(rootIdx - lookBackLen, rootIdx);
+  const xmlDeclOffset = lookBack.lastIndexOf('<?xml');
+  const startIdx = xmlDeclOffset !== -1 ? rootIdx - lookBackLen + xmlDeclOffset : rootIdx;
+
+  // Step 3: find the closing root tag
   const closingTags = ['</rsm:CrossIndustryInvoice>', '</CrossIndustryInvoice>'];
   let endIdx = -1;
-  let closingTag = '';
   for (const tag of closingTags) {
-    const idx = raw.indexOf(tag, startIdx);
-    if (idx !== -1) {
-      endIdx = idx + tag.length;
-      closingTag = tag;
-      break;
-    }
+    const idx = raw.indexOf(tag, rootIdx);
+    if (idx !== -1) { endIdx = idx + tag.length; break; }
   }
 
   if (endIdx === -1) {
-    // Fallback: try to find end by stream/obj markers after the XML start
-    const streamEnd = raw.indexOf('endstream', startIdx);
-    if (streamEnd !== -1) {
-      endIdx = streamEnd;
-    } else {
-      throw new Error('XML trovato nel PDF ma il tag di chiusura non è stato trovato. Il PDF potrebbe essere corrotto o compresso.');
-    }
+    // Fallback: cut at endstream marker
+    const streamEnd = raw.indexOf('endstream', rootIdx);
+    if (streamEnd !== -1) endIdx = streamEnd;
+    else throw new Error('XML CII trovato nel PDF ma il tag di chiusura manca. Il PDF potrebbe essere corrotto o compresso (FlateDecode non supportato in browser).');
   }
 
-  // Extract the XML substring and re-encode to UTF-8 properly
-  // The XML declaration may specify utf-8; we need to re-encode from latin1 byte slice
+  // Step 4: extract byte slice and decode as UTF-8 (the embedded XML is UTF-8)
   const xmlSlice = bytes.slice(startIdx, endIdx);
   const xmlString = new TextDecoder('utf-8').decode(xmlSlice);
 
