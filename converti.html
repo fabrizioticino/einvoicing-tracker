@@ -78,6 +78,8 @@
   .btn-print:hover{opacity:.85;}
   .btn-reset{background:transparent;color:var(--ink-soft);border:1px solid var(--line);padding:10px 16px;border-radius:5px;font-size:13px;cursor:pointer;font-family:'Inter',sans-serif;}
   .btn-reset:hover{border-color:var(--ink-soft);}
+  .btn-xml{background:#fff;color:var(--purple);border:1px solid var(--purple);padding:10px 18px;border-radius:5px;font-size:14px;font-weight:600;cursor:pointer;font-family:'Inter',sans-serif;transition:background .15s;}
+  .btn-xml:hover{background:var(--purple-light);}
 
   /* ── Invoice preview card ── */
   .invoice-card{background:var(--card);border:1px solid var(--line);border-radius:8px;padding:32px;font-size:13.5px;line-height:1.55;}
@@ -183,6 +185,7 @@
       <h2>Anteprima fattura</h2>
       <div class="action-btns">
         <button class="btn-reset" id="resetBtn">← Nuova fattura</button>
+        <button class="btn-xml" id="exportXmlBtn" style="display:none">⬇ Esporta XML</button>
         <button class="btn-print" id="printBtn">🖨 Stampa / Salva PDF</button>
       </div>
     </div>
@@ -1093,6 +1096,7 @@ ${inv.notes ? `<div class="notes"><strong>Note:</strong> ${inv.notes}</div>` : '
 // UI wiring
 // ─────────────────────────────────────────────
 let currentInvoice = null;
+let currentXML = null; // set when XML was extracted from a PDF
 
 function showStatus(msg, type = 'ok') {
   const bar = document.getElementById('statusBar');
@@ -1104,18 +1108,22 @@ function showPreview(inv) {
   currentInvoice = inv;
   document.getElementById('invoiceCard').innerHTML = renderInvoice(inv);
   document.getElementById('previewSection').style.display = 'block';
+  document.getElementById('exportXmlBtn').style.display = currentXML ? 'inline-flex' : 'none';
   document.getElementById('previewSection').scrollIntoView({ behavior: 'smooth', block: 'start' });
 }
 
 function reset() {
   currentInvoice = null;
+  currentXML = null;
   document.getElementById('previewSection').style.display = 'none';
+  document.getElementById('exportXmlBtn').style.display = 'none';
   document.getElementById('statusBar').className = 'status-bar';
   document.getElementById('xmlPaste').value = '';
   document.getElementById('fileInput').value = '';
 }
 
 function processXML(xmlStr, sourceLabel) {
+  if (!sourceLabel) currentXML = null; // reset when processing plain XML text
   try {
     const inv = parseXML(xmlStr);
     const src = sourceLabel ? ` (${sourceLabel})` : '';
@@ -1143,6 +1151,7 @@ function processFile(file) {
     reader.onload = (e) => {
       try {
         const { xml, source } = extractXMLFromPDF(e.target.result);
+        currentXML = { content: xml, filename: (file.name.replace(/\.pdf$/i, '') + '.xml') };
         showStatus(`✓ XML estratto da ${source} — analisi in corso…`, 'ok');
         processXML(xml, source);
       } catch(err) {
@@ -1176,6 +1185,18 @@ document.getElementById('parseBtn').addEventListener('click', () => {
   const xml = document.getElementById('xmlPaste').value.trim();
   if (!xml) { showStatus('Incolla il contenuto XML nel campo di testo.', 'warn'); return; }
   processXML(xml);
+});
+
+// Export XML button (visible only when XML was extracted from a PDF)
+document.getElementById('exportXmlBtn').addEventListener('click', () => {
+  if (!currentXML) return;
+  const blob = new Blob([currentXML.content], { type: 'application/xml;charset=utf-8' });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = currentXML.filename;
+  a.click();
+  setTimeout(() => URL.revokeObjectURL(url), 2000);
 });
 
 // Print button
