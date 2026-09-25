@@ -1,0 +1,864 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Converti Fattura XML → PDF — E-Invoicing Tracker</title>
+<meta name="description" content="Converti fatture XML in PDF nel browser: FatturaPA (IT), UBL/Peppol (BE, NO, SK, HR...), KSeF FA(3) (PL), RO_CIUS (RO). Nessun dato inviato a server esterni.">
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=IBM+Plex+Mono:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap');
+  :root{
+    --paper:#F5F5F5;--ink:#161616;--ink-soft:#5A5A5A;--line:#D6D6D6;
+    --accent:#1a56db;--card:#FFFFFF;--blue:#1a56db;
+    --green:#065f46;--green-light:#d1fae5;
+    --orange:#92400e;--orange-light:#fef3c7;
+    --red:#991b1b;--red-light:#fee2e2;
+    --purple:#5b21b6;--purple-light:#ede9fe;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{margin:0;background:var(--paper);color:var(--ink);font-family:'Inter',sans-serif;-webkit-font-smoothing:antialiased;}
+  body::before{content:"";position:fixed;inset:0;background-image:repeating-linear-gradient(0deg,rgba(27,36,33,0.018) 0px,rgba(27,36,33,0.018) 1px,transparent 1px,transparent 3px);pointer-events:none;z-index:0;}
+  a{color:var(--blue);}
+
+  /* ── Masthead ── */
+  header.masthead{position:relative;z-index:1;border-bottom:3px double var(--ink);padding:28px 5vw 18px;}
+  .masthead-top{display:flex;justify-content:space-between;align-items:baseline;flex-wrap:wrap;gap:8px;font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-soft);margin-bottom:18px;}
+  .masthead-top .dot{color:var(--accent);}
+  .masthead-top a{color:var(--ink-soft);text-decoration:none;}.masthead-top a:hover{color:var(--ink);}
+  h1.title{font-family:'Fraunces',serif;font-weight:600;font-size:clamp(26px,4.5vw,48px);line-height:1.05;margin:0 0 10px;letter-spacing:-0.01em;}
+  h1.title em{font-style:italic;font-weight:400;color:var(--accent);}
+  .subhead{display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:18px;border-top:1px solid var(--line);padding-top:14px;margin-top:18px;}
+  .subhead p{max-width:640px;font-size:15px;line-height:1.55;color:var(--ink-soft);margin:0;}
+  .badge-row{display:flex;gap:6px;flex-wrap:wrap;margin-top:10px;}
+  .fmt-badge{font-family:'IBM Plex Mono',monospace;font-size:10px;font-weight:700;padding:3px 8px;border-radius:3px;text-transform:uppercase;letter-spacing:.05em;}
+  .fmt-it{background:#d1fae5;color:#065f46;}
+  .fmt-pl{background:#fef3c7;color:#92400e;}
+  .fmt-ubl{background:#dbeafe;color:#1e40af;}
+  .fmt-ro{background:#fee2e2;color:#991b1b;}
+  .privacy-note{font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--ink-soft);text-align:right;line-height:1.5;}
+
+  /* ── Main layout ── */
+  main{position:relative;z-index:1;padding:36px 5vw 60px;max-width:960px;margin:0 auto;}
+  h2{font-family:'Fraunces',serif;font-weight:600;font-size:20px;margin:2em 0 .6em;letter-spacing:-0.01em;border-bottom:2px solid var(--line);padding-bottom:5px;}
+
+  /* ── Upload zone ── */
+  .upload-area{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-bottom:24px;}
+  @media(max-width:600px){.upload-area{grid-template-columns:1fr;}}
+
+  .drop-zone{border:2px dashed var(--line);border-radius:8px;background:var(--card);padding:32px 24px;text-align:center;cursor:pointer;transition:border-color .2s,background .2s;position:relative;}
+  .drop-zone:hover,.drop-zone.drag-over{border-color:var(--accent);background:#eff6ff;}
+  .drop-zone input[type=file]{position:absolute;inset:0;opacity:0;cursor:pointer;width:100%;height:100%;}
+  .drop-zone .dz-icon{font-size:32px;margin-bottom:10px;}
+  .drop-zone .dz-label{font-size:14px;font-weight:600;color:var(--ink);margin-bottom:4px;}
+  .drop-zone .dz-sub{font-size:12px;color:var(--ink-soft);}
+
+  .paste-zone{display:flex;flex-direction:column;gap:8px;}
+  .paste-zone label{font-size:12px;font-weight:600;color:var(--ink-soft);text-transform:uppercase;letter-spacing:.06em;font-family:'IBM Plex Mono',monospace;}
+  .paste-zone textarea{flex:1;min-height:140px;border:1px solid var(--line);border-radius:6px;padding:12px;font-family:'IBM Plex Mono',monospace;font-size:12px;color:var(--ink);background:var(--card);resize:vertical;outline:none;transition:border-color .2s;}
+  .paste-zone textarea:focus{border-color:var(--accent);}
+  .paste-zone textarea::placeholder{color:#aaa;}
+
+  .parse-btn{align-self:flex-end;background:var(--ink);color:#fff;border:none;padding:10px 22px;border-radius:5px;font-family:'Inter',sans-serif;font-size:14px;font-weight:600;cursor:pointer;transition:opacity .15s;}
+  .parse-btn:hover{opacity:.85;}
+  .parse-btn:disabled{opacity:.4;cursor:not-allowed;}
+
+  /* ── Status ── */
+  .status-bar{margin-bottom:18px;padding:10px 14px;border-radius:5px;font-size:13.5px;font-family:'IBM Plex Mono',monospace;display:none;}
+  .status-bar.ok{background:var(--green-light);color:var(--green);border:1px solid #a7f3d0;display:block;}
+  .status-bar.err{background:var(--red-light);color:var(--red);border:1px solid #fca5a5;display:block;}
+  .status-bar.warn{background:var(--orange-light);color:var(--orange);border:1px solid #fcd34d;display:block;}
+
+  /* ── Preview ── */
+  #previewSection{display:none;}
+  .preview-header{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;margin-bottom:16px;}
+  .preview-header h2{margin:0;border:none;padding:0;}
+  .action-btns{display:flex;gap:10px;}
+  .btn-print{background:var(--accent);color:#fff;border:none;padding:10px 20px;border-radius:5px;font-size:14px;font-weight:600;cursor:pointer;font-family:'Inter',sans-serif;transition:opacity .15s;}
+  .btn-print:hover{opacity:.85;}
+  .btn-reset{background:transparent;color:var(--ink-soft);border:1px solid var(--line);padding:10px 16px;border-radius:5px;font-size:13px;cursor:pointer;font-family:'Inter',sans-serif;}
+  .btn-reset:hover{border-color:var(--ink-soft);}
+
+  /* ── Invoice preview card ── */
+  .invoice-card{background:var(--card);border:1px solid var(--line);border-radius:8px;padding:32px;font-size:13.5px;line-height:1.55;}
+  .inv-head{display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:16px;margin-bottom:28px;}
+  .inv-title{font-family:'Fraunces',serif;font-size:22px;font-weight:600;}
+  .inv-meta{text-align:right;}
+  .inv-meta .meta-num{font-family:'IBM Plex Mono',monospace;font-size:16px;font-weight:700;color:var(--ink);}
+  .inv-meta .meta-date{font-family:'IBM Plex Mono',monospace;font-size:12px;color:var(--ink-soft);margin-top:2px;}
+  .inv-meta .meta-fmt{font-family:'IBM Plex Mono',monospace;font-size:10px;font-weight:700;padding:2px 7px;border-radius:3px;display:inline-block;margin-top:4px;}
+
+  .parties{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-bottom:24px;padding:16px;background:var(--paper);border-radius:6px;}
+  .party-label{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--ink-soft);font-family:'IBM Plex Mono',monospace;margin-bottom:4px;}
+  .party-name{font-weight:700;color:var(--ink);font-size:14px;margin-bottom:2px;}
+  .party-vat{font-family:'IBM Plex Mono',monospace;font-size:12px;color:var(--ink-soft);}
+  .party-addr{font-size:12px;color:var(--ink-soft);margin-top:3px;}
+
+  .lines-table{width:100%;border-collapse:collapse;margin-bottom:20px;font-size:13px;}
+  .lines-table th{text-align:left;padding:7px 10px;background:var(--ink);color:#fff;font-size:11px;font-family:'IBM Plex Mono',monospace;letter-spacing:.04em;}
+  .lines-table th:last-child,.lines-table td:last-child{text-align:right;}
+  .lines-table th:nth-child(3),.lines-table td:nth-child(3){text-align:right;}
+  .lines-table th:nth-child(4),.lines-table td:nth-child(4){text-align:right;}
+  .lines-table td{padding:7px 10px;border-bottom:1px solid var(--line);color:var(--ink-soft);}
+  .lines-table td:first-child,.lines-table td:last-child{color:var(--ink);}
+  .lines-table tr:last-child td{border-bottom:none;}
+  .lines-table tr:nth-child(even) td{background:#fafafa;}
+
+  .totals-area{display:flex;justify-content:flex-end;margin-bottom:20px;}
+  .totals-box{width:280px;}
+  .totals-row{display:flex;justify-content:space-between;padding:5px 0;font-size:13px;border-bottom:1px solid var(--line);}
+  .totals-row:last-child{border-bottom:none;font-weight:700;font-size:15px;color:var(--ink);padding-top:10px;}
+  .totals-row .lbl{color:var(--ink-soft);}
+  .totals-row .val{font-family:'IBM Plex Mono',monospace;}
+
+  .vat-table{width:100%;border-collapse:collapse;font-size:12px;margin-bottom:16px;}
+  .vat-table th{text-align:left;padding:5px 10px;background:#f0f0f0;font-size:10px;font-family:'IBM Plex Mono',monospace;color:var(--ink-soft);letter-spacing:.04em;}
+  .vat-table th:not(:first-child),.vat-table td:not(:first-child){text-align:right;}
+  .vat-table td{padding:5px 10px;border-bottom:1px solid var(--line);color:var(--ink-soft);}
+
+  .inv-notes{margin-top:16px;padding:12px;background:#fafafa;border-radius:4px;font-size:12.5px;color:var(--ink-soft);border-left:3px solid var(--line);}
+  .inv-notes strong{color:var(--ink);}
+
+  /* ── Supported formats info ── */
+  .format-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px;margin-top:1em;}
+  .fmt-card{background:var(--card);border:1px solid var(--line);border-radius:6px;padding:14px 16px;}
+  .fmt-card .fc-name{font-family:'IBM Plex Mono',monospace;font-size:12px;font-weight:700;color:var(--ink);margin-bottom:3px;}
+  .fmt-card .fc-ns{font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--ink-soft);word-break:break-all;margin-bottom:6px;}
+  .fmt-card .fc-countries{font-size:12px;color:var(--ink-soft);}
+</style>
+</head>
+<body>
+
+<header class="masthead">
+  <div class="masthead-top">
+    <span><a href="index.html">← E-Invoicing Tracker</a> <span class="dot">◆</span> Convertitore XML → PDF</span>
+    <span>Elaborazione locale — nessun dato inviato</span>
+  </div>
+  <h1 class="title">Converti fattura XML <em>→ PDF</em></h1>
+  <div class="subhead">
+    <div>
+      <p>Carica o incolla una fattura elettronica XML: il formato viene rilevato automaticamente e la fattura viene resa come PDF stampabile nel browser. <strong>Tutti i dati restano sul tuo dispositivo</strong> — nessun upload a server esterni.</p>
+      <div class="badge-row">
+        <span class="fmt-badge fmt-it">FatturaPA — Italia</span>
+        <span class="fmt-badge fmt-ubl">UBL 2.1/2.5 — Peppol (BE, NO, SK, HR…)</span>
+        <span class="fmt-badge fmt-pl">KSeF FA(3) — Polonia</span>
+        <span class="fmt-badge fmt-ro">RO_CIUS UBL — Romania</span>
+      </div>
+    </div>
+    <div class="privacy-note">
+      &#128274; Elaborazione 100% locale<br>
+      Nessun dato inviato a server<br>
+      Compatibile con dati riservati
+    </div>
+  </div>
+</header>
+
+<main>
+
+  <!-- Upload / Paste -->
+  <div class="upload-area">
+    <div class="drop-zone" id="dropZone">
+      <input type="file" id="fileInput" accept=".xml,text/xml,application/xml">
+      <div class="dz-icon">📄</div>
+      <div class="dz-label">Trascina qui la fattura XML</div>
+      <div class="dz-sub">oppure clicca per scegliere il file</div>
+    </div>
+
+    <div class="paste-zone">
+      <label for="xmlPaste">Incolla il contenuto XML</label>
+      <textarea id="xmlPaste" placeholder="<?xml version=&quot;1.0&quot;?>&#10;<FatturaElettronica ...>&#10;  ...&#10;</FatturaElettronica>"></textarea>
+      <button class="parse-btn" id="parseBtn">Analizza XML →</button>
+    </div>
+  </div>
+
+  <div class="status-bar" id="statusBar"></div>
+
+  <!-- Preview -->
+  <div id="previewSection">
+    <div class="preview-header">
+      <h2>Anteprima fattura</h2>
+      <div class="action-btns">
+        <button class="btn-reset" id="resetBtn">← Nuova fattura</button>
+        <button class="btn-print" id="printBtn">🖨 Stampa / Salva PDF</button>
+      </div>
+    </div>
+    <div class="invoice-card" id="invoiceCard"></div>
+  </div>
+
+  <!-- Supported formats -->
+  <h2>Formati supportati</h2>
+  <div class="format-grid">
+    <div class="fmt-card">
+      <div class="fc-name">FatturaPA v1.2 / v1.3</div>
+      <div class="fc-ns">xmlns: ivaservizi.agenziaentrate.gov.it</div>
+      <div class="fc-countries">🇮🇹 Italia — SDI</div>
+    </div>
+    <div class="fmt-card">
+      <div class="fc-name">UBL Invoice 2.1 / 2.5</div>
+      <div class="fc-ns">xmlns: oasis:names:specification:ubl</div>
+      <div class="fc-countries">🇧🇪 Belgio · 🇳🇴 Norvegia · 🇸🇰 Slovacchia · 🇭🇷 Croazia · 🇷🇴 Romania · Peppol generico</div>
+    </div>
+    <div class="fmt-card">
+      <div class="fc-name">KSeF FA(3)</div>
+      <div class="fc-ns">xmlns: crd.gov.pl/wzor/2023/06/29</div>
+      <div class="fc-countries">🇵🇱 Polonia — KSeF</div>
+    </div>
+    <div class="fmt-card">
+      <div class="fc-name">Formati futuri</div>
+      <div class="fc-ns">myDATA (GR), KIBO XML (HU)…</div>
+      <div class="fc-countries">In arrivo — contribuzioni benvenute</div>
+    </div>
+  </div>
+
+</main>
+
+<script>
+// ─────────────────────────────────────────────
+// Utilities
+// ─────────────────────────────────────────────
+function getText(doc, ...selectors) {
+  for (const sel of selectors) {
+    try {
+      const el = doc.querySelector(sel);
+      if (el && el.textContent.trim()) return el.textContent.trim();
+    } catch(_) {}
+  }
+  return '';
+}
+
+function getAll(doc, selector) {
+  try { return [...doc.querySelectorAll(selector)]; }
+  catch(_) { return []; }
+}
+
+function fmtNum(s, decimals = 2) {
+  const n = parseFloat(s);
+  if (isNaN(n)) return s || '—';
+  return n.toLocaleString('it-IT', { minimumFractionDigits: decimals, maximumFractionDigits: decimals });
+}
+
+function fmtDate(s) {
+  if (!s) return '';
+  // YYYY-MM-DD → DD/MM/YYYY
+  const m = s.match(/^(\d{4})-(\d{2})-(\d{2})/);
+  if (m) return `${m[3]}/${m[2]}/${m[1]}`;
+  return s;
+}
+
+// ─────────────────────────────────────────────
+// Format detection
+// ─────────────────────────────────────────────
+function detectFormat(xmlDoc) {
+  const root = xmlDoc.documentElement;
+  const ns = (root.namespaceURI || '').toLowerCase();
+  const name = (root.localName || root.nodeName || '').toLowerCase();
+
+  if (ns.includes('ivaservizi.agenziaentrate') || name === 'fatturaelettronica')
+    return 'fatturaPA';
+  if (ns.includes('crd.gov.pl') || name === 'faktura')
+    return 'ksef';
+  if (ns.includes('oasis:names:specification:ubl') || ns.includes('ubl:schema:xsd:invoice') || name === 'invoice')
+    return 'ubl';
+  // Fallback: try child namespaces
+  const allNs = root.outerHTML.substring(0, 500);
+  if (allNs.includes('ivaservizi.agenziaentrate')) return 'fatturaPA';
+  if (allNs.includes('crd.gov.pl')) return 'ksef';
+  if (allNs.includes('ubl')) return 'ubl';
+  return 'unknown';
+}
+
+// ─────────────────────────────────────────────
+// FatturaPA extractor
+// ─────────────────────────────────────────────
+function extractFatturaPA(doc) {
+  const get = (...sels) => getText(doc, ...sels);
+  const getAll2 = (s) => getAll(doc, s);
+
+  const tipoDoc = get('TipoDocumento');
+  const tipoLabel = {
+    TD01:'Fattura',TD02:'Acconto/anticipo su fattura',TD03:'Acconto/anticipo su parcella',
+    TD04:'Nota di credito',TD05:'Nota di debito',TD06:'Parcella',
+    TD16:'Integrazione fattura reverse charge',TD17:'Integrazione/autofattura',
+    TD18:'Integrazione per acquisto intra UE',TD19:'Integrazione/autofattura beni',
+    TD20:'Autofattura per regolarizzazione',TD21:'Autofattura per splafonamento',
+    TD22:'Estrazione beni da deposito IVA',TD23:'Estrazione beni da deposito IVA con pagamento IVA',
+    TD24:'Fattura differita',TD25:'Fattura differita art.21 c4',TD26:'Cessione beni ammortizzabili',
+    TD27:'Fattura per autoconsumo o cessioni gratuite'
+  }[tipoDoc] || tipoDoc;
+
+  const getParty = (prefix) => {
+    const name = get(
+      `${prefix} Denominazione`,
+      `${prefix} Anagrafica Denominazione`
+    ) || ((get(`${prefix} Nome`) + ' ' + get(`${prefix} Cognome`)).trim());
+    const vat = get(`${prefix} IdCodice`, `${prefix} CodiceFiscale`);
+    const addr = [
+      get(`${prefix} Indirizzo`),
+      get(`${prefix} NumeroCivico`),
+      get(`${prefix} CAP`),
+      get(`${prefix} Comune`),
+      get(`${prefix} Provincia`),
+      get(`${prefix} Nazione`)
+    ].filter(Boolean).join(', ');
+    return { name, vat, addr };
+  };
+
+  const lines = getAll2('DettaglioLinee').map(l => ({
+    num: getText(l, 'NumeroLinea'),
+    desc: getText(l, 'Descrizione'),
+    qty: getText(l, 'Quantita'),
+    unit: getText(l, 'UnitaMisura'),
+    price: getText(l, 'PrezzoUnitario'),
+    total: getText(l, 'PrezzoTotale'),
+    vat: getText(l, 'AliquotaIVA'),
+    nature: getText(l, 'Natura')
+  }));
+
+  const vatRows = getAll2('DatiRiepilogo').map(r => ({
+    rate: getText(r, 'AliquotaIVA'),
+    nature: getText(r, 'Natura'),
+    taxable: getText(r, 'ImponibileImporto'),
+    tax: getText(r, 'Imposta'),
+    exemption: getText(r, 'RiferimentoNormativo')
+  }));
+
+  const payments = getAll2('DettaglioPagamento').map(p => ({
+    mode: getText(p, 'ModalitaPagamento'),
+    amount: getText(p, 'ImportoPagamento'),
+    due: getText(p, 'DataScadenzaPagamento'),
+    iban: getText(p, 'IBAN')
+  }));
+
+  return {
+    format: 'FatturaPA',
+    formatBadge: 'fmt-it',
+    formatLabel: 'FatturaPA',
+    country: 'Italia',
+    number: get('Numero'),
+    date: fmtDate(get('Data')),
+    type: tipoLabel,
+    currency: get('Divisa') || 'EUR',
+    supplier: getParty('CedentePrestatore'),
+    customer: getParty('CessionarioCommittente'),
+    lines,
+    vatRows,
+    payments,
+    total: get('ImportoTotaleDocumento'),
+    notes: getAll2('Causale').map(c => c.textContent.trim()).join(' '),
+    progressive: get('ProgressivoInvio'),
+    sdiCode: get('CodiceDestinatario'),
+    pec: get('PECDestinatario')
+  };
+}
+
+// ─────────────────────────────────────────────
+// UBL extractor (Peppol BIS / RO_CIUS / HR-CIUS / eFaktúra)
+// ─────────────────────────────────────────────
+function extractUBL(doc) {
+  // UBL uses namespace prefixes; querySelector works without prefix in most browsers
+  const get = (...sels) => {
+    for (const sel of sels) {
+      try {
+        // Try with and without common namespace selector variants
+        const variants = [sel, sel.replace(/([A-Z])/g, (m) => m)];
+        for (const v of variants) {
+          const el = doc.querySelector(v);
+          if (el && el.textContent.trim()) return el.textContent.trim();
+        }
+      } catch(_) {}
+    }
+    return '';
+  };
+
+  // Detect country from customization or profile ID
+  const customization = get('CustomizationID');
+  const profile = get('ProfileID');
+  let country = '';
+  if (customization.includes('ro') || customization.includes('RO')) country = 'Romania';
+  else if (customization.includes('hr') || customization.includes('HR')) country = 'Croazia';
+  else if (customization.includes('be') || customization.toLowerCase().includes('belgium')) country = 'Belgio';
+  else if (customization.includes('no') || customization.toLowerCase().includes('norway')) country = 'Norvegia';
+  else if (customization.includes('sk') || customization.toLowerCase().includes('slovak')) country = 'Slovacchia';
+
+  const getParty = (containerSel) => {
+    const containers = [containerSel + ' PartyName Name', containerSel + ' PartyLegalEntity RegistrationName'];
+    const name = get(...containers);
+    const vat = get(containerSel + ' PartyTaxScheme CompanyID', containerSel + ' PartyIdentification ID');
+    const addr = [
+      get(containerSel + ' PostalAddress StreetName'),
+      get(containerSel + ' PostalAddress CityName'),
+      get(containerSel + ' PostalAddress PostalZone'),
+      get(containerSel + ' PostalAddress CountrySubentity'),
+      get(containerSel + ' PostalAddress Country IdentificationCode')
+    ].filter(Boolean).join(', ');
+    return { name, vat, addr };
+  };
+
+  const lines = getAll(doc, 'InvoiceLine').map(l => ({
+    num: getText(l, 'ID'),
+    desc: getText(l, 'Item Name', 'Item Description'),
+    qty: getText(l, 'InvoicedQuantity'),
+    unit: l.querySelector('InvoicedQuantity')?.getAttribute('unitCode') || '',
+    price: getText(l, 'Price PriceAmount'),
+    total: getText(l, 'LineExtensionAmount'),
+    vat: getText(l, 'TaxTotal TaxAmount') || getText(l, 'Item ClassifiedTaxCategory Percent'),
+    nature: ''
+  }));
+
+  const vatRows = getAll(doc, 'TaxSubtotal').map(r => ({
+    rate: getText(r, 'TaxCategory Percent'),
+    nature: getText(r, 'TaxCategory TaxExemptionReasonCode'),
+    taxable: getText(r, 'TaxableAmount'),
+    tax: getText(r, 'TaxAmount'),
+    exemption: getText(r, 'TaxCategory TaxExemptionReason')
+  }));
+
+  const paymentMeans = get('PaymentMeans PaymentMeansCode');
+  const iban = get('PaymentMeans PayeeFinancialAccount ID');
+  const due = fmtDate(get('PaymentTerms Note', 'DueDate'));
+
+  const total = get('LegalMonetaryTotal TaxInclusiveAmount', 'LegalMonetaryTotal PayableAmount');
+  const taxable = get('LegalMonetaryTotal TaxExclusiveAmount', 'LegalMonetaryTotal LineExtensionAmount');
+  const tax = get('TaxTotal TaxAmount');
+
+  return {
+    format: 'UBL',
+    formatBadge: 'fmt-ubl',
+    formatLabel: country ? `UBL 2.1 — ${country}` : 'UBL 2.1 / Peppol BIS',
+    country,
+    number: get('ID'),
+    date: fmtDate(get('IssueDate')),
+    type: get('InvoiceTypeCode') === '381' ? 'Nota di credito' : 'Fattura',
+    currency: get('DocumentCurrencyCode') || 'EUR',
+    supplier: getParty('AccountingSupplierParty Party'),
+    customer: getParty('AccountingCustomerParty Party'),
+    lines,
+    vatRows,
+    payments: paymentMeans ? [{ mode: paymentMeans, amount: total, due, iban }] : [],
+    total,
+    taxable,
+    tax,
+    notes: get('Note'),
+    buyerRef: get('BuyerReference'),
+    orderRef: get('OrderReference ID'),
+    contractRef: get('ContractDocumentReference ID')
+  };
+}
+
+// ─────────────────────────────────────────────
+// KSeF FA(3) extractor
+// ─────────────────────────────────────────────
+function extractKSeF(doc) {
+  const get = (...sels) => getText(doc, ...sels);
+
+  const getParty = (prefix) => ({
+    name: get(`${prefix} NazwaPelna`, `${prefix} Imie`) || '',
+    vat: get(`${prefix} NIP`) || '',
+    addr: [
+      get(`${prefix} AdresKorespondencyjny Ulica`),
+      get(`${prefix} AdresKorespondencyjny NrDomu`),
+      get(`${prefix} AdresKorespondencyjny KodPocztowy`),
+      get(`${prefix} AdresKorespondencyjny Miejscowosc`)
+    ].filter(Boolean).join(', ')
+  });
+
+  const lines = getAll(doc, 'FaWiersz').map(l => ({
+    num: getText(l, 'NrWierszaFa'),
+    desc: getText(l, 'NazwaTowaru', 'NazwaUslugi'),
+    qty: getText(l, 'Ilosc'),
+    unit: getText(l, 'JednostkaOpisu'),
+    price: getText(l, 'CenaJedNetto'),
+    total: getText(l, 'WartoscNetto'),
+    vat: getText(l, 'StawkaPodatku'),
+    nature: ''
+  }));
+
+  const vatRows = getAll(doc, 'StawkaPodatku').length === 0
+    ? []
+    : getAll(doc, 'PodatekNalezny').map(r => ({
+        rate: getText(r, 'StawkaPodatku'),
+        nature: '',
+        taxable: getText(r, 'PodstawaOpodatkowania'),
+        tax: getText(r, 'KwotaPodatku'),
+        exemption: ''
+      }));
+
+  return {
+    format: 'KSeF',
+    formatBadge: 'fmt-pl',
+    formatLabel: 'KSeF FA(3)',
+    country: 'Polonia',
+    number: get('P_2', 'NrFA'),
+    date: fmtDate(get('P_1', 'DataWystawienia')),
+    type: 'Faktura VAT',
+    currency: get('KodWaluty', 'Waluta') || 'PLN',
+    supplier: getParty('Podmiot1 DaneIdentyfikacyjne'),
+    customer: getParty('Podmiot2 DaneIdentyfikacyjne'),
+    lines,
+    vatRows,
+    payments: [],
+    total: get('P_15', 'KwotaFaktury'),
+    notes: get('StopkaFaktury', 'Uwagi'),
+    ksefNum: get('NumerKSeF')
+  };
+}
+
+// ─────────────────────────────────────────────
+// Parse & dispatch
+// ─────────────────────────────────────────────
+function parseXML(xmlString) {
+  const parser = new DOMParser();
+  const doc = parser.parseFromString(xmlString.trim(), 'application/xml');
+  const err = doc.querySelector('parsererror');
+  if (err) throw new Error('XML non valido: ' + err.textContent.substring(0, 120));
+
+  const fmt = detectFormat(doc);
+  if (fmt === 'fatturaPA') return extractFatturaPA(doc);
+  if (fmt === 'ubl') return extractUBL(doc);
+  if (fmt === 'ksef') return extractKSeF(doc);
+  throw new Error('Formato XML non riconosciuto. Namespace root: ' + (doc.documentElement.namespaceURI || 'nessuno'));
+}
+
+// ─────────────────────────────────────────────
+// Render invoice card
+// ─────────────────────────────────────────────
+function renderInvoice(inv) {
+  const cur = inv.currency || 'EUR';
+
+  const linesHTML = inv.lines.length ? `
+    <table class="lines-table">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Descrizione</th>
+          <th>Qtà</th>
+          <th>Prezzo unit.</th>
+          <th>IVA %</th>
+          <th>Totale</th>
+        </tr>
+      </thead>
+      <tbody>
+        ${inv.lines.map(l => `
+          <tr>
+            <td>${l.num}</td>
+            <td>${l.desc || '—'}</td>
+            <td>${l.qty ? fmtNum(l.qty, 3).replace(/,?0+$/, '').replace(/,$/, '') + (l.unit ? ' ' + l.unit : '') : '—'}</td>
+            <td>${l.price ? fmtNum(l.price) + ' ' + cur : '—'}</td>
+            <td>${l.vat ? l.vat + '%' : (l.nature || '—')}</td>
+            <td>${l.total ? fmtNum(l.total) + ' ' + cur : '—'}</td>
+          </tr>
+        `).join('')}
+      </tbody>
+    </table>` : '<p style="color:var(--ink-soft);font-size:13px;font-style:italic;">Nessuna riga dettaglio nel documento.</p>';
+
+  const vatHTML = inv.vatRows.length ? `
+    <table class="vat-table">
+      <thead><tr><th>Aliquota</th><th>Imponibile</th><th>Imposta</th><th>Note</th></tr></thead>
+      <tbody>
+        ${inv.vatRows.map(r => `
+          <tr>
+            <td>${r.rate ? r.rate + '%' : (r.nature || '—')}</td>
+            <td>${r.taxable ? fmtNum(r.taxable) + ' ' + cur : '—'}</td>
+            <td>${r.tax ? fmtNum(r.tax) + ' ' + cur : '—'}</td>
+            <td style="font-size:11px;">${r.exemption || ''}</td>
+          </tr>
+        `).join('')}
+      </tbody>
+    </table>` : '';
+
+  // Totals
+  const taxable = inv.vatRows.reduce((s, r) => s + (parseFloat(r.taxable) || 0), 0);
+  const tax = inv.vatRows.reduce((s, r) => s + (parseFloat(r.tax) || 0), 0);
+  const totalNum = parseFloat(inv.total) || (taxable + tax);
+
+  const totalsHTML = `
+    <div class="totals-area">
+      <div class="totals-box">
+        ${taxable ? `<div class="totals-row"><span class="lbl">Imponibile</span><span class="val">${fmtNum(taxable)} ${cur}</span></div>` : ''}
+        ${tax ? `<div class="totals-row"><span class="lbl">IVA</span><span class="val">${fmtNum(tax)} ${cur}</span></div>` : ''}
+        <div class="totals-row"><span class="lbl">Totale documento</span><span class="val">${fmtNum(totalNum)} ${cur}</span></div>
+      </div>
+    </div>`;
+
+  const metaExtras = [
+    inv.progressive ? `<div class="meta-date">Progressivo: ${inv.progressive}</div>` : '',
+    inv.sdiCode ? `<div class="meta-date">Cod. destinatario: ${inv.sdiCode}</div>` : '',
+    inv.ksefNum ? `<div class="meta-date">N. KSeF: ${inv.ksefNum}</div>` : '',
+    inv.buyerRef ? `<div class="meta-date">Rif. acquirente: ${inv.buyerRef}</div>` : ''
+  ].join('');
+
+  const notesHTML = inv.notes ? `<div class="inv-notes"><strong>Note:</strong> ${inv.notes}</div>` : '';
+
+  const payHTML = inv.payments.length ? `
+    <div style="margin-top:12px;font-size:12.5px;color:var(--ink-soft);">
+      <strong style="color:var(--ink);">Pagamento:</strong>
+      ${inv.payments.map(p => [
+        p.mode, p.amount ? fmtNum(p.amount) + ' ' + cur : '',
+        p.due ? 'scad. ' + fmtDate(p.due) : '',
+        p.iban ? 'IBAN: ' + p.iban : ''
+      ].filter(Boolean).join(' · ')).join('<br>')}
+    </div>` : '';
+
+  return `
+    <div class="inv-head">
+      <div>
+        <div class="inv-title">${inv.type || 'Documento fiscale'}</div>
+        <div style="margin-top:6px;">
+          <span class="fmt-badge ${inv.formatBadge}">${inv.formatLabel}</span>
+          ${inv.country ? `<span style="font-size:12px;color:var(--ink-soft);margin-left:8px;">${inv.country}</span>` : ''}
+        </div>
+      </div>
+      <div class="inv-meta">
+        <div class="meta-num">N. ${inv.number || '—'}</div>
+        <div class="meta-date">${inv.date || ''}</div>
+        ${metaExtras}
+      </div>
+    </div>
+
+    <div class="parties">
+      <div>
+        <div class="party-label">Emittente</div>
+        <div class="party-name">${inv.supplier.name || '—'}</div>
+        ${inv.supplier.vat ? `<div class="party-vat">P.IVA / NIP: ${inv.supplier.vat}</div>` : ''}
+        ${inv.supplier.addr ? `<div class="party-addr">${inv.supplier.addr}</div>` : ''}
+      </div>
+      <div>
+        <div class="party-label">Destinatario</div>
+        <div class="party-name">${inv.customer.name || '—'}</div>
+        ${inv.customer.vat ? `<div class="party-vat">P.IVA / NIP: ${inv.customer.vat}</div>` : ''}
+        ${inv.customer.addr ? `<div class="party-addr">${inv.customer.addr}</div>` : ''}
+      </div>
+    </div>
+
+    ${linesHTML}
+    ${vatHTML}
+    ${totalsHTML}
+    ${payHTML}
+    ${notesHTML}
+  `;
+}
+
+// ─────────────────────────────────────────────
+// Print to PDF
+// ─────────────────────────────────────────────
+function printInvoice(inv) {
+  const cur = inv.currency || 'EUR';
+  const linesRows = inv.lines.map(l => `
+    <tr>
+      <td>${l.num}</td>
+      <td>${l.desc || ''}</td>
+      <td style="text-align:right">${l.qty ? fmtNum(l.qty,3).replace(/,?0+$/,'').replace(/,$/,'') + (l.unit ? ' '+l.unit : '') : ''}</td>
+      <td style="text-align:right">${l.price ? fmtNum(l.price) : ''}</td>
+      <td style="text-align:right">${l.vat ? l.vat + '%' : (l.nature || '')}</td>
+      <td style="text-align:right">${l.total ? fmtNum(l.total) : ''}</td>
+    </tr>`).join('');
+
+  const vatRows = inv.vatRows.map(r => `
+    <tr>
+      <td>${r.rate ? r.rate + '%' : (r.nature || '')}</td>
+      <td style="text-align:right">${r.taxable ? fmtNum(r.taxable) : ''}</td>
+      <td style="text-align:right">${r.tax ? fmtNum(r.tax) : ''}</td>
+      <td style="font-size:9pt">${r.exemption || ''}</td>
+    </tr>`).join('');
+
+  const taxable = inv.vatRows.reduce((s,r) => s+(parseFloat(r.taxable)||0), 0);
+  const tax = inv.vatRows.reduce((s,r) => s+(parseFloat(r.tax)||0), 0);
+  const total = parseFloat(inv.total) || (taxable + tax);
+
+  const html = `<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<title>Fattura ${inv.number || ''} — ${inv.supplier.name || ''}</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=IBM+Plex+Mono:wght@400;600&display=swap');
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Inter', Arial, sans-serif; font-size: 10pt; color: #161616; background: #fff; padding: 28mm 20mm; }
+  .header { display: flex; justify-content: space-between; align-items: flex-start; border-bottom: 3px double #161616; padding-bottom: 16px; margin-bottom: 20px; }
+  .doc-title { font-size: 20pt; font-weight: 700; letter-spacing: -0.01em; }
+  .doc-type { font-size: 10pt; color: #555; margin-top: 4px; }
+  .doc-num { font-family: 'IBM Plex Mono', monospace; font-size: 14pt; font-weight: 600; text-align: right; }
+  .doc-date { font-family: 'IBM Plex Mono', monospace; font-size: 9pt; color: #555; text-align: right; margin-top: 3px; }
+  .fmt-badge { display: inline-block; font-family: 'IBM Plex Mono', monospace; font-size: 7pt; font-weight: 700; padding: 2px 6px; border-radius: 2px; text-transform: uppercase; letter-spacing: .05em; margin-top: 6px; }
+  .fmt-it { background: #d1fae5; color: #065f46; }
+  .fmt-ubl { background: #dbeafe; color: #1e40af; }
+  .fmt-pl { background: #fef3c7; color: #92400e; }
+  .parties { display: flex; gap: 20px; margin-bottom: 20px; background: #f5f5f5; padding: 14px; border-radius: 4px; }
+  .party { flex: 1; }
+  .party-label { font-size: 7.5pt; font-weight: 700; text-transform: uppercase; letter-spacing: .08em; color: #888; font-family: 'IBM Plex Mono', monospace; margin-bottom: 3px; }
+  .party-name { font-weight: 700; font-size: 11pt; }
+  .party-vat { font-family: 'IBM Plex Mono', monospace; font-size: 8.5pt; color: #555; margin-top: 2px; }
+  .party-addr { font-size: 8.5pt; color: #555; margin-top: 2px; }
+  table { width: 100%; border-collapse: collapse; margin-bottom: 16px; }
+  thead th { background: #161616; color: #fff; padding: 6px 8px; font-size: 8pt; font-family: 'IBM Plex Mono', monospace; letter-spacing: .04em; text-align: left; }
+  thead th:not(:nth-child(2)) { text-align: right; }
+  thead th:nth-child(2) { text-align: left; }
+  tbody td { padding: 5px 8px; border-bottom: 1px solid #e0e0e0; font-size: 9pt; color: #444; }
+  tbody td:not(:nth-child(2)) { text-align: right; }
+  tbody td:nth-child(2) { text-align: left; color: #161616; }
+  tbody tr:nth-child(even) td { background: #fafafa; }
+  .section-title { font-size: 8pt; font-weight: 700; text-transform: uppercase; letter-spacing: .07em; color: #888; font-family: 'IBM Plex Mono', monospace; margin: 14px 0 6px; }
+  .totals { margin-top: 4px; margin-left: auto; width: 260px; }
+  .totals-row { display: flex; justify-content: space-between; padding: 4px 0; font-size: 9.5pt; border-bottom: 1px solid #e8e8e8; }
+  .totals-row:last-child { border: none; font-weight: 700; font-size: 12pt; margin-top: 6px; }
+  .totals-row .lbl { color: #555; }
+  .totals-row .val { font-family: 'IBM Plex Mono', monospace; }
+  .notes { margin-top: 16px; padding: 10px; background: #f5f5f5; border-left: 3px solid #ccc; font-size: 9pt; color: #555; border-radius: 0 3px 3px 0; }
+  .footer { margin-top: 30px; padding-top: 12px; border-top: 1px solid #e0e0e0; font-size: 8pt; color: #aaa; text-align: center; font-family: 'IBM Plex Mono', monospace; }
+  @media print {
+    body { padding: 0; }
+    @page { margin: 20mm 18mm; size: A4; }
+  }
+</style>
+</head>
+<body>
+<div class="header">
+  <div>
+    <div class="doc-title">${inv.type || 'Documento fiscale'}</div>
+    <div class="doc-type">${inv.country || ''}</div>
+    <div class="fmt-badge ${inv.formatBadge}">${inv.formatLabel}</div>
+  </div>
+  <div>
+    <div class="doc-num">N. ${inv.number || '—'}</div>
+    <div class="doc-date">${inv.date || ''}</div>
+    ${inv.progressive ? `<div class="doc-date">Prog. ${inv.progressive}</div>` : ''}
+    ${inv.sdiCode ? `<div class="doc-date">SDI: ${inv.sdiCode}</div>` : ''}
+  </div>
+</div>
+
+<div class="parties">
+  <div class="party">
+    <div class="party-label">Emittente</div>
+    <div class="party-name">${inv.supplier.name || '—'}</div>
+    ${inv.supplier.vat ? `<div class="party-vat">P.IVA: ${inv.supplier.vat}</div>` : ''}
+    ${inv.supplier.addr ? `<div class="party-addr">${inv.supplier.addr}</div>` : ''}
+  </div>
+  <div class="party">
+    <div class="party-label">Destinatario</div>
+    <div class="party-name">${inv.customer.name || '—'}</div>
+    ${inv.customer.vat ? `<div class="party-vat">P.IVA: ${inv.customer.vat}</div>` : ''}
+    ${inv.customer.addr ? `<div class="party-addr">${inv.customer.addr}</div>` : ''}
+  </div>
+</div>
+
+${inv.lines.length ? `
+<div class="section-title">Righe fattura</div>
+<table>
+  <thead><tr>
+    <th>#</th><th style="text-align:left">Descrizione</th>
+    <th>Qtà</th><th>Prezzo unit.</th><th>IVA %</th><th>Totale ${cur}</th>
+  </tr></thead>
+  <tbody>${linesRows}</tbody>
+</table>` : ''}
+
+${inv.vatRows.length ? `
+<div class="section-title">Riepilogo IVA</div>
+<table>
+  <thead><tr><th style="text-align:left">Aliquota</th><th>Imponibile ${cur}</th><th>Imposta ${cur}</th><th style="text-align:left">Note</th></tr></thead>
+  <tbody>${vatRows}</tbody>
+</table>` : ''}
+
+<div class="totals">
+  ${taxable ? `<div class="totals-row"><span class="lbl">Imponibile</span><span class="val">${fmtNum(taxable)} ${cur}</span></div>` : ''}
+  ${tax ? `<div class="totals-row"><span class="lbl">IVA</span><span class="val">${fmtNum(tax)} ${cur}</span></div>` : ''}
+  <div class="totals-row"><span class="lbl">Totale</span><span class="val">${fmtNum(total)} ${cur}</span></div>
+</div>
+
+${inv.payments.length ? `<div class="notes"><strong>Pagamento:</strong> ${inv.payments.map(p =>
+  [p.mode, p.amount ? fmtNum(p.amount)+' '+cur : '', p.due ? 'scad. '+fmtDate(p.due) : '', p.iban ? 'IBAN: '+p.iban : ''].filter(Boolean).join(' · ')
+).join('<br>')}</div>` : ''}
+
+${inv.notes ? `<div class="notes"><strong>Note:</strong> ${inv.notes}</div>` : ''}
+
+<div class="footer">
+  Generato da E-Invoicing Tracker · Elaborazione locale · Nessun dato trasmesso · ${new Date().toLocaleDateString('it-IT')}
+</div>
+
+<script>window.onload = function(){ window.print(); }<\/script>
+</body></html>`;
+
+  const w = window.open('', '_blank', 'width=900,height=700');
+  if (!w) { alert('Popup bloccato. Consenti i popup per questo sito e riprova.'); return; }
+  w.document.write(html);
+  w.document.close();
+}
+
+// ─────────────────────────────────────────────
+// UI wiring
+// ─────────────────────────────────────────────
+let currentInvoice = null;
+
+function showStatus(msg, type = 'ok') {
+  const bar = document.getElementById('statusBar');
+  bar.textContent = msg;
+  bar.className = 'status-bar ' + type;
+}
+
+function showPreview(inv) {
+  currentInvoice = inv;
+  document.getElementById('invoiceCard').innerHTML = renderInvoice(inv);
+  document.getElementById('previewSection').style.display = 'block';
+  document.getElementById('previewSection').scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+
+function reset() {
+  currentInvoice = null;
+  document.getElementById('previewSection').style.display = 'none';
+  document.getElementById('statusBar').className = 'status-bar';
+  document.getElementById('xmlPaste').value = '';
+  document.getElementById('fileInput').value = '';
+}
+
+function processXML(xmlStr) {
+  try {
+    const inv = parseXML(xmlStr);
+    showStatus(`✓ Formato rilevato: ${inv.formatLabel} — ${inv.lines.length} rig${inv.lines.length === 1 ? 'a' : 'he'} trovate`, 'ok');
+    showPreview(inv);
+  } catch(e) {
+    showStatus('✗ ' + e.message, 'err');
+    document.getElementById('previewSection').style.display = 'none';
+  }
+}
+
+// File input
+document.getElementById('fileInput').addEventListener('change', function() {
+  const file = this.files[0];
+  if (!file) return;
+  const reader = new FileReader();
+  reader.onload = (e) => processXML(e.target.result);
+  reader.readAsText(file, 'UTF-8');
+  document.getElementById('dropZone').querySelector('.dz-label').textContent = file.name;
+});
+
+// Drag & drop
+const dz = document.getElementById('dropZone');
+dz.addEventListener('dragover', (e) => { e.preventDefault(); dz.classList.add('drag-over'); });
+dz.addEventListener('dragleave', () => dz.classList.remove('drag-over'));
+dz.addEventListener('drop', (e) => {
+  e.preventDefault();
+  dz.classList.remove('drag-over');
+  const file = e.dataTransfer.files[0];
+  if (!file) return;
+  dz.querySelector('.dz-label').textContent = file.name;
+  const reader = new FileReader();
+  reader.onload = (ev) => processXML(ev.target.result);
+  reader.readAsText(file, 'UTF-8');
+});
+
+// Parse button
+document.getElementById('parseBtn').addEventListener('click', () => {
+  const xml = document.getElementById('xmlPaste').value.trim();
+  if (!xml) { showStatus('Incolla il contenuto XML nel campo di testo.', 'warn'); return; }
+  processXML(xml);
+});
+
+// Print button
+document.getElementById('printBtn').addEventListener('click', () => {
+  if (currentInvoice) printInvoice(currentInvoice);
+});
+
+// Reset button
+document.getElementById('resetBtn').addEventListener('click', reset);
+</script>
+</body>
+</html>
