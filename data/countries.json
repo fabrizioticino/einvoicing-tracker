@@ -2537,7 +2537,7 @@
     "b2b_format": "XML tramite HUB SM; FatturaPA XML (SdI) per scambi con operatori italiani",
     "b2b_network": "HUB SM per scambi domestici; HUB SM ↔ SdI per scambi Italia-San Marino",
     "b2b_notes": "Decreto Delegato 4 settembre 2026 nr. 133. Obbligo B2B domestico dal 1 gennaio 2027 per tutti gli operatori economici sammarinesi con ricavi >= 100.000 EUR nell'anno precedente. Operatori sotto soglia esclusi ma possono aderire volontariamente. Sanzioni operative dal 1 gennaio 2028. Per cessioni di beni Italia ↔ San Marino: obbligo vigente dal 1 luglio 2022 tramite SdI (D.M. 21 giugno 2021); l'Ufficio Tributario di San Marino valida le fatture entro 4 mesi e comunica l'esito all'Agenzia delle Entrate.",
-    "b2b_url": "https://news.tribunapoliticaweb.sm/economia/2026/09/16/san-marino-fatturazione-elettronica-obbligatoria-dal-1-gennaio/",
+    "b2b_url": "https://www.finanze.sm/pub2/FinanzeSM/FATTURAZIONE-ELETTRONICA-INTERNA.html",
     "b2c_status": "Non previsto (escluso da obbligo)",
     "b2c_since": "N/D",
     "b2c_platform": "N/D",
