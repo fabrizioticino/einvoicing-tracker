@@ -417,6 +417,8 @@
   .field-value.status-voluntary{ color:var(--stamp-grey); font-weight:600; }
   .ref-link{ color:var(--accent); font-size:12px; font-weight:600; text-decoration:none; letter-spacing:.02em; }
   .ref-link:hover{ text-decoration:underline; }
+  .xslt-dl-btn{ display:inline-flex; align-items:center; gap:5px; font-size:12px; font-weight:700; color:#5b21b6; background:#ede9fe; border:1px solid #c4b5fd; padding:4px 10px; border-radius:4px; text-decoration:none; font-family:'IBM Plex Mono',monospace; letter-spacing:.03em; }
+  .xslt-dl-btn:hover{ background:#ddd6fe; }
 
   @media (max-width:640px){
     .field-grid{ grid-template-columns:1fr; }
@@ -676,6 +678,24 @@ function fieldExample(c){
   return '';
 }
 
+function getXsltUrl(c){
+  const slug = (c.slug||'').toLowerCase();
+  const fmt  = ((c.b2b_format||'')+(c.b2g_format||'')).toLowerCase();
+  if(slug==='italy'   || fmt.includes('fatturapa') || fmt.includes('fattura pa')) return 'xslt/fatturaPA.xsl';
+  if(slug==='poland'  || fmt.includes('ksef')  || fmt.includes('fa('))           return 'xslt/ksef.xsl';
+  if(slug==='spain'   || fmt.includes('facturae'))                                return 'xslt/facturae.xsl';
+  if(slug==='mexico'  || fmt.includes('cfdi'))                                    return 'xslt/cfdi.xsl';
+  if(slug==='france'  || slug==='germany' || fmt.includes('factur-x') || fmt.includes('zugferd') || fmt.includes('cii un')) return 'xslt/cii.xsl';
+  if(fmt.includes('ubl')||fmt.includes('peppol')||fmt.includes('en 16931')||fmt.includes('pint')||fmt.includes('xrechnung')) return 'xslt/ubl-invoice.xsl';
+  return null;
+}
+function fieldXSLT(c){
+  const url = getXsltUrl(c);
+  if(!url) return '';
+  const name = url.split('/').pop();
+  return `<div class="field-label">Foglio di stile XSLT</div><div class="field-value"><a href="${url}" download="${name}" class="xslt-dl-btn">⬇ Scarica ${name}</a></div>`;
+}
+
 function renderSection(num, title, rows){
   return `
     <div class="section">
@@ -705,7 +725,8 @@ function openDetail(slug){
       field('Formato/i', c.b2g_format) +
       field('Note', c.b2g_notes) +
       fieldLink('Riferimento normativo', c.b2g_url) +
-      fieldExampleB2G(c)
+      fieldExampleB2G(c) +
+      fieldXSLT(c)
     )}
 
     ${renderSection('02', 'B2B — Business to Business',
@@ -717,7 +738,8 @@ function openDetail(slug){
       field('Note', c.b2b_notes) +
       fieldLink('Riferimento normativo', c.b2b_url) +
       fieldLinkDoc('Gestione flussi fatturazione elettronica', c.b2b_flows_url) +
-      fieldExample(c)
+      fieldExample(c) +
+      fieldXSLT(c)
     )}
 
     ${renderSection('03', 'B2C — Business to Consumer',
