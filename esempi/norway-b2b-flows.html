@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Norvegia — Flussi fatturazione elettronica B2B (EHF 3.0 / Peppol)</title>
+<meta name="description" content="Flussi e obblighi della fatturazione elettronica B2B in Norvegia: EHF 3.0, Peppol ed ELMA. Mandato B2B dal 1° gennaio 2027.">
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=IBM+Plex+Mono:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap');
+  :root{--paper:#F5F5F5;--ink:#161616;--ink-soft:#5A5A5A;--line:#D6D6D6;--accent:#EF2B2D;--accent2:#003087;--card:#FFFFFF;--blue:#1a56db;--green:#065f46;--green-light:#d1fae5;--orange:#92400e;--orange-light:#fef3c7;--red:#991b1b;--red-light:#fee2e2;}
+  *{box-sizing:border-box;}html{scroll-behavior:smooth;}
+  body{margin:0;background:var(--paper);color:var(--ink);font-family:'Inter',sans-serif;-webkit-font-smoothing:antialiased;}
+  body::before{content:"";position:fixed;inset:0;background-image:repeating-linear-gradient(0deg,rgba(27,36,33,0.018) 0px,rgba(27,36,33,0.018) 1px,transparent 1px,transparent 3px);pointer-events:none;z-index:0;}
+  a{color:var(--blue);}
+  header.masthead{position:relative;z-index:1;border-bottom:3px double var(--ink);padding:28px 5vw 18px;}
+  .masthead-top{display:flex;justify-content:space-between;align-items:baseline;flex-wrap:wrap;gap:8px;font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-soft);margin-bottom:18px;}
+  .masthead-top .dot{color:var(--accent);}
+  .masthead-top a{color:var(--ink-soft);text-decoration:none;}.masthead-top a:hover{color:var(--ink);}
+  h1.title{font-family:'Fraunces',serif;font-weight:600;font-size:clamp(28px,5vw,52px);line-height:1;margin:0 0 10px;letter-spacing:-0.01em;}
+  h1.title em{font-style:italic;font-weight:400;color:var(--accent);}
+  .subhead{display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:18px;border-top:1px solid var(--line);padding-top:14px;margin-top:18px;}
+  .subhead p{max-width:640px;font-size:15px;line-height:1.55;color:var(--ink-soft);margin:0;}
+  .meta-stamp{font-family:'IBM Plex Mono',monospace;font-size:11px;text-align:right;color:var(--ink-soft);line-height:1.6;white-space:nowrap;}
+  .meta-stamp .label{text-transform:uppercase;letter-spacing:.08em;font-size:10px;color:var(--ink);}
+  main{position:relative;z-index:1;padding:38px 5vw 60px;max-width:900px;margin:0 auto;width:100%;}
+  h2{font-family:'Fraunces',serif;font-weight:600;font-size:22px;margin:2em 0 .5em;letter-spacing:-0.01em;border-bottom:2px solid var(--line);padding-bottom:6px;}
+  h3{font-family:'Fraunces',serif;font-weight:600;font-size:17px;margin:1.5em 0 .4em;}
+  p{font-size:14.5px;line-height:1.65;color:var(--ink-soft);margin:.5em 0 .8em;}
+  ul,ol{padding-left:1.4em;margin:.5em 0 .8em;}
+  li{font-size:14.5px;line-height:1.6;color:var(--ink-soft);margin-bottom:.25em;}
+  strong{color:var(--ink);}
+  code{font-family:'IBM Plex Mono',monospace;font-size:12.5px;background:#e8e8e8;padding:1px 5px;border-radius:3px;}
+  .timeline{display:flex;flex-direction:column;border-left:3px solid var(--accent);margin:1.5em 0 1.5em 12px;}
+  .tl-item{position:relative;padding:12px 16px 12px 24px;}
+  .tl-item::before{content:"";position:absolute;left:-8px;top:18px;width:13px;height:13px;border-radius:50%;background:var(--accent);border:2px solid var(--paper);}
+  .tl-date{font-family:'IBM Plex Mono',monospace;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.07em;color:var(--accent);margin-bottom:4px;}
+  .tl-title{font-size:14.5px;font-weight:600;color:var(--ink);margin-bottom:3px;}
+  .tl-desc{font-size:13.5px;color:var(--ink-soft);line-height:1.55;}
+  .flow-steps{counter-reset:step;display:flex;flex-direction:column;border-left:2px solid var(--line);margin:1em 0 1em 10px;}
+  .flow-step{position:relative;padding:10px 14px 10px 28px;}
+  .flow-step::before{counter-increment:step;content:counter(step);position:absolute;left:-13px;top:10px;width:24px;height:24px;border-radius:50%;background:var(--ink);color:#fff;font-family:'IBM Plex Mono',monospace;font-size:11px;font-weight:700;display:flex;align-items:center;justify-content:center;border:2px solid var(--paper);}
+  .flow-step .fs-title{font-size:14px;font-weight:600;color:var(--ink);margin-bottom:2px;}
+  .flow-step .fs-desc{font-size:13.5px;color:var(--ink-soft);line-height:1.55;}
+  .callout{border-left:4px solid var(--accent);background:var(--card);padding:12px 16px;margin:1.2em 0;border-radius:0 5px 5px 0;font-size:13.5px;color:var(--ink-soft);line-height:1.6;}
+  .callout strong{color:var(--ink);}
+  .ref-list{list-style:none;padding:0;margin:.5em 0;}
+  .ref-list li{font-size:13.5px;border-bottom:1px solid var(--line);padding:8px 0;color:var(--ink-soft);}
+  .ref-list li:last-child{border-bottom:none;}
+  .ref-list a{color:var(--blue);}
+</style>
+</head>
+<body>
+<header class="masthead">
+  <div class="masthead-top">
+    <span><a href="../index.html">← E-Invoicing Tracker</a> <span class="dot">◆</span> Norvegia</span>
+    <span>Aggiornato: settembre 2026</span>
+  </div>
+  <h1 class="title">Norvegia — <em>EHF 3.0 / Peppol</em><br>fatturazione elettronica B2B</h1>
+  <div class="subhead">
+    <p>Guida al sistema norvegese di fatturazione elettronica B2B basato su <strong>EHF 3.0</strong> (Elektronisk HandelsFormat) e sulla rete <strong>Peppol</strong> tramite il registro <strong>ELMA</strong>. Mandato B2B approvato dal Parlamento norvegese nel giugno 2026, in vigore dal <strong>1° gennaio 2027</strong> (invio) e dal <strong>1° gennaio 2030</strong> (ricezione).</p>
+    <div class="meta-stamp">
+      <div class="label">Formato</div>
+      <div>EHF 3.0 / Peppol BIS 3.0</div>
+      <div class="label" style="margin-top:6px">Mandato B2B</div>
+      <div>Invio: 1° gennaio 2027</div>
+      <div>Ricezione: 1° gennaio 2030</div>
+      <div class="label" style="margin-top:6px">Esenzione</div>
+      <div>Micro-imprese &lt;50.000 NOK</div>
+    </div>
+  </div>
+</header>
+<main>
+
+  <h2>Quadro normativo</h2>
+  <p>La Norvegia ha introdotto l'obbligo di fatturazione elettronica B2B con una legge approvata dal <strong>Parlamento norvegese (Stortinget) nel giugno 2026</strong>. La norma è stata sviluppata dal Ministero delle Finanze (Finansdepartementet) e dall'Agenzia norvegese per la gestione pubblica e l'e-Government (<strong>Digitaliseringsdirektoratet</strong>), che gestisce ELMA e la partecipazione norvegese alla rete Peppol.</p>
+  <p>La Norvegia, pur non essendo membro dell'UE, è membro dello <strong>Spazio Economico Europeo (SEE)</strong> e ha recepito le direttive EU sull'e-invoicing nel settore pubblico. L'obbligo B2B riprende l'esperienza consolidata del B2G (obbligatorio dal 2012) estendendo l'uso di EHF/Peppol a tutte le transazioni tra imprese.</p>
+
+  <div class="callout">
+    <strong>Norvegia pioniera del Peppol:</strong> la Norvegia è stata uno dei paesi fondatori della rete Peppol nel 2008 e ha introdotto l'obbligo di fatturazione elettronica B2G nel 2012, tra i primissimi in Europa. Il mandato B2B 2027 è la naturale estensione di questo ecosistema già maturo, con migliaia di imprese già connesse alla rete Peppol tramite ELMA.
+  </div>
+
+  <h2>Scadenze</h2>
+  <div class="timeline">
+    <div class="tl-item">
+      <div class="tl-date">Dal 2012</div>
+      <div class="tl-title">B2G obbligatorio — enti pubblici</div>
+      <div class="tl-desc">Tutte le fatture verso la Pubblica Amministrazione norvegese devono essere in formato EHF/Peppol. Sistema già consolidato con decenni di esperienza pratica. ELMA conta oltre 50.000 destinatari registrati.</div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-date">Giugno 2026</div>
+      <div class="tl-title">Approvazione legge B2B — Stortinget</div>
+      <div class="tl-desc">Il Parlamento norvegese approva la legge sull'obbligo di fatturazione elettronica B2B. Le specifiche tecniche e le modalità di esenzione per le micro-imprese vengono definite nel regolamento attuativo.</div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-date">1° gennaio 2027</div>
+      <div class="tl-title">Obbligo di INVIO — tutte le imprese soggette (salvo micro-esenzione)</div>
+      <div class="tl-desc">Tutte le imprese norvegesi con fatturato annuo superiore a 50.000 NOK devono <strong>emettere</strong> fatture elettroniche in formato EHF 3.0 / Peppol BIS 3.0 tramite la rete Peppol (ELMA). L'obbligo di invio comprende anche i professionisti con partita IVA.</div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-date">1° gennaio 2030</div>
+      <div class="tl-title">Obbligo di RICEZIONE — tutte le imprese</div>
+      <div class="tl-desc">Tutte le imprese sono tenute a essere in grado di <strong>ricevere</strong> fatture elettroniche tramite Peppol. Fino al 2030 è ammessa la ricezione via canali alternativi (email, portale, ecc.) se il destinatario non è ancora registrato su ELMA.</div>
+    </div>
+  </div>
+
+  <h2>Il sistema ELMA e la rete Peppol</h2>
+  <p><strong>ELMA</strong> (EHF Lookup and Management Application) è il registro Peppol norvegese, gestito da Digitaliseringsdirektoratet. ELMA è al tempo stesso il <strong>SMP</strong> (Service Metadata Publisher) norvegese nella rete Peppol: permette di scoprire se un'impresa è raggiungibile tramite Peppol e con quale Access Point.</p>
+  <p>Il processo di invio segue il <strong>modello Peppol a 4 angoli</strong>:</p>
+  <ul>
+    <li><strong>Corner 1</strong> — Emittente (mittente della fattura)</li>
+    <li><strong>Corner 2</strong> — Access Point del mittente (provider Peppol accreditato)</li>
+    <li><strong>Corner 3</strong> — Access Point del destinatario (provider Peppol del ricevente)</li>
+    <li><strong>Corner 4</strong> — Destinatario (ricevente della fattura)</li>
+  </ul>
+  <p>L'identificativo Peppol in Norvegia è il <strong>numero di organizzazione</strong> (organisasjonsnummer, 9 cifre) prefissato con il codice paese Peppol <code>0192</code> (es: <code>0192:987654321</code>).</p>
+
+  <h2>Flusso di emissione B2B tramite EHF 3.0 / Peppol</h2>
+  <div class="flow-steps">
+    <div class="flow-step">
+      <div class="fs-title">Registrazione su ELMA tramite Access Point</div>
+      <div class="fs-desc">L'impresa sceglie un <strong>Access Point Peppol accreditato</strong> (provider commerciale o, per le PMI, soluzione cloud EHF-ready). Il provider registra l'impresa su ELMA con il suo numero organizzazione come endpoint Peppol. Le imprese già registrate per il B2G non devono effettuare nuovi adempimenti.</div>
+    </div>
+    <div class="flow-step">
+      <div class="fs-title">Verifica della raggiungibilità del destinatario</div>
+      <div class="fs-desc">Prima dell'invio, l'Access Point interroga ELMA per verificare se il destinatario ha un endpoint Peppol registrato. Se sì, la fattura è inviata via Peppol. Se no (fino al 2030), l'emittente deve concordare un canale alternativo (email strutturata, portale dedicato, ecc.).</div>
+    </div>
+    <div class="flow-step">
+      <div class="fs-title">Generazione della fattura EHF 3.0 / Peppol BIS 3.0</div>
+      <div class="fs-desc">L'ERP genera la fattura in formato <strong>EHF 3.0</strong> (basato su Peppol BIS Billing 3.0 / UBL 2.1, conforme EN 16931). I campi specifici norvegesi includono il numero organizzazione (<em>organisasjonsnummer</em>) di emittente e destinatario, e il numero IVA norvegese (<em>MVA-nummer</em>, formato <code>NO + 9 cifre + MVA</code>).</div>
+    </div>
+    <div class="flow-step">
+      <div class="fs-title">Trasmissione via Peppol AS4</div>
+      <div class="fs-desc">La fattura è trasmessa in modo sicuro tramite il protocollo <strong>AS4</strong> (profilo Peppol). L'Access Point del mittente (Corner 2) consegna la fattura all'Access Point del destinatario (Corner 3) tramite la rete Peppol. La trasmissione include acknowledgement (MDN) a ogni hop.</div>
+    </div>
+    <div class="flow-step">
+      <div class="fs-title">Ricezione e integrazione nel sistema ERP</div>
+      <div class="fs-desc">L'Access Point del destinatario (Corner 3) riceve la fattura e la consegna al sistema ERP del destinatario (Corner 4) nel formato concordato (EHF 3.0 nativo, o convertito in PDF/Excel per visualizzazione). Le fatture ricevute tramite Peppol sono automaticamente autenticate e non falsificabili.</div>
+    </div>
+    <div class="flow-step">
+      <div class="fs-title">Conservazione</div>
+      <div class="fs-desc">Le fatture devono essere conservate per <strong>5 anni</strong> (termine generale della normativa contabile norvegese — Bokføringsloven § 13). La conservazione deve garantire l'integrità e la leggibilità nel periodo di retention. Le piattaforme Peppol/EHF offrono archivio automatico.</div>
+    </div>
+  </div>
+
+  <h2>Esenzione micro-imprese</h2>
+  <p>Sono esonerate dall'obbligo di invio (1° gennaio 2027) le imprese con <strong>fatturato annuo inferiore a 50.000 NOK</strong> (circa 4.200 EUR). Questa soglia corrisponde alla soglia di registrazione IVA norvegese (<em>merverdiavgiftsloven</em> § 2-1). Le micro-imprese al di sotto di questa soglia non hanno partita IVA norvegese e sono automaticamente esonerate.</p>
+  <p>Le imprese che superano la soglia durante l'anno devono conformarsi all'obbligo a partire dal momento della registrazione IVA.</p>
+
+  <h2>Integrazione con SAF-T norvegese</h2>
+  <p>La Norvegia ha introdotto l'obbligo di <strong>SAF-T (Standard Audit File for Tax)</strong> per le imprese con contabilità informatizzata dal 1° gennaio 2020. I dati SAF-T e le fatture EHF sono sistemi complementari: le fatture EHF forniscono il dettaglio delle transazioni individuali, il SAF-T fornisce l'export contabile strutturato per i controlli fiscali. L'Autorità Fiscale norvegese (<em>Skatteetaten</em>) può richiedere il SAF-T in fase di audit.</p>
+
+  <h2>Formati accettati</h2>
+  <ul>
+    <li><strong>EHF 3.0</strong> (Elektronisk HandelsFormat versione 3.0) — formato principale norvegese, basato su Peppol BIS Billing 3.0 / UBL 2.1, conforme EN 16931.</li>
+    <li><strong>Peppol BIS Billing 3.0</strong> — interoperabile con EHF 3.0; accettato senza conversione per imprese che usano già Peppol internazionale.</li>
+    <li><strong>EHF 2.0</strong> — versione precedente, ancora accettata in fase di transizione ma da aggiornare entro il 2027.</li>
+  </ul>
+
+  <h2>Casi speciali ed esclusioni</h2>
+  <ul>
+    <li><strong>Micro-imprese (&lt;50.000 NOK fatturato):</strong> esonerate dall'obbligo di invio.</li>
+    <li><strong>B2C:</strong> escluso dall'obbligo B2B.</li>
+    <li><strong>Imprese estere senza stabile organizzazione in Norvegia:</strong> non soggette all'obbligo, ma possono ricevere fatture EHF/Peppol se registrate su ELMA.</li>
+    <li><strong>Operazioni intracomunitarie SEE:</strong> seguono le regole di interoperabilità Peppol internazionale (B2B cross-border via Peppol già operativo).</li>
+    <li><strong>Settore finanziario e assicurativo:</strong> verificare eventuali deroghe settoriali nel regolamento attuativo.</li>
+  </ul>
+
+  <h2>Riferimenti normativi e tecnici</h2>
+  <ul class="ref-list">
+    <li>
+      <strong>Digitaliseringsdirektoratet — EHF / Peppol Norway</strong> — Documentazione tecnica EHF 3.0, ELMA e registrazione Peppol.<br>
+      <a href="https://www.anskaffelser.no/kategorispesifik-veiledning/fagsystemer-digitale-anskaffelser/elektronisk-handelsformat-ehf" target="_blank" rel="noopener">anskaffelser.no — EHF ↗</a>
+    </li>
+    <li>
+      <strong>Peppol Authority Norvegia (NorStella)</strong> — Ente responsabile della governance Peppol in Norvegia, gestisce l'accreditamento degli Access Point.<br>
+      <a href="https://www.norstella.no/peppol" target="_blank" rel="noopener">norstella.no — Peppol ↗</a>
+    </li>
+    <li>
+      <strong>ELMA — Registro Peppol norvegese</strong> — Portale per verificare la raggiungibilità Peppol di un'impresa norvegese tramite numero organizzazione.<br>
+      <a href="https://vefa.difi.no/elma/" target="_blank" rel="noopener">vefa.difi.no — ELMA ↗</a>
+    </li>
+    <li>
+      <strong>Commissione europea — eInvoicing in Norway</strong><br>
+      <a href="https://ec.europa.eu/digital-building-blocks/sites/display/DIGITAL/eInvoicing+in+Norway" target="_blank" rel="noopener">Commissione europea — eInvoicing Norway ↗</a>
+    </li>
+  </ul>
+</main>
+</body>
+</html>

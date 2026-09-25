@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Spagna — Flussi fatturazione elettronica B2B (SPFE / VERI*FACTU)</title>
+<meta name="description" content="Flussi e obblighi della fatturazione elettronica B2B in Spagna: SPFE, VERI*FACTU e SII. Mandato B2B dal 1° ottobre 2027.">
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=IBM+Plex+Mono:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap');
+  :root{--paper:#F5F5F5;--ink:#161616;--ink-soft:#5A5A5A;--line:#D6D6D6;--accent:#AA151B;--accent2:#F1BF00;--card:#FFFFFF;--blue:#1a56db;--green:#065f46;--green-light:#d1fae5;--orange:#92400e;--orange-light:#fef3c7;--red:#991b1b;--red-light:#fee2e2;}
+  *{box-sizing:border-box;}html{scroll-behavior:smooth;}
+  body{margin:0;background:var(--paper);color:var(--ink);font-family:'Inter',sans-serif;-webkit-font-smoothing:antialiased;}
+  body::before{content:"";position:fixed;inset:0;background-image:repeating-linear-gradient(0deg,rgba(27,36,33,0.018) 0px,rgba(27,36,33,0.018) 1px,transparent 1px,transparent 3px);pointer-events:none;z-index:0;}
+  a{color:var(--blue);}
+  header.masthead{position:relative;z-index:1;border-bottom:3px double var(--ink);padding:28px 5vw 18px;}
+  .masthead-top{display:flex;justify-content:space-between;align-items:baseline;flex-wrap:wrap;gap:8px;font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-soft);margin-bottom:18px;}
+  .masthead-top .dot{color:var(--accent);}
+  .masthead-top a{color:var(--ink-soft);text-decoration:none;}.masthead-top a:hover{color:var(--ink);}
+  h1.title{font-family:'Fraunces',serif;font-weight:600;font-size:clamp(28px,5vw,52px);line-height:1;margin:0 0 10px;letter-spacing:-0.01em;}
+  h1.title em{font-style:italic;font-weight:400;color:var(--accent);}
+  .subhead{display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:18px;border-top:1px solid var(--line);padding-top:14px;margin-top:18px;}
+  .subhead p{max-width:640px;font-size:15px;line-height:1.55;color:var(--ink-soft);margin:0;}
+  .meta-stamp{font-family:'IBM Plex Mono',monospace;font-size:11px;text-align:right;color:var(--ink-soft);line-height:1.6;white-space:nowrap;}
+  .meta-stamp .label{text-transform:uppercase;letter-spacing:.08em;font-size:10px;color:var(--ink);}
+  main{position:relative;z-index:1;padding:38px 5vw 60px;max-width:900px;margin:0 auto;width:100%;}
+  h2{font-family:'Fraunces',serif;font-weight:600;font-size:22px;margin:2em 0 .5em;letter-spacing:-0.01em;border-bottom:2px solid var(--line);padding-bottom:6px;}
+  h3{font-family:'Fraunces',serif;font-weight:600;font-size:17px;margin:1.5em 0 .4em;}
+  p{font-size:14.5px;line-height:1.65;color:var(--ink-soft);margin:.5em 0 .8em;}
+  ul,ol{padding-left:1.4em;margin:.5em 0 .8em;}
+  li{font-size:14.5px;line-height:1.6;color:var(--ink-soft);margin-bottom:.25em;}
+  strong{color:var(--ink);}
+  code{font-family:'IBM Plex Mono',monospace;font-size:12.5px;background:#e8e8e8;padding:1px 5px;border-radius:3px;}
+  .timeline{display:flex;flex-direction:column;border-left:3px solid var(--accent);margin:1.5em 0 1.5em 12px;}
+  .tl-item{position:relative;padding:12px 16px 12px 24px;}
+  .tl-item::before{content:"";position:absolute;left:-8px;top:18px;width:13px;height:13px;border-radius:50%;background:var(--accent);border:2px solid var(--paper);}
+  .tl-date{font-family:'IBM Plex Mono',monospace;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.07em;color:var(--accent);margin-bottom:4px;}
+  .tl-title{font-size:14.5px;font-weight:600;color:var(--ink);margin-bottom:3px;}
+  .tl-desc{font-size:13.5px;color:var(--ink-soft);line-height:1.55;}
+  .flow-steps{counter-reset:step;display:flex;flex-direction:column;border-left:2px solid var(--line);margin:1em 0 1em 10px;}
+  .flow-step{position:relative;padding:10px 14px 10px 28px;}
+  .flow-step::before{counter-increment:step;content:counter(step);position:absolute;left:-13px;top:10px;width:24px;height:24px;border-radius:50%;background:var(--ink);color:#fff;font-family:'IBM Plex Mono',monospace;font-size:11px;font-weight:700;display:flex;align-items:center;justify-content:center;border:2px solid var(--paper);}
+  .flow-step .fs-title{font-size:14px;font-weight:600;color:var(--ink);margin-bottom:2px;}
+  .flow-step .fs-desc{font-size:13.5px;color:var(--ink-soft);line-height:1.55;}
+  .system-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:14px;margin:1em 0;}
+  .sys-card{background:var(--card);border:1px solid var(--line);border-radius:6px;padding:16px 18px;}
+  .sys-card .sc-name{font-family:'IBM Plex Mono',monospace;font-size:13px;font-weight:700;color:var(--ink);margin-bottom:4px;}
+  .sys-card .sc-badge{display:inline-block;font-size:10px;font-weight:600;padding:2px 7px;border-radius:3px;text-transform:uppercase;letter-spacing:.05em;margin-bottom:8px;}
+  .badge-active{background:var(--green-light);color:var(--green);}
+  .badge-future{background:var(--orange-light);color:var(--orange);}
+  .sys-card p{font-size:13px;margin:0;color:var(--ink-soft);}
+  .callout{border-left:4px solid var(--accent);background:var(--card);padding:12px 16px;margin:1.2em 0;border-radius:0 5px 5px 0;font-size:13.5px;color:var(--ink-soft);line-height:1.6;}
+  .callout strong{color:var(--ink);}
+  .ref-list{list-style:none;padding:0;margin:.5em 0;}
+  .ref-list li{font-size:13.5px;border-bottom:1px solid var(--line);padding:8px 0;color:var(--ink-soft);}
+  .ref-list li:last-child{border-bottom:none;}
+  .ref-list a{color:var(--blue);}
+</style>
+</head>
+<body>
+<header class="masthead">
+  <div class="masthead-top">
+    <span><a href="../index.html">← E-Invoicing Tracker</a> <span class="dot">◆</span> Spagna</span>
+    <span>Aggiornato: settembre 2026</span>
+  </div>
+  <h1 class="title">Spagna — <em>SPFE & VERI*FACTU</em><br>fatturazione elettronica B2B</h1>
+  <div class="subhead">
+    <p>Guida al sistema spagnolo di fatturazione elettronica B2B: la <strong>Solución Pública de Facturación Electrónica (SPFE)</strong> dell'AEAT come piattaforma pubblica, le piattaforme private accreditate, e il sistema <strong>VERI*FACTU</strong> (SIF) per la registrazione in tempo reale dei dati IVA. Mandato B2B dal <strong>Real Decreto 238/2026</strong>.</p>
+    <div class="meta-stamp">
+      <div class="label">Normativa</div>
+      <div>Ley 18/2022 (Crea y Crece)</div>
+      <div>Real Decreto 238/2026</div>
+      <div class="label" style="margin-top:6px">Mandato B2B</div>
+      <div>1° ott 2027 (fatturato &gt;8M EUR)</div>
+      <div>1° ott 2028 (tutte le imprese)</div>
+    </div>
+  </div>
+</header>
+<main>
+
+  <h2>Quadro normativo</h2>
+  <p>La fatturazione elettronica B2B obbligatoria in Spagna è stata introdotta dalla <strong>Ley 18/2022</strong> (Ley Crea y Crece, 28 settembre 2022), che impone l'obbligo a tutte le imprese e professionisti. Le specifiche tecniche sono state pubblicate con il <strong>Real Decreto 238/2026</strong> (24 marzo 2026), che ha stabilito le scadenze definitive e il formato tecnico obbligatorio (UBL 2.5, allineato a EN 16931:2026). L'AEAT (Agencia Estatal de Administración Tributaria) ha pubblicato le specifiche SPFE il 1° giugno 2026.</p>
+  <p>Il sistema spagnolo si distingue per la <strong>coesistenza di tre sistemi complementari</strong>: la fatturazione elettronica B2B (SPFE/piattaforme accreditate), il VERI*FACTU per la registrazione in tempo reale dei dati IVA, e il SII (Suministro Inmediato de Información) già in vigore per le grandi imprese.</p>
+
+  <h2>I tre sistemi del panorama spagnolo</h2>
+  <div class="system-grid">
+    <div class="sys-card">
+      <div class="sc-name">SPFE</div>
+      <span class="sc-badge badge-future">B2B — dal ott 2027</span>
+      <p>Solución Pública de Facturación Electrónica: piattaforma pubblica gratuita dell'AEAT per l'emissione e ricezione di fatture strutturate. Alternativa alle piattaforme private accreditate. Formato: UBL 2.5 (EN 16931:2026). Include QR VERI*FACTU obbligatorio su ogni fattura.</p>
+    </div>
+    <div class="sys-card">
+      <div class="sc-name">VERI*FACTU (SIF)</div>
+      <span class="sc-badge badge-future">Dal gen 2027 (società)</span>
+      <p>Sistema de Información de Facturación: ogni fattura deve essere registrata in tempo reale nel sistema AEAT con un codice QR di verifica VERI*FACTU. Obbligatorio per società dal 1° gennaio 2027, per altri operatori dal 1° luglio 2027. Esentati i soggetti già nel SII (&gt;6M EUR).</p>
+    </div>
+    <div class="sys-card">
+      <div class="sc-name">SII</div>
+      <span class="sc-badge badge-active">Già in vigore dal 2017</span>
+      <p>Suministro Inmediato de Información: e-reporting in tempo reale (entro 4 giorni) delle fatture per grandi contribuenti con fatturato &gt;6M EUR. Chi è nel SII è esonerato da VERI*FACTU. I soggetti SII entreranno nell'obbligo SPFE dal 1° ottobre 2027 con le stesse scadenze degli altri.</p>
+    </div>
+  </div>
+
+  <div class="callout">
+    <strong>VERI*FACTU ≠ fatturazione elettronica:</strong> VERI*FACTU è un sistema di <em>registrazione e antifrode</em> — garantisce l'integrità di ogni fattura tramite QR verificabile. Non sostituisce la fattura stessa né il sistema di scambio B2B. La fattura strutturata SPFE include il QR VERI*FACTU come campo obbligatorio, ma VERI*FACTU può applicarsi anche a fatture PDF o cartacee (prima del mandato strutturato).
+  </div>
+
+  <h2>Scadenze</h2>
+  <div class="timeline">
+    <div class="tl-item">
+      <div class="tl-date">Dal 2017</div>
+      <div class="tl-title">SII in vigore — grandi contribuenti (&gt;6M EUR)</div>
+      <div class="tl-desc">I soggetti con fatturato superiore a 6 milioni EUR trasmettono i dati di ogni fattura all'AEAT entro 4 giorni (SII — Suministro Inmediato de Información). Sistema di e-reporting già consolidato per le grandi imprese.</div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-date">1° gennaio 2027</div>
+      <div class="tl-title">VERI*FACTU obbligatorio per società</div>
+      <div class="tl-desc">Le società (S.L., S.A., ecc.) devono integrare il codice QR VERI*FACTU su ogni fattura emessa e registrare i dati nel sistema AEAT in tempo reale. Rinviato rispetto all'originario 2026 con il Real Decreto-ley 15/2025.</div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-date">1° luglio 2027</div>
+      <div class="tl-title">VERI*FACTU obbligatorio per altri operatori</div>
+      <div class="tl-desc">Estensione di VERI*FACTU a professionisti, autonomi e altri soggetti passivi. Esentati i soggetti già nel regime SII.</div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-date">1° ottobre 2027</div>
+      <div class="tl-title">Fatturazione B2B strutturata — grandi imprese (&gt;8M EUR)</div>
+      <div class="tl-desc">Le imprese con fatturato 2025 superiore a 8 milioni EUR devono emettere e ricevere fatture strutturate tramite SPFE o piattaforma privata accreditata. Formato obbligatorio: UBL 2.5 (EN 16931:2026) con QR VERI*FACTU incorporato.</div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-date">1° ottobre 2028</div>
+      <div class="tl-title">Fatturazione B2B strutturata — tutte le imprese e i professionisti</div>
+      <div class="tl-desc">Estensione a tutte le PMI e ai professionisti (autónomos). Obbligo pieno senza eccezioni per tutti i soggetti passivi stabiliti in Spagna.</div>
+    </div>
+  </div>
+
+  <h2>Flusso di emissione B2B tramite SPFE</h2>
+  <div class="flow-steps">
+    <div class="flow-step">
+      <div class="fs-title">Generazione della fattura UBL 2.5</div>
+      <div class="fs-desc">L'ERP genera la fattura nel formato <strong>UBL 2.5</strong> conforme a EN 16931:2026, con la specifica SPFE dell'AEAT. Include obbligatoriamente: NIF (Número de Identificación Fiscal) di emittente e destinatario, dati IVA, QR VERI*FACTU, numero di fattura sequenziale con hash di catena (per garantire l'immutabilità della serie di fatture).</div>
+    </div>
+    <div class="flow-step">
+      <div class="fs-title">Generazione del codice QR VERI*FACTU</div>
+      <div class="fs-desc">Prima o contestualmente all'emissione, il software genera il <strong>codice QR VERI*FACTU</strong> inviando i dati della fattura all'API AEAT (<em>registro de facturación</em>). L'AEAT risponde con un codice di registrazione che viene incorporato nel QR. Ogni fattura è collegata alla precedente tramite hash (catena di fatture), rendendo impossibile la modifica retroattiva.</div>
+    </div>
+    <div class="flow-step">
+      <div class="fs-title">Scelta del canale: SPFE o piattaforma accreditata</div>
+      <div class="fs-desc">L'emittente sceglie il canale di consegna:
+        <ul style="margin:.3em 0;">
+          <li><strong>SPFE</strong> (piattaforma pubblica gratuita AEAT): adatta per PMI, accesso tramite portale o API.</li>
+          <li><strong>Piattaforma privata accreditata</strong>: provider commerciali omologati dall'AEAT, per integrazione ERP e grandi volumi.</li>
+        </ul>
+      </div>
+    </div>
+    <div class="flow-step">
+      <div class="fs-title">Trasmissione e validazione</div>
+      <div class="fs-desc">La fattura UBL 2.5 viene inviata tramite il canale scelto. Il sistema valida la conformità allo schema XSD SPFE e alle regole Schematron. In caso di errore, vengono restituiti codici di dettaglio per la correzione.</div>
+    </div>
+    <div class="flow-step">
+      <div class="fs-title">Messa a disposizione al destinatario</div>
+      <div class="fs-desc">La fattura validata viene resa disponibile al destinatario nel suo portale SPFE o consegnata tramite la piattaforma accreditata. Il destinatario può scaricare la fattura strutturata e verificare il QR VERI*FACTU sul portale AEAT.</div>
+    </div>
+    <div class="flow-step">
+      <div class="fs-title">Accettazione, rifiuto o contestazione</div>
+      <div class="fs-desc">Il destinatario può comunicare l'accettazione, il rifiuto o mettere la fattura "in contenzioso" tramite il sistema. Lo stato della fattura (aceptada / rechazada / en trámite) è visibile a entrambe le parti sulla piattaforma e all'AEAT per il monitoraggio IVA.</div>
+    </div>
+    <div class="flow-step">
+      <div class="fs-title">Conservazione</div>
+      <div class="fs-desc">Le fatture devono essere conservate per <strong>4 anni</strong> (termine di prescrizione IVA spagnola, art. 66 Ley General Tributaria) o <strong>6 anni</strong> (per il Codice di Commercio). La piattaforma SPFE offre conservazione gratuita per le fatture transitate.</div>
+    </div>
+  </div>
+
+  <h2>Stati della fattura nella piattaforma SPFE</h2>
+  <ul>
+    <li><strong>Registrada</strong>: fattura inviata e validata formalmente dalla piattaforma; assegnato ID univoco.</li>
+    <li><strong>Enviada</strong>: fattura consegnata con successo al destinatario.</li>
+    <li><strong>Aceptada</strong>: il destinatario ha accettato esplicitamente la fattura.</li>
+    <li><strong>Rechazada</strong>: il destinatario ha rifiutato la fattura (motivo indicato). L'emittente deve emettere rettifica o nuova fattura.</li>
+    <li><strong>En trámite</strong>: il destinatario ha aperto una contestazione commerciale. Fattura in sospeso in attesa di risoluzione.</li>
+    <li><strong>Anulada</strong>: fattura annullata tramite nota di credito (factura rectificativa).</li>
+    <li><strong>Error</strong>: la fattura non ha superato la validazione XSD/Schematron; da correggere e reinviare.</li>
+  </ul>
+
+  <h2>Integrazione con il SII (grandi contribuenti)</h2>
+  <p>Le imprese già nel regime <strong>SII</strong> (fatturato &gt;6M EUR) sono <strong>esonerate da VERI*FACTU</strong> in quanto il SII assolve già la funzione di e-reporting in tempo reale. Con l'entrata in vigore del mandato SPFE (ottobre 2027), anche questi soggetti dovranno emettere fatture strutturate, ma il loro canale SII per il reporting fiscale resterà invariato.</p>
+
+  <h2>Casi speciali ed esclusioni</h2>
+  <ul>
+    <li><strong>B2C:</strong> escluso dall'obbligo SPFE. Le vendite ai consumatori finali possono continuare con scontrini elettronici (ticketBAI nei Paesi Baschi e Navarra) o documenti ordinari.</li>
+    <li><strong>Regimi forali (País Vasco, Navarra):</strong> la normativa fiscale è gestita autonomamente; ticketBAI è già obbligatorio in queste regioni e ha precedenza sulla normativa statale.</li>
+    <li><strong>Operatori nel SII (&gt;6M EUR):</strong> esonerati da VERI*FACTU ma soggetti all'obbligo SPFE dal 2027.</li>
+    <li><strong>Soggetti non stabiliti in Spagna:</strong> non soggetti all'obbligo SPFE, ma tenuti a rispettare le regole IVA spagnole per le operazioni con IVA spagnola.</li>
+    <li><strong>Operazioni intracomunitarie:</strong> ViDA introdurrà obblighi aggiuntivi dal 2030.</li>
+  </ul>
+
+  <h2>Riferimenti normativi e tecnici</h2>
+  <ul class="ref-list">
+    <li>
+      <strong>Ley 18/2022 (Ley Crea y Crece)</strong> — Norma primaria che introduce l'obbligo di fatturazione elettronica B2B.<br>
+      <a href="https://www.boe.es/eli/es/l/2022/09/28/18" target="_blank" rel="noopener">boe.es — Ley 18/2022 ↗</a>
+    </li>
+    <li>
+      <strong>Real Decreto 238/2026</strong> — Regolamento tecnico che fissa le scadenze e il formato UBL 2.5 per il mandato B2B.<br>
+      <a href="https://www.boe.es/buscar/act.php?id=BOE-A-2026-3838" target="_blank" rel="noopener">boe.es — Real Decreto 238/2026 ↗</a>
+    </li>
+    <li>
+      <strong>AEAT — SPFE (Solución Pública Facturación Electrónica)</strong> — Portale ufficiale AEAT con la piattaforma pubblica, specifiche tecniche e documentazione VERI*FACTU.<br>
+      <a href="https://sede.agenciatributaria.gob.es/Sede/iva/facturacion-registro/facturacion-iva.html" target="_blank" rel="noopener">sede.agenciatributaria.gob.es — Facturación IVA ↗</a>
+    </li>
+    <li>
+      <strong>Especificaciones técnicas SPFE (giugno 2026)</strong> — Schema XSD UBL 2.5 e regole Schematron per il formato SPFE.<br>
+      <a href="https://www.agenciatributaria.es/AEAT.internet/Inicio/La_Agencia_Tributaria/Campanas/Factura_electronica_para_empresas_y_autonomos/Factura_electronica_para_empresas_y_autonomos.shtml" target="_blank" rel="noopener">agenciatributaria.es — Factura Electrónica ↗</a>
+    </li>
+    <li>
+      <strong>Commissione europea — eInvoicing in Spain</strong><br>
+      <a href="https://ec.europa.eu/digital-building-blocks/sites/display/DIGITAL/eInvoicing+in+Spain" target="_blank" rel="noopener">Commissione europea — eInvoicing Spain ↗</a>
+    </li>
+  </ul>
+</main>
+</body>
+</html>
