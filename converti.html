@@ -145,6 +145,7 @@
         <span class="fmt-badge fmt-ro">RO_CIUS UBL — Romania</span>
         <span class="fmt-badge fmt-it">FacturaE 3.2 — Spagna</span>
         <span class="fmt-badge fmt-ubl">Factur-X / CII — Francia/DE</span>
+        <span class="fmt-badge fmt-ubl">PDF ZUGFeRD — Germania (estrae XML)</span>
         <span class="fmt-badge fmt-pl">CFDI 4.0 — Messico</span>
       </div>
     </div>
@@ -161,10 +162,10 @@
   <!-- Upload / Paste -->
   <div class="upload-area">
     <div class="drop-zone" id="dropZone">
-      <input type="file" id="fileInput" accept=".xml,text/xml,application/xml">
+      <input type="file" id="fileInput" accept=".xml,.pdf,text/xml,application/xml,application/pdf">
       <div class="dz-icon">📄</div>
-      <div class="dz-label">Trascina qui la fattura XML</div>
-      <div class="dz-sub">oppure clicca per scegliere il file</div>
+      <div class="dz-label">Trascina qui la fattura XML o il PDF ZUGFeRD</div>
+      <div class="dz-sub">oppure clicca per scegliere il file (.xml, .pdf)</div>
     </div>
 
     <div class="paste-zone">
@@ -754,6 +755,63 @@ function extractCFDI(doc) {
 }
 
 // ─────────────────────────────────────────────
+// PDF → ZUGFeRD/Factur-X XML extraction
+// ─────────────────────────────────────────────
+function extractXMLFromPDF(arrayBuffer) {
+  // PDF/A-3 embeds the CII XML as a file attachment in the PDF binary stream.
+  // We scan the raw bytes for the XML content by locating the CrossIndustryInvoice tag.
+  const bytes = new Uint8Array(arrayBuffer);
+  const decoder = new TextDecoder('latin1'); // latin1 preserves byte values
+  const raw = decoder.decode(bytes);
+
+  // Look for the XML declaration or root element that signals a CII document
+  const markers = ['<?xml', '<rsm:CrossIndustryInvoice', '<CrossIndustryInvoice'];
+  let startIdx = -1;
+  let foundMarker = '';
+  for (const marker of markers) {
+    const idx = raw.indexOf(marker);
+    if (idx !== -1 && (startIdx === -1 || idx < startIdx)) {
+      startIdx = idx;
+      foundMarker = marker;
+    }
+  }
+
+  if (startIdx === -1) {
+    throw new Error('Nessun XML CII (ZUGFeRD/Factur-X) trovato nel PDF. Il file deve essere un PDF/A-3 con XML allegato.');
+  }
+
+  // Find the end of the XML: look for the closing tag after the start
+  const closingTags = ['</rsm:CrossIndustryInvoice>', '</CrossIndustryInvoice>'];
+  let endIdx = -1;
+  let closingTag = '';
+  for (const tag of closingTags) {
+    const idx = raw.indexOf(tag, startIdx);
+    if (idx !== -1) {
+      endIdx = idx + tag.length;
+      closingTag = tag;
+      break;
+    }
+  }
+
+  if (endIdx === -1) {
+    // Fallback: try to find end by stream/obj markers after the XML start
+    const streamEnd = raw.indexOf('endstream', startIdx);
+    if (streamEnd !== -1) {
+      endIdx = streamEnd;
+    } else {
+      throw new Error('XML trovato nel PDF ma il tag di chiusura non è stato trovato. Il PDF potrebbe essere corrotto o compresso.');
+    }
+  }
+
+  // Extract the XML substring and re-encode to UTF-8 properly
+  // The XML declaration may specify utf-8; we need to re-encode from latin1 byte slice
+  const xmlSlice = bytes.slice(startIdx, endIdx);
+  const xmlString = new TextDecoder('utf-8').decode(xmlSlice);
+
+  return { xml: xmlString.trim(), source: 'ZUGFeRD/Factur-X (estratto da PDF)' };
+}
+
+// ─────────────────────────────────────────────
 // Parse & dispatch
 // ─────────────────────────────────────────────
 function parseXML(xmlString) {
@@ -1063,10 +1121,11 @@ function reset() {
   document.getElementById('fileInput').value = '';
 }
 
-function processXML(xmlStr) {
+function processXML(xmlStr, sourceLabel) {
   try {
     const inv = parseXML(xmlStr);
-    showStatus(`✓ Formato rilevato: ${inv.formatLabel} — ${inv.lines.length} rig${inv.lines.length === 1 ? 'a' : 'he'} trovate`, 'ok');
+    const src = sourceLabel ? ` (${sourceLabel})` : '';
+    showStatus(`✓ Formato rilevato: ${inv.formatLabel}${src} — ${inv.lines.length} rig${inv.lines.length === 1 ? 'a' : 'he'} trovate`, 'ok');
     showPreview(inv);
   } catch(e) {
     showStatus('✗ ' + e.message, 'err');
@@ -1078,11 +1137,32 @@ function processXML(xmlStr) {
 document.getElementById('fileInput').addEventListener('change', function() {
   const file = this.files[0];
   if (!file) return;
-  const reader = new FileReader();
-  reader.onload = (e) => processXML(e.target.result);
-  reader.readAsText(file, 'UTF-8');
   document.getElementById('dropZone').querySelector('.dz-label').textContent = file.name;
+  processFile(file);
 });
+
+function processFile(file) {
+  const isPDF = file.type === 'application/pdf' || file.name.toLowerCase().endsWith('.pdf');
+  if (isPDF) {
+    showStatus('Analisi PDF in corso — ricerca XML ZUGFeRD/Factur-X allegato…', 'warn');
+    const reader = new FileReader();
+    reader.onload = (e) => {
+      try {
+        const { xml, source } = extractXMLFromPDF(e.target.result);
+        showStatus(`✓ XML estratto da ${source} — analisi in corso…`, 'ok');
+        processXML(xml, source);
+      } catch(err) {
+        showStatus('✗ ' + err.message, 'err');
+        document.getElementById('previewSection').style.display = 'none';
+      }
+    };
+    reader.readAsArrayBuffer(file);
+  } else {
+    const reader = new FileReader();
+    reader.onload = (e) => processXML(e.target.result);
+    reader.readAsText(file, 'UTF-8');
+  }
+}
 
 // Drag & drop
 const dz = document.getElementById('dropZone');
@@ -1094,9 +1174,7 @@ dz.addEventListener('drop', (e) => {
   const file = e.dataTransfer.files[0];
   if (!file) return;
   dz.querySelector('.dz-label').textContent = file.name;
-  const reader = new FileReader();
-  reader.onload = (ev) => processXML(ev.target.result);
-  reader.readAsText(file, 'UTF-8');
+  processFile(file);
 });
 
 // Parse button

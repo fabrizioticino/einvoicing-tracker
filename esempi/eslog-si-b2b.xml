@@ -1,4 +1,5 @@
-<?xml version="1.0" encoding="UTF-8"?>
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="../xslt/ubl-invoice.xsl"?>
 <!--
   Esempio di fattura elettronica B2B Slovenia
   Formato: e-SLOG 2.0 (profilo EN 16931 / CIUS-SI) — obbligatorio dal 1° gennaio 2028

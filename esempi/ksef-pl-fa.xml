@@ -1,4 +1,5 @@
-<?xml version="1.0" encoding="UTF-8"?>
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="../xslt/ksef.xsl"?>
 <!-- FAC-SIMILE - ESEMPIO DIDATTICO - DATI FITTIZI - NON E' UNA FATTURA REALE - KSeF FA(2) (Polonia) -->
 <Faktura xmlns="http://crd.gov.pl/wzor/2023/06/29/12648/">
   <Naglowek><KodFormularza kodSystemowy="FA (2)" wersjaSchemy="1-0E">FA</KodFormularza><WariantFormularza>2</WariantFormularza><DataWytworzeniaFa>2026-01-20T10:00:00Z</DataWytworzeniaFa></Naglowek>
