@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Grecia — Flussi fatturazione elettronica B2B (myDATA)</title>
+<meta name="description" content="Flussi e obblighi del sistema myDATA per l'e-reporting delle fatture in Grecia. Obbligo per tutte le imprese dal 1° ottobre 2026.">
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=IBM+Plex+Mono:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap');
+  :root{--paper:#F5F5F5;--ink:#161616;--ink-soft:#5A5A5A;--line:#D6D6D6;--accent:#0D5EAF;--accent2:#0D5EAF;--card:#FFFFFF;--blue:#1a56db;--green:#065f46;--green-light:#d1fae5;--orange:#92400e;--orange-light:#fef3c7;--red:#991b1b;--red-light:#fee2e2;}
+  *{box-sizing:border-box;}html{scroll-behavior:smooth;}
+  body{margin:0;background:var(--paper);color:var(--ink);font-family:'Inter',sans-serif;-webkit-font-smoothing:antialiased;}
+  body::before{content:"";position:fixed;inset:0;background-image:repeating-linear-gradient(0deg,rgba(27,36,33,0.018) 0px,rgba(27,36,33,0.018) 1px,transparent 1px,transparent 3px);pointer-events:none;z-index:0;}
+  a{color:var(--blue);}
+  header.masthead{position:relative;z-index:1;border-bottom:3px double var(--ink);padding:28px 5vw 18px;}
+  .masthead-top{display:flex;justify-content:space-between;align-items:baseline;flex-wrap:wrap;gap:8px;font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-soft);margin-bottom:18px;}
+  .masthead-top .dot{color:var(--accent);}
+  .masthead-top a{color:var(--ink-soft);text-decoration:none;}.masthead-top a:hover{color:var(--ink);}
+  h1.title{font-family:'Fraunces',serif;font-weight:600;font-size:clamp(28px,5vw,52px);line-height:1;margin:0 0 10px;letter-spacing:-0.01em;}
+  h1.title em{font-style:italic;font-weight:400;color:var(--accent);}
+  .subhead{display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:18px;border-top:1px solid var(--line);padding-top:14px;margin-top:18px;}
+  .subhead p{max-width:640px;font-size:15px;line-height:1.55;color:var(--ink-soft);margin:0;}
+  .meta-stamp{font-family:'IBM Plex Mono',monospace;font-size:11px;text-align:right;color:var(--ink-soft);line-height:1.6;white-space:nowrap;}
+  .meta-stamp .label{text-transform:uppercase;letter-spacing:.08em;font-size:10px;color:var(--ink);}
+  main{position:relative;z-index:1;padding:38px 5vw 60px;max-width:900px;margin:0 auto;width:100%;}
+  h2{font-family:'Fraunces',serif;font-weight:600;font-size:22px;margin:2em 0 .5em;letter-spacing:-0.01em;border-bottom:2px solid var(--line);padding-bottom:6px;}
+  h3{font-family:'Fraunces',serif;font-weight:600;font-size:17px;margin:1.5em 0 .4em;}
+  p{font-size:14.5px;line-height:1.65;color:var(--ink-soft);margin:.5em 0 .8em;}
+  ul,ol{padding-left:1.4em;margin:.5em 0 .8em;}
+  li{font-size:14.5px;line-height:1.6;color:var(--ink-soft);margin-bottom:.25em;}
+  strong{color:var(--ink);}
+  code{font-family:'IBM Plex Mono',monospace;font-size:12.5px;background:#e8e8e8;padding:1px 5px;border-radius:3px;}
+  .timeline{display:flex;flex-direction:column;border-left:3px solid var(--accent);margin:1.5em 0 1.5em 12px;}
+  .tl-item{position:relative;padding:12px 16px 12px 24px;}
+  .tl-item::before{content:"";position:absolute;left:-8px;top:18px;width:13px;height:13px;border-radius:50%;background:var(--accent);border:2px solid var(--paper);}
+  .tl-date{font-family:'IBM Plex Mono',monospace;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.07em;color:var(--accent);margin-bottom:4px;}
+  .tl-title{font-size:14.5px;font-weight:600;color:var(--ink);margin-bottom:3px;}
+  .tl-desc{font-size:13.5px;color:var(--ink-soft);line-height:1.55;}
+  .flow-steps{counter-reset:step;display:flex;flex-direction:column;border-left:2px solid var(--line);margin:1em 0 1em 10px;}
+  .flow-step{position:relative;padding:10px 14px 10px 28px;}
+  .flow-step::before{counter-increment:step;content:counter(step);position:absolute;left:-13px;top:10px;width:24px;height:24px;border-radius:50%;background:var(--ink);color:#fff;font-family:'IBM Plex Mono',monospace;font-size:11px;font-weight:700;display:flex;align-items:center;justify-content:center;border:2px solid var(--paper);}
+  .flow-step .fs-title{font-size:14px;font-weight:600;color:var(--ink);margin-bottom:2px;}
+  .flow-step .fs-desc{font-size:13.5px;color:var(--ink-soft);line-height:1.55;}
+  .callout{border-left:4px solid var(--accent);background:var(--card);padding:12px 16px;margin:1.2em 0;border-radius:0 5px 5px 0;font-size:13.5px;color:var(--ink-soft);line-height:1.6;}
+  .callout strong{color:var(--ink);}
+  .ref-list{list-style:none;padding:0;margin:.5em 0;}
+  .ref-list li{font-size:13.5px;border-bottom:1px solid var(--line);padding:8px 0;color:var(--ink-soft);}
+  .ref-list li:last-child{border-bottom:none;}
+  .ref-list a{color:var(--blue);}
+</style>
+</head>
+<body>
+<header class="masthead">
+  <div class="masthead-top">
+    <span><a href="../index.html">← E-Invoicing Tracker</a> <span class="dot">◆</span> Grecia</span>
+    <span>Aggiornato: settembre 2026</span>
+  </div>
+  <h1 class="title">Grecia — <em>myDATA</em><br>e-reporting fatture B2B</h1>
+  <div class="subhead">
+    <p>Guida al sistema <strong>myDATA</strong> (My Digital Accounting and Tax Application), la piattaforma dell'Autorità Indipendente delle Entrate Pubbliche greca (AADE/IAPR) per la segnalazione obbligatoria dei dati di tutte le fatture B2B. Obbligo per tutte le imprese dal <strong>1° ottobre 2026</strong>.</p>
+    <div class="meta-stamp">
+      <div class="label">Sistema</div>
+      <div>myDATA (AADE/IAPR)</div>
+      <div class="label" style="margin-top:6px">Obbligo e-reporting</div>
+      <div>Dal 2° mar 2026 (fatturato &gt;1M EUR)</div>
+      <div>Dal 1° ott 2026 (tutte le imprese)</div>
+    </div>
+  </div>
+</header>
+<main>
+
+  <h2>Quadro normativo</h2>
+  <p>La Grecia ha introdotto il sistema myDATA con la <strong>Legge 4308/2014</strong> (Codice greco di rendicontazione fiscale) e con le successive normative attuative. myDATA è operativo dal 2020 in fase pilota e diventa obbligatorio con la <strong>Decisione AADE A.1035/2020</strong> e successive modifiche. Il sistema è gestito dall'<strong>AADE</strong> (Ανεξάρτητη Αρχή Δημοσίων Εσόδων — Autorità Indipendente delle Entrate Pubbliche).</p>
+  <p>myDATA è un sistema di <strong>e-reporting</strong>: i dati contabili (fatture attive e passive) vengono trasmessi al sistema fiscale. In parallelo, la Grecia sta introducendo lo scambio strutturato di fatture tramite la piattaforma stessa, avvicinandosi a un modello di clearance completo.</p>
+
+  <div class="callout">
+    <strong>myDATA = e-reporting + classificazione contabile:</strong> a differenza di SdI (IT) o RO e-Factura (RO), myDATA non funge da intermediario per la consegna della fattura al cliente. Il sistema raccoglie i dati fiscali e li usa per pre-compilare le dichiarazioni IVA e i libri contabili dei contribuenti (Βιβλία myDATA). La consegna della fattura al cliente avviene separatamente.
+  </div>
+
+  <h2>Scadenze di attuazione</h2>
+  <div class="timeline">
+    <div class="tl-item">
+      <div class="tl-date">2021–2022</div>
+      <div class="tl-title">Fase pilota e prime scadenze per grandi imprese</div>
+      <div class="tl-desc">Avvio del sistema myDATA su base volontaria. Prime scadenze obbligatorie per grandi contribuenti con specifici volumi d'affari.</div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-date">2° marzo 2026</div>
+      <div class="tl-title">Obbligo per imprese con fatturato &gt; 1 milione EUR</div>
+      <div class="tl-desc">Le imprese con fatturato superiore a 1 milione EUR devono segnalare tutte le fatture e i documenti contabili tramite myDATA in tempo reale (o entro brevi termini). Entrano in vigore le sanzioni per mancata o tardiva trasmissione.</div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-date">1° ottobre 2026</div>
+      <div class="tl-title">Obbligo per tutte le imprese</div>
+      <div class="tl-desc">Estensione dell'obbligo a tutti i soggetti passivi IVA registrati in Grecia, indipendentemente dal fatturato. Obbligo di trasmissione di fatture emesse (έσοδα) e ricevute (έξοδα).</div>
+    </div>
+  </div>
+
+  <h2>Flusso di segnalazione myDATA</h2>
+  <div class="flow-steps">
+    <div class="flow-step">
+      <div class="fs-title">Generazione della fattura</div>
+      <div class="fs-desc">L'emittente genera la fattura con il proprio software (ERP, gestionale, o tramite Fornitore di Servizi di e-invoicing — ΥΠΗΕΣ). Il documento può essere emesso in formato libero (PDF, cartaceo) o strutturato (UBL/CII), ma i dati devono essere estratti per la segnalazione a myDATA.</div>
+    </div>
+    <div class="flow-step">
+      <div class="fs-title">Preparazione del payload myDATA</div>
+      <div class="fs-desc">Il software prepara il payload XML per l'API myDATA, includendo: tipo documento (τύπος παραστατικού), dati emittente/destinatario (ΑΦΜ), classificazione IAPR (κατηγορία εσόδου/εξόδου), importi, aliquote IVA, e i codici di classificazione contabile (Κατηγορία Εσόδων/Εξόδων secondo il Piano dei Conti greco).</div>
+    </div>
+    <div class="flow-step">
+      <div class="fs-title">Trasmissione all'API myDATA</div>
+      <div class="fs-desc">Il payload viene trasmesso all'API REST di myDATA (<code>POST /api/provider/SendInvoices</code> o <code>SendExpensesClassification</code>). L'autenticazione avviene con credenziali AADE (username/password o chiave API). Il sistema restituisce un <em>uid</em> e un <em>mark</em> (αριθμός καταχώρησης — numero di registrazione).</div>
+    </div>
+    <div class="flow-step">
+      <div class="fs-title">Ottenimento del MARK (αριθμός καταχώρησης)</div>
+      <div class="fs-desc">Il <strong>MARK</strong> è il numero univoco di registrazione assegnato da myDATA a ogni documento. Deve comparire sulla fattura consegnata al cliente. Se la fattura viene emessa tramite un Fornitore di Servizi autorizzato (ΥΠΗΕΣ), il MARK viene incluso automaticamente nel documento.</div>
+    </div>
+    <div class="flow-step">
+      <div class="fs-title">Classificazione da parte del destinatario</div>
+      <div class="fs-desc">Il destinatario, dopo aver ricevuto la fattura, deve classificare il documento nella propria contabilità myDATA (Έξοδα — spese) tramite la propria applicazione. Questa classificazione può avvenire tramite API o portale myDATA. Se il destinatario non classifica entro i termini, il sistema assegna una classificazione automatica.</div>
+    </div>
+    <div class="flow-step">
+      <div class="fs-title">Pre-compilazione dichiarazione IVA</div>
+      <div class="fs-desc">I dati trasmessi a myDATA vengono usati dall'AADE per pre-compilare automaticamente la dichiarazione IVA periodica (δήλωση ΦΠΑ) del contribuente. Le discrepanze tra dati myDATA e dichiarazione IVA richiedono giustificazione.</div>
+    </div>
+  </div>
+
+  <h2>Tipi documento myDATA principali</h2>
+  <ul>
+    <li><strong>1.1 — Τιμολόγιο Πώλησης</strong>: Fattura di vendita B2B ordinaria.</li>
+    <li><strong>1.2 — Τιμολόγιο Πώλησης / Ενδοκοινοτικές Παραδόσεις</strong>: Fattura per cessioni intracomunitarie.</li>
+    <li><strong>1.3 — Τιμολόγιο Πώλησης / Εξαγωγές</strong>: Fattura per esportazioni extra-UE.</li>
+    <li><strong>2.1 — Τιμολόγιο Παροχής</strong>: Fattura per prestazioni di servizi.</li>
+    <li><strong>5.1 — Πιστωτικό Τιμολόγιο</strong>: Nota di credito (storno parziale o totale).</li>
+    <li><strong>8.1 — Ενοίκια</strong>: Contratto di affitto (comunicazione rendite).</li>
+    <li><strong>11.1 — ΑΛΠ — Απόδειξη Λιανικής Πώλησης</strong>: Ricevuta al dettaglio (B2C).</li>
+  </ul>
+
+  <h2>Casi speciali ed esclusioni</h2>
+  <ul>
+    <li><strong>Liberi professionisti e piccoli contribuenti:</strong> soggetti all'obbligo myDATA dal 1° ottobre 2026, con alcune semplificazioni per categorie specifiche (medici, avvocati, ecc.).</li>
+    <li><strong>Operazioni intracomunitarie:</strong> soggette a segnalazione myDATA con tipo documento specifico. Il VIES rimane il sistema di riferimento per la verifica IVA intraUE.</li>
+    <li><strong>Fatture semplificate (Αποδείξεις):</strong> le ricevute B2C possono essere trasmesse in forma aggregata giornaliera tramite i Registratori di Cassa Elettronici (ΦΗΜΟΣΣ) collegati direttamente a myDATA.</li>
+    <li><strong>Sanzioni:</strong> per mancata o tardiva segnalazione: da 250 € a 2.500 € per violazione, con meccanismo di recidiva.</li>
+  </ul>
+
+  <h2>Riferimenti normativi e tecnici</h2>
+  <ul class="ref-list">
+    <li>
+      <strong>AADE — Portale myDATA</strong> — Accesso al sistema, documentazione API, guide operative in greco e inglese.<br>
+      <a href="https://www.aade.gr/mydata" target="_blank" rel="noopener">aade.gr/mydata ↗</a>
+    </li>
+    <li>
+      <strong>Documentazione API myDATA</strong> — Specifiche tecniche delle API REST per l'integrazione con i sistemi ERP.<br>
+      <a href="https://www.aade.gr/epiheiriseis/e-timologio-mydata/texniki-tekmiriosi" target="_blank" rel="noopener">AADE — Documentazione tecnica ↗</a>
+    </li>
+    <li>
+      <strong>Commissione europea — eInvoicing in Greece</strong><br>
+      <a href="https://ec.europa.eu/digital-building-blocks/sites/display/DIGITAL/eInvoicing+in+Greece" target="_blank" rel="noopener">Commissione europea — eInvoicing Greece ↗</a>
+    </li>
+  </ul>
+</main>
+</body>
+</html>

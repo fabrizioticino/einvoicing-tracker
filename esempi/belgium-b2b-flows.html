@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Belgio — Flussi fatturazione elettronica B2B (Peppol)</title>
+<meta name="description" content="Flussi e obblighi della fatturazione elettronica B2B in Belgio tramite rete Peppol. Obbligo in vigore dal 1° gennaio 2026.">
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=IBM+Plex+Mono:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap');
+  :root{--paper:#F5F5F5;--ink:#161616;--ink-soft:#5A5A5A;--line:#D6D6D6;--accent:#000;--accent2:#FDDA24;--accent3:#EF3340;--card:#FFFFFF;--blue:#1a56db;--green:#065f46;--green-light:#d1fae5;--orange:#92400e;--orange-light:#fef3c7;--red:#991b1b;--red-light:#fee2e2;}
+  *{box-sizing:border-box;}html{scroll-behavior:smooth;}
+  body{margin:0;background:var(--paper);color:var(--ink);font-family:'Inter',sans-serif;-webkit-font-smoothing:antialiased;}
+  body::before{content:"";position:fixed;inset:0;background-image:repeating-linear-gradient(0deg,rgba(27,36,33,0.018) 0px,rgba(27,36,33,0.018) 1px,transparent 1px,transparent 3px);pointer-events:none;z-index:0;}
+  a{color:var(--blue);}
+  header.masthead{position:relative;z-index:1;border-bottom:3px double var(--ink);padding:28px 5vw 18px;}
+  .masthead-top{display:flex;justify-content:space-between;align-items:baseline;flex-wrap:wrap;gap:8px;font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-soft);margin-bottom:18px;}
+  .masthead-top .dot{color:var(--accent3);}
+  .masthead-top a{color:var(--ink-soft);text-decoration:none;}.masthead-top a:hover{color:var(--ink);}
+  h1.title{font-family:'Fraunces',serif;font-weight:600;font-size:clamp(28px,5vw,52px);line-height:1;margin:0 0 10px;letter-spacing:-0.01em;}
+  h1.title em{font-style:italic;font-weight:400;color:var(--accent3);}
+  .subhead{display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:18px;border-top:1px solid var(--line);padding-top:14px;margin-top:18px;}
+  .subhead p{max-width:640px;font-size:15px;line-height:1.55;color:var(--ink-soft);margin:0;}
+  .meta-stamp{font-family:'IBM Plex Mono',monospace;font-size:11px;text-align:right;color:var(--ink-soft);line-height:1.6;white-space:nowrap;}
+  .meta-stamp .label{text-transform:uppercase;letter-spacing:.08em;font-size:10px;color:var(--ink);}
+  main{position:relative;z-index:1;padding:38px 5vw 60px;max-width:900px;margin:0 auto;width:100%;}
+  h2{font-family:'Fraunces',serif;font-weight:600;font-size:22px;margin:2em 0 .5em;letter-spacing:-0.01em;border-bottom:2px solid var(--line);padding-bottom:6px;}
+  h3{font-family:'Fraunces',serif;font-weight:600;font-size:17px;margin:1.5em 0 .4em;}
+  p{font-size:14.5px;line-height:1.65;color:var(--ink-soft);margin:.5em 0 .8em;}
+  ul,ol{padding-left:1.4em;margin:.5em 0 .8em;}
+  li{font-size:14.5px;line-height:1.6;color:var(--ink-soft);margin-bottom:.25em;}
+  strong{color:var(--ink);}
+  code{font-family:'IBM Plex Mono',monospace;font-size:12.5px;background:#e8e8e8;padding:1px 5px;border-radius:3px;}
+  .timeline{display:flex;flex-direction:column;border-left:3px solid var(--accent3);margin:1.5em 0 1.5em 12px;}
+  .tl-item{position:relative;padding:12px 16px 12px 24px;}
+  .tl-item::before{content:"";position:absolute;left:-8px;top:18px;width:13px;height:13px;border-radius:50%;background:var(--accent3);border:2px solid var(--paper);}
+  .tl-date{font-family:'IBM Plex Mono',monospace;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.07em;color:var(--accent3);margin-bottom:4px;}
+  .tl-title{font-size:14.5px;font-weight:600;color:var(--ink);margin-bottom:3px;}
+  .tl-desc{font-size:13.5px;color:var(--ink-soft);line-height:1.55;}
+  .flow-steps{counter-reset:step;display:flex;flex-direction:column;border-left:2px solid var(--line);margin:1em 0 1em 10px;}
+  .flow-step{position:relative;padding:10px 14px 10px 28px;}
+  .flow-step::before{counter-increment:step;content:counter(step);position:absolute;left:-13px;top:10px;width:24px;height:24px;border-radius:50%;background:var(--ink);color:#fff;font-family:'IBM Plex Mono',monospace;font-size:11px;font-weight:700;display:flex;align-items:center;justify-content:center;border:2px solid var(--paper);}
+  .flow-step .fs-title{font-size:14px;font-weight:600;color:var(--ink);margin-bottom:2px;}
+  .flow-step .fs-desc{font-size:13.5px;color:var(--ink-soft);line-height:1.55;}
+  .callout{border-left:4px solid var(--accent3);background:var(--card);padding:12px 16px;margin:1.2em 0;border-radius:0 5px 5px 0;font-size:13.5px;color:var(--ink-soft);line-height:1.6;}
+  .callout strong{color:var(--ink);}
+  .ref-list{list-style:none;padding:0;margin:.5em 0;}
+  .ref-list li{font-size:13.5px;border-bottom:1px solid var(--line);padding:8px 0;color:var(--ink-soft);}
+  .ref-list li:last-child{border-bottom:none;}
+  .ref-list a{color:var(--blue);}
+</style>
+</head>
+<body>
+<header class="masthead">
+  <div class="masthead-top">
+    <span><a href="../index.html">← E-Invoicing Tracker</a> <span class="dot">◆</span> Belgio</span>
+    <span>Aggiornato: settembre 2026</span>
+  </div>
+  <h1 class="title">Belgio — <em>Peppol</em><br>fatturazione elettronica B2B</h1>
+  <div class="subhead">
+    <p>Guida alla fatturazione elettronica B2B obbligatoria in Belgio, basata sulla rete <strong>Peppol</strong>. Dal <strong>1° gennaio 2026</strong> tutte le imprese belghe soggette a IVA devono emettere e ricevere fatture strutturate tramite Access Point Peppol.</p>
+    <div class="meta-stamp">
+      <div class="label">Rete</div>
+      <div>Peppol (decentralizzato)</div>
+      <div class="label" style="margin-top:6px">Mandato B2B</div>
+      <div>Dal 1° gennaio 2026</div>
+      <div>Grazia sanzioni: fino 31 mar 2026</div>
+      <div>Formato: Peppol BIS 3.0</div>
+    </div>
+  </div>
+</header>
+<main>
+
+  <h2>Quadro normativo</h2>
+  <p>Il Belgio ha introdotto l'obbligo di fatturazione elettronica B2B con la <strong>Legge del 6 dicembre 2023</strong> (Legge portante disposizioni fiscali diverse, che modifica il Codice IVA). L'obbligo è stato attuato con la <strong>Circolare 2024/C/51</strong> dell'SPF Finances (Servizio Pubblico Federale Finanze) che definisce le modalità tecniche.</p>
+  <p>La scelta del Belgio di adottare <strong>Peppol come infrastruttura obbligatoria</strong> lo rende il primo grande paese UE (dopo la Danimarca) a rendere Peppol obbligatorio per il B2B privato. Le imprese belga devono iscriversi alla rete Peppol tramite un Access Point accreditato (oltre 350 provider elencati sul portale ufficiale).</p>
+
+  <div class="callout">
+    <strong>Modello Peppol decentralizzato:</strong> a differenza di Italia (SdI centralizzato) o Polonia (KSeF), il Belgio adotta un modello in cui le fatture circolano direttamente tra Access Point Peppol senza transitare per un hub governativo. Le autorità fiscali ricevono i dati tramite il <strong>Belgian Tax Authority Peppol Reporting (BTAPR)</strong> in parallelo, in modo trasparente per le imprese.
+  </div>
+
+  <h2>Scadenze</h2>
+  <div class="timeline">
+    <div class="tl-item">
+      <div class="tl-date">1° gennaio 2026</div>
+      <div class="tl-title">Obbligo in vigore — tutte le imprese soggette a IVA belghe</div>
+      <div class="tl-desc">Tutte le imprese belghe con partita IVA belga devono essere in grado di emettere e ricevere fatture strutturate tramite Peppol. L'obbligo si applica a tutte le fatture B2B per forniture di beni e servizi soggette a IVA belga.</div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-date">1° aprile 2026</div>
+      <div class="tl-title">Fine periodo di tolleranza — sanzioni attive</div>
+      <div class="tl-desc">Scade il periodo di tolleranza (senza sanzioni) previsto per dare alle imprese il tempo di adeguarsi. Dal 1° aprile 2026 le sanzioni per mancata conformità sono pienamente operative.</div>
+    </div>
+  </div>
+
+  <h2>Flusso di emissione B2B tramite Peppol Belgio</h2>
+  <div class="flow-steps">
+    <div class="flow-step">
+      <div class="fs-title">Registrazione su Peppol tramite Access Point</div>
+      <div class="fs-desc">L'impresa sceglie un Access Point (AP) Peppol accreditato tra quelli elencati sul portale einvoice.belgium.be. L'AP assegna un endpoint Peppol all'impresa, identificata tramite il numero di IVA belga (formato <code>0088:0xxxxxxxxxx</code> — BE-VAT in Peppol). L'endpoint viene registrato nel SMP (Service Metadata Publisher) Peppol.</div>
+    </div>
+    <div class="flow-step">
+      <div class="fs-title">Generazione della fattura Peppol BIS 3.0</div>
+      <div class="fs-desc">Il sistema ERP genera la fattura nel formato <strong>Peppol BIS Billing 3.0</strong> (UBL 2.1, conforme EN 16931). Il formato è obbligatorio come predefinito; altri formati conformi EN 16931 sono ammessi solo previo accordo bilaterale tra le parti. La fattura include il numero di IVA belga del destinatario come identificativo Peppol.</div>
+    </div>
+    <div class="flow-step">
+      <div class="fs-title">Lookup del destinatario nel SMP Peppol</div>
+      <div class="fs-desc">L'Access Point del mittente interroga l'SML/SMP Peppol per trovare l'endpoint del destinatario (identificato dal numero IVA belga). Se il destinatario è registrato su Peppol, l'AP del mittente recupera l'URL del suo Access Point e il documento process ID supportato.</div>
+    </div>
+    <div class="flow-step">
+      <div class="fs-title">Trasmissione tramite rete Peppol (AS4)</div>
+      <div class="fs-desc">La fattura viene trasmessa dall'AP del mittente all'AP del destinatario tramite il protocollo <strong>AS4</strong> (sicuro, con acknowledgement). La trasmissione è bidirezionale con conferma di ricezione a livello di trasporto. Non è richiesta validazione da parte di un hub governativo prima della consegna.</div>
+    </div>
+    <div class="flow-step">
+      <div class="fs-title">Ricezione e integrazione nel gestionale</div>
+      <div class="fs-desc">L'AP del destinatario consegna la fattura al sistema ERP del destinatario. Il software elabora il file UBL 2.1, estrae i dati e li inserisce nel workflow di approvazione interno (verifica ordine, ricevimento merce, autorizzazione pagamento).</div>
+    </div>
+    <div class="flow-step">
+      <div class="fs-title">Reporting fiscale tramite BTAPR (trasparente)</div>
+      <div class="fs-desc">In parallelo alla trasmissione, l'Access Point (o il provider di fatturazione) trasmette una copia dei dati fiscali all'<strong>SPF Finances</strong> tramite il <strong>Belgian Tax Authority Peppol Reporting (BTAPR)</strong>. Questo step è gestito dall'AP in modo trasparente per l'impresa: non richiede azioni aggiuntive da parte dell'emittente.</div>
+    </div>
+    <div class="flow-step">
+      <div class="fs-title">Conservazione</div>
+      <div class="fs-desc">Le fatture devono essere conservate per <strong>7 anni</strong> (termine ordinario per i documenti IVA in Belgio, art. 60 Codice IVA). La conservazione può avvenire in formato digitale purché l'autenticità e l'integrità siano garantite per tutta la durata.</div>
+    </div>
+  </div>
+
+  <h2>Soggetti obbligati e casi speciali</h2>
+  <ul>
+    <li><strong>Soggetti obbligati:</strong> tutte le imprese belghe registrate ai fini IVA (persone giuridiche e fisiche che svolgono attività economica soggetta a IVA).</li>
+    <li><strong>Imprese straniere con partita IVA belga:</strong> soggette all'obbligo per le forniture con IVA belga. Devono iscriversi a Peppol tramite un AP accreditato.</li>
+    <li><strong>Piccole imprese esenti IVA (art. 56bis Codice IVA):</strong> esonerate dall'obbligo in quanto non registrate IVA.</li>
+    <li><strong>Liberi professionisti soggetti a IVA:</strong> soggetti all'obbligo.</li>
+    <li><strong>Operazioni B2C:</strong> escluse. Le fatture ai consumatori finali non transitano via Peppol.</li>
+    <li><strong>Operazioni intracomunitarie:</strong> il mandato Peppol belga si applica alle forniture interne belghe. Per le cessioni intracomunitarie si applicano le regole UE ordinarie; ViDA introdurrà obblighi aggiuntivi dal 2030.</li>
+    <li><strong>Accordo su formati alternativi:</strong> le parti possono concordare l'uso di formati diversi da Peppol BIS 3.0 purché conformi EN 16931 (es. ZUGFeRD, FatturaPA-compatibile). L'accordo deve essere documentato.</li>
+  </ul>
+
+  <h2>Riferimenti normativi e tecnici</h2>
+  <ul class="ref-list">
+    <li>
+      <strong>SPF Finances — einvoice.belgium.be</strong> — Portale ufficiale belga sulla fatturazione elettronica: guida all'obbligo, lista Access Point, FAQ.<br>
+      <a href="https://einvoice.belgium.be/" target="_blank" rel="noopener">einvoice.belgium.be ↗</a>
+    </li>
+    <li>
+      <strong>Legge del 6 dicembre 2023 (Loi portant des dispositions fiscales diverses)</strong> — Norma primaria che introduce l'obbligo B2B dal 2026.<br>
+      <a href="https://www.ejustice.just.fgov.be/eli/loi/2023/12/06/2023047537/justel" target="_blank" rel="noopener">ejustice.just.fgov.be — Legge 6/12/2023 ↗</a>
+    </li>
+    <li>
+      <strong>Peppol BIS Billing 3.0 — OpenPeppol</strong> — Specifiche tecniche del formato Peppol BIS 3.0 obbligatorio in Belgio.<br>
+      <a href="https://docs.peppol.eu/poacc/billing/3.0/" target="_blank" rel="noopener">docs.peppol.eu — Peppol BIS 3.0 ↗</a>
+    </li>
+    <li>
+      <strong>Commissione europea — eInvoicing in Belgium</strong><br>
+      <a href="https://ec.europa.eu/digital-building-blocks/sites/display/DIGITAL/eInvoicing+in+Belgium" target="_blank" rel="noopener">Commissione europea — eInvoicing Belgium ↗</a>
+    </li>
+  </ul>
+</main>
+</body>
+</html>

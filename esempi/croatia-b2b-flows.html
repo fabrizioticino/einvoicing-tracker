@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Croazia — Flussi fatturazione elettronica B2B (HR-CIUS)</title>
+<meta name="description" content="Flussi e obblighi della fatturazione elettronica B2B in Croazia tramite HR-CIUS. Fase 1 obbligatoria dal 1° gennaio 2026.">
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=IBM+Plex+Mono:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap');
+  :root{--paper:#F5F5F5;--ink:#161616;--ink-soft:#5A5A5A;--line:#D6D6D6;--accent:#003DA5;--accent2:#FF0000;--card:#FFFFFF;--blue:#1a56db;--green:#065f46;--green-light:#d1fae5;--orange:#92400e;--orange-light:#fef3c7;--red:#991b1b;--red-light:#fee2e2;}
+  *{box-sizing:border-box;}html{scroll-behavior:smooth;}
+  body{margin:0;background:var(--paper);color:var(--ink);font-family:'Inter',sans-serif;-webkit-font-smoothing:antialiased;}
+  body::before{content:"";position:fixed;inset:0;background-image:repeating-linear-gradient(0deg,rgba(27,36,33,0.018) 0px,rgba(27,36,33,0.018) 1px,transparent 1px,transparent 3px);pointer-events:none;z-index:0;}
+  a{color:var(--blue);}
+  header.masthead{position:relative;z-index:1;border-bottom:3px double var(--ink);padding:28px 5vw 18px;}
+  .masthead-top{display:flex;justify-content:space-between;align-items:baseline;flex-wrap:wrap;gap:8px;font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-soft);margin-bottom:18px;}
+  .masthead-top .dot{color:var(--accent2);}
+  .masthead-top a{color:var(--ink-soft);text-decoration:none;}.masthead-top a:hover{color:var(--ink);}
+  h1.title{font-family:'Fraunces',serif;font-weight:600;font-size:clamp(28px,5vw,52px);line-height:1;margin:0 0 10px;letter-spacing:-0.01em;}
+  h1.title em{font-style:italic;font-weight:400;color:var(--accent);}
+  .subhead{display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:18px;border-top:1px solid var(--line);padding-top:14px;margin-top:18px;}
+  .subhead p{max-width:640px;font-size:15px;line-height:1.55;color:var(--ink-soft);margin:0;}
+  .meta-stamp{font-family:'IBM Plex Mono',monospace;font-size:11px;text-align:right;color:var(--ink-soft);line-height:1.6;white-space:nowrap;}
+  .meta-stamp .label{text-transform:uppercase;letter-spacing:.08em;font-size:10px;color:var(--ink);}
+  main{position:relative;z-index:1;padding:38px 5vw 60px;max-width:900px;margin:0 auto;width:100%;}
+  h2{font-family:'Fraunces',serif;font-weight:600;font-size:22px;margin:2em 0 .5em;letter-spacing:-0.01em;border-bottom:2px solid var(--line);padding-bottom:6px;}
+  h3{font-family:'Fraunces',serif;font-weight:600;font-size:17px;margin:1.5em 0 .4em;}
+  p{font-size:14.5px;line-height:1.65;color:var(--ink-soft);margin:.5em 0 .8em;}
+  ul,ol{padding-left:1.4em;margin:.5em 0 .8em;}
+  li{font-size:14.5px;line-height:1.6;color:var(--ink-soft);margin-bottom:.25em;}
+  strong{color:var(--ink);}
+  code{font-family:'IBM Plex Mono',monospace;font-size:12.5px;background:#e8e8e8;padding:1px 5px;border-radius:3px;}
+  .timeline{display:flex;flex-direction:column;border-left:3px solid var(--accent);margin:1.5em 0 1.5em 12px;}
+  .tl-item{position:relative;padding:12px 16px 12px 24px;}
+  .tl-item::before{content:"";position:absolute;left:-8px;top:18px;width:13px;height:13px;border-radius:50%;background:var(--accent);border:2px solid var(--paper);}
+  .tl-date{font-family:'IBM Plex Mono',monospace;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.07em;color:var(--accent);margin-bottom:4px;}
+  .tl-title{font-size:14.5px;font-weight:600;color:var(--ink);margin-bottom:3px;}
+  .tl-desc{font-size:13.5px;color:var(--ink-soft);line-height:1.55;}
+  .flow-steps{counter-reset:step;display:flex;flex-direction:column;border-left:2px solid var(--line);margin:1em 0 1em 10px;}
+  .flow-step{position:relative;padding:10px 14px 10px 28px;}
+  .flow-step::before{counter-increment:step;content:counter(step);position:absolute;left:-13px;top:10px;width:24px;height:24px;border-radius:50%;background:var(--ink);color:#fff;font-family:'IBM Plex Mono',monospace;font-size:11px;font-weight:700;display:flex;align-items:center;justify-content:center;border:2px solid var(--paper);}
+  .flow-step .fs-title{font-size:14px;font-weight:600;color:var(--ink);margin-bottom:2px;}
+  .flow-step .fs-desc{font-size:13.5px;color:var(--ink-soft);line-height:1.55;}
+  .callout{border-left:4px solid var(--accent);background:var(--card);padding:12px 16px;margin:1.2em 0;border-radius:0 5px 5px 0;font-size:13.5px;color:var(--ink-soft);line-height:1.6;}
+  .callout strong{color:var(--ink);}
+  .ref-list{list-style:none;padding:0;margin:.5em 0;}
+  .ref-list li{font-size:13.5px;border-bottom:1px solid var(--line);padding:8px 0;color:var(--ink-soft);}
+  .ref-list li:last-child{border-bottom:none;}
+  .ref-list a{color:var(--blue);}
+</style>
+</head>
+<body>
+<header class="masthead">
+  <div class="masthead-top">
+    <span><a href="../index.html">← E-Invoicing Tracker</a> <span class="dot">◆</span> Croazia</span>
+    <span>Aggiornato: settembre 2026</span>
+  </div>
+  <h1 class="title">Croazia — <em>HR-CIUS</em><br>fatturazione elettronica B2B</h1>
+  <div class="subhead">
+    <p>Guida alla fatturazione elettronica B2B obbligatoria in Croazia tramite il profilo <strong>HR-CIUS</strong> (Croatian Core Invoice Usage Specification). Fase 1 in vigore dal <strong>1° gennaio 2026</strong> per i soggetti IVA; estensione a tutte le imprese dal <strong>1° gennaio 2027</strong>.</p>
+    <div class="meta-stamp">
+      <div class="label">Formato</div>
+      <div>HR-CIUS (UBL 2.1 / CII)</div>
+      <div class="label" style="margin-top:6px">Mandato B2B</div>
+      <div>Fase 1: 1° gennaio 2026 (IVA)</div>
+      <div>Fase 2: 1° gennaio 2027 (tutte)</div>
+      <div>Piattaforma: ePorezna (eRačun)</div>
+    </div>
+  </div>
+</header>
+<main>
+
+  <h2>Quadro normativo</h2>
+  <p>La Croazia ha introdotto l'obbligo di fatturazione elettronica B2B con la <strong>Legge sulla fatturazione elettronica (Zakon o elektroničkom izdavanju računa)</strong>, approvata nel 2023, in attuazione della Direttiva UE 2014/55/UE e dei principi EN 16931. Il sistema è gestito dall'<strong>Autorità Fiscale Croata</strong> (Porezna uprava) tramite la piattaforma <strong>ePorezna</strong>.</p>
+  <p>Il formato obbligatorio è <strong>HR-CIUS</strong>, il profilo CIUS croato basato su UBL 2.1 o CII conforme EN 16931. Una caratteristica specifica della normativa croata è l'obbligo di classificare ogni voce della fattura con il codice <strong>KPD</strong> (Klasifikacija Poslovnih Djelatnosti — Classificazione delle attività commerciali).</p>
+
+  <div class="callout">
+    <strong>Peculiarità HR-CIUS — Codice KPD obbligatorio:</strong> a differenza della maggior parte degli altri CIUS europei, l'HR-CIUS richiede che ogni linea della fattura sia classificata con il codice KPD corrispondente all'attività economica. Questo requisito rende la Croazia uno dei sistemi più specifici per la classificazione fiscale delle voci fatturate.
+  </div>
+
+  <h2>Fasi di attuazione</h2>
+  <div class="timeline">
+    <div class="tl-item">
+      <div class="tl-date">1° gennaio 2026</div>
+      <div class="tl-title">Fase 1 — Soggetti registrati IVA</div>
+      <div class="tl-desc">Obbligo per tutti i soggetti passivi IVA registrati in Croazia di emettere e ricevere fatture elettroniche strutturate tramite la piattaforma ePorezna (sistema eRačun). Obbligo sia di emissione che di ricezione.</div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-date">1° gennaio 2027</div>
+      <div class="tl-title">Fase 2 — Tutte le imprese</div>
+      <div class="tl-desc">Estensione dell'obbligo a tutte le imprese croate registrate, incluse quelle non soggette a IVA (imprese di piccole dimensioni, enti del terzo settore che svolgono attività commerciali, ecc.).</div>
+    </div>
+  </div>
+
+  <h2>Flusso di emissione B2B tramite ePorezna (eRačun)</h2>
+  <div class="flow-steps">
+    <div class="flow-step">
+      <div class="fs-title">Generazione della fattura HR-CIUS</div>
+      <div class="fs-desc">L'ERP genera la fattura nel formato HR-CIUS (UBL 2.1 o CII). Ogni voce della fattura deve includere il codice KPD. I dati obbligatori EN 16931 includono OIB (Osobni identifikacijski broj — codice fiscale croato) di emittente e destinatario.</div>
+    </div>
+    <div class="flow-step">
+      <div class="fs-title">Trasmissione tramite ePorezna / eRačun</div>
+      <div class="fs-desc">La fattura viene inviata tramite la piattaforma <strong>ePorezna</strong> (portale dell'Autorità Fiscale Croata) o tramite il sistema <strong>eRačun</strong> (rete di provider accreditati). Le imprese possono usare il portale web direttamente o integrarsi via API con provider certificati.</div>
+    </div>
+    <div class="flow-step">
+      <div class="fs-title">Validazione e instradamento</div>
+      <div class="fs-desc">Il sistema valida la conformità HR-CIUS della fattura. Se la validazione è superata, la fattura viene inoltrata al destinatario tramite il suo canale registrato. L'emittente riceve una conferma di invio.</div>
+    </div>
+    <div class="flow-step">
+      <div class="fs-title">Ricezione dal destinatario</div>
+      <div class="fs-desc">Il destinatario riceve la fattura nel proprio sistema (tramite portale ePorezna o via provider API). Il destinatario può accettare o rifiutare la fattura entro i termini concordati contrattualmente.</div>
+    </div>
+    <div class="flow-step">
+      <div class="fs-title">Conservazione</div>
+      <div class="fs-desc">Le fatture elettroniche devono essere conservate per <strong>11 anni</strong> (termine esteso rispetto al generale previsto dalla legge contabile croata — Zakon o računovodstvu) per garantire la tracciabilità fiscale completa.</div>
+    </div>
+  </div>
+
+  <h2>Casi speciali ed esclusioni</h2>
+  <ul>
+    <li><strong>B2C:</strong> escluso dall'obbligo. Le vendite ai consumatori finali seguono le regole ordinarie.</li>
+    <li><strong>Operazioni intracomunitarie:</strong> soggette alle regole UE; ViDA introdurrà obblighi aggiuntivi.</li>
+    <li><strong>Imprese straniere con OIB croato:</strong> soggette all'obbligo per le operazioni con IVA croata.</li>
+    <li><strong>Piccole imprese non soggette a IVA (Fase 1):</strong> esonerate fino al 1° gennaio 2027.</li>
+  </ul>
+
+  <h2>Riferimenti normativi e tecnici</h2>
+  <ul class="ref-list">
+    <li>
+      <strong>FINA — e-Račun (eRačun)</strong> — Piattaforma croata per la fatturazione elettronica, gestita dalla Financijska agencija (FINA).<br>
+      <a href="https://www.fina.hr/eng/business-digitalization/e-invoice" target="_blank" rel="noopener">fina.hr — e-Invoice ↗</a>
+    </li>
+    <li>
+      <strong>Porezna uprava — ePorezna</strong> — Portale dell'Autorità Fiscale Croata per la gestione fiscale digitale.<br>
+      <a href="https://eporezna.porezna-uprava.hr/" target="_blank" rel="noopener">eporezna.porezna-uprava.hr ↗</a>
+    </li>
+    <li>
+      <strong>Commissione europea — eInvoicing in Croatia</strong><br>
+      <a href="https://ec.europa.eu/digital-building-blocks/sites/display/DIGITAL/eInvoicing+in+Croatia" target="_blank" rel="noopener">Commissione europea — eInvoicing Croatia ↗</a>
+    </li>
+  </ul>
+</main>
+</body>
+</html>

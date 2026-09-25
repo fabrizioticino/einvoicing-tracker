@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ungheria — Flussi fatturazione elettronica B2B (KIBO / NAV Online Számla)</title>
+<meta name="description" content="Flussi e obblighi del sistema KIBO per la segnalazione real-time delle fatture in Ungheria. Obbligo in vigore dal 1° luglio 2018.">
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=IBM+Plex+Mono:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap');
+  :root{--paper:#F5F5F5;--ink:#161616;--ink-soft:#5A5A5A;--line:#D6D6D6;--accent:#477050;--accent2:#CE2939;--card:#FFFFFF;--blue:#1a56db;--green:#065f46;--green-light:#d1fae5;--orange:#92400e;--orange-light:#fef3c7;--red:#991b1b;--red-light:#fee2e2;}
+  *{box-sizing:border-box;}html{scroll-behavior:smooth;}
+  body{margin:0;background:var(--paper);color:var(--ink);font-family:'Inter',sans-serif;-webkit-font-smoothing:antialiased;}
+  body::before{content:"";position:fixed;inset:0;background-image:repeating-linear-gradient(0deg,rgba(27,36,33,0.018) 0px,rgba(27,36,33,0.018) 1px,transparent 1px,transparent 3px);pointer-events:none;z-index:0;}
+  a{color:var(--blue);}
+  header.masthead{position:relative;z-index:1;border-bottom:3px double var(--ink);padding:28px 5vw 18px;}
+  .masthead-top{display:flex;justify-content:space-between;align-items:baseline;flex-wrap:wrap;gap:8px;font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-soft);margin-bottom:18px;}
+  .masthead-top .dot{color:var(--accent2);}
+  .masthead-top a{color:var(--ink-soft);text-decoration:none;}.masthead-top a:hover{color:var(--ink);}
+  h1.title{font-family:'Fraunces',serif;font-weight:600;font-size:clamp(28px,5vw,52px);line-height:1;margin:0 0 10px;letter-spacing:-0.01em;}
+  h1.title em{font-style:italic;font-weight:400;color:var(--accent2);}
+  .subhead{display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:18px;border-top:1px solid var(--line);padding-top:14px;margin-top:18px;}
+  .subhead p{max-width:640px;font-size:15px;line-height:1.55;color:var(--ink-soft);margin:0;}
+  .meta-stamp{font-family:'IBM Plex Mono',monospace;font-size:11px;text-align:right;color:var(--ink-soft);line-height:1.6;white-space:nowrap;}
+  .meta-stamp .label{text-transform:uppercase;letter-spacing:.08em;font-size:10px;color:var(--ink);}
+  main{position:relative;z-index:1;padding:38px 5vw 60px;max-width:900px;margin:0 auto;width:100%;}
+  h2{font-family:'Fraunces',serif;font-weight:600;font-size:22px;margin:2em 0 .5em;letter-spacing:-0.01em;border-bottom:2px solid var(--line);padding-bottom:6px;}
+  h3{font-family:'Fraunces',serif;font-weight:600;font-size:17px;margin:1.5em 0 .4em;}
+  p{font-size:14.5px;line-height:1.65;color:var(--ink-soft);margin:.5em 0 .8em;}
+  ul,ol{padding-left:1.4em;margin:.5em 0 .8em;}
+  li{font-size:14.5px;line-height:1.6;color:var(--ink-soft);margin-bottom:.25em;}
+  strong{color:var(--ink);}
+  code{font-family:'IBM Plex Mono',monospace;font-size:12.5px;background:#e8e8e8;padding:1px 5px;border-radius:3px;}
+  .timeline{display:flex;flex-direction:column;border-left:3px solid var(--accent2);margin:1.5em 0 1.5em 12px;}
+  .tl-item{position:relative;padding:12px 16px 12px 24px;}
+  .tl-item::before{content:"";position:absolute;left:-8px;top:18px;width:13px;height:13px;border-radius:50%;background:var(--accent2);border:2px solid var(--paper);}
+  .tl-date{font-family:'IBM Plex Mono',monospace;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.07em;color:var(--accent2);margin-bottom:4px;}
+  .tl-title{font-size:14.5px;font-weight:600;color:var(--ink);margin-bottom:3px;}
+  .tl-desc{font-size:13.5px;color:var(--ink-soft);line-height:1.55;}
+  .flow-steps{counter-reset:step;display:flex;flex-direction:column;border-left:2px solid var(--line);margin:1em 0 1em 10px;}
+  .flow-step{position:relative;padding:10px 14px 10px 28px;}
+  .flow-step::before{counter-increment:step;content:counter(step);position:absolute;left:-13px;top:10px;width:24px;height:24px;border-radius:50%;background:var(--ink);color:#fff;font-family:'IBM Plex Mono',monospace;font-size:11px;font-weight:700;display:flex;align-items:center;justify-content:center;border:2px solid var(--paper);}
+  .flow-step .fs-title{font-size:14px;font-weight:600;color:var(--ink);margin-bottom:2px;}
+  .flow-step .fs-desc{font-size:13.5px;color:var(--ink-soft);line-height:1.55;}
+  .callout{border-left:4px solid var(--accent2);background:var(--card);padding:12px 16px;margin:1.2em 0;border-radius:0 5px 5px 0;font-size:13.5px;color:var(--ink-soft);line-height:1.6;}
+  .callout strong{color:var(--ink);}
+  .ref-list{list-style:none;padding:0;margin:.5em 0;}
+  .ref-list li{font-size:13.5px;border-bottom:1px solid var(--line);padding:8px 0;color:var(--ink-soft);}
+  .ref-list li:last-child{border-bottom:none;}
+  .ref-list a{color:var(--blue);}
+</style>
+</head>
+<body>
+<header class="masthead">
+  <div class="masthead-top">
+    <span><a href="../index.html">← E-Invoicing Tracker</a> <span class="dot">◆</span> Ungheria</span>
+    <span>Aggiornato: settembre 2026</span>
+  </div>
+  <h1 class="title">Ungheria — <em>KIBO</em><br>segnalazione fatture real-time</h1>
+  <div class="subhead">
+    <p>Guida al sistema <strong>KIBO</strong> (Kötelező online Számla adatszolgáltatás) e alla piattaforma <strong>NAV Online Számla</strong> per la segnalazione obbligatoria in tempo reale dei dati di ogni fattura IVA all'Autorità Fiscale ungherese (NAV). In vigore per tutte le fatture B2B dal <strong>1° gennaio 2021</strong>.</p>
+    <div class="meta-stamp">
+      <div class="label">Sistema</div>
+      <div>KIBO / NAV Online Számla</div>
+      <div class="label" style="margin-top:6px">Obbligo</div>
+      <div>Dal 1° lug 2018 (IVA &gt;100.000 HUF)</div>
+      <div>Dal 1° lug 2020 (tutte B2B IVA)</div>
+      <div>Dal 1° gen 2021 (tutte le fatture)</div>
+    </div>
+  </div>
+</header>
+<main>
+
+  <h2>Quadro normativo</h2>
+  <p>L'Ungheria ha introdotto il sistema di segnalazione real-time delle fatture con la modifica della Legge sull'IVA (Általános forgalmi adóról szóló 2007. évi CXXVII. törvény) e con le disposizioni attuative del <strong>Decreto governativo 2017/2001</strong>. Il sistema KIBO richiede la trasmissione dei dati di ogni fattura IVA all'<strong>NAV</strong> (Nemzeti Adó- és Vámhivatal — Autorità Fiscale e Doganale Nazionale) entro <strong>5 secondi</strong> dall'emissione per le fatture con IVA ≥ 500 HUF.</p>
+  <p>Il KIBO è un sistema di <strong>e-reporting</strong>, non di clearance: la fattura non deve transitare per il NAV per essere valida. I dati devono essere segnalati in tempo reale, ma l'emittente può usare qualsiasi formato per il documento fattura verso il cliente (PDF, cartaceo, XML, EDI).</p>
+
+  <div class="callout">
+    <strong>KIBO ≠ clearance centralizzata:</strong> a differenza di Italia (SdI) o Romania (ANAF), in Ungheria la fattura non passa per un hub governativo prima di arrivare al cliente. L'obbligo riguarda la <em>segnalazione dei dati</em> al NAV in tempo reale. Il documento fisico/digitale viene consegnato direttamente al cliente nei modi usuali.
+  </div>
+
+  <h2>Evoluzione del sistema</h2>
+  <div class="timeline">
+    <div class="tl-item">
+      <div class="tl-date">1° luglio 2018</div>
+      <div class="tl-title">KIBO versione 1.0 — soglia 100.000 HUF IVA</div>
+      <div class="tl-desc">Obbligo di segnalazione per fatture con IVA pari o superiore a 100.000 HUF (≈ 250 €). Segnalazione entro 24 ore dall'emissione.</div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-date">1° luglio 2020</div>
+      <div class="tl-title">KIBO versione 2.0 — tutte le fatture B2B con IVA</div>
+      <div class="tl-desc">Abbassamento della soglia: obbligo per tutte le fatture B2B soggette a IVA, indipendentemente dall'importo. Obbligo di segnalazione entro 5 secondi (real-time). Introdotta la segnalazione anche per le fatture di acquisto intracomunitario.</div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-date">1° gennaio 2021</div>
+      <div class="tl-title">KIBO versione 3.0 — tutte le fatture (anche B2C)</div>
+      <div class="tl-desc">Estensione a tutte le fatture emesse da soggetti passivi, incluse le operazioni B2C, le esportazioni, le operazioni esenti e le operazioni intracomunitarie. Introdotto lo schema KIBO XML 3.0 con nuovi campi.</div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-date">Settembre 2026</div>
+      <div class="tl-title">NAV Online Számla — fase eÁFA</div>
+      <div class="tl-desc">Il NAV sta sviluppando il sistema <strong>eÁFA</strong> (fattura IVA elettronica pre-compilata) che integrerà le dichiarazioni IVA automatiche basate sui dati KIBO, riducendo ulteriormente gli adempimenti dichiarativi per i contribuenti.</div>
+    </div>
+  </div>
+
+  <h2>Flusso di segnalazione KIBO</h2>
+  <div class="flow-steps">
+    <div class="flow-step">
+      <div class="fs-title">Generazione della fattura</div>
+      <div class="fs-desc">L'emittente genera la fattura nel formato preferito (PDF, XML, EDI, cartaceo). Non esiste un formato obbligatorio per il documento consegnato al cliente: la libertà di formato è una caratteristica distintiva del sistema ungherese rispetto ad altri mandati europei.</div>
+    </div>
+    <div class="flow-step">
+      <div class="fs-title">Preparazione del pacchetto dati KIBO XML 3.0</div>
+      <div class="fs-desc">Il software di fatturazione prepara automaticamente il pacchetto dati KIBO XML 3.0 (schema pubblicato dal NAV) contenente i campi obbligatori: dati identificativi emittente/destinatario, numero fattura, data, imponibile e IVA per aliquota, posizioni fattura, modalità di pagamento, eventuali riferimenti a ordini o contratti.</div>
+    </div>
+    <div class="flow-step">
+      <div class="fs-title">Autenticazione all'API NAV Online Számla</div>
+      <div class="fs-desc">Il software si autentica all'API REST del NAV con le credenziali aziendali (login NAV + chiave di scambio + chiave di firma). Le credenziali vengono gestite tramite il portale NAV Online Számla (<a href="https://onlineszamla.nav.gov.hu" target="_blank">onlineszamla.nav.gov.hu</a>).</div>
+    </div>
+    <div class="flow-step">
+      <div class="fs-title">Invio al NAV entro 5 secondi</div>
+      <div class="fs-desc">Il pacchetto KIBO XML viene inviato all'API NAV (<code>POST /invoices/send</code>) entro <strong>5 secondi</strong> dall'emissione della fattura. Il pacchetto è cifrato e firmato. Il NAV risponde con un <em>transactionId</em> per il tracking della segnalazione.</div>
+    </div>
+    <div class="flow-step">
+      <div class="fs-title">Conferma di ricezione NAV</div>
+      <div class="fs-desc">Il NAV elabora la segnalazione e restituisce uno stato: <code>DONE</code> (elaborata), <code>PROCESSING</code> (in elaborazione asincrona) o errore con codici di dettaglio. In caso di errore tecnico temporaneo, il sistema può ritentare l'invio.</div>
+    </div>
+    <div class="flow-step">
+      <div class="fs-title">Consegna della fattura al cliente</div>
+      <div class="fs-desc">Parallelamente o dopo la segnalazione, l'emittente consegna la fattura al cliente nel formato concordato: email con PDF, EDI, Peppol, portale web, o cartaceo. Non è richiesta la conferma della segnalazione NAV prima di consegnare la fattura al cliente.</div>
+    </div>
+    <div class="flow-step">
+      <div class="fs-title">Consultazione dati nel portale NAV</div>
+      <div class="fs-desc">Sia l'emittente che il destinatario possono consultare i dati delle fatture segnalate nel portale NAV Online Számla. Il destinatario può verificare la corrispondenza tra la fattura ricevuta e i dati segnalati al NAV, che funge da registro fiscale centralizzato.</div>
+    </div>
+  </div>
+
+  <h2>Casi speciali ed esclusioni</h2>
+  <ul>
+    <li><strong>Fatture con IVA &lt; 500 HUF:</strong> esonerate dalla segnalazione KIBO (soglia minima).</li>
+    <li><strong>Semplificazione per fatture di importo ridotto:</strong> le fatture semplificate (importo totale ≤ 100.000 HUF) possono essere segnalate in forma aggregata giornaliera invece che in tempo reale.</li>
+    <li><strong>Autofatture (reverse charge):</strong> l'acquirente che emette autofattura per conto del fornitore deve segnalarla anch'essa tramite KIBO.</li>
+    <li><strong>Soggetti non residenti:</strong> i soggetti passivi non stabiliti in Ungheria ma con partita IVA ungherese sono soggetti all'obbligo KIBO per le operazioni con IVA ungherese.</li>
+    <li><strong>Operazioni esenti e a aliquota zero:</strong> soggette a segnalazione KIBO (obbligo esteso da v3.0).</li>
+  </ul>
+
+  <h2>Riferimenti normativi e tecnici</h2>
+  <ul class="ref-list">
+    <li>
+      <strong>NAV Online Számla — Portale ufficiale</strong> — Portale di accesso, documentazione tecnica API, schema KIBO XML 3.0.<br>
+      <a href="https://onlineszamla.nav.gov.hu/" target="_blank" rel="noopener">onlineszamla.nav.gov.hu ↗</a>
+    </li>
+    <li>
+      <strong>Documentazione API NAV — GitHub</strong> — Schemi XSD e specifiche tecniche dell'API NAV Online Számla.<br>
+      <a href="https://github.com/nav-gov-hu/Online-Invoice" target="_blank" rel="noopener">github.com/nav-gov-hu/Online-Invoice ↗</a>
+    </li>
+    <li>
+      <strong>Legge IVA ungherese — 2007. évi CXXVII. törvény</strong> — Norma primaria con gli obblighi di segnalazione KIBO.<br>
+      <a href="https://nav.gov.hu/english" target="_blank" rel="noopener">nav.gov.hu — NAV in English ↗</a>
+    </li>
+  </ul>
+</main>
+</body>
+</html>
