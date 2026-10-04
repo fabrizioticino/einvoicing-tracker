@@ -890,8 +890,16 @@ function doPrint(){
   var body  = document.getElementById('detail-body').innerHTML;
   var pa    = document.getElementById('print-area');
   pa.innerHTML = '<h1 style="font-family:Fraunces,serif;font-weight:600;font-size:32px;margin-bottom:24px;border-bottom:3px double #161616;padding:0 2cm 12px;">'+title+'</h1><div style="padding:0 2cm 2cm;">'+body+'</div>';
-  window.addEventListener('afterprint',function(){pa.innerHTML='';},{once:true});
-  window.print();
+  pa.style.setProperty('display','block','important');
+  var kids = Array.from(document.body.children).filter(function(el){return el!==pa;});
+  kids.forEach(function(el){el.style.setProperty('display','none','important');});
+  function restore(){
+    pa.style.removeProperty('display');
+    pa.innerHTML='';
+    kids.forEach(function(el){el.style.removeProperty('display');});
+  }
+  window.addEventListener('afterprint',restore,{once:true});
+  setTimeout(window.print.bind(window), 50);
 }
 </script>
 
