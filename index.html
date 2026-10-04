@@ -889,9 +889,9 @@ function doPrint(){
   var title = document.getElementById('detail-title').textContent;
   var body  = document.getElementById('detail-body').innerHTML;
   var pa    = document.getElementById('print-area');
-  pa.innerHTML = '<h1 style="font-family:Fraunces,serif;font-weight:600;font-size:32px;margin-bottom:24px;border-bottom:3px double #161616;padding-bottom:12px;padding:0 2cm 12px;">'+title+'</h1><div style="padding:0 2cm 2cm;">'+body+'</div>';
+  pa.innerHTML = '<h1 style="font-family:Fraunces,serif;font-weight:600;font-size:32px;margin-bottom:24px;border-bottom:3px double #161616;padding:0 2cm 12px;">'+title+'</h1><div style="padding:0 2cm 2cm;">'+body+'</div>';
+  window.addEventListener('afterprint',function(){pa.innerHTML='';},{once:true});
   window.print();
-  pa.innerHTML='';
 }
 </script>
 
