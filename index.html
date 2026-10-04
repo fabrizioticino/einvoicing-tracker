@@ -888,20 +888,14 @@ async function init(){
 
 init();
 function doPrint(){
-  var ov=document.getElementById('detail-overlay');
-  ov.style.setProperty('position','static','important');
-  ov.style.setProperty('overflow','visible','important');
-  ov.style.setProperty('height','auto','important');
-  ov.style.setProperty('max-height','none','important');
-  ov.style.setProperty('inset','auto','important');
-  window.print();
-  window.addEventListener('afterprint',function(){
-    ov.style.removeProperty('position');
-    ov.style.removeProperty('overflow');
-    ov.style.removeProperty('height');
-    ov.style.removeProperty('max-height');
-    ov.style.removeProperty('inset');
-  },{once:true});
+  var title = document.getElementById('detail-title').textContent;
+  var body  = document.getElementById('detail-body').innerHTML;
+  var css   = Array.from(document.querySelectorAll('style')).map(function(s){return s.textContent;}).join('\n');
+  var w = window.open('','_blank','width=900,height=700');
+  w.document.write('<!DOCTYPE html><html lang="it"><head><meta charset="UTF-8"><title>'+title+'</title><style>'+css+'body{background:var(--paper);padding:2cm;}@media print{@page{margin:18mm 15mm;}}</style></head><body><h1 style="font-family:Fraunces,serif;font-weight:600;font-size:32px;margin-bottom:24px;border-bottom:3px double #161616;padding-bottom:12px;">'+title+'</h1><div class="detail-body" style="max-width:100%;padding:0;">'+body+'</div></body></html>');
+  w.document.close();
+  w.focus();
+  setTimeout(function(){w.print();},400);
 }
 </script>
 
