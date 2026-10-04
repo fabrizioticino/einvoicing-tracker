@@ -48,7 +48,7 @@ footer{margin-top:24px;padding-top:10px;border-top:1px solid #e0e0e0;font-size:9
     </style>
   </head>
   <body>
-  <div class="inv"><a href="https://www.regestaitalia.eu/" target="_blank" rel="noopener" style="display:inline-block;"><img class="rg-logo" src="../regesta-logo.png" alt="Regesta Group"/></a>
+  <div class="inv"><a href="https://www.regestaitalia.eu/gestione-documentale/" target="_blank" rel="noopener" style="display:inline-block;"><img class="rg-logo" src="../regesta-logo.png" alt="Regesta Group"/></a>
     <xsl:apply-templates select="//p:FatturaElettronica|//FatturaElettronica"/>
     <footer>E-Invoicing Tracker · Resa visiva FatturaPA — il documento originale è il file XML</footer>
   </div>
