@@ -343,10 +343,11 @@
   .print-btn{font-family:'IBM Plex Mono',monospace;font-size:14px;background:none;border:1px solid var(--ink);padding:7px 12px;cursor:pointer;color:var(--ink);border-radius:2px;line-height:1;flex-shrink:0;}
   .print-btn:hover{background:var(--ink);color:var(--paper);}
   @media print{
+    html,body{overflow:visible!important;height:auto!important;}
     body>*:not(#detail-overlay){display:none!important;}
-    #detail-overlay{position:static!important;display:block!important;overflow:visible!important;}
+    #detail-overlay.open{position:static!important;overflow:visible!important;height:auto!important;max-height:none!important;inset:auto!important;z-index:auto!important;}
     .detail-header{position:static!important;border-bottom:2px solid #000;padding:8px 0;margin-bottom:16px;}
-    .back-btn,.print-btn{display:none!important;}
+    .back-btn,.print-btn,.masthead-logo{display:none!important;}
     .detail-body{padding:0!important;max-width:100%!important;}
     @page{margin:18mm 15mm;}
   }
@@ -526,7 +527,7 @@
     <a href="https://www.regestaitalia.eu/gestione-documentale/" target="_blank" rel="noopener"><img class="masthead-logo" src="regesta-logo.png" alt="Regesta Group"></a>
     <div class="detail-title" id="detail-title"></div>
     <div style="display:flex;gap:8px;align-items:center;flex-shrink:0;">
-      <button class="print-btn" onclick="window.print()" title="Stampa / Salva PDF">🖨</button>
+      <button class="print-btn" onclick="doPrint()" title="Stampa / Salva PDF">🖨</button>
       <button class="back-btn" id="back-btn">← Torna all'elenco</button>
     </div>
   </div>
@@ -886,6 +887,22 @@ async function init(){
 }
 
 init();
+function doPrint(){
+  var ov=document.getElementById('detail-overlay');
+  ov.style.setProperty('position','static','important');
+  ov.style.setProperty('overflow','visible','important');
+  ov.style.setProperty('height','auto','important');
+  ov.style.setProperty('max-height','none','important');
+  ov.style.setProperty('inset','auto','important');
+  window.print();
+  window.addEventListener('afterprint',function(){
+    ov.style.removeProperty('position');
+    ov.style.removeProperty('overflow');
+    ov.style.removeProperty('height');
+    ov.style.removeProperty('max-height');
+    ov.style.removeProperty('inset');
+  },{once:true});
+}
 </script>
 
 </body>
