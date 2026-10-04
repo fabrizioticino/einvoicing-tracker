@@ -343,12 +343,8 @@
   .print-btn{font-family:'IBM Plex Mono',monospace;font-size:14px;background:none;border:1px solid var(--ink);padding:7px 12px;cursor:pointer;color:var(--ink);border-radius:2px;line-height:1;flex-shrink:0;}
   .print-btn:hover{background:var(--ink);color:var(--paper);}
   @media print{
-    html,body{overflow:visible!important;height:auto!important;}
-    body>*:not(#detail-overlay){display:none!important;}
-    #detail-overlay.open{position:static!important;overflow:visible!important;height:auto!important;max-height:none!important;inset:auto!important;z-index:auto!important;}
-    .detail-header{position:static!important;border-bottom:2px solid #000;padding:8px 0;margin-bottom:16px;}
-    .back-btn,.print-btn,.masthead-logo{display:none!important;}
-    .detail-body{padding:0!important;max-width:100%!important;}
+    body>*:not(#print-area){display:none!important;}
+    #print-area{display:block!important;padding:0;}
     @page{margin:18mm 15mm;}
   }
 
@@ -533,6 +529,8 @@
   </div>
   <div class="detail-body" id="detail-body"></div>
 </div>
+
+<div id="print-area" style="display:none"></div>
 
 <script>
 let COUNTRIES = [];
@@ -890,19 +888,10 @@ init();
 function doPrint(){
   var title = document.getElementById('detail-title').textContent;
   var body  = document.getElementById('detail-body').innerHTML;
-  var css   = Array.from(document.querySelectorAll('style')).map(function(s){return s.textContent;}).join('\n');
-  var html  = '<!DOCTYPE html><html lang="it"><head><meta charset="UTF-8"><title>'+title+'</title><style>'+css+'body{padding:2cm;}@media print{@page{margin:18mm 15mm;}}</style></head><body><h1 style="font-family:Fraunces,serif;font-weight:600;font-size:32px;margin-bottom:24px;border-bottom:3px double #161616;padding-bottom:12px;">'+title+'</h1><div class="detail-body" style="max-width:100%;padding:0;">'+body+'</div></body></html>';
-  var blob  = new Blob([html],{type:'text/html'});
-  var url   = URL.createObjectURL(blob);
-  var fr    = document.createElement('iframe');
-  fr.style.cssText='position:fixed;top:-9999px;left:0;width:210mm;height:297mm;border:none;';
-  document.body.appendChild(fr);
-  fr.onload=function(){
-    try{fr.contentWindow.focus();fr.contentWindow.print();}
-    catch(e){window.open(url,'_blank');}
-    setTimeout(function(){document.body.removeChild(fr);URL.revokeObjectURL(url);},2000);
-  };
-  fr.src=url;
+  var pa    = document.getElementById('print-area');
+  pa.innerHTML = '<h1 style="font-family:Fraunces,serif;font-weight:600;font-size:32px;margin-bottom:24px;border-bottom:3px double #161616;padding-bottom:12px;padding:0 2cm 12px;">'+title+'</h1><div style="padding:0 2cm 2cm;">'+body+'</div>';
+  window.print();
+  pa.innerHTML='';
 }
 </script>
 
