@@ -340,6 +340,16 @@
     gap:8px;
   }
   .back-btn:hover{ background:var(--ink); color:var(--paper); }
+  .print-btn{font-family:'IBM Plex Mono',monospace;font-size:14px;background:none;border:1px solid var(--ink);padding:7px 12px;cursor:pointer;color:var(--ink);border-radius:2px;line-height:1;flex-shrink:0;}
+  .print-btn:hover{background:var(--ink);color:var(--paper);}
+  @media print{
+    body>*:not(#detail-overlay){display:none!important;}
+    #detail-overlay{position:static!important;display:block!important;overflow:visible!important;}
+    .detail-header{position:static!important;border-bottom:2px solid #000;padding:8px 0;margin-bottom:16px;}
+    .back-btn,.print-btn{display:none!important;}
+    .detail-body{padding:0!important;max-width:100%!important;}
+    @page{margin:18mm 15mm;}
+  }
 
   .detail-title{
     font-family:'Fraunces', serif;
@@ -515,7 +525,10 @@
   <div class="detail-header">
     <a href="https://www.regestaitalia.eu/gestione-documentale/" target="_blank" rel="noopener"><img class="masthead-logo" src="regesta-logo.png" alt="Regesta Group"></a>
     <div class="detail-title" id="detail-title"></div>
-    <button class="back-btn" id="back-btn">← Torna all'elenco</button>
+    <div style="display:flex;gap:8px;align-items:center;flex-shrink:0;">
+      <button class="print-btn" onclick="window.print()" title="Stampa / Salva PDF">🖨</button>
+      <button class="back-btn" id="back-btn">← Torna all'elenco</button>
+    </div>
   </div>
   <div class="detail-body" id="detail-body"></div>
 </div>
