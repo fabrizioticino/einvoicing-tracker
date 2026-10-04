@@ -811,9 +811,15 @@ function openDetail(slug){
   document.body.style.overflow = 'hidden';
   window.scrollTo(0,0);
   history.pushState({slug}, '', `#${slug}`);
+
+  var pa = document.getElementById('print-area');
+  var titleEl = document.getElementById('detail-title');
+  var bodyEl  = document.getElementById('detail-body');
+  pa.innerHTML = '<h1 style="font-family:Fraunces,serif;font-weight:600;font-size:32px;margin-bottom:24px;border-bottom:3px double #161616;padding:0 2cm 12px;">'+titleEl.textContent+'</h1><div style="padding:0 2cm 2cm;">'+bodyEl.innerHTML+'</div>';
 }
 
 function closeDetail(){
+  document.getElementById('print-area').innerHTML = '';
   document.getElementById('detail-overlay').classList.remove('open');
   document.body.style.overflow = '';
   history.pushState({}, '', window.location.pathname);
@@ -885,22 +891,7 @@ async function init(){
 }
 
 init();
-function doPrint(){
-  var title = document.getElementById('detail-title').textContent;
-  var body  = document.getElementById('detail-body').innerHTML;
-  var pa    = document.getElementById('print-area');
-  pa.innerHTML = '<h1 style="font-family:Fraunces,serif;font-weight:600;font-size:32px;margin-bottom:24px;border-bottom:3px double #161616;padding:0 2cm 12px;">'+title+'</h1><div style="padding:0 2cm 2cm;">'+body+'</div>';
-  pa.style.setProperty('display','block','important');
-  var kids = Array.from(document.body.children).filter(function(el){return el!==pa;});
-  kids.forEach(function(el){el.style.setProperty('display','none','important');});
-  function restore(){
-    pa.style.removeProperty('display');
-    pa.innerHTML='';
-    kids.forEach(function(el){el.style.removeProperty('display');});
-  }
-  window.addEventListener('afterprint',restore,{once:true});
-  setTimeout(window.print.bind(window), 50);
-}
+function doPrint(){ window.print(); }
 </script>
 
 </body>
