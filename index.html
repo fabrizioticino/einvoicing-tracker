@@ -343,16 +343,6 @@
   .print-btn{font-family:'IBM Plex Mono',monospace;font-size:14px;background:none;border:1px solid var(--ink);padding:7px 12px;cursor:pointer;color:var(--ink);border-radius:2px;line-height:1;flex-shrink:0;}
   .print-btn:hover{background:var(--ink);color:var(--paper);}
   @media print{
-    body>*:not(.detail-overlay){display:none!important;}
-    .detail-overlay{
-      display:block!important;
-      position:static!important;
-      inset:auto!important;
-      overflow:visible!important;
-      height:auto!important;
-      box-shadow:none!important;
-    }
-    .detail-header{position:static!important;}
     .print-btn,.back-btn{display:none!important;}
     @page{margin:18mm 15mm;}
   }
@@ -901,6 +891,29 @@ async function init(){
 
 init();
 function doPrint(){ window.print(); }
+
+(function(){
+  var _ov, _hidden=[];
+  window.addEventListener('beforeprint', function(){
+    _ov = document.getElementById('detail-overlay');
+    if(!_ov || !_ov.classList.contains('open')) return;
+    _hidden = Array.from(document.body.children).filter(function(el){ return el!==_ov; });
+    _hidden.forEach(function(el){ el.style.setProperty('display','none','important'); });
+    _ov.style.setProperty('position','relative','important');
+    _ov.style.setProperty('overflow','visible','important');
+    _ov.style.setProperty('height','auto','important');
+    _ov.style.setProperty('inset','auto','important');
+  });
+  window.addEventListener('afterprint', function(){
+    if(!_ov) return;
+    _hidden.forEach(function(el){ el.style.removeProperty('display'); });
+    _ov.style.removeProperty('position');
+    _ov.style.removeProperty('overflow');
+    _ov.style.removeProperty('height');
+    _ov.style.removeProperty('inset');
+    _ov = null; _hidden = [];
+  });
+}());
 </script>
 
 </body>
