@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+﻿<?xml version="1.0" encoding="UTF-8"?>
 <xsl:stylesheet version="1.0"
   xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
   xmlns:cfdi="http://www.sat.gob.mx/cfd/4"
@@ -43,11 +43,12 @@ tbody tr:nth-child(even) td{background:#fafafa}
 .tfd{margin-top:16px;padding:10px 12px;background:#f5f5f5;font-family:'IBM Plex Mono',monospace;font-size:9px;color:#888;border-radius:4px;word-break:break-all}
 .tfd strong{color:#444;display:block;margin-bottom:3px}
 footer{margin-top:24px;padding-top:10px;border-top:1px solid #e0e0e0;font-size:9px;color:#aaa;text-align:center;font-family:'IBM Plex Mono',monospace}
+.rg-logo{position:fixed;top:12px;right:18px;height:28px;opacity:.85;}@media print{.rg-logo{position:absolute;}}
 @media print{html{background:#fff}body{padding:0}.inv{box-shadow:none}@page{margin:16mm;size:A4}}
     </style>
   </head>
   <body>
-  <div class="inv">
+  <div class="inv"><img class="rg-logo" src="../regesta-logo.png" alt="Regesta Group"/>
     <xsl:apply-templates select="//cfdi:Comprobante|//Comprobante"/>
     <footer>E-Invoicing Tracker · Resa visiva CFDI 4.0 — el comprobante original es el archivo XML con sello SAT</footer>
   </div>

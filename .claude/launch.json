@@ -1,0 +1,17 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "einvoicing-site",
+      "runtimeExecutable": "powershell",
+      "runtimeArgs": ["-NoProfile", "-ExecutionPolicy", "Bypass", "-File", "C:/Users/fabrizio.ticino/Downloads/einvoicing-site_2/einvoicing-site/.claude/serve.ps1", "-Port", "3000", "-Root", "C:/Users/fabrizio.ticino/Downloads/einvoicing-site_2/einvoicing-site"],
+      "port": 3000
+    },
+    {
+      "name": "eArchiving",
+      "runtimeExecutable": "powershell",
+      "runtimeArgs": ["-NoProfile", "-ExecutionPolicy", "Bypass", "-File", "C:/Users/fabrizio.ticino/Downloads/einvoicing-site_2/einvoicing-site/.claude/serve.ps1", "-Port", "4310", "-Root", "C:/Users/fabrizio.ticino/Downloads/eArchiving"],
+      "port": 4310
+    }
+  ]
+}

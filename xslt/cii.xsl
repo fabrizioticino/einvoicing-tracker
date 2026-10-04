@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+﻿<?xml version="1.0" encoding="UTF-8"?>
 <xsl:stylesheet version="1.0"
   xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
   xmlns:rsm="urn:un:unece:uncefact:data:standard:CrossIndustryInvoice:100"
@@ -44,11 +44,12 @@ tbody tr:nth-child(even) td{background:#fafafa}
 .trow .val{font-family:'IBM Plex Mono',monospace}
 .notes{margin-top:14px;padding:10px 12px;background:#f5f5f5;border-left:3px solid #ccc;font-size:11.5px;color:#666}
 footer{margin-top:24px;padding-top:10px;border-top:1px solid #e0e0e0;font-size:9px;color:#aaa;text-align:center;font-family:'IBM Plex Mono',monospace}
+.rg-logo{position:fixed;top:12px;right:18px;height:28px;opacity:.85;}@media print{.rg-logo{position:absolute;}}
 @media print{html{background:#fff}body{padding:0}.inv{box-shadow:none}@page{margin:16mm;size:A4}}
     </style>
   </head>
   <body>
-  <div class="inv">
+  <div class="inv"><img class="rg-logo" src="../regesta-logo.png" alt="Regesta Group"/>
     <xsl:apply-templates select="//rsm:CrossIndustryInvoice|//CrossIndustryInvoice"/>
     <footer>E-Invoicing Tracker · Resa visiva Factur-X / ZUGFeRD CII — il documento originale è il file XML</footer>
   </div>

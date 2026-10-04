@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+﻿<?xml version="1.0" encoding="UTF-8"?>
 <xsl:stylesheet version="1.0"
   xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
   xmlns:p="http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2">
@@ -43,11 +43,12 @@ tbody tr:nth-child(even) td{background:#fafafa}
 .pagamento{margin-top:12px;font-size:11.5px;color:#666}
 .pagamento strong{color:#161616}
 footer{margin-top:24px;padding-top:10px;border-top:1px solid #e0e0e0;font-size:9px;color:#aaa;text-align:center;font-family:'IBM Plex Mono',monospace}
+.rg-logo{position:fixed;top:12px;right:18px;height:28px;opacity:.85;}@media print{.rg-logo{position:absolute;}}
 @media print{html{background:#fff}body{padding:0}.inv{box-shadow:none}@page{margin:16mm;size:A4}}
     </style>
   </head>
   <body>
-  <div class="inv">
+  <div class="inv"><img class="rg-logo" src="../regesta-logo.png" alt="Regesta Group"/>
     <xsl:apply-templates select="//p:FatturaElettronica|//FatturaElettronica"/>
     <footer>E-Invoicing Tracker · Resa visiva FatturaPA — il documento originale è il file XML</footer>
   </div>

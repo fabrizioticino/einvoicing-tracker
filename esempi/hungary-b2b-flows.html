@@ -13,9 +13,9 @@
   body::before{content:"";position:fixed;inset:0;background-image:repeating-linear-gradient(0deg,rgba(27,36,33,0.018) 0px,rgba(27,36,33,0.018) 1px,transparent 1px,transparent 3px);pointer-events:none;z-index:0;}
   a{color:var(--blue);}
   header.masthead{position:relative;z-index:1;border-bottom:3px double var(--ink);padding:28px 5vw 18px;}
-  .masthead-top{display:flex;justify-content:space-between;align-items:baseline;flex-wrap:wrap;gap:8px;font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-soft);margin-bottom:18px;}
+  .masthead-top{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px;font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-soft);margin-bottom:18px;}
   .masthead-top .dot{color:var(--accent2);}
-  .masthead-logo{position:absolute;top:22px;right:5vw;height:36px;opacity:.9;}
+  .masthead-logo{height:28px;flex-shrink:0;opacity:.9;margin-right:14px;}
   .masthead-top a{color:var(--ink-soft);text-decoration:none;}.masthead-top a:hover{color:var(--ink);}
   h1.title{font-family:'Fraunces',serif;font-weight:600;font-size:clamp(28px,5vw,52px);line-height:1;margin:0 0 10px;letter-spacing:-0.01em;}
   h1.title em{font-style:italic;font-weight:400;color:var(--accent2);}
@@ -52,9 +52,8 @@
 </head>
 <body>
 <header class="masthead">
-  <img class="masthead-logo" src="../regesta-logo.png" alt="Regesta Group">
   <div class="masthead-top">
-    <span><a href="../index.html">← E-Invoicing Tracker</a> <span class="dot">◆</span> Ungheria</span>
+    <img class="masthead-logo" src="../regesta-logo.png" alt="Regesta Group"><span><a href="../index.html">← E-Invoicing Tracker</a> <span class="dot">◆</span> Ungheria</span>
     <span>Aggiornato: settembre 2026</span>
   </div>
   <h1 class="title">Ungheria — <em>KIBO</em><br>segnalazione fatture real-time</h1>

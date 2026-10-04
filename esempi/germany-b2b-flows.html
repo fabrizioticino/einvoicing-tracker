@@ -52,12 +52,12 @@
     padding:28px 5vw 18px;
   }
   .masthead-top{
-    display:flex; justify-content:space-between; align-items:baseline; flex-wrap:wrap; gap:8px;
+    display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:8px;
     font-family:'IBM Plex Mono', monospace; font-size:11px; letter-spacing:.06em; text-transform:uppercase;
     color:var(--ink-soft); margin-bottom:18px;
   }
   .masthead-top .dot{color:var(--accent2);}
-  .masthead-logo{position:absolute;top:22px;right:5vw;height:36px;opacity:.9;}
+  .masthead-logo{height:28px;flex-shrink:0;opacity:.9;margin-right:14px;}
   .masthead-top a{color:var(--ink-soft); text-decoration:none;}
   .masthead-top a:hover{color:var(--ink);}
   h1.title{
@@ -178,9 +178,8 @@
 <body>
 
 <header class="masthead">
-  <img class="masthead-logo" src="../regesta-logo.png" alt="Regesta Group">
   <div class="masthead-top">
-    <span><a href="../index.html">← E-Invoicing Tracker</a> <span class="dot">◆</span> Germania</span>
+    <img class="masthead-logo" src="../regesta-logo.png" alt="Regesta Group"><span><a href="../index.html">← E-Invoicing Tracker</a> <span class="dot">◆</span> Germania</span>
     <span>Aggiornato: settembre 2026</span>
   </div>
   <h1 class="title">Germania — <em>Flussi</em><br>fatturazione elettronica B2B</h1>
