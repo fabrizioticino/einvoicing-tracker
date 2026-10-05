@@ -564,5 +564,21 @@
     "new_last_update": "17 settembre 2026",
     "url": "https://www.theinvoicinghub.com/einvoicing-compliance-belgium/",
     "detected_at": "2026-09-28T12:12:45.370010+00:00"
+  },
+  {
+    "country": "Germany",
+    "name_it": "Germania",
+    "previous_last_update": "11 agosto 2026",
+    "new_last_update": "4 ottobre 2026",
+    "url": "https://www.theinvoicinghub.com/einvoicing-compliance-germany/",
+    "detected_at": "2026-10-05T12:52:19.438727+00:00"
+  },
+  {
+    "country": "Greece",
+    "name_it": "Grecia",
+    "previous_last_update": "21 maggio 2026",
+    "new_last_update": "5 ottobre 2026",
+    "url": "https://www.theinvoicinghub.com/einvoicing-compliance-greece/",
+    "detected_at": "2026-10-05T12:52:38.386906+00:00"
   }
 ]
