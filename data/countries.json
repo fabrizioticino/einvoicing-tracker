@@ -796,6 +796,7 @@
     "b2c_url": "",
     "ereporting_url": "",
     "archiving_url": "",
+    "archiving_doc_url": "https://fabrizioticino.github.io/eArchiving/germania-conservazione.html",
     "ecmr_url": "https://www.recht.bund.de/bgbl/2/2024/393/VO.html",
     "efti_url": "https://transport.ec.europa.eu/transport-themes/logistics-and-multimodal-transport/efti-regulation_en"
   },
@@ -968,6 +969,7 @@
     "b2c_url": "https://www.impots.gouv.fr/professionnel/je-decouvre-la-facturation-electronique",
     "ereporting_url": "https://www.impots.gouv.fr/specifications-externes-b2b",
     "archiving_url": "https://bofip.impots.gouv.fr/bofip/2899-PGP.html",
+    "archiving_doc_url": "https://fabrizioticino.github.io/eArchiving/francia-conservazione.html",
     "ecmr_url": "https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000033787034",
     "efti_url": "https://transport.ec.europa.eu/transport-themes/logistics-and-multimodal-transport/efti-regulation_en"
   },
@@ -1546,6 +1548,7 @@
     "b2c_url": "https://ksef.mf.gov.pl/",
     "ereporting_url": "https://ksef.mf.gov.pl/",
     "archiving_url": "https://www.gov.pl/web/kas/krajowy-system-e-faktur",
+    "archiving_doc_url": "https://fabrizioticino.github.io/eArchiving/polonia-conservazione.html",
     "ecmr_url": "https://eli.gov.pl/eli/DU/2019/1487/ogl",
     "efti_url": "https://transport.ec.europa.eu/transport-themes/logistics-and-multimodal-transport/efti-regulation_en"
   },
@@ -1604,6 +1607,7 @@
     "b2c_url": "https://sede.agenciatributaria.gob.es/Sede/iva/facturacion-registro/facturacion-iva.html",
     "ereporting_url": "https://sede.agenciatributaria.gob.es/Sede/iva/suministro-inmediato-informacion.html",
     "archiving_url": "https://sede.agenciatributaria.gob.es/Sede/iva/facturacion-registro/facturacion-iva/obligacion-conservar-facturas.html",
+    "archiving_doc_url": "https://fabrizioticino.github.io/eArchiving/spagna-conservazione.html",
     "ecmr_url": "https://www.boe.es/diario_boe/txt.php?id=BOE-A-2011-10283",
     "efti_url": "https://transport.ec.europa.eu/transport-themes/logistics-and-multimodal-transport/efti-regulation_en",
     "ecmr_example_xml": "esempi/ecmr-es.xml",

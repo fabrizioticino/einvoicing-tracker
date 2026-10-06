@@ -799,7 +799,8 @@ function openDetail(slug){
       field('Normativa di riferimento', c.archiving_rules) +
       field('Piattaforma / Fornitore', c.archiving_platform) +
       field('Note', c.archiving_notes) +
-      fieldLink('Riferimento normativo', c.archiving_url)
+      fieldLink('Riferimento normativo', c.archiving_url) +
+      fieldLinkDoc('Scheda conservazione a norma', c.archiving_doc_url)
     )}
 
     ${renderSection('06', 'eCMR — Lettera di vettura elettronica',
