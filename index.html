@@ -877,7 +877,7 @@ setInterval(updateClock, 30000);
 
 async function init(){
   try {
-    const res = await fetch('data/countries.json');
+    const res = await fetch('data/countries.json', {cache:'no-cache'});
     COUNTRIES = await res.json();
     sortByLastUpdate();
   } catch(e) {
@@ -890,7 +890,7 @@ async function init(){
 
   // try to load metadata (last update timestamp written by the update script)
   try {
-    const metaRes = await fetch('data/meta.json');
+    const metaRes = await fetch('data/meta.json', {cache:'no-cache'});
     const meta = await metaRes.json();
     let testo = meta.last_run || '—';
     if(meta.last_run_iso){
