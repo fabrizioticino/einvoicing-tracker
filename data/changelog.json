@@ -580,5 +580,117 @@
     "new_last_update": "5 ottobre 2026",
     "url": "https://www.theinvoicinghub.com/einvoicing-compliance-greece/",
     "detected_at": "2026-10-05T12:52:38.386906+00:00"
+  },
+  {
+    "country": "Israel",
+    "name_it": "Israele",
+    "previous_last_update": "25 agosto 2026",
+    "new_last_update": "29 settembre 2026",
+    "url": "https://www.theinvoicinghub.com/einvoicing-compliance-israel/",
+    "detected_at": "2026-10-12T13:44:43.717297+00:00"
+  },
+  {
+    "country": "United Arab Emirates",
+    "name_it": "Emirati Arabi Uniti",
+    "previous_last_update": "12 ottobre 2026",
+    "new_last_update": "22 agosto 2026",
+    "url": "https://www.theinvoicinghub.com/einvoicing-compliance-uae/",
+    "detected_at": "2026-10-12T13:44:46.724571+00:00"
+  },
+  {
+    "country": "Malaysia",
+    "name_it": "Malesia",
+    "previous_last_update": "12 ottobre 2026",
+    "new_last_update": "9 settembre 2026",
+    "url": "https://www.theinvoicinghub.com/einvoicing-compliance-malaysia/",
+    "detected_at": "2026-10-12T13:44:47.836342+00:00"
+  },
+  {
+    "country": "Saudi Arabia",
+    "name_it": "Arabia Saudita",
+    "previous_last_update": "12 ottobre 2026",
+    "new_last_update": "28 luglio 2026",
+    "url": "https://www.theinvoicinghub.com/einvoicing-compliance-saudi-arabia/",
+    "detected_at": "2026-10-12T13:44:50.069019+00:00"
+  },
+  {
+    "country": "France",
+    "name_it": "Francia",
+    "previous_last_update": "12 ottobre 2026",
+    "new_last_update": "9 ottobre 2026",
+    "url": "https://www.theinvoicinghub.com/einvoicing-compliance-france/",
+    "detected_at": "2026-10-12T13:44:55.550331+00:00"
+  },
+  {
+    "country": "Ireland",
+    "name_it": "Irlanda",
+    "previous_last_update": "26 maggio 2026",
+    "new_last_update": "6 ottobre 2026",
+    "url": "https://www.theinvoicinghub.com/einvoicing-compliance-ireland/",
+    "detected_at": "2026-10-12T13:45:03.312219+00:00"
+  },
+  {
+    "country": "Greece",
+    "name_it": "Grecia",
+    "previous_last_update": "12 ottobre 2026",
+    "new_last_update": "6 ottobre 2026",
+    "url": "https://www.theinvoicinghub.com/einvoicing-compliance-greece/",
+    "detected_at": "2026-10-12T13:45:08.443039+00:00"
+  },
+  {
+    "country": "Oman",
+    "name_it": "Oman",
+    "previous_last_update": "12 ottobre 2026",
+    "new_last_update": "19 maggio 2026",
+    "url": "https://www.theinvoicinghub.com/einvoicing-compliance-oman/",
+    "detected_at": "2026-10-12T13:45:12.635632+00:00"
+  },
+  {
+    "country": "Italy",
+    "name_it": "Italia",
+    "previous_last_update": "18 maggio 2026",
+    "new_last_update": "9 ottobre 2026",
+    "url": "https://www.theinvoicinghub.com/einvoicing-compliance-italy/",
+    "detected_at": "2026-10-12T13:45:15.907996+00:00"
+  },
+  {
+    "country": "Poland",
+    "name_it": "Polonia",
+    "previous_last_update": "12 ottobre 2026",
+    "new_last_update": "30 aprile 2026",
+    "url": "https://www.theinvoicinghub.com/einvoicing-compliance-poland/",
+    "detected_at": "2026-10-12T13:45:20.578262+00:00"
+  },
+  {
+    "country": "Spain",
+    "name_it": "Spagna",
+    "previous_last_update": "12 ottobre 2026",
+    "new_last_update": "28 aprile 2026",
+    "url": "https://www.theinvoicinghub.com/einvoicing-compliance-spain/",
+    "detected_at": "2026-10-12T13:45:24.035326+00:00"
+  },
+  {
+    "country": "Denmark",
+    "name_it": "Danimarca",
+    "previous_last_update": "12 ottobre 2026",
+    "new_last_update": "22 settembre 2026",
+    "url": "https://www.theinvoicinghub.com/einvoicing-compliance-denmark/",
+    "detected_at": "2026-10-12T13:45:34.899871+00:00"
+  },
+  {
+    "country": "India",
+    "name_it": "India",
+    "previous_last_update": "21 gennaio 2026",
+    "new_last_update": "6 ottobre 2026",
+    "url": "https://www.theinvoicinghub.com/einvoicing-compliance-india/",
+    "detected_at": "2026-10-12T13:45:53.807766+00:00"
+  },
+  {
+    "country": "Croatia",
+    "name_it": "Croazia",
+    "previous_last_update": "12 ottobre 2026",
+    "new_last_update": "22 settembre 2026",
+    "url": "https://www.theinvoicinghub.com/einvoicing-compliance-croatia/",
+    "detected_at": "2026-10-12T13:46:01.331593+00:00"
   }
 ]
