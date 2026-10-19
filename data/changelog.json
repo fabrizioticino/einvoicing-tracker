@@ -692,5 +692,69 @@
     "new_last_update": "22 settembre 2026",
     "url": "https://www.theinvoicinghub.com/einvoicing-compliance-croatia/",
     "detected_at": "2026-10-12T13:46:01.331593+00:00"
+  },
+  {
+    "country": "Malaysia",
+    "name_it": "Malesia",
+    "previous_last_update": "9 settembre 2026",
+    "new_last_update": "14 ottobre 2026",
+    "url": "https://www.theinvoicinghub.com/einvoicing-compliance-malaysia/",
+    "detected_at": "2026-10-19T11:25:30.948659+00:00"
+  },
+  {
+    "country": "Luxembourg",
+    "name_it": "Lussemburgo",
+    "previous_last_update": "1 settembre 2026",
+    "new_last_update": "14 ottobre 2026",
+    "url": "https://www.theinvoicinghub.com/einvoicing-compliance-luxembourg/",
+    "detected_at": "2026-10-19T11:25:34.197982+00:00"
+  },
+  {
+    "country": "Norway",
+    "name_it": "Norvegia",
+    "previous_last_update": "18 giugno 2026",
+    "new_last_update": "16 ottobre 2026",
+    "url": "https://www.theinvoicinghub.com/einvoicing-compliance-norway/",
+    "detected_at": "2026-10-19T11:25:37.606410+00:00"
+  },
+  {
+    "country": "Oman",
+    "name_it": "Oman",
+    "previous_last_update": "19 maggio 2026",
+    "new_last_update": "17 ottobre 2026",
+    "url": "https://www.theinvoicinghub.com/einvoicing-compliance-oman/",
+    "detected_at": "2026-10-19T11:25:41.961014+00:00"
+  },
+  {
+    "country": "Italy",
+    "name_it": "Italia",
+    "previous_last_update": "9 ottobre 2026",
+    "new_last_update": "12 ottobre 2026",
+    "url": "https://www.theinvoicinghub.com/einvoicing-compliance-italy/",
+    "detected_at": "2026-10-19T11:25:43.065909+00:00"
+  },
+  {
+    "country": "Australia",
+    "name_it": "Australia",
+    "previous_last_update": "14 settembre 2026",
+    "new_last_update": "16 ottobre 2026",
+    "url": "https://www.theinvoicinghub.com/einvoicing-compliance-australia/",
+    "detected_at": "2026-10-19T11:25:44.133561+00:00"
+  },
+  {
+    "country": "Mexico",
+    "name_it": "Messico",
+    "previous_last_update": "26 aprile 2026",
+    "new_last_update": "15 ottobre 2026",
+    "url": "https://www.theinvoicinghub.com/einvoicing-compliance-mexico/",
+    "detected_at": "2026-10-19T11:25:47.373470+00:00"
+  },
+  {
+    "country": "New Zealand",
+    "name_it": "Nuova Zelanda",
+    "previous_last_update": "7 marzo 2026",
+    "new_last_update": "16 ottobre 2026",
+    "url": "https://www.theinvoicinghub.com/einvoicing-compliance-new-zealand/",
+    "detected_at": "2026-10-19T11:25:50.601886+00:00"
   }
 ]
