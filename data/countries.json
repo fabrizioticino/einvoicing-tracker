@@ -1172,7 +1172,7 @@
     "b2g_format": "Peppol BIS Billing 3.0 + EI-CIUS (specifiche irlandesi)",
     "b2g_network": "Peppol",
     "b2g_notes": "Gli enti pubblici connessi a Peppol devono accettare le e-fatture. I fornitori non sono ancora obbligati a inviare.",
-    "b2b_status": "Pianificato (introduzione graduale 2028-2030 ai sensi di ViDA)",
+    "b2b_status": "Pianificato (obbligo domestico graduale 2028-2029; ViDA intra-UE dal 1 luglio 2030)",
     "b2b_since": "Novembre 2028 (ricezione; emissione grandi imprese); novembre 2029 (obbligo B2B domestico); luglio 2030 (piena conformita' ViDA)",
     "b2b_platform": "Peppol (probabile)",
     "b2b_format": "Peppol BIS 3.0 (dettagli attesi con largo anticipo)",
