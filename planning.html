@@ -63,10 +63,11 @@
   .mk.P{background:#fff!important;border:2px solid;}
   .mk.B.P{border-color:var(--accent);} .mk.R.P{border-color:var(--teal);} .mk.S.P{border-color:var(--gold);}
   .today{position:absolute;top:0;bottom:4px;border-left:2px dashed var(--navy);pointer-events:none;}
-  .today span{position:absolute;bottom:-2px;left:-16px;font-family:'IBM Plex Mono',monospace;font-size:11px;font-weight:600;color:var(--navy);}
+  .today span{position:absolute;bottom:-2px;left:5px;font-family:'IBM Plex Mono',monospace;font-size:11px;font-weight:600;color:var(--navy);}
   .legend{display:flex;flex-wrap:wrap;gap:18px;margin-top:22px;font-size:13px;color:var(--navy);}
   .legend span{display:inline-flex;align-items:center;gap:8px;}
   .legend .mk{position:static;margin:0;}
+  .legend .lg{font-style:normal;color:var(--ink-soft);}
 
   /* tabelle */
   .tbl-wrap{overflow-x:auto;margin-bottom:22px;}
@@ -217,7 +218,11 @@ function render(D){
   const gEl = document.getElementById('gantt'); gEl.innerHTML = html;
   const todayEl = gEl.querySelector('.today'); todayEl.style.top = gEl.querySelector('.g-head').offsetHeight + 'px';
   document.getElementById('legend').innerHTML =
-    `<span><i class="mk B"></i>E-fattura B2B</span><span><i class="mk R"></i>E-reporting / clearance</span><span><i class="mk S"></i>SAF-T / dichiarazioni digitali</span><span><i class="mk B P"></i>Vuoto = proposta, bozza o annuncio</span><span>Clic su paese o simbolo per aprire la scheda</span>`;
+    `<span><i class="mk B"></i>E-fattura B2B <em class="lg">(scambio di fatture strutturate)</em></span>` +
+    `<span><i class="mk R"></i>E-reporting / clearance <em class="lg">(dati della fattura al fisco)</em></span>` +
+    `<span><i class="mk S"></i>SAF-T / dichiarazioni digitali <em class="lg">(file contabili periodici)</em></span>` +
+    `<span><i class="mk B P"></i>Vuoto = proposta, bozza o annuncio <em class="lg">(data non definitiva)</em></span>` +
+    `<span class="lg">Clic su paese o simbolo per aprire la scheda</span>`;
 
   // anni
   document.getElementById('years').innerHTML = D.years.map(y => {
