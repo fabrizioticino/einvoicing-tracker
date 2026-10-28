@@ -9,8 +9,8 @@
   "summary": {
     "title": "Quattro anni di scadenze, con il picco nel 2027",
     "stats": [
-      { "value": "27", "label": "paesi e aree con scadenze tra il 2026 e il 2030" },
-      { "value": "2027", "label": "l'anno con più avvii: oltre 20 scadenze" },
+      { "value": "{paesi}", "label": "paesi e aree con scadenze tra il 2026 e il 2030" },
+      { "value": "2027", "label": "l'anno con più avvii: {scadenze2027} scadenze in {paesi2027} paesi" },
       { "value": "1/7/2030", "label": "ViDA: e-fattura obbligatoria per il B2B intra-UE" }
     ],
     "messages": [
@@ -100,7 +100,7 @@
         ["1 ott 2027","Emirati","E-fattura","Enti pubblici","Confermato"],
         ["6 ott 2027","Spagna","E-fattura B2B","Fatturato > 8 mln € (Orden HAC/1028/2026)","Confermato"]
       ],
-      "callout": { "value": "20+", "label": "scadenze nel solo 2027, in 15 paesi" }
+      "callout": { "value": "{scadenze2027}", "label": "scadenze nel solo 2027, in {paesi2027} paesi" }
     },
     {
       "title": "2028: completamento in Europa e prime bozze",

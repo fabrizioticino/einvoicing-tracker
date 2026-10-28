@@ -169,7 +169,19 @@ function stateClass(s){ return s === 'Confermato' ? 'st-c' : (s === 'Da verifica
 function monthIdx(ym){ const [y,m] = ym.split('-').map(Number); return (y - 2026) * 12 + m - 1; }
 const MONTHS = ['gen','feb','mar','apr','mag','giu','lug','ago','set','ott','nov','dic'];
 
+function fillCounts(D){
+  const rows = D.gantt.rows;
+  const y27 = rows.flatMap(r => r.e.filter(e => e[0].startsWith('2027')).map(() => r.c));
+  const vals = { paesi: rows.length, scadenze2027: y27.length, paesi2027: new Set(y27).size };
+  const sub = s => String(s).replace(/\{(\w+)\}/g, (m, k) => vals[k] ?? m);
+  D.summary.stats.forEach(s => { s.value = sub(s.value); s.label = sub(s.label); });
+  D.years.forEach(y => { if (y.callout) { y.callout.value = sub(y.callout.value); y.callout.label = sub(y.callout.label); } });
+  const now = new Date();
+  D.gantt.today = now.getFullYear() + '-' + String(now.getMonth() + 1).padStart(2, '0');
+}
+
 function render(D){
+  fillCounts(D);
   document.getElementById('lead').textContent = D.cover.subtitle + ': fatturazione elettronica, e-reporting e SAF-T. Ogni paese rimanda alla sua scheda nel tracker.';
   document.getElementById('stamp').textContent = 'Situazione al ' + D.date + ' · ' + D.cover.author;
 
