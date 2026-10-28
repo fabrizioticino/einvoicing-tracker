@@ -1,0 +1,183 @@
+{
+  "date": "28 ottobre 2026",
+  "cover": {
+    "kicker": "PLANNING NORMATIVO",
+    "title": "Fatturazione elettronica, e-reporting e SAF-T",
+    "subtitle": "Le scadenze per paese dal 2026 al 2030",
+    "author": "Fabrizio Ticino · Regesta"
+  },
+  "summary": {
+    "title": "Quattro anni di scadenze, con il picco nel 2027",
+    "stats": [
+      { "value": "27", "label": "paesi e aree con scadenze tra il 2026 e il 2030" },
+      { "value": "2027", "label": "l'anno con più avvii: oltre 20 scadenze" },
+      { "value": "1/7/2030", "label": "ViDA: e-fattura obbligatoria per il B2B intra-UE" }
+    ],
+    "messages": [
+      "Ogni paese ha il suo modello: piattaforma statale, rete Peppol o provider accreditati",
+      "Molte date oltre il 2027 sono ancora proposte o bozze: vanno monitorate",
+      "Un progetto richiede 9-12 mesi: per il 2027 bisogna partire subito"
+    ]
+  },
+  "gantt": {
+    "title": "Planning generale 2026-2030",
+    "start": "2026-01",
+    "end": "2030-12",
+    "today": "2026-10",
+    "rows": [
+      { "c": "Belgio", "e": [["2026-01","B","C"],["2028-01","R","P"]] },
+      { "c": "Croazia", "e": [["2026-01","B","C"],["2026-01","R","C"],["2027-01","B","C"]] },
+      { "c": "Polonia", "e": [["2026-02","B","C"],["2026-04","B","C"],["2027-01","B","C"]] },
+      { "c": "Grecia", "e": [["2026-03","B","C"],["2026-11","B","C"],["2027-02","B","C"]] },
+      { "c": "Israele", "e": [["2026-06","R","C"]] },
+      { "c": "Arabia Saudita", "e": [["2026-06","R","C"],["2027-02","R","P"]] },
+      { "c": "Francia", "e": [["2026-09","B","C"],["2026-09","R","C"],["2027-09","B","C"],["2027-09","R","C"]] },
+      { "c": "Malesia", "e": [["2026-09","B","C"]] },
+      { "c": "Emirati Arabi Uniti", "e": [["2026-10","B","C"],["2027-01","B","C"],["2027-07","B","C"],["2027-10","B","C"]] },
+      { "c": "Filippine", "e": [["2026-12","B","C"],["2026-12","R","C"]] },
+      { "c": "Germania", "e": [["2027-01","B","C"],["2028-01","B","C"]] },
+      { "c": "Slovacchia", "e": [["2027-01","B","C"]] },
+      { "c": "Norvegia", "e": [["2027-01","B","C"],["2030-01","B","C"]] },
+      { "c": "San Marino", "e": [["2027-01","B","C"]] },
+      { "c": "Danimarca", "e": [["2027-01","S","C"],["2027-03","B","C"],["2028-07","B","C"],["2029-07","B","C"]] },
+      { "c": "Ungheria", "e": [["2027-01","S","C"],["2028-01","S","P"]] },
+      { "c": "Portogallo", "e": [["2027-01","B","C"],["2028-01","B","P"],["2028-06","S","C"],["2029-06","S","P"]] },
+      { "c": "Spagna", "e": [["2027-01","R","C"],["2027-07","R","C"],["2027-10","B","C"],["2028-10","B","C"],["2028-10","R","P"]] },
+      { "c": "Oman", "e": [["2027-04","B","C"],["2027-10","B","C"]] },
+      { "c": "Slovenia", "e": [["2028-01","B","C"]] },
+      { "c": "Bulgaria", "e": [["2028-01","B","P"]] },
+      { "c": "Lussemburgo", "e": [["2028-01","B","P"],["2028-07","B","P"],["2029-01","B","P"]] },
+      { "c": "Irlanda", "e": [["2028-11","B","P"],["2028-11","R","P"],["2029-11","B","P"]] },
+      { "c": "Regno Unito", "e": [["2029-04","B","P"]] },
+      { "c": "Paesi Bassi", "e": [["2030-01","B","P"]] },
+      { "c": "Stati UE (ViDA)", "e": [["2030-07","B","C"],["2030-07","R","C"]] }
+    ]
+  },
+  "years": [
+    {
+      "title": "2026: i mandati già partiti e le scadenze di fine anno",
+      "rows": [
+        ["1 gen 2026","Belgio","E-fattura B2B","Obbligo Peppol per tutte le imprese IVA","Confermato"],
+        ["1 gen 2026","Croazia","E-fattura + e-reporting","Fiscalizzazione 2.0 per i soggetti IVA","Confermato"],
+        ["1 feb 2026","Polonia","E-fattura B2B","KSeF per fatturato > 200 mln PLN; dal 1° aprile tutti gli altri","Confermato"],
+        ["2 mar 2026","Grecia","E-fattura B2B","Fase 1: ricavi 2023 oltre 1 mln €","Confermato"],
+        ["1 giu 2026","Israele","Clearance","Numero di allocazione per fatture > 5.000 NIS","Confermato"],
+        ["30 giu 2026","Arabia Saudita","Clearance","Ondata 24 Fatoora: ricavi > 375.000 SAR","Confermato"],
+        ["1 set 2026","Francia","E-fattura + e-reporting","Ricezione per tutte; emissione per grandi imprese ed ETI","Confermato"],
+        ["1 set 2026","Malesia","E-fattura","Soglia di esenzione alzata a 3 mln MYR","Confermato"],
+        ["30 ott 2026","Emirati","E-fattura B2B","Nomina del provider accreditato (ricavi ≥ 50 mln AED)","Confermato"],
+        ["2 nov 2026","Grecia","E-fattura B2B","Fase 2: tutte le altre imprese, transizione al 31 gen 2027","Confermato"],
+        ["31 dic 2026","Filippine","E-fattura + e-reporting","Scadenza EIS per i contribuenti designati","Confermato"]
+      ]
+    },
+    {
+      "title": "2027 (gennaio-marzo): l'ondata più grande",
+      "rows": [
+        ["1 gen 2027","Germania","E-fattura B2B","Emissione obbligatoria per fatturato > 800.000 €","Confermato"],
+        ["1 gen 2027","Slovacchia","E-fattura B2B","Emissione e ricezione via Peppol, modello a 5 angoli","Confermato"],
+        ["1 gen 2027","Norvegia","E-fattura B2B","Emissione in EHF via Peppol","Confermato"],
+        ["1 gen 2027","Emirati","E-fattura + e-reporting","Avvio per ricavi ≥ 50 mln AED","Confermato"],
+        ["1 gen 2027","Croazia","E-fattura B2B","Estensione a tutte le imprese","Confermato"],
+        ["1 gen 2027","Polonia","E-fattura B2B","KSeF per le microimprese; sanzioni dal 2027 (proposto rinvio al 2028)","Confermato"],
+        ["1 gen 2027","San Marino","E-fattura B2B","Avvio dell'obbligo","Confermato"],
+        ["1 gen 2027","Danimarca","SAF-T","SAF-T 2.1 nei sistemi contabili registrati","Confermato"],
+        ["1 gen 2027","Ungheria","Dichiarazioni digitali","eÁFA obbligatorio (proposta: passaggio graduale 2027-2028)","Confermato"],
+        ["1 gen 2027","Spagna","E-reporting","VERI*FACTU per le società (rinvio a ott. 2028 annunciato)","Confermato"],
+        ["1 gen 2027","Portogallo","E-fattura","Firma qualificata sui PDF (proposta: rinvio al 2028)","Confermato"],
+        ["1 feb 2027","Arabia Saudita","Clearance","Ondata 25: ricavi > 187.500 SAR","Da verificare"],
+        ["1 feb 2027","Grecia","E-fattura B2B","Solo provider accreditati o app AADE","Confermato"],
+        ["1 mar 2027","Danimarca","E-fattura B2B","Iscrizione d'ufficio a NemHandel, con opt-out","Confermato"]
+      ]
+    },
+    {
+      "title": "2027 (aprile-dicembre): Golfo, Francia e Spagna",
+      "rows": [
+        ["1 apr 2027","Oman","E-fattura B2B","Fase 1: forniture annue > 5 mln OMR","Confermato"],
+        ["1 lug 2027","Emirati","E-fattura + e-reporting","Tutte le altre imprese","Confermato"],
+        ["1 lug 2027","Spagna","E-reporting","VERI*FACTU per gli altri contribuenti (rinvio annunciato)","Confermato"],
+        ["1 set 2027","Francia","E-fattura + e-reporting","Emissione per PMI e microimprese","Confermato"],
+        ["1 ott 2027","Oman","E-fattura B2B","Fase 2: tutti gli altri soggetti IVA","Confermato"],
+        ["1 ott 2027","Emirati","E-fattura","Enti pubblici","Confermato"],
+        ["6 ott 2027","Spagna","E-fattura B2B","Fatturato > 8 mln € (Orden HAC/1028/2026)","Confermato"]
+      ],
+      "callout": { "value": "20+", "label": "scadenze nel solo 2027, in 15 paesi" }
+    },
+    {
+      "title": "2028: completamento in Europa e prime bozze",
+      "rows": [
+        ["1 gen 2028","Germania","E-fattura B2B","Emissione per tutte le imprese","Confermato"],
+        ["1 gen 2028","Slovenia","E-fattura B2B","Obbligo per tutte le imprese (legge ZIERDED)","Confermato"],
+        ["1 gen 2028","Belgio","E-reporting","Reporting quasi in tempo reale via Peppol","Bozza"],
+        ["1 gen 2028","Lussemburgo","E-fattura B2B","Ricezione per tutte le imprese","Bozza"],
+        ["1 gen 2028","Bulgaria","E-fattura B2B","Obbligo per operazioni nazionali B2B e B2G","Bozza"],
+        ["1 gen 2028","Ungheria","Dichiarazioni digitali","eÁFA per le PMI (se approvata la transizione)","Proposta"],
+        ["1 gen 2028","Portogallo","E-fattura","Firma qualificata sui PDF (se approvato il bilancio 2027)","Proposta"],
+        ["2028","Portogallo","SAF-T","Primo invio del SAF-T contabile annuale (proposta: 2029)","Confermato"],
+        ["1 lug 2028","Lussemburgo","E-fattura B2B","Emissione per grandi e medie imprese","Bozza"],
+        ["metà 2028","Danimarca","E-fattura","Avvio della specifica Peppol unica","Pianificato"],
+        ["6 ott 2028","Spagna","E-fattura B2B","Tutte le altre imprese e i professionisti","Confermato"],
+        ["ott 2028","Spagna","E-reporting","VERI*FACTU: rinvio annunciato, non ancora in BOE","Annunciato"],
+        ["1 nov 2028","Irlanda","E-fattura + e-reporting","Fase 1: grandi imprese; ricezione per tutte","Disegno di legge"]
+      ]
+    },
+    {
+      "title": "2029-2030: verso ViDA",
+      "rows": [
+        ["1 gen 2029","Lussemburgo","E-fattura B2B","Emissione per tutte le imprese, PMI comprese","Bozza"],
+        ["2029","Portogallo","SAF-T","Primo invio SAF-T contabile, se approvato il rinvio","Proposta"],
+        ["apr 2029","Regno Unito","E-fattura B2B","Obbligo per le fatture IVA","Annunciato"],
+        ["metà 2029","Danimarca","E-fattura","Dismissione di OIOUBL e Peppol BIS","Pianificato"],
+        ["nov 2029","Irlanda","E-fattura + e-reporting","Imprese con cessioni intra-UE a IVA zero","Disegno di legge"],
+        ["1 gen 2030","Norvegia","E-fattura B2B","Ricezione obbligatoria e contabilità digitale","Confermato"],
+        ["1 gen 2030","Paesi Bassi","E-fattura B2B","Obbligo domestico via Peppol","Proposta"],
+        ["1 lug 2030","Stati UE","E-fattura + e-reporting","ViDA: e-fattura e reporting digitale per il B2B intra-UE","Confermato"]
+      ]
+    }
+  ],
+  "vida": {
+    "title": "1° luglio 2030: cosa cambia con ViDA",
+    "left_title": "Cosa diventa obbligatorio",
+    "left": [
+      "E-fattura strutturata EN 16931 per le operazioni B2B tra Stati UE",
+      "Nessun consenso del cliente: il PDF non è più una fattura valida per queste operazioni",
+      "Reporting digitale per singola transazione al posto degli elenchi riepilogativi",
+      "Termini più stretti per l'emissione della fattura"
+    ],
+    "right_title": "Cosa resta una scelta nazionale",
+    "right": [
+      "L'obbligo per le operazioni domestiche: dal 2025 gli Stati lo introducono senza autorizzazione UE",
+      "Le vendite ai consumatori (B2C)",
+      "Le operazioni con paesi extra-UE, come Norvegia, Svizzera e Regno Unito",
+      "I sistemi nazionali già esistenti, che convergono con il modello UE entro il 2035"
+    ]
+  },
+  "status": {
+    "title": "Cosa è certo e cosa va ancora monitorato",
+    "left_title": "Date confermate",
+    "left": [
+      "Germania 2027-2028, Slovacchia e Norvegia 2027",
+      "Francia settembre 2027 per PMI e microimprese",
+      "Emirati e Oman 2027",
+      "Spagna e-fattura B2B ottobre 2027 e 2028",
+      "Slovenia 2028, ViDA 1° luglio 2030"
+    ],
+    "right_title": "Proposte, bozze e annunci",
+    "right": [
+      "Spagna: VERI*FACTU a ottobre 2028 (annunciato)",
+      "Polonia: sanzioni KSeF al 2028 · Portogallo: PDF al 2028 (voto 24/11)",
+      "Ungheria: eÁFA graduale · Belgio: e-reporting 2028",
+      "Lussemburgo, Bulgaria, Irlanda: testi in iter",
+      "Regno Unito 2029, Paesi Bassi 2030 · Arabia Saudita ondata 25 da verificare"
+    ]
+  },
+  "next": {
+    "title": "Come pianificare i progetti",
+    "steps": [
+      { "when": "12 mesi prima", "what": "Perimetro: società, partite IVA, flussi e paesi coinvolti" },
+      { "when": "9 mesi prima", "what": "Scelta di soluzione e provider: SAP DRC, access point Peppol, piattaforme" },
+      { "when": "6 mesi prima", "what": "Integrazione con il gestionale, anagrafiche e test con le controparti" },
+      { "when": "3 mesi prima", "what": "Avvio pilota, monitoraggio degli scarti e conservazione a norma" }
+    ],
+    "note": "Per le scadenze di gennaio 2027 (Germania, Slovacchia, Norvegia, Emirati) mancano poco più di due mesi: sono le priorità immediate. Chi parte ora deve puntare a settembre-ottobre 2027 (Francia, Spagna, Oman)."
+  }
+}

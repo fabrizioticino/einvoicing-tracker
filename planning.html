@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Planning normativo e-fattura 2026-2030</title>
+<meta name="description" content="Scadenze di fatturazione elettronica, e-reporting e SAF-T per paese dal 2026 al 2030.">
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=IBM+Plex+Mono:wght@400;500;600&family=Inter:wght@400;500;600;700&display=swap');
+  :root{
+    --paper:#F5F5F5; --ink:#161616; --ink-soft:#5A5A5A; --line:#D6D6D6; --card:#FFFFFF;
+    --accent:#C8102E; --navy:#2A2D3C; --teal:#0E7C86; --gold:#E0A100; --gold-text:#A07000; --light:#EDEEF1;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{margin:0;background:var(--paper);color:var(--ink);font-family:'Inter',sans-serif;-webkit-font-smoothing:antialiased;}
+  a{color:inherit;}
+  .wrap{max-width:1180px;margin:0 auto;padding:0 5vw;}
+
+  header.masthead{border-bottom:3px double var(--ink);padding:24px 0 18px;}
+  .masthead-top{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px;font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-soft);margin-bottom:16px;}
+  .masthead-top img{height:26px;margin-right:12px;vertical-align:middle;}
+  .back{font-family:'IBM Plex Mono',monospace;font-size:12px;text-transform:uppercase;letter-spacing:.04em;border:1px solid var(--ink);padding:7px 14px;border-radius:2px;text-decoration:none;}
+  .back:hover{background:var(--ink);color:var(--paper);}
+  h1{font-family:'Fraunces',serif;font-weight:600;font-size:clamp(30px,5vw,52px);line-height:1;margin:0 0 10px;}
+  h1 em{font-style:italic;font-weight:400;color:var(--accent);white-space:nowrap;}
+  .lead{font-size:15px;color:var(--ink-soft);max-width:720px;line-height:1.55;margin:0;}
+  .stamp{font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--ink-soft);margin-top:10px;}
+
+  nav.toc{display:flex;flex-wrap:wrap;gap:6px;margin:22px 0 6px;}
+  nav.toc a{font-family:'IBM Plex Mono',monospace;font-size:11.5px;text-decoration:none;border:1px solid var(--line);background:var(--card);padding:6px 11px;border-radius:2px;color:var(--ink-soft);}
+  nav.toc a:hover{border-color:var(--ink);color:var(--ink);}
+
+  section{padding:34px 0 8px;scroll-margin-top:10px;}
+  h2{font-family:'Fraunces',serif;font-weight:600;font-size:clamp(22px,3vw,30px);margin:0 0 18px;}
+  h2 .num{font-family:'IBM Plex Mono',monospace;font-size:13px;color:var(--accent);margin-right:10px;vertical-align:middle;}
+
+  .stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px;margin-bottom:22px;}
+  .stat{background:var(--card);border:1px solid var(--line);padding:20px 22px;}
+  .stat .v{font-family:'Fraunces',serif;font-weight:700;font-size:44px;color:var(--accent);line-height:1;}
+  .stat .l{font-size:14px;color:var(--navy);margin-top:10px;line-height:1.4;}
+  ol.msgs{list-style:none;padding:0;margin:0;display:grid;gap:10px;}
+  ol.msgs li{display:flex;gap:14px;align-items:center;font-size:15.5px;}
+  ol.msgs .n{flex:0 0 30px;height:30px;border-radius:50%;background:var(--accent);color:#fff;font-weight:700;display:flex;align-items:center;justify-content:center;font-size:14px;}
+
+  /* gantt */
+  .gantt-scroll{overflow-x:auto;overflow-y:hidden;background:var(--card);border:1px solid var(--line);padding:14px 16px 10px;}
+  .gantt{position:relative;min-width:860px;padding-bottom:22px;}
+  .g-head,.g-row{display:grid;grid-template-columns:170px 1fr;}
+  .g-years{display:grid;grid-template-columns:repeat(5,1fr);gap:2px;}
+  .g-years div{background:var(--navy);color:#fff;text-align:center;font-weight:700;font-size:13px;padding:4px 0;}
+  .g-row{height:24px;align-items:center;}
+  .g-row:nth-child(odd){background:var(--light);}
+  .g-label{font-size:13px;padding-left:6px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+  .g-label a{text-decoration:none;border-bottom:1px dotted var(--ink-soft);}
+  .g-label a:hover{color:var(--accent);border-color:var(--accent);}
+  .g-track{position:relative;height:100%;}
+  .g-track .sep{position:absolute;top:0;bottom:0;width:1px;background:var(--line);}
+  .mk{position:absolute;top:50%;width:11px;height:11px;margin-top:-5.5px;display:block;}
+  .mk.B{transform:rotate(45deg) scale(.88);background:var(--accent);}
+  .mk.R{border-radius:50%;background:var(--teal);}
+  .mk.S{background:var(--gold);}
+  .mk.P{background:#fff!important;border:2px solid;}
+  .mk.B.P{border-color:var(--accent);} .mk.R.P{border-color:var(--teal);} .mk.S.P{border-color:var(--gold);}
+  .today{position:absolute;top:0;bottom:4px;border-left:2px dashed var(--navy);pointer-events:none;}
+  .today span{position:absolute;bottom:-2px;left:-16px;font-family:'IBM Plex Mono',monospace;font-size:11px;font-weight:600;color:var(--navy);}
+  .legend{display:flex;flex-wrap:wrap;gap:18px;margin-top:22px;font-size:13px;color:var(--navy);}
+  .legend span{display:inline-flex;align-items:center;gap:8px;}
+  .legend .mk{position:static;margin:0;}
+
+  /* tabelle */
+  .tbl-wrap{overflow-x:auto;margin-bottom:22px;}
+  .year-title{font-family:'IBM Plex Mono',monospace;font-size:13px;font-weight:600;text-transform:uppercase;letter-spacing:.05em;color:var(--navy);margin:20px 0 8px;}
+  table{width:100%;border-collapse:collapse;background:var(--card);font-size:14px;min-width:720px;}
+  thead th{background:var(--navy);color:#fff;text-align:left;padding:9px 10px;font-weight:600;}
+  tbody td{padding:9px 10px;border-bottom:1px solid var(--line);vertical-align:top;}
+  tbody tr:nth-child(even) td{background:#FAFAFB;}
+  td.d,td.p{font-weight:600;white-space:nowrap;}
+  td.p a{text-decoration:none;border-bottom:1px dotted var(--ink-soft);}
+  td.p a:hover{color:var(--accent);border-color:var(--accent);}
+  .t-B{color:var(--accent);font-weight:700;} .t-R{color:var(--teal);font-weight:700;} .t-S{color:var(--gold-text);font-weight:700;}
+  .st-c{color:var(--navy);} .st-p{color:var(--ink-soft);font-style:italic;} .st-v{color:var(--accent);font-style:italic;font-weight:600;}
+
+  /* card due colonne */
+  .two{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:16px;}
+  .card{background:var(--card);border:1px solid var(--line);padding:22px 24px;}
+  .card h3{display:flex;align-items:center;gap:12px;font-size:19px;margin:0 0 14px;}
+  .card h3 .ic{flex:0 0 34px;height:34px;border-radius:50%;color:#fff;display:flex;align-items:center;justify-content:center;font-size:16px;font-weight:700;}
+  .card ul{margin:0;padding-left:20px;}
+  .card li{margin-bottom:9px;line-height:1.45;font-size:15px;}
+  .card li::marker{color:var(--accent);}
+  .card li a{text-decoration:none;border-bottom:1px dotted var(--ink-soft);}
+  .card li a:hover{color:var(--accent);}
+
+  .steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:14px;}
+  .step{background:var(--card);border:1px solid var(--line);padding:20px;}
+  .step .n{width:34px;height:34px;border-radius:50%;background:var(--accent);color:#fff;font-weight:700;display:flex;align-items:center;justify-content:center;}
+  .step .w{color:var(--accent);font-weight:700;font-size:18px;margin:14px 0 8px;}
+  .step .t{font-size:14.5px;line-height:1.45;color:var(--navy);}
+  .prio{background:var(--navy);color:#fff;padding:18px 22px;margin-top:16px;font-size:15.5px;line-height:1.5;}
+  .prio a{color:#fff;}
+
+  footer{margin-top:40px;border-top:1px solid var(--line);padding:22px 0 40px;font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--ink-soft);line-height:1.6;}
+  @media print{ nav.toc,.back{display:none;} section{break-inside:avoid;} }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="masthead">
+    <div class="masthead-top">
+      <span><a href="https://www.regestaitalia.eu/gestione-documentale/" target="_blank" rel="noopener"><img src="regesta-logo.png" alt="Regesta Group"></a>PLANNING NORMATIVO</span>
+      <a class="back" href="index.html">← Torna all'elenco dei paesi</a>
+    </div>
+    <h1>Planning normativo <em>e-fattura</em> <span style="white-space:nowrap">2026-2030</span></h1>
+    <p class="lead" id="lead"></p>
+    <div class="stamp" id="stamp"></div>
+    <nav class="toc">
+      <a href="#sintesi">Sintesi</a>
+      <a href="#planning">Planning generale</a>
+      <a href="#anni">Anno per anno</a>
+      <a href="#vida">ViDA 2030</a>
+      <a href="#stato">Certo e da monitorare</a>
+      <a href="#progetti">Come pianificare</a>
+    </nav>
+  </header>
+
+  <section id="sintesi"><h2><span class="num">01</span><span id="sum-title"></span></h2><div class="stats" id="stats"></div><ol class="msgs" id="msgs"></ol></section>
+  <section id="planning"><h2><span class="num">02</span><span id="gantt-title"></span></h2><div class="gantt-scroll"><div class="gantt" id="gantt"></div></div><div class="legend" id="legend"></div></section>
+  <section id="anni"><h2><span class="num">03</span>Anno per anno</h2><div id="years"></div></section>
+  <section id="vida"><h2><span class="num">04</span><span id="vida-title"></span></h2><div class="two" id="vida-cards"></div></section>
+  <section id="stato"><h2><span class="num">05</span><span id="status-title"></span></h2><div class="two" id="status-cards"></div></section>
+  <section id="progetti"><h2><span class="num">06</span><span id="next-title"></span></h2><div class="steps" id="steps"></div><div class="prio" id="prio"></div></section>
+
+  <footer>
+    Regesta · Planning normativo e-fattura 2026-2030. Documento informativo: non costituisce parere legale o fiscale. Le date indicate come proposta, bozza o annuncio possono cambiare.<br>
+    Il materiale contenuto in questo portale è protetto da copyright ed è stato prodotto ad esclusivo uso interno e del cliente. Ne è pertanto espressamente vietata, senza previa autorizzazione scritta di Regesta, la distribuzione a terzi, totale o parziale e con ogni mezzo, per scopi che esulano dall'attività commerciale relativa al software. I dati personali eventualmente trattati nell'ambito della consultazione del portale sono gestiti nel rispetto del Regolamento (UE) 2016/679 (GDPR). Per informazioni sul trattamento dei dati personali, fare riferimento all'informativa privacy di Regesta Group.
+  </footer>
+</div>
+
+<script>
+const ALIAS = { 'Emirati': 'Emirati Arabi Uniti' };
+const SPECIAL = { 'Stati UE': '#vida', 'Stati UE (ViDA)': '#vida' };
+const TYPE_LABEL = { B: 'E-fattura B2B', R: 'E-reporting / clearance', S: 'SAF-T / dichiarazioni digitali' };
+let SLUG = {};
+
+const esc = s => String(s).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+function hrefFor(name){
+  if (SPECIAL[name]) return SPECIAL[name];
+  const s = SLUG[ALIAS[name] || name];
+  return s ? 'index.html#' + s : null;
+}
+function countryLink(name){
+  const h = hrefFor(name);
+  return h ? `<a href="${h}">${esc(name)}</a>` : esc(name);
+}
+function linkify(text){
+  let out = esc(text);
+  const names = Object.keys(SLUG).concat(Object.keys(ALIAS)).sort((a,b) => b.length - a.length);
+  const done = [];
+  names.forEach(n => {
+    if (done.some(d => d.includes(n))) return;
+    const re = new RegExp('(^|[^\\wÀ-ÿ>])(' + n.replace(/[.*+?^${}()|[\]\\]/g,'\\$&') + ')(?![\\wÀ-ÿ<])', 'g');
+    if (re.test(out)) { out = out.replace(re, (m, pre, nm) => pre + countryLink(nm)); done.push(n); }
+  });
+  return out;
+}
+function typeOf(label){ return /SAF-T|Dichiarazioni/.test(label) ? 'S' : (/^E-reporting|Clearance/.test(label) ? 'R' : 'B'); }
+function stateClass(s){ return s === 'Confermato' ? 'st-c' : (s === 'Da verificare' ? 'st-v' : 'st-p'); }
+function monthIdx(ym){ const [y,m] = ym.split('-').map(Number); return (y - 2026) * 12 + m - 1; }
+const MONTHS = ['gen','feb','mar','apr','mag','giu','lug','ago','set','ott','nov','dic'];
+
+function render(D){
+  document.getElementById('lead').textContent = D.cover.subtitle + ': fatturazione elettronica, e-reporting e SAF-T. Ogni paese rimanda alla sua scheda nel tracker.';
+  document.getElementById('stamp').textContent = 'Situazione al ' + D.date + ' · ' + D.cover.author;
+
+  // sintesi
+  document.getElementById('sum-title').textContent = D.summary.title;
+  document.getElementById('stats').innerHTML = D.summary.stats.map(s => `<div class="stat"><div class="v">${esc(s.value)}</div><div class="l">${esc(s.label)}</div></div>`).join('');
+  document.getElementById('msgs').innerHTML = D.summary.messages.map((m,i) => `<li><span class="n">${i+1}</span><span>${esc(m)}</span></li>`).join('');
+
+  // gantt
+  const g = D.gantt;
+  document.getElementById('gantt-title').textContent = g.title;
+  const total = 60, pct = i => (i / total * 100);
+  let html = `<div class="g-head"><div></div><div class="g-years">${[2026,2027,2028,2029,2030].map(y => `<div>${y}</div>`).join('')}</div></div>`;
+  html += '<div class="g-body" style="position:relative">';
+  g.rows.forEach(r => {
+    const used = {};
+    const marks = r.e.map(([d,t,s]) => {
+      const mi = monthIdx(d); used[mi] = (used[mi] || 0) + 1;
+      const off = (used[mi] - 1) * 8;
+      const [y,m] = d.split('-');
+      const tip = `${r.c} · ${MONTHS[+m-1]} ${y} · ${TYPE_LABEL[t]} · ${s === 'C' ? 'confermato' : 'proposta, bozza o annuncio'}`;
+      const h = hrefFor(r.c);
+      const style = `left:calc(${pct(mi + .5)}% - 5.5px + ${off}px)`;
+      return h ? `<a class="mk ${t} ${s === 'P' ? 'P' : ''}" style="${style}" href="${h}" title="${esc(tip)}"></a>` : `<span class="mk ${t} ${s === 'P' ? 'P' : ''}" style="${style}" title="${esc(tip)}"></span>`;
+    }).join('');
+    const seps = [1,2,3,4].map(k => `<span class="sep" style="left:${pct(k*12)}%"></span>`).join('');
+    const label = r.c.startsWith('Stati UE') ? `<strong>${countryLink(r.c)}</strong>` : countryLink(r.c);
+    html += `<div class="g-row"><div class="g-label">${label}</div><div class="g-track">${seps}${marks}</div></div>`;
+  });
+  html += '</div>';
+  const ti = monthIdx(g.today) + 0.85;
+  html += `<div class="today" style="left:calc(170px + (100% - 170px) * ${ti / total})"><span>oggi</span></div>`;
+  const gEl = document.getElementById('gantt'); gEl.innerHTML = html;
+  const todayEl = gEl.querySelector('.today'); todayEl.style.top = gEl.querySelector('.g-head').offsetHeight + 'px';
+  document.getElementById('legend').innerHTML =
+    `<span><i class="mk B"></i>E-fattura B2B</span><span><i class="mk R"></i>E-reporting / clearance</span><span><i class="mk S"></i>SAF-T / dichiarazioni digitali</span><span><i class="mk B P"></i>Vuoto = proposta, bozza o annuncio</span><span>Clic su paese o simbolo per aprire la scheda</span>`;
+
+  // anni
+  document.getElementById('years').innerHTML = D.years.map(y => {
+    const rows = y.rows.map(r => {
+      const t = typeOf(r[2]);
+      return `<tr><td class="d">${esc(r[0])}</td><td class="p">${countryLink(r[1])}</td><td class="t-${t}">${esc(r[2])}</td><td>${esc(r[3])}</td><td class="${stateClass(r[4])}">${esc(r[4])}</td></tr>`;
+    }).join('');
+    const call = y.callout ? ` <span style="color:var(--accent)">· ${esc(y.callout.value)} ${esc(y.callout.label)}</span>` : '';
+    return `<div class="year-title">${esc(y.title)}${call}</div><div class="tbl-wrap"><table><thead><tr><th>Data</th><th>Paese</th><th>Ambito</th><th>Cosa succede</th><th>Stato</th></tr></thead><tbody>${rows}</tbody></table></div>`;
+  }).join('');
+
+  // carte
+  const cards = (el, lt, li, rt, ri, licon, ricon) => {
+    document.getElementById(el).innerHTML =
+      `<div class="card"><h3><span class="ic" style="background:var(--accent)">${licon}</span>${esc(lt)}</h3><ul>${li.map(x => `<li>${linkify(x)}</li>`).join('')}</ul></div>` +
+      `<div class="card"><h3><span class="ic" style="background:var(--navy)">${ricon}</span>${esc(rt)}</h3><ul>${ri.map(x => `<li>${linkify(x)}</li>`).join('')}</ul></div>`;
+  };
+  document.getElementById('vida-title').textContent = D.vida.title;
+  cards('vida-cards', D.vida.left_title, D.vida.left, D.vida.right_title, D.vida.right, '&#10003;', '&#8594;');
+  document.getElementById('status-title').textContent = D.status.title;
+  cards('status-cards', D.status.left_title, D.status.left, D.status.right_title, D.status.right, '&#10003;', '?');
+
+  // progetti
+  document.getElementById('next-title').textContent = D.next.title;
+  document.getElementById('steps').innerHTML = D.next.steps.map((s,i) => `<div class="step"><div class="n">${i+1}</div><div class="w">${esc(s.when)}</div><div class="t">${esc(s.what)}</div></div>`).join('');
+  document.getElementById('prio').innerHTML = linkify(D.next.note);
+}
+
+(async () => {
+  try {
+    const countries = await fetch('data/countries.json', {cache:'no-cache'}).then(r => r.json());
+    countries.forEach(c => { SLUG[c.name_it || c.name] = c.slug; });
+  } catch(e) {}
+  const D = await fetch('data/planning.json', {cache:'no-cache'}).then(r => r.json());
+  render(D);
+  if (location.hash) { const t = document.querySelector(location.hash); if (t) t.scrollIntoView(); }
+})();
+</script>
+</body>
+</html>

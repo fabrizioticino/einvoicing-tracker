@@ -119,6 +119,21 @@
     color:var(--stamp-green);
   }
 
+  .planning-bar{
+    position:relative; z-index:1;
+    display:flex; justify-content:space-between; align-items:center; gap:12px;
+    padding:12px 5vw;
+    background:var(--ink); color:#fff; text-decoration:none;
+    font-family:'IBM Plex Mono', monospace; font-size:13px; font-weight:600;
+    letter-spacing:.04em; text-transform:uppercase;
+    white-space:nowrap; overflow:hidden;
+  }
+  .planning-bar .pb-dot{ color:var(--accent); margin-right:6px; }
+  .planning-bar .pb-go{ font-weight:500; opacity:.85; }
+  .planning-bar:hover{ background:var(--accent); }
+  .planning-bar:hover .pb-dot{ color:#fff; }
+  @media (max-width:560px){ .planning-bar .pb-go{ display:none; } }
+
   /* ───────── Controls bar ───────── */
   .controls{
     position:sticky;
@@ -502,6 +517,11 @@
     </div>
   </div>
 </header>
+
+<a class="planning-bar" href="planning.html">
+  <span><span class="pb-dot">●</span> Planning normativo e-fattura 2026-2030</span>
+  <span class="pb-go">Apri il planning →</span>
+</a>
 
 <div class="controls">
   <div class="search-wrap">
