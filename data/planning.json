@@ -50,6 +50,7 @@
       { "c": "Irlanda", "e": [["2028-11","B","P"],["2028-11","R","P"],["2029-11","B","P"]] },
       { "c": "Regno Unito", "e": [["2029-04","B","P"]] },
       { "c": "Paesi Bassi", "e": [["2030-01","B","P"]] },
+      { "c": "Repubblica Ceca", "e": [["2030-07","B","C"],["2030-07","R","C"]] },
       { "c": "Stati UE (ViDA)", "e": [["2030-07","B","C"],["2030-07","R","C"]] }
     ]
   },
@@ -130,6 +131,7 @@
         ["nov 2029","Irlanda","E-fattura + e-reporting","Imprese con cessioni intra-UE a IVA zero","Disegno di legge"],
         ["1 gen 2030","Norvegia","E-fattura B2B","Ricezione obbligatoria e contabilità digitale","Confermato"],
         ["1 gen 2030","Paesi Bassi","E-fattura B2B","Obbligo domestico via Peppol","Proposta"],
+        ["1 lug 2030","Repubblica Ceca","E-fattura + e-reporting","Nessun obbligo nazionale annunciato: si applica solo ViDA per il B2B intra-UE (resta la comunicazione mensile IVA Kontrolní hlášení)","Confermato"],
         ["1 lug 2030","Stati UE","E-fattura + e-reporting","ViDA: e-fattura e reporting digitale per il B2B intra-UE","Confermato"]
       ]
     }
