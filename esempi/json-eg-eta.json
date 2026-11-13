@@ -1,0 +1,67 @@
+{
+  "_faksimile": "FAC-SIMILE - ESEMPIO DIDATTICO - DATI FITTIZI - NON E' UNA FATTURA REALE (struttura documento ETA v1.0, firma omessa)",
+  "documents": [
+    {
+      "issuer": {
+        "type": "B",
+        "id": "000000000",
+        "name": "Alfa Seller SAE (fittizio)",
+        "address": {
+          "branchID": "0",
+          "country": "EG",
+          "governate": "Cairo",
+          "regionCity": "Nasr City",
+          "street": "Sample Street",
+          "buildingNumber": "1"
+        }
+      },
+      "receiver": {
+        "type": "B",
+        "id": "111111111",
+        "name": "Beta Buyer LLC (fittizio)",
+        "address": {
+          "country": "EG",
+          "governate": "Giza",
+          "regionCity": "Dokki",
+          "street": "Sample Road",
+          "buildingNumber": "2"
+        }
+      },
+      "documentType": "I",
+      "documentTypeVersion": "1.0",
+      "dateTimeIssued": "2026-11-10T09:00:00Z",
+      "taxpayerActivityCode": "4620",
+      "internalID": "INV-2026-000123",
+      "invoiceLines": [
+        {
+          "description": "Sample product",
+          "itemType": "EGS",
+          "itemCode": "EG-000000000-SAMPLE01",
+          "unitType": "EA",
+          "quantity": 10,
+          "unitValue": { "currencySold": "EGP", "amountEGP": 100.00 },
+          "salesTotal": 1000.00,
+          "discount": { "rate": 0, "amount": 0 },
+          "netTotal": 1000.00,
+          "taxableItems": [
+            { "taxType": "T1", "subType": "V009", "rate": 14, "amount": 140.00 }
+          ],
+          "itemsDiscount": 0,
+          "valueDifference": 0,
+          "totalTaxableFees": 0,
+          "total": 1140.00
+        }
+      ],
+      "totalSalesAmount": 1000.00,
+      "totalDiscountAmount": 0,
+      "netAmount": 1000.00,
+      "taxTotals": [ { "taxType": "T1", "amount": 140.00 } ],
+      "extraDiscountAmount": 0,
+      "totalItemsDiscountAmount": 0,
+      "totalAmount": 1140.00,
+      "signatures": [
+        { "signatureType": "I", "value": "<firma CAdES-BES dell'emittente - omessa nel fac-simile>" }
+      ]
+    }
+  ]
+}
