@@ -2668,7 +2668,7 @@
     "b2c_platform": "Sistema e-Receipt ETA (POS registrati o ERP come POS virtuale)",
     "b2c_format": "Ricevuta elettronica JSON (schema v1.2) con UUID concatenato e QR code",
     "b2c_network": "API e-Receipt ETA (autenticazione OAuth 2.0)",
-    "b2c_notes": "Le vendite al consumatore finale si documentano con la ricevuta elettronica (Decisione 230/2022). L'obbligo scatta per i contribuenti indicati nelle decisioni ETA che fissano le fasi. La ricevuta va trasmessa al momento della vendita (al massimo entro 24 ore se offline) e la copia stampata deve avere il QR code. Per ricevute di almeno 150.000 EGP serve il documento d'identita' del cliente. In alternativa le vendite B2C possono essere documentate con una e-fattura ETA verso un consumatore (tipo destinatario P).",
+    "b2c_notes": "Le vendite al consumatore finale si documentano con la ricevuta elettronica (Decisione 230/2022). L'obbligo scatta per i contribuenti indicati nelle decisioni ETA che fissano le fasi. Secondo fonti di settore, entro il 31 marzo 2026 l'obbligo e' stato esteso ai contribuenti con ricavi annui oltre 250.000 EGP (prima la soglia era 500.000 EGP): da verificare sulle decisioni ETA. La ricevuta va trasmessa al momento della vendita (al massimo entro 24 ore se offline) e la copia stampata deve avere il QR code. Per ricevute di almeno 150.000 EGP serve il documento d'identita' del cliente. In alternativa le vendite B2C possono essere documentate con una e-fattura ETA verso un consumatore (tipo destinatario P).",
     "b2c_url": "https://www.eta.gov.eg/",
     "ereporting_status": "Integrato nella clearance (e-fattura ed e-Receipt)",
     "ereporting_since": "15 novembre 2020 (e-fattura); 2022 (e-Receipt)",
