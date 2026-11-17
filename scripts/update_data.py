@@ -128,6 +128,16 @@ NAME_IT = {
     "Egypt": "Egitto",
     "Nigeria": "Nigeria",
     "Canada": "Canada",
+    "Algeria": "Algeria",
+    "Azerbaijan": "Azerbaigian",
+    "Libya": "Libia",
+    "Tunisia": "Tunisia",
+    "Russia": "Russia",
+    "Hong Kong": "Hong Kong",
+    "Qatar": "Qatar",
+    "Morocco": "Marocco",
+    "Serbia": "Serbia",
+    "Kazakhstan": "Kazakistan",
 }
 
 # Mesi in italiano (per conversione date)
