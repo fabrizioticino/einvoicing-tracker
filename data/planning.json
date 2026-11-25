@@ -43,7 +43,7 @@
       { "c": "Danimarca", "e": [["2027-01","S","C"],["2027-03","B","C"],["2028-07","B","C"],["2029-07","B","C"]] },
       { "c": "Ungheria", "e": [["2027-01","S","C"],["2028-01","S","P"]] },
       { "c": "Portogallo", "e": [["2027-01","B","C"],["2028-01","B","P"],["2028-06","S","C"],["2029-06","S","P"]] },
-      { "c": "Spagna", "e": [["2027-01","R","C"],["2027-07","R","C"],["2027-10","B","C"],["2028-10","B","C"],["2028-10","R","P"]] },
+      { "c": "Spagna", "e": [["2027-10","B","C"],["2028-10","B","C"],["2028-10","R","C"]] },
       { "c": "Oman", "e": [["2027-04","B","C"],["2027-10","B","C"]] },
       { "c": "Slovenia", "e": [["2028-01","B","C"]] },
       { "c": "Bulgaria", "e": [["2028-01","B","P"]] },
@@ -85,7 +85,6 @@
         ["1 gen 2027","San Marino","E-fattura B2B","Avvio dell'obbligo","Confermato"],
         ["1 gen 2027","Danimarca","SAF-T","SAF-T 2.1 nei sistemi contabili registrati","Confermato"],
         ["1 gen 2027","Ungheria","Dichiarazioni digitali","eÁFA obbligatorio (proposta: passaggio graduale 2027-2028)","Confermato"],
-        ["1 gen 2027","Spagna","E-reporting","VERI*FACTU per le società (rinvio a ott. 2028 annunciato)","Confermato"],
         ["1 gen 2027","Portogallo","E-fattura","Firma qualificata sui PDF (proposta: rinvio al 2028)","Confermato"],
         ["1 feb 2027","Arabia Saudita","Clearance","Ondata 25: ricavi > 187.500 SAR","Da verificare"],
         ["1 feb 2027","Grecia","E-fattura B2B","Solo provider accreditati o app AADE","Confermato"],
@@ -97,7 +96,6 @@
       "rows": [
         ["1 apr 2027","Oman","E-fattura B2B","Fase 1: forniture annue > 5 mln OMR","Confermato"],
         ["1 lug 2027","Emirati","E-fattura + e-reporting","Tutte le altre imprese","Confermato"],
-        ["1 lug 2027","Spagna","E-reporting","VERI*FACTU per gli altri contribuenti (rinvio annunciato)","Confermato"],
         ["1 set 2027","Francia","E-fattura + e-reporting","Emissione per PMI e microimprese","Confermato"],
         ["1 ott 2027","Oman","E-fattura B2B","Fase 2: tutti gli altri soggetti IVA","Confermato"],
         ["1 ott 2027","Emirati","E-fattura","Enti pubblici","Confermato"],
@@ -119,7 +117,7 @@
         ["1 lug 2028","Lussemburgo","E-fattura B2B","Emissione per grandi e medie imprese","Bozza"],
         ["metà 2028","Danimarca","E-fattura","Avvio della specifica Peppol unica","Pianificato"],
         ["6 ott 2028","Spagna","E-fattura B2B","Tutte le altre imprese e i professionisti","Confermato"],
-        ["ott 2028","Spagna","E-reporting","VERI*FACTU: rinvio annunciato, non ancora in BOE","Annunciato"],
+        ["6 ott 2028","Spagna","E-reporting","VERI*FACTU per tutti gli obbligati (RDL 43/2026, da convalidare)","Confermato"],
         ["1 nov 2028","Irlanda","E-fattura + e-reporting","Fase 1: grandi imprese; ricezione per tutte","Disegno di legge"]
       ]
     },
@@ -167,7 +165,7 @@
     ],
     "right_title": "Proposte, bozze e annunci",
     "right": [
-      "Spagna: VERI*FACTU a ottobre 2028 (annunciato)",
+      "Spagna: VERI*FACTU al 6 ottobre 2028 (RDL 43/2026, in attesa di convalida)",
       "Polonia: sanzioni KSeF al 2028 · Portogallo: PDF al 2028 (voto 24/11)",
       "Ungheria: eÁFA graduale · Belgio: e-reporting 2028",
       "Lussemburgo, Bulgaria, Irlanda: testi in iter",
